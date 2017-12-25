@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.mongodb:mongodb-driver-reactivestreams:1.6.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.mongodb/mongodb-driver-reactivestreams/1.6.0/b1aa90e18b3d78c9514cb98277de3107350221ff/mongodb-driver-reactivestreams-1.6.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.mongodb/mongodb-driver-reactivestreams/1.6.0/1f296a36364646b27444e2f8b6488eb7d7bcdb4c/mongodb-driver-reactivestreams-1.6.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
