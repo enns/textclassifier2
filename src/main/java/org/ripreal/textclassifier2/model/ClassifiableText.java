@@ -18,9 +18,7 @@ import java.util.Map;
 public class ClassifiableText {
 
     @Id private String id;
-
     @NonNull private String text;
-
     @DBRef Map<Characteristic, CharacteristicValue> characteristics = new HashMap<>();
 
     @Override

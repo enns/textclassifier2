@@ -4,7 +4,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Id;
@@ -15,10 +14,9 @@ import javax.persistence.Id;
 @RequiredArgsConstructor
 public class CharacteristicValue {
 
-    @Id private ObjectId id;
+    @Id private String id;
     @NonNull private String value;
-    @NonNull private Characteristic characteristic;
-    private int orderNumber;
+    @NonNull private int orderNumber;
 
     @Override
     public boolean equals(Object o) {

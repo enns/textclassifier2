@@ -17,8 +17,7 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class Characteristic {
 
-    @Id private String id;
-    @NonNull private String name;
+    @Id @NonNull private String name;
     @DBRef private Set<CharacteristicValue> possibleValues = new HashSet<>();
 
     @Override
