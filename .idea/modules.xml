@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TextClassificator.iml" filepath="$PROJECT_DIR$/.idea/modules/TextClassificator.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TextClassificator_main.iml" filepath="$PROJECT_DIR$/.idea/modules/TextClassificator_main.iml" group="TextClassificator" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TextClassificator_test.iml" filepath="$PROJECT_DIR$/.idea/modules/TextClassificator_test.iml" group="TextClassificator" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/textClassifier2.iml" filepath="$PROJECT_DIR$/.idea/modules/textClassifier2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/textClassifier2_main.iml" filepath="$PROJECT_DIR$/.idea/modules/textClassifier2_main.iml" group="textClassifier2" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/textClassifier2_test.iml" filepath="$PROJECT_DIR$/.idea/modules/textClassifier2_test.iml" group="textClassifier2" />
     </modules>
   </component>
 </project>
