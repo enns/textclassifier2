@@ -2,6 +2,8 @@ package org.ripreal.textclassifier2.testdata;
 
 import lombok.extern.slf4j.Slf4j;
 import org.ripreal.textclassifier2.data.reactive.CharacteristicValueRepo;
+import org.ripreal.textclassifier2.data.reactive.ClassifiableTextRepo;
+import org.ripreal.textclassifier2.model.CharactValuePair;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.data.reactive.CharacteristicRepo;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
@@ -13,8 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Slf4j
 @Configuration
@@ -22,7 +23,7 @@ public class ClassifiableTextTestData {
 
     @Bean
     @Transactional
-    public CommandLineRunner init(final CharacteristicRepo repository, final CharacteristicValueRepo valRepository) {
+    public CommandLineRunner init(final ClassifiableTextRepo repository, final CharacteristicRepo charRepo) {
 
         // fill characteristic
 
@@ -31,9 +32,9 @@ public class ClassifiableTextTestData {
         Set<CharacteristicValue> vals = new HashSet<>();
         CharacteristicValue auto = new CharacteristicValue("Автосалон", 0);
         vals.add(auto);
-        CharacteristicValue agro = new CharacteristicValue("Агро", 1)
+        CharacteristicValue agro = new CharacteristicValue("Агро", 1);
         vals.add(agro);
-        CharacteristicValue logistic = new CharacteristicValue("Логистика", 1)
+        CharacteristicValue logistic = new CharacteristicValue("Логистика", 1);
         vals.add(logistic);
 
         characteristic1.setPossibleValues(vals);
@@ -41,21 +42,38 @@ public class ClassifiableTextTestData {
         Characteristic characteristic2 = new Characteristic("Тип");
 
         Set<CharacteristicValue> vals2 = new HashSet<>();
-        vals.add(new CharacteristicValue("Техподдержка", 0));
-        vals.add(new CharacteristicValue("Разработчики", 1));
-        vals.add(new CharacteristicValue("Методисты", 1));
+        CharacteristicValue it = new CharacteristicValue("Техподдержка", 0);
+        vals2.add(it);
+        CharacteristicValue dev = new CharacteristicValue("Разработчики", 1);
+        vals2.add(dev);
+        CharacteristicValue analytics = new CharacteristicValue("Методисты", 1);
+        vals2.add(analytics);
 
         characteristic2.setPossibleValues(vals2);
 
-        // fill classifiable text
-
         ClassifiableText text1 = new ClassifiableText("Требуется починить телефон");
+        text1.setCharacteristics(new HashSet<CharactValuePair>(Arrays.asList(
+     //       new CharactValuePair(characteristic1, auto),
+            new CharactValuePair(characteristic2, it)
+        )));
+
+        /*
+        ClassifiableText text2 = new ClassifiableText("Не работает компьютер в отделе запчастей");
+        Map map2 = new HashMap<Characteristic, CharacteristicValue>();
+        map2.put(characteristic1, auto);
+        map2.put(characteristic2, it);
+        text2.setCharacteristics(map2);
+        */
 
         return args -> {
+            charRepo.deleteAll()
+            .thenMany(Flux.just(characteristic1).flatMap(charRepo::save));
+            /*
             repository.deleteAll()
-                    .thenMany(Flux.just(characteristic1, characteristic2).flatMap(repository::save))
+            .thenMany(Flux.just(text1).flatMap(repository::save))
                     .subscribe(null, null, () ->
                         repository.findAll().subscribe(movie -> log.info("\n{}", movie)));
+                        */
         };
     }
 }

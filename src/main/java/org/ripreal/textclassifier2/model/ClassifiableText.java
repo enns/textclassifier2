@@ -4,12 +4,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 @Data
 @Document
@@ -19,7 +21,7 @@ public class ClassifiableText {
 
     @Id private String id;
     @NonNull private String text;
-    @DBRef Map<Characteristic, CharacteristicValue> characteristics = new HashMap<>();
+    @NonNull Set<CharactValuePair> characteristics = new HashSet<>();
 
     @Override
     public boolean equals(Object o) {
