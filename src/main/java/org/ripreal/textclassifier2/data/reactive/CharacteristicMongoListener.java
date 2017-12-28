@@ -7,10 +7,7 @@ import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
-import org.springframework.data.mongodb.core.mapping.event.AbstractMongoEventListener;
-import org.springframework.data.mongodb.core.mapping.event.AfterSaveEvent;
-import org.springframework.data.mongodb.core.mapping.event.BeforeConvertEvent;
-import org.springframework.data.mongodb.core.mapping.event.BeforeSaveEvent;
+import org.springframework.data.mongodb.core.mapping.event.*;
 
 import java.util.Map;
 
@@ -29,13 +26,23 @@ public class CharacteristicMongoListener extends AbstractMongoEventListener<Obje
         else if (source instanceof ClassifiableText) {
             for(CharactValuePair entry : ((ClassifiableText) source).getCharacteristics()) {
                 repository.save(entry.getKey());
-                repository.save(entry.getVal());
+                //repository.save(entry.getVal());
             }
-
         }
     }
 
-
-
-
+    @Override
+    public void onAfterDelete(AfterDeleteEvent<Object> event) {
+        Object source = event.getSource();
+        if (source instanceof Characteristic) {
+            for(CharacteristicValue element : ((Characteristic) source).getPossibleValues())
+                repository.remove(element);
+        }
+        else if (source instanceof ClassifiableText) {
+            for(CharactValuePair entry : ((ClassifiableText) source).getCharacteristics()) {
+                repository.remove(entry.getKey());
+                repository.remove(entry.getVal());
+            }
+        }
+    }
 }

@@ -12,8 +12,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @RequiredArgsConstructor
 public class CharactValuePair {
-    @Id String id;
     @DBRef @NonNull Characteristic key;
     @DBRef @NonNull CharacteristicValue val;
-
 }

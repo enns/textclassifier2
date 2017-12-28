@@ -13,7 +13,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 import java.util.*;
 
@@ -23,7 +22,9 @@ public class ClassifiableTextTestData {
 
     @Bean
     @Transactional
-    public CommandLineRunner init(final ClassifiableTextRepo repository, final CharacteristicRepo charRepo) {
+    public CommandLineRunner init(final ClassifiableTextRepo textRepo,
+                                  final CharacteristicRepo charRepo,
+                                  final CharacteristicValueRepo charValRepo) {
 
         // fill characteristic
 
@@ -53,27 +54,23 @@ public class ClassifiableTextTestData {
 
         ClassifiableText text1 = new ClassifiableText("Требуется починить телефон");
         text1.setCharacteristics(new HashSet<CharactValuePair>(Arrays.asList(
-     //       new CharactValuePair(characteristic1, auto),
-            new CharactValuePair(characteristic2, it)
+            new CharactValuePair(characteristic2, it),
+            new CharactValuePair(characteristic1, auto)
         )));
 
-        /*
-        ClassifiableText text2 = new ClassifiableText("Не работает компьютер в отделе запчастей");
-        Map map2 = new HashMap<Characteristic, CharacteristicValue>();
-        map2.put(characteristic1, auto);
-        map2.put(characteristic2, it);
-        text2.setCharacteristics(map2);
-        */
+        ClassifiableText text2 = new ClassifiableText("Требуется починить заказы клиента в 1с");
+        text2.setCharacteristics(new HashSet<CharactValuePair>(Arrays.asList(
+            new CharactValuePair(characteristic2, dev),
+            new CharactValuePair(characteristic1, agro)
+        )));
 
         return args -> {
-            charRepo.deleteAll()
-            .thenMany(Flux.just(characteristic1).flatMap(charRepo::save));
-            /*
-            repository.deleteAll()
-            .thenMany(Flux.just(text1).flatMap(repository::save))
+            charValRepo.deleteAll().block();
+            charRepo.deleteAll().block();
+            textRepo.deleteAll()
+            .thenMany(Flux.just(text1, text2).flatMap(textRepo::save))
                     .subscribe(null, null, () ->
-                        repository.findAll().subscribe(movie -> log.info("\n{}", movie)));
-                        */
+                            textRepo.findAll().subscribe(movie -> log.info("\nwritten to db: {}", movie)));
         };
     }
 }
