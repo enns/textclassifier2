@@ -21,9 +21,6 @@ public class CharacteristicResource {
 
     @GetMapping("{name}")
     public Mono<Characteristic> findById(@PathVariable String name) {
-        return service.findByName(name).thenEmpty();
-        if (characteristic.em == null)
-            throw new ThereIsNoSuchCharacteristic();
-        return characteristic;
+        return service.findByName(name);
     }
 }
