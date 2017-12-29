@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.ripreal.textclassifier2.App;
 import org.ripreal.textclassifier2.model.CharactValuePair;
@@ -22,7 +21,6 @@ import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.*;
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {App.class})
 public class ClassifiableTextRepoTest {

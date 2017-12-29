@@ -18,11 +18,6 @@ public class CharacteristicService {
     }
 
     public Mono<Characteristic> findByName(String name) throws ThereIsNoSuchCharacteristic {
-        Mono<Characteristic> found = repository.findById(name);
-        found.map((el) -> {
-            throw new ThereIsNoSuchCharacteristic();
-        });
-
-        return found;
+        return repository.findById(name);
     }
 }
