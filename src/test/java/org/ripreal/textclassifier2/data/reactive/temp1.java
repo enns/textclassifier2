@@ -1,7 +1,15 @@
 package org.ripreal.textclassifier2.data.reactive;
 
+import org.junit.Before;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.http.client.reactive.ReactorClientHttpConnector;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.web.reactive.function.client.WebClient;
+
 public class temp1 {
-    /*
+/*
     @RunWith(SpringRunner.class)
     @SpringBootTest(
             classes = {LocationController.class, Spring5DemoApplication.class},
@@ -40,5 +48,5 @@ public class temp1 {
                     .verify(result);
         }
     }
-    */
+*/
 }

@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.concurrent.CountDownLatch;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("chars")
@@ -21,11 +23,13 @@ public class CharacteristicResource {
 
     @GetMapping("{name}")
     public Mono<Characteristic> findById(@PathVariable String name) {
+        CountDownLatch countDownLatch = new CountDownLatch(1);
         return service.findByName(name).doAfterSuccessOrError(
             (el, error) -> {
                 if (el == null)
                     throw new ThereIsNoSuchCharacteristic();
             }
-        );
+        )
+        .doFinally(System.out::println);
     }
 }
