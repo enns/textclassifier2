@@ -1,4 +1,4 @@
-package org.ripreal.textclassifier2.data.reactive;
+package org.ripreal.textclassifier2.data.reactive.repos;
 
 import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;

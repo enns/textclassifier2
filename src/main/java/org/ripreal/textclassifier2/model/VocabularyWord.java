@@ -14,7 +14,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class VocabularyWord {
 
     @Id private String id;
-    @NonNull  private String value;
+    @NonNull private String value;
 
     @Override
     public boolean equals(Object o) {

@@ -4,6 +4,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ripreal.textclassifier2.App;
+import org.ripreal.textclassifier2.data.reactive.repos.CharacteristicRepo;
+import org.ripreal.textclassifier2.data.reactive.repos.CharacteristicValueRepo;
+import org.ripreal.textclassifier2.data.reactive.repos.ClassifiableTextRepo;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.testdata.Helper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import reactor.core.publisher.Flux;
 
 import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
@@ -32,16 +36,16 @@ public class ClassifiableTextRepoTest {
     }
 
     @Test
-    public void testCRUD() {
+    public void testCRUD() throws InterruptedException {
 
-        // fill characteristic
-        List<ClassifiableText> data = Helper.getTextTestData();
-
-        Flux.fromIterable(data).flatMap(textRepo::save).blockLast();
+        //TEST CREATE
         Iterable<ClassifiableText> entries = textRepo.findAll().toIterable();
-
+        List<ClassifiableText> data = Helper.getTextTestData();
+        Flux.fromIterable(data).flatMap(textRepo::save).blockLast();
         assertEquals(entries.iterator().hasNext(), true);
-        for(ClassifiableText entry : entries) {
+
+        //TEST READ
+        for (ClassifiableText entry : entries) {
             ClassifiableText text = data.iterator().next();
             assertEquals(entry.getCharacteristics().size(), text.getCharacteristics().size());
         }
@@ -54,5 +58,8 @@ public class ClassifiableTextRepoTest {
 
         assertEquals(charValRepo.findAll().count().block().longValue(), charValAmount);
 
+        //TEST DELETE
+        textRepo.deleteAll().block();
+        assertEquals(textRepo.findAll().toIterable().iterator().hasNext(), false);
     }
 }

@@ -1,5 +1,9 @@
 package org.ripreal.textclassifier2.testdata;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import org.ripreal.textclassifier2.model.*;
 
 import java.util.Arrays;
@@ -54,5 +58,12 @@ public class Helper {
                 new VocabularyWord("треб"),
                 new VocabularyWord("найти")
         );
+    }
+
+    public static String ConvertObjectToJson(Object data) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
+        ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
+        return ow.writeValueAsString(data);
     }
 }
