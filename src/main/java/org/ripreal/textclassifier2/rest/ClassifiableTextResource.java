@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.Collections;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("texts")
@@ -27,8 +29,8 @@ public class ClassifiableTextResource {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Mono<ClassifiableText> save(@RequestBody ClassifiableText text) {
-        return service.save(text)
+    public Flux<ClassifiableText> save(@RequestBody ClassifiableText text) {
+        return service.saveTextsWithCharacteristics(Collections.singletonList(text))
             .doOnRequest((req) -> log.info("request received: {}", req))
             .doFinally((signal) -> log.info("request completed: {}", signal));
     }

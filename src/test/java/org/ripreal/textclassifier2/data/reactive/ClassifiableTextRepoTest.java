@@ -8,7 +8,7 @@ import org.ripreal.textclassifier2.data.reactive.repos.CharacteristicRepo;
 import org.ripreal.textclassifier2.data.reactive.repos.CharacteristicValueRepo;
 import org.ripreal.textclassifier2.data.reactive.repos.ClassifiableTextRepo;
 import org.ripreal.textclassifier2.model.ClassifiableText;
-import org.ripreal.textclassifier2.testdata.Helper;
+import org.ripreal.textclassifier2.testdata.ClassifiableTextTestDataHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -40,7 +40,7 @@ public class ClassifiableTextRepoTest {
 
         //TEST CREATE
         Iterable<ClassifiableText> entries = textRepo.findAll().toIterable();
-        List<ClassifiableText> data = Helper.getTextTestData();
+        List<ClassifiableText> data = ClassifiableTextTestDataHelper.getTextTestData();
         Flux.fromIterable(data).flatMap(textRepo::save).blockLast();
         assertEquals(entries.iterator().hasNext(), true);
 

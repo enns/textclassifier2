@@ -1,33 +1,12 @@
 package org.ripreal.textclassifier2.rest;
 
-import org.assertj.core.util.Lists;
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.ripreal.textclassifier2.App;
-import org.ripreal.textclassifier2.model.CharactValuePair;
 import org.ripreal.textclassifier2.model.Characteristic;
-import org.ripreal.textclassifier2.model.ClassifiableText;
-import org.ripreal.textclassifier2.model.VocabularyWord;
-import org.ripreal.textclassifier2.service.CharacteristicService;
-import org.ripreal.textclassifier2.testdata.Helper;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.web.server.LocalServerPort;
+import org.ripreal.textclassifier2.testdata.ClassifiableTextTestDataHelper;
 import org.springframework.http.MediaType;
-import org.springframework.http.client.reactive.ReactorClientHttpConnector;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.web.reactive.function.client.ClientRequest;
-import org.springframework.web.reactive.function.client.ClientResponse;
-import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.net.URI;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.concurrent.CountDownLatch;
-import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
 
@@ -53,7 +32,7 @@ public class CharacteristicResourceTest extends RestResourceTest {
 
     @Test
     public void save() throws Exception {
-        Mono<Characteristic> characteristic = Helper
+        Mono<Characteristic> characteristic = ClassifiableTextTestDataHelper
             .getTextTestData()
             .stream()
             .flatMap(item -> item.getCharacteristics().stream())

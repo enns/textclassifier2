@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Helper {
+public class ClassifiableTextTestDataHelper {
 
     public static List<ClassifiableText> getTextTestData(){
         Characteristic characteristic1 = new Characteristic("Отдел");

@@ -1,10 +1,8 @@
 package org.ripreal.textclassifier2.testdata;
 
 import lombok.extern.slf4j.Slf4j;
-import org.ripreal.textclassifier2.data.reactive.repos.CharacteristicValueRepo;
-import org.ripreal.textclassifier2.data.reactive.repos.ClassifiableTextRepo;
 import org.ripreal.textclassifier2.data.reactive.repos.VocabularyWordRepo;
-import org.ripreal.textclassifier2.data.reactive.repos.CharacteristicRepo;
+import org.ripreal.textclassifier2.service.ClassifiableTextService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,21 +17,18 @@ public class ClassifiableTextTestData {
 
     @Bean
     @Transactional
-    public CommandLineRunner init(final ClassifiableTextRepo textRepo,
-                                  final CharacteristicRepo charRepo,
-                                  final CharacteristicValueRepo charValRepo,
+    public CommandLineRunner init(ClassifiableTextService textService,
                                   final VocabularyWordRepo vocabRepo) {
         return args -> {
-            charValRepo.deleteAll().block();
-            charRepo.deleteAll().block();
-            textRepo.deleteAll()
-            .thenMany(Flux.fromIterable(Helper.getTextTestData()).flatMap(textRepo::save))
-            .subscribe(null, null, () ->
-                        textRepo.findAll().subscribe(text -> log.info("\nwritten to db: {}", text)));
-
-            vocabRepo.deleteAll()
-                    .thenMany(Flux.fromIterable(Helper.getVocabTestData()).flatMap(vocabRepo::save))
-                    .subscribe(null, null, () ->
+            textService
+                .deleteAll()
+                .thenMany(textService.saveTextsWithCharacteristics(ClassifiableTextTestDataHelper.getTextTestData()))
+                .subscribe(null, null, () ->
+                            textService.findAll().subscribe(text -> log.info("\nwritten to db: {}", text)));
+            vocabRepo
+                .deleteAll()
+                .thenMany(Flux.fromIterable(ClassifiableTextTestDataHelper.getVocabTestData()).flatMap(vocabRepo::save))
+                .subscribe(null, null, () ->
                             vocabRepo.findAll().subscribe(word -> log.info("\nwritten to db: {}", word)));
         };
     }

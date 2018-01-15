@@ -18,7 +18,9 @@ public class CharacteristicMongoListener extends AbstractMongoEventListener<Obje
 
     @Override
     public void onBeforeConvert(BeforeConvertEvent<Object> event) {
+
         Object source = event.getSource();
+        /*
         if (source instanceof Characteristic) {
             for(CharacteristicValue element : ((Characteristic) source).getPossibleValues())
                 repository.save(element);
@@ -29,11 +31,13 @@ public class CharacteristicMongoListener extends AbstractMongoEventListener<Obje
                 //repository.save(entry.getVal());
             }
         }
+        */
     }
 
     @Override
     public void onAfterDelete(AfterDeleteEvent<Object> event) {
         Object source = event.getSource();
+        /*
         if (source instanceof Characteristic) {
             for(CharacteristicValue element : ((Characteristic) source).getPossibleValues())
                 repository.remove(element);
@@ -44,5 +48,6 @@ public class CharacteristicMongoListener extends AbstractMongoEventListener<Obje
                 repository.remove(entry.getVal());
             }
         }
+        */
     }
 }
