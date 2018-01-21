@@ -30,7 +30,7 @@ public class ClassifiableTextResource {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Flux<ClassifiableText> save(@RequestBody ClassifiableText text) {
-        return service.saveTextsWithCharacteristics(Collections.singletonList(text))
+        return service.saveAll(Collections.singletonList(text))
             .doOnRequest((req) -> log.info("request received: {}", req))
             .doFinally((signal) -> log.info("request completed: {}", signal));
     }

@@ -2,6 +2,7 @@ package org.ripreal.textclassifier2.data.reactive.repos;
 
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.VocabularyWord;
+import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 
 public interface VocabularyWordRepo extends ReactiveMongoRepository<VocabularyWord, String> {

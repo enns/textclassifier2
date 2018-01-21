@@ -18,7 +18,7 @@ import java.util.Set;
 public class Characteristic {
 
     @Id @NonNull private String name;
-    @DBRef @NonNull private Set<CharacteristicValue> possibleValues = new HashSet<>();
+    //@DBRef @NonNull private Set<CharacteristicValue> possibleValues = new HashSet<>();
 
     @Override
     public boolean equals(Object o) {

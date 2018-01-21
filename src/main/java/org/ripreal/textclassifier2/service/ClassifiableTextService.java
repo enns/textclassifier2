@@ -9,13 +9,14 @@ import org.ripreal.textclassifier2.model.CharactValuePair;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableText;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -33,26 +34,20 @@ public class ClassifiableTextService {
     }
 
     @Transactional
-    public Flux<ClassifiableText> saveAll(Flux<ClassifiableText> texts) {
-        return textRepo
-            .saveAll(texts)
-            .doOnNext((item) -> {
-                log.info("Saved {}", item);
-            });
+    public Flux<Void> deleteAll() {
+        return charValRepo.deleteAll()
+            .thenMany(charRepo.deleteAll())
+            .thenMany(textRepo.deleteAll());
     }
 
-    @Transactional
-    public Mono<Void> deleteAll() {
-        charValRepo.deleteAll().block();
-        charRepo.deleteAll().block();
-        return textRepo.deleteAll();
+    public Flux<ClassifiableText> saveAll(List<ClassifiableText> texts) {
+        return textRepo.saveAll(texts);
     }
-
+    /*
     @Transactional
-    public Flux<ClassifiableText> saveTextsWithCharacteristics(List<ClassifiableText> texts) {
+    public Flux<ClassifiableText> saveAll(List<ClassifiableText> texts) {
 
-        Set<Characteristic> characteristics =
-            texts
+        Set<Characteristic> characteristics = texts
             .stream()
             .flatMap(item -> item.getCharacteristics().stream())
             .map(CharactValuePair::getKey)
@@ -74,4 +69,19 @@ public class ClassifiableTextService {
             .doOnNext(item -> log.info("Saved {}", item));
 
     }
+    */
+
+    // TRASH
+
+    private void saveCharacteristicIfNotExists1(Set<Characteristic> characteristics) {
+        for (Characteristic item : characteristics) {
+            Example<Characteristic> example = Example.of(item, ExampleMatcher.matching()
+                    .withMatcher("name", ExampleMatcher.GenericPropertyMatcher::startsWith));
+
+            Characteristic found = charRepo.findById(item.getName()).block();
+            String t = "";
+        }
+
+    }
+
 }

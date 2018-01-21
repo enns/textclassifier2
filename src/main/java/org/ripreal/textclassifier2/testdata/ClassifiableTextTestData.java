@@ -22,7 +22,7 @@ public class ClassifiableTextTestData {
         return args -> {
             textService
                 .deleteAll()
-                .thenMany(textService.saveTextsWithCharacteristics(ClassifiableTextTestDataHelper.getTextTestData()))
+                .thenMany(textService.saveAll(ClassifiableTextTestDataHelper.getTextTestData()))
                 .subscribe(null, null, () ->
                             textService.findAll().subscribe(text -> log.info("\nwritten to db: {}", text)));
             vocabRepo

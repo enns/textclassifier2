@@ -17,26 +17,26 @@ public class ClassifiableTextTestDataHelper {
         Characteristic characteristic1 = new Characteristic("Отдел");
 
         Set<CharacteristicValue> vals = new HashSet<>();
-        CharacteristicValue auto = new CharacteristicValue("Автосалон", 0);
+        CharacteristicValue auto = new CharacteristicValue("Автосалон", 0, characteristic1);
         vals.add(auto);
-        CharacteristicValue agro = new CharacteristicValue("Агро", 1);
+        CharacteristicValue agro = new CharacteristicValue("Агро", 1, characteristic1);
         vals.add(agro);
-        CharacteristicValue logistic = new CharacteristicValue("Логистика", 1);
+        CharacteristicValue logistic = new CharacteristicValue("Логистика", 1, characteristic1);
         vals.add(logistic);
 
-        characteristic1.setPossibleValues(vals);
+       // characteristic1.setPossibleValues(vals);
 
         Characteristic characteristic2 = new Characteristic("Тип");
 
         Set<CharacteristicValue> vals2 = new HashSet<>();
-        CharacteristicValue it = new CharacteristicValue("Техподдержка", 0);
+        CharacteristicValue it = new CharacteristicValue("Техподдержка", 0, characteristic2);
         vals2.add(it);
-        CharacteristicValue dev = new CharacteristicValue("Разработчики", 1);
+        CharacteristicValue dev = new CharacteristicValue("Разработчики", 1, characteristic2);
         vals2.add(dev);
-        CharacteristicValue analytics = new CharacteristicValue("Методисты", 1);
+        CharacteristicValue analytics = new CharacteristicValue("Методисты", 1, characteristic2);
         vals2.add(analytics);
 
-        characteristic2.setPossibleValues(vals2);
+     //   characteristic2.setPossibleValues(vals2);
 
         ClassifiableText text1 = new ClassifiableText("Требуется починить телефон");
         text1.setCharacteristics(new HashSet<CharactValuePair>(Arrays.asList(
