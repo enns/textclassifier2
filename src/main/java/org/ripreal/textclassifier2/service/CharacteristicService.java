@@ -8,29 +8,31 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
-@Slf4j
-public class CharacteristicService {
-    final CharacteristicRepo repository;
+public class CharacteristicService implements DataService<Characteristic> {
 
+    private final CharacteristicRepo repository;
+
+    @Override
     public Flux<Characteristic> findAll() {
-        return repository
-            .findAll()
-            .doOnNext((item) -> log.info("Found {}", item));
+        return repository.findAll();
     }
 
-    public Mono<Characteristic> findByName(String name) {
-        return repository
-            .findById(name)
-            .doOnNext((item) -> log.info("Found {}", item));
+    @Override
+    public Flux<Void> deleteAll() {
+        return repository.deleteAll().thenMany(Flux.empty());
     }
 
-    public Mono<Characteristic> save(Characteristic characteristic) {
-        return repository
-            .save(characteristic)
-            .doOnNext((item) -> {
-                log.info("Saved {}", item);
-            });
+    @Override
+    public Mono<Characteristic> findById(String name) {
+        return repository.findById(name);
+    }
+
+    @Override
+    public Flux<Characteristic> saveAll(List<Characteristic> characteristic) {
+        return repository.saveAll(characteristic);
     }
 }

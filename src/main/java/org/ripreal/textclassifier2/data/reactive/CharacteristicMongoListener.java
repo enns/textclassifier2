@@ -2,6 +2,7 @@ package org.ripreal.textclassifier2.data.reactive;
 
 import com.mongodb.client.result.UpdateResult;
 import javafx.util.Pair;
+import lombok.RequiredArgsConstructor;
 import org.ripreal.textclassifier2.model.CharactValuePair;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
@@ -15,10 +16,10 @@ import org.springframework.data.mongodb.core.query.Update;
 
 import java.util.Map;
 
+@RequiredArgsConstructor
 public class CharacteristicMongoListener extends AbstractMongoEventListener<Object> {
 
-    @Autowired
-    private MongoOperations mongoOperations;
+    private final MongoOperations mongoOperations;
 
     @Override
     public void onBeforeSave(BeforeSaveEvent<Object> event) {
@@ -29,41 +30,22 @@ public class CharacteristicMongoListener extends AbstractMongoEventListener<Obje
     public void onBeforeConvert(BeforeConvertEvent<Object> event) {
 
         Object source = event.getSource();
-        /*
-        if (source instanceof Characteristic) {
-            for(CharacteristicValue element : ((Characteristic) source).getPossibleValues())
-                repository.save(element);
-        }
-        */
+
         if (source instanceof ClassifiableText) {
             ClassifiableText text = (ClassifiableText) source;
             if (text.getCharacteristics() != null) {
                 for(CharactValuePair entry : text.getCharacteristics()) {
                     mongoOperations.save(entry.getKey());
-                    //mongoOperations.save(entry.getVal());
-                    checkNSave(entry.getVal());
+                    checkNSave(entry.getVal()); // checking doubles
                 }
             }
-
-            /*
-            // CharacteristicVal in CharactValuePair may be undefined due the json to object serialization.
-            // In that case set it manually from a list of the possible values.
-            for(CharactValuePair entry : ((ClassifiableText) source).getCharacteristics()) {
-               for(CharacteristicValue possible : entry.getKey().getPossibleValues()) {
-                   if (entry.getVal().equals(possible)) {
-                       entry.getVal().setId(possible.getId());
-                   }
-               }
-                //repository.save();
-            }
-            */
         }
 
     }
 
     public void checkNSave(CharacteristicValue valueRequest) {
-        // TODO VALUE CERTAINLY SHOULD NoT BE ID
-        UpdateResult res = mongoOperations.upsert(
+
+        CharacteristicValue valueExisting = mongoOperations.findAndModify(
             new Query(Criteria
                 .where("value").is(valueRequest.getValue())
                 .and("characteristic").is(valueRequest.getCharacteristic())
@@ -71,7 +53,14 @@ public class CharacteristicMongoListener extends AbstractMongoEventListener<Obje
             Update.update("orderNumber", valueRequest.getOrderNumber()),
             CharacteristicValue.class
         );
+
+        if (valueExisting != null)
+            valueRequest.setId(valueExisting.getId());
+        else
+            mongoOperations.save(valueRequest);
+
         /*
+
         return mongoOperations.finfindOne(valueRequest).map(existingMovie -> {
 
             if(movieRequest.getDescription() != null){
@@ -90,20 +79,4 @@ public class CharacteristicMongoListener extends AbstractMongoEventListener<Obje
         */
     }
 
-    @Override
-    public void onAfterDelete(AfterDeleteEvent<Object> event) {
-        Object source = event.getSource();
-        /*
-        if (source instanceof Characteristic) {
-            for(CharacteristicValue element : ((Characteristic) source).getPossibleValues())
-                repository.remove(element);
-        }
-        else if (source instanceof ClassifiableText) {
-            for(CharactValuePair entry : ((ClassifiableText) source).getCharacteristics()) {
-                repository.remove(entry.getKey());
-                repository.remove(entry.getVal());
-            }
-        }
-        */
-    }
 }

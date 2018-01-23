@@ -1,37 +1,33 @@
 package org.ripreal.textclassifier2.rest;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.ClassifiableText;
-import org.ripreal.textclassifier2.service.CharacteristicService;
 import org.ripreal.textclassifier2.service.ClassifiableTextService;
+import org.ripreal.textclassifier2.service.DataService;
+import org.ripreal.textclassifier2.service.decorators.LoggerDataService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 import java.util.Collections;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("texts")
-@Slf4j
 public class ClassifiableTextResource {
 
-    final ClassifiableTextService service;
+    private final DataService<ClassifiableText> service;
+
+    public ClassifiableTextResource(ClassifiableTextService service) {
+        this.service = new LoggerDataService<>(service);
+    }
 
     @GetMapping(value = "all", produces = MediaType.APPLICATION_JSON_VALUE)
     public Flux<ClassifiableText> findAll() {
-        return service.findAll()
-            .doOnRequest((req) -> log.info("request received: {}", req))
-            .doFinally((signal) -> log.info("request completed: {}", signal));
+        return service.findAll();
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Flux<ClassifiableText> save(@RequestBody ClassifiableText text) {
-        return service.saveAll(Collections.singletonList(text))
-            .doOnRequest((req) -> log.info("request received: {}", req))
-            .doFinally((signal) -> log.info("request completed: {}", signal));
+        return service.saveAll(Collections.singletonList(text));
     }
 }

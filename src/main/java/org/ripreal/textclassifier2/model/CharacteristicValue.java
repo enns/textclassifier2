@@ -14,7 +14,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @RequiredArgsConstructor
 public class CharacteristicValue {
 
-    @Id @NonNull private String value;
+    @Id String id;
+    @NonNull private String value;
     @NonNull private int orderNumber;
     @DBRef @NonNull private Characteristic characteristic;
 

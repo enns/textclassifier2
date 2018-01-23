@@ -6,41 +6,44 @@ import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.rest.exceptions.ThereIsNoSuchCharacteristic;
 import org.ripreal.textclassifier2.service.CharacteristicService;
+import org.ripreal.textclassifier2.service.DataService;
+import org.ripreal.textclassifier2.service.decorators.LoggerDataService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.Collections;
+
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("characteristics")
-@Slf4j
 public class CharacteristicResource {
 
-    final CharacteristicService service;
+    private final DataService<Characteristic> service;
 
-    @GetMapping("all")
+    public CharacteristicResource(CharacteristicService service) {
+        this.service = new LoggerDataService<>(service);
+    }
+
+    @GetMapping(value = "all", produces = MediaType.APPLICATION_JSON_VALUE)
     public Flux<Characteristic> findAll() {
         return service.findAll();
     }
 
-    @GetMapping("{name}")
+    @GetMapping(value = "{name}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<Characteristic> findByName(@PathVariable String name) {
-        return service.findByName(name)
+        return service.findById(name)
             .doOnSuccess(
                 (el) -> {
                     if (el == null)
                         throw new ThereIsNoSuchCharacteristic();
                 }
-            )
-            .doOnRequest((req) -> log.info("request received: {}", name))
-            .doFinally((signal) -> log.info("request completed: {}", signal));
+            );
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Mono<Characteristic> save(@RequestBody Characteristic characteristic) {
-        return service.save(characteristic)
-            .doOnRequest((req) -> log.info("request received: {}", characteristic))
-            .doFinally((signal) -> log.info("request completed: {}", signal));
+    public Flux<Characteristic> save(@RequestBody Characteristic characteristic) {
+        return service.saveAll(Collections.singletonList(characteristic));
     }
 }

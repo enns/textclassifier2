@@ -21,18 +21,22 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
-public class ClassifiableTextService {
-    final ClassifiableTextRepo textRepo;
-    final CharacteristicRepo charRepo;
-    final CharacteristicValueRepo charValRepo;
+public class ClassifiableTextService implements DataService<ClassifiableText> {
+    private final ClassifiableTextRepo textRepo;
+    private final CharacteristicRepo charRepo;
+    private final CharacteristicValueRepo charValRepo;
 
+    @Override
     public Flux<ClassifiableText> findAll() {
-        return textRepo
-            .findAll()
-            .doOnNext((item) -> log.info("Found {}", item));
+        return textRepo.findAll();
     }
 
+    @Override
+    public Mono<ClassifiableText> findById(String id) {
+        return textRepo.findById(id);
+    }
+
+    @Override
     @Transactional
     public Flux<Void> deleteAll() {
         return charValRepo.deleteAll()
@@ -40,48 +44,9 @@ public class ClassifiableTextService {
             .thenMany(textRepo.deleteAll());
     }
 
+    @Override
     public Flux<ClassifiableText> saveAll(List<ClassifiableText> texts) {
         return textRepo.saveAll(texts);
-    }
-    /*
-    @Transactional
-    public Flux<ClassifiableText> saveAll(List<ClassifiableText> texts) {
-
-        Set<Characteristic> characteristics = texts
-            .stream()
-            .flatMap(item -> item.getCharacteristics().stream())
-            .map(CharactValuePair::getKey)
-            .distinct()
-            .collect(Collectors.toSet());
-
-        Set<CharacteristicValue> characteristicVals = characteristics
-            .stream()
-            .flatMap(item -> item.getPossibleValues().stream())
-            .distinct()
-            .collect(Collectors.toSet());
-
-        return charValRepo
-            .saveAll(characteristicVals)
-            .doOnNext(item -> log.info("Saved {}", item))
-            .thenMany(charRepo.saveAll(characteristics))
-            .doOnNext(item -> log.info("Saved {}", item))
-            .thenMany(textRepo.saveAll(texts))
-            .doOnNext(item -> log.info("Saved {}", item));
-
-    }
-    */
-
-    // TRASH
-
-    private void saveCharacteristicIfNotExists1(Set<Characteristic> characteristics) {
-        for (Characteristic item : characteristics) {
-            Example<Characteristic> example = Example.of(item, ExampleMatcher.matching()
-                    .withMatcher("name", ExampleMatcher.GenericPropertyMatcher::startsWith));
-
-            Characteristic found = charRepo.findById(item.getName()).block();
-            String t = "";
-        }
-
     }
 
 }
