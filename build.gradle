@@ -1,5 +1,4 @@
-group 'ripreal.org'
-version '0.0.1-SNAPSHOT'
+import com.sun.jmx.snmp.tasks.Task
 
 buildscript {
     ext {
@@ -15,25 +14,38 @@ buildscript {
     }
 }
 
-apply plugin: 'java'
-apply plugin: 'idea'
-apply plugin: 'org.springframework.boot'
-apply plugin: "io.spring.dependency-management"
-
-repositories {
-    mavenCentral()
-    maven { url "https://repository.jboss.org/nexus/content/repositories/releases" }
-    maven { url "https://repo.spring.io/snapshot" }
-    maven { url "https://repo.spring.io/milestone" }
+plugins {
+    id "idea"
+    id "eclipse"
 }
 
-dependencies {
-    testCompile("junit:junit")
-    testCompile("org.springframework.boot:spring-boot-starter-test")
-    testCompile("io.projectreactor:reactor-test")
-    compile("org.projectlombok:lombok")
-    compile("org.springframework.boot:spring-boot-starter")
-    compile("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
-    compile("org.springframework.boot:spring-boot-starter-webflux")
-    runtime("org.springframework.boot:spring-boot-devtools")
+allprojects { apply plugin: "java"
+
+    version = "0.0.1"
+
+    sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+
+    repositories {
+        mavenCentral()
+        maven { url "https://repo.spring.io/snapshot" }
+        maven { url "https://repo.spring.io/milestone" }
+    }
+
+}
+
+subprojects { sp ->
+
+    apply plugin: "org.springframework.boot"
+    apply plugin: "io.spring.dependency-management"
+
+    dependencies {
+        testCompile("junit:junit")
+        testCompile("org.springframework.boot:spring-boot-starter-test")
+        testCompile("io.projectreactor:reactor-test")
+        compile("org.projectlombok:lombok")
+        compile("org.springframework.boot:spring-boot-starter:$springBootVersion")
+        compile("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
+        compile("org.springframework.boot:spring-boot-starter-webflux")
+        runtime("org.springframework.boot:spring-boot-devtools")
+    }
 }

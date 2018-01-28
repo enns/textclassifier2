@@ -9,6 +9,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/textclassifier2_core" />
+            <option value="$PROJECT_DIR$/textclassifier2_service" />
           </set>
         </option>
       </GradleProjectSettings>

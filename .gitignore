@@ -1,0 +1,8 @@
+/bin/
+/out/
+/target/
+/.idea/
+/textclassifier2_core/build/
+/textclassifier2_core/out/
+/textclassifier2_service/build/
+/textclassifier2_service/out/

@@ -1,0 +1,5 @@
+
+dependencies {
+    compile("org.encog:encog-core:3.3.0")
+    compile("org.apache.poi:poi-ooxml:3.16")
+}
