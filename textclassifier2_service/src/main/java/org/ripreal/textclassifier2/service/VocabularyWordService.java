@@ -1,7 +1,6 @@
 package org.ripreal.textclassifier2.service;
 
 import lombok.RequiredArgsConstructor;
-import org.ripreal.textclassifier2.data.reactive.repos.ClassifiableTextRepo;
 import org.ripreal.textclassifier2.data.reactive.repos.VocabularyWordRepo;
 import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.springframework.stereotype.Service;

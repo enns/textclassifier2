@@ -7,28 +7,28 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class FilteredUnigram implements NGramStrategy {
-  @Override
-  public Set<String> getNGram(String text) {
-    // get all significant words
-    String[] words = clean(text).split("[ \n\t\r$+<>№=]");
+    @Override
+    public Set<String> getNGram(String text) {
+        // get all significant words
+        String[] words = clean(text).split("[ \n\t\r$+<>№=]");
 
-    // remove endings of words
-    for (int i = 0; i < words.length; i++) {
-      words[i] = PorterStemmer.doStem(words[i]);
+        // remove endings of words
+        for (int i = 0; i < words.length; i++) {
+            words[i] = PorterStemmer.doStem(words[i]);
+        }
+
+        Set<String> uniqueValues = new LinkedHashSet<>(Arrays.asList(words));
+        uniqueValues.removeIf(s -> s.equals(""));
+
+        return uniqueValues;
     }
 
-    Set<String> uniqueValues = new LinkedHashSet<>(Arrays.asList(words));
-    uniqueValues.removeIf(s -> s.equals(""));
-
-    return uniqueValues;
-  }
-
-  private String clean(String text) {
-    // remove all digits and punctuation marks
-    if (text != null) {
-      return text.toLowerCase().replaceAll("[\\pP\\d]", " ");
-    } else {
-      return "";
+    private String clean(String text) {
+        // remove all digits and punctuation marks
+        if (text != null) {
+            return text.toLowerCase().replaceAll("[\\pP\\d]", " ");
+        } else {
+            return "";
+        }
     }
-  }
 }

@@ -1,20 +1,16 @@
 package org.ripreal.textclassifier2.data.reactive;
 
-import com.mongodb.client.result.UpdateResult;
-import javafx.util.Pair;
 import lombok.RequiredArgsConstructor;
 import org.ripreal.textclassifier2.model.CharactValuePair;
-import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableText;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
-import org.springframework.data.mongodb.core.mapping.event.*;
+import org.springframework.data.mongodb.core.mapping.event.AbstractMongoEventListener;
+import org.springframework.data.mongodb.core.mapping.event.BeforeConvertEvent;
+import org.springframework.data.mongodb.core.mapping.event.BeforeSaveEvent;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
-
-import java.util.Map;
 
 @RequiredArgsConstructor
 public class CharacteristicMongoListener extends AbstractMongoEventListener<Object> {
@@ -34,7 +30,7 @@ public class CharacteristicMongoListener extends AbstractMongoEventListener<Obje
         if (source instanceof ClassifiableText) {
             ClassifiableText text = (ClassifiableText) source;
             if (text.getCharacteristics() != null) {
-                for(CharactValuePair entry : text.getCharacteristics()) {
+                for (CharactValuePair entry : text.getCharacteristics()) {
                     mongoOperations.save(entry.getKey());
                     checkNSave(entry.getVal()); // checking doubles
                 }
@@ -46,12 +42,12 @@ public class CharacteristicMongoListener extends AbstractMongoEventListener<Obje
     public void checkNSave(CharacteristicValue valueRequest) {
 
         CharacteristicValue valueExisting = mongoOperations.findAndModify(
-            new Query(Criteria
-                .where("value").is(valueRequest.getValue())
-                .and("characteristic").is(valueRequest.getCharacteristic())
-            ),
-            Update.update("orderNumber", valueRequest.getOrderNumber()),
-            CharacteristicValue.class
+                new Query(Criteria
+                        .where("value").is(valueRequest.getValue())
+                        .and("characteristic").is(valueRequest.getCharacteristic())
+                ),
+                Update.update("orderNumber", valueRequest.getOrderNumber()),
+                CharacteristicValue.class
         );
 
         if (valueExisting != null)

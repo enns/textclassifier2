@@ -14,16 +14,21 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @RequiredArgsConstructor
 public class CharacteristicValue {
 
-    @Id String id;
-    @NonNull private String value;
-    @NonNull private int orderNumber;
-    @DBRef @NonNull private Characteristic characteristic;
+    @Id
+    String id;
+    @NonNull
+    private String value;
+    @NonNull
+    private int orderNumber;
+    @DBRef
+    @NonNull
+    private Characteristic characteristic;
 
     @Override
     public boolean equals(Object o) {
         return ((o instanceof CharacteristicValue)
-            && (this.value.equals(((CharacteristicValue) o).getValue()))
-            && (this.characteristic.equals(((CharacteristicValue) o).getCharacteristic())));
+                && (this.value.equals(((CharacteristicValue) o).getValue()))
+                && (this.characteristic.equals(((CharacteristicValue) o).getCharacteristic())));
     }
 
     @Override

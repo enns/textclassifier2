@@ -5,11 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @Data
 @Document
@@ -17,7 +13,9 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class Characteristic {
 
-    @Id @NonNull private String name;
+    @Id
+    @NonNull
+    private String name;
     //@DBRef @NonNull private Set<CharacteristicValue> possibleValues = new HashSet<>();
 
     @Override

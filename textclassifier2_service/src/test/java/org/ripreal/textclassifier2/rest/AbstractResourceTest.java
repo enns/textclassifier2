@@ -3,10 +3,8 @@ package org.ripreal.textclassifier2.rest;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.ripreal.textclassifier2.App;
-import org.ripreal.textclassifier2.service.CharacteristicService;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -18,7 +16,8 @@ import org.springframework.web.reactive.function.client.WebClient;
 public abstract class AbstractResourceTest {
 
     protected WebClient webClient;
-    @LocalServerPort private int port;
+    @LocalServerPort
+    private int port;
     protected String server;
 
     @Before

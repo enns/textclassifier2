@@ -1,14 +1,10 @@
 package org.ripreal.textclassifier2.rest;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.ripreal.textclassifier2.model.Characteristic;
-import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.rest.exceptions.ThereIsNoSuchCharacteristic;
 import org.ripreal.textclassifier2.service.CharacteristicService;
 import org.ripreal.textclassifier2.service.DataService;
 import org.ripreal.textclassifier2.service.decorators.LoggerDataService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -34,12 +30,12 @@ public class CharacteristicResource {
     @GetMapping(value = "{name}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<Characteristic> findByName(@PathVariable String name) {
         return service.findById(name)
-            .doOnSuccess(
-                (el) -> {
-                    if (el == null)
-                        throw new ThereIsNoSuchCharacteristic();
-                }
-            );
+                .doOnSuccess(
+                        (el) -> {
+                            if (el == null)
+                                throw new ThereIsNoSuchCharacteristic();
+                        }
+                );
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

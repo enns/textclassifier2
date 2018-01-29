@@ -8,7 +8,7 @@ import reactor.core.publisher.Mono;
 
 import java.net.URI;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 public class ClassifiableTextResourceTest extends AbstractResourceTest {
 
@@ -27,13 +27,13 @@ public class ClassifiableTextResourceTest extends AbstractResourceTest {
     public void save() throws Exception {
         ClassifiableText text = ClassifiableTextTestDataHelper.getTextTestData().get(0);
         webClient.post()
-            .uri(URI.create(this.server + "/texts"))
-            .accept(MediaType.APPLICATION_JSON)
-            .contentType(MediaType.APPLICATION_JSON)
-            .body(Mono.just(text), ClassifiableText.class)
-            .exchange()
-            .doOnNext(body -> assertTrue(body.statusCode().is2xxSuccessful()))
-            .block();
+                .uri(URI.create(this.server + "/texts"))
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(Mono.just(text), ClassifiableText.class)
+                .exchange()
+                .doOnNext(body -> assertTrue(body.statusCode().is2xxSuccessful()))
+                .block();
     }
 
     @Test

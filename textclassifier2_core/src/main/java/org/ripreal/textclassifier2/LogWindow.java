@@ -9,27 +9,27 @@ import javafx.stage.Stage;
 import org.ripreal.textclassifier2.observer.Observer;
 
 class LogWindow implements Observer {
-  private FlowPane root;
-  private TextArea textAreaLog;
+    private FlowPane root;
+    private TextArea textAreaLog;
 
-  void show() {
-    textAreaLog = new TextArea();
-    textAreaLog.setWrapText(true);
-    textAreaLog.setEditable(false);
-    textAreaLog.setPrefColumnCount(50);
-    textAreaLog.setPrefRowCount(30);
+    void show() {
+        textAreaLog = new TextArea();
+        textAreaLog.setWrapText(true);
+        textAreaLog.setEditable(false);
+        textAreaLog.setPrefColumnCount(50);
+        textAreaLog.setPrefRowCount(30);
 
-    root = new FlowPane();
-    root.setAlignment(Pos.BASELINE_CENTER);
-    root.getChildren().add(textAreaLog);
+        root = new FlowPane();
+        root.setAlignment(Pos.BASELINE_CENTER);
+        root.getChildren().add(textAreaLog);
 
-    Stage stage = new Stage();
-    stage.setScene(new Scene(root));
-    stage.show();
-  }
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
 
-  @Override
-  public void update(String text) {
-    Platform.runLater(() -> textAreaLog.appendText(text + "\n"));
-  }
+    @Override
+    public void update(String text) {
+        Platform.runLater(() -> textAreaLog.appendText(text + "\n"));
+    }
 }

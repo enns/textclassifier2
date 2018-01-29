@@ -4,7 +4,6 @@ import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.service.ClassifiableTextService;
 import org.ripreal.textclassifier2.service.DataService;
 import org.ripreal.textclassifier2.service.decorators.LoggerDataService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;

@@ -1,8 +1,5 @@
 package org.ripreal.textclassifier2.service;
 
-import lombok.extern.slf4j.Slf4j;
-import org.ripreal.textclassifier2.model.Characteristic;
-import org.ripreal.textclassifier2.model.ClassifiableText;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 

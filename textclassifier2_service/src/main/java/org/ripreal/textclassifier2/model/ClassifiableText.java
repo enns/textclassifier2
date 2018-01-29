@@ -5,12 +5,9 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 @Data
@@ -19,16 +16,19 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class ClassifiableText {
 
-    @Id private String id;
-    @NonNull private String text;
-    @NonNull Set<CharactValuePair> characteristics = new HashSet<>();
+    @Id
+    private String id;
+    @NonNull
+    private String text;
+    @NonNull
+    Set<CharactValuePair> characteristics = new HashSet<>();
 
     @Override
     public boolean equals(Object o) {
         return (
-            o instanceof ClassifiableText)
-            && this.text.equals(((ClassifiableText) o).getText())
-            && this.characteristics.equals(((ClassifiableText) o).getCharacteristics());
+                o instanceof ClassifiableText)
+                && this.text.equals(((ClassifiableText) o).getText())
+                && this.characteristics.equals(((ClassifiableText) o).getCharacteristics());
     }
 
 }

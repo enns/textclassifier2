@@ -1,7 +1,5 @@
 package org.ripreal.textclassifier2.testdata;
 
-import lombok.extern.slf4j.Slf4j;
-import org.ripreal.textclassifier2.data.reactive.repos.VocabularyWordRepo;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.ripreal.textclassifier2.service.ClassifiableTextService;
@@ -13,7 +11,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.transaction.annotation.Transactional;
-import reactor.core.publisher.Flux;
 
 @Profile("test")
 @Configuration
@@ -32,11 +29,11 @@ public class ClassifiableTextTestData {
     public CommandLineRunner init() {
         return args -> {
             textService
-                .deleteAll()
-                .thenMany(textService.saveAll(ClassifiableTextTestDataHelper.getTextTestData()));
+                    .deleteAll()
+                    .thenMany(textService.saveAll(ClassifiableTextTestDataHelper.getTextTestData()));
             vocabService
-                .deleteAll()
-                .thenMany(vocabService.saveAll(ClassifiableTextTestDataHelper.getVocabTestData()));
+                    .deleteAll()
+                    .thenMany(vocabService.saveAll(ClassifiableTextTestDataHelper.getVocabTestData()));
         };
     }
 }

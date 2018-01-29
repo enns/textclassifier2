@@ -13,8 +13,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @RequiredArgsConstructor
 public class VocabularyWord {
 
-    @Id private String id;
-    @NonNull private String value;
+    @Id
+    private String id;
+    @NonNull
+    private String value;
 
     @Override
     public boolean equals(Object o) {

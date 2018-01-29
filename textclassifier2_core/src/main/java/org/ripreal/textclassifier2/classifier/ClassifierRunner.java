@@ -6,29 +6,8 @@ import org.ripreal.textclassifier2.model.VocabularyWord;
 
 import java.util.List;
 
-// TEMPLATE METHOD
-// FACADE + COMPOSITE
-public class ClassifierRunner {
-
-    public static ClassifierRunner builder() {
-        return new ClassifierRunner();
-    }
-
-    public ClassifierRunner parseFrom(Object parser) {
-        return this;
-    }
-
-    public ClassifierRunner saveTo(Object storageProvider) {
-        return this;
-    }
-
-    public ClassifierRunner setClassifiers(List <Classifier> classifiers) {
-        return this;
-    }
-
-    public ClassifierRunner subscribe() {
-        return this;
-    }
+// FACADE
+public abstract class AbstractClassifierRunner {
 
     public void run() {
         createStorage();
@@ -46,7 +25,6 @@ public class ClassifierRunner {
     protected abstract void createStorage();
 
     protected abstract List<ClassifiableText> getClassifiableTexts();
-
 
     protected abstract void createClassifiers(List<Characteristic> characteristics, List<VocabularyWord> vocabulary);
 

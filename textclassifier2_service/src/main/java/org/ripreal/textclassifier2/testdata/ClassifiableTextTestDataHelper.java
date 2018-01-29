@@ -13,7 +13,7 @@ import java.util.Set;
 
 public class ClassifiableTextTestDataHelper {
 
-    public static List<ClassifiableText> getTextTestData(){
+    public static List<ClassifiableText> getTextTestData() {
         Characteristic characteristic1 = new Characteristic("Отдел");
 
         Set<CharacteristicValue> vals = new HashSet<>();
@@ -24,7 +24,7 @@ public class ClassifiableTextTestDataHelper {
         CharacteristicValue logistic = new CharacteristicValue("Логистика", 1, characteristic1);
         vals.add(logistic);
 
-       // characteristic1.setPossibleValues(vals);
+        // characteristic1.setPossibleValues(vals);
 
         Characteristic characteristic2 = new Characteristic("Тип");
 
@@ -36,7 +36,7 @@ public class ClassifiableTextTestDataHelper {
         CharacteristicValue analytics = new CharacteristicValue("Методисты", 1, characteristic2);
         vals2.add(analytics);
 
-     //   characteristic2.setPossibleValues(vals2);
+        //   characteristic2.setPossibleValues(vals2);
 
         ClassifiableText text1 = new ClassifiableText("Требуется починить телефон");
         text1.setCharacteristics(new HashSet<CharactValuePair>(Arrays.asList(

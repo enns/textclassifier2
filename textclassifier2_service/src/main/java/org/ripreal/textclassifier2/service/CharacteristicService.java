@@ -1,7 +1,6 @@
 package org.ripreal.textclassifier2.service;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.ripreal.textclassifier2.data.reactive.repos.CharacteristicRepo;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.springframework.stereotype.Service;

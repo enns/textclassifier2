@@ -5,64 +5,64 @@ import java.util.Set;
 
 public class Characteristic {
 
-  private int id;
+    private int id;
 
-  private String name;
+    private String name;
 
-  private Set<CharacteristicValue> possibleValues;
+    private Set<CharacteristicValue> possibleValues;
 
-  public Characteristic() {
-  }
+    public Characteristic() {
+    }
 
-  private Characteristic(int id, String name, Set<CharacteristicValue> possibleValues) {
-    this.id = id;
-    this.name = name;
-    this.possibleValues = possibleValues;
-  }
+    private Characteristic(int id, String name, Set<CharacteristicValue> possibleValues) {
+        this.id = id;
+        this.name = name;
+        this.possibleValues = possibleValues;
+    }
 
-  public Characteristic(int id, String name) {
-    this(id, name, new LinkedHashSet<>());
-  }
+    public Characteristic(int id, String name) {
+        this(id, name, new LinkedHashSet<>());
+    }
 
-  public Characteristic(String name, Set<CharacteristicValue> possibleValues) {
-    this(0, name, possibleValues);
-  }
+    public Characteristic(String name, Set<CharacteristicValue> possibleValues) {
+        this(0, name, possibleValues);
+    }
 
-  public Characteristic(String name) {
-    this(0, name, new LinkedHashSet<>());
-  }
+    public Characteristic(String name) {
+        this(0, name, new LinkedHashSet<>());
+    }
 
-  public int getId() {
-    return id;
-  }
+    public int getId() {
+        return id;
+    }
 
-  public void setId(int id) {
-    this.id = id;
-  }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public Set<CharacteristicValue> getPossibleValues() {
-    return possibleValues;
-  }
+    public Set<CharacteristicValue> getPossibleValues() {
+        return possibleValues;
+    }
 
-  public void setPossibleValues(Set<CharacteristicValue> possibleValues) {
-    this.possibleValues = possibleValues;
-  }
+    public void setPossibleValues(Set<CharacteristicValue> possibleValues) {
+        this.possibleValues = possibleValues;
+    }
 
-  public void addPossibleValue(CharacteristicValue value) {
-    possibleValues.add(value);
-  }
+    public void addPossibleValue(CharacteristicValue value) {
+        possibleValues.add(value);
+    }
 
-  @Override
-  public boolean equals(Object o) {
-    return ((o instanceof Characteristic) && (this.name.equals(((Characteristic) o).getName())));
-  }
+    @Override
+    public boolean equals(Object o) {
+        return ((o instanceof Characteristic) && (this.name.equals(((Characteristic) o).getName())));
+    }
 
-  @Override
-  public int hashCode() {
-    return this.name.hashCode();
-  }
+    @Override
+    public int hashCode() {
+        return this.name.hashCode();
+    }
 }

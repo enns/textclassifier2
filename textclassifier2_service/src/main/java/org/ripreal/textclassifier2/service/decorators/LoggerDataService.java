@@ -11,7 +11,7 @@ import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
-public class LoggerDataService <T> implements DataService<T> {
+public class LoggerDataService<T> implements DataService<T> {
 
     @Autowired
     private final DataService<T> service;
@@ -19,28 +19,28 @@ public class LoggerDataService <T> implements DataService<T> {
     @Override
     public Flux<T> saveAll(List<T> entities) {
         return service.saveAll(entities)
-            .doOnRequest((request) -> log.info("start request"))
-            .doOnNext((item) -> log.info("written to db {}", item));
+                .doOnRequest((request) -> log.info("start request"))
+                .doOnNext((item) -> log.info("written to db {}", item));
     }
 
     @Override
     public Flux<T> findAll() {
         return service.findAll()
-            .doOnRequest((request) -> log.info("start request"))
-            .doOnNext((item) -> log.info("found {}", item));
+                .doOnRequest((request) -> log.info("start request"))
+                .doOnNext((item) -> log.info("found {}", item));
     }
 
     @Override
     public Mono<T> findById(String id) {
         return service.findById(id)
-            .doOnRequest((request) -> log.info("start request"))
-            .doOnNext((item) -> log.info("found by id {}", item));
+                .doOnRequest((request) -> log.info("start request"))
+                .doOnNext((item) -> log.info("found by id {}", item));
     }
 
     @Override
     public Flux<Void> deleteAll() {
         return service.deleteAll()
-            .doOnRequest((request) -> log.info("start request"))
-            .doOnNext((item) -> log.info("found {}", item));
+                .doOnRequest((request) -> log.info("start request"))
+                .doOnNext((item) -> log.info("found {}", item));
     }
 }
