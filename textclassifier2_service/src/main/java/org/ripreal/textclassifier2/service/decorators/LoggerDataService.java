@@ -20,7 +20,8 @@ public class LoggerDataService<T> implements DataService<T> {
     public Flux<T> saveAll(List<T> entities) {
         return service.saveAll(entities)
                 .doOnRequest((request) -> log.info("start request"))
-                .doOnNext((item) -> log.info("written to db {}", item));
+                .doOnNext((item) -> log.info("written to db {}", item))
+                .subscribe();
     }
 
     @Override
