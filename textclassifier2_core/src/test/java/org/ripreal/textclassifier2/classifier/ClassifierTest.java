@@ -18,7 +18,7 @@ import static org.junit.Assert.assertNotEquals;
 public class ClassifierTest {
     private final File trainedClassifier = new File("./test_db/TestNeuralNetworkClassifier");
     private final NGramStrategy nGramStrategy = new FilteredUnigram();
-    private Classifier classifier;
+    private ClassifierUnit classifier;
     private Characteristic characteristic;
     private List<VocabularyWord> vocabulary;
 
@@ -69,42 +69,42 @@ public class ClassifierTest {
         // load trained classifier
         //
 
-        classifier = new Classifier(trainedClassifier, characteristic, vocabulary, nGramStrategy);
+        classifier = new ClassifierUnit(trainedClassifier, characteristic, vocabulary, nGramStrategy);
     }
 
     @Test
     public void createNetwork() {
-        new Classifier(characteristic, vocabulary, nGramStrategy);
+        new ClassifierUnit(characteristic, vocabulary, nGramStrategy);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void nonexistentFile() {
-        new Classifier(new File("./test_db/nonexistentFile"), characteristic, vocabulary, nGramStrategy);
+        new ClassifierUnit(new File("./test_db/nonexistentFile"), characteristic, vocabulary, nGramStrategy);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void nullCharacteristic() {
-        new Classifier(trainedClassifier, null, vocabulary, nGramStrategy);
+        new ClassifierUnit(trainedClassifier, null, vocabulary, nGramStrategy);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void emptyCharacteristic() {
-        new Classifier(trainedClassifier, new Characteristic("Test"), vocabulary, nGramStrategy);
+        new ClassifierUnit(trainedClassifier, new Characteristic("Test"), vocabulary, nGramStrategy);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void nullVocabulary() {
-        new Classifier(trainedClassifier, characteristic, null, nGramStrategy);
+        new ClassifierUnit(trainedClassifier, characteristic, null, nGramStrategy);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void emptyVocabulary() {
-        new Classifier(trainedClassifier, characteristic, new ArrayList<>(), nGramStrategy);
+        new ClassifierUnit(trainedClassifier, characteristic, new ArrayList<>(), nGramStrategy);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void nullNGram() {
-        new Classifier(trainedClassifier, characteristic, vocabulary, null);
+        new ClassifierUnit(trainedClassifier, characteristic, vocabulary, null);
     }
 
     @Test
@@ -192,6 +192,6 @@ public class ClassifierTest {
 
     @Test
     public void shutdown() throws Exception {
-        Classifier.shutdown();
+        ClassifierUnit.shutdown();
     }
 }

@@ -25,7 +25,7 @@ import static org.encog.persist.EncogDirectoryPersistence.loadObject;
 import static org.encog.persist.EncogDirectoryPersistence.saveObject;
 
 // todo: add other types of Classifiers (Naive Bayes classifier for example)
-public class NeroClassifier implements Classifier, Observable {
+public class NeroClassifierUnit implements ClassifierUnit, Observable {
     private final Characteristic characteristic;
     private final int inputLayerSize;
     private final int outputLayerSize;
@@ -34,7 +34,7 @@ public class NeroClassifier implements Classifier, Observable {
     private final NGramStrategy nGramStrategy;
     private final List<Observer> observers = new ArrayList<>();
 
-    public NeroClassifier(File trainedNetwork, Characteristic characteristic, List<VocabularyWord> vocabulary, NGramStrategy nGramStrategy) {
+    public NeroClassifierUnit(File trainedNetwork, Characteristic characteristic, List<VocabularyWord> vocabulary, NGramStrategy nGramStrategy) {
         if (characteristic == null ||
                 characteristic.getName().equals("") ||
                 characteristic.getPossibleValues() == null ||
@@ -63,7 +63,7 @@ public class NeroClassifier implements Classifier, Observable {
         }
     }
 
-    public NeroClassifier(Characteristic characteristic, List<VocabularyWord> vocabulary, NGramStrategy nGramStrategy) {
+    public NeroClassifierUnit(Characteristic characteristic, List<VocabularyWord> vocabulary, NGramStrategy nGramStrategy) {
         this(null, characteristic, vocabulary, nGramStrategy);
     }
 

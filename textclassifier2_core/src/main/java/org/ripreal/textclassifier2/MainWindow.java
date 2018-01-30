@@ -14,7 +14,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import org.ripreal.textclassifier2.classifier.Classifier;
+import org.ripreal.textclassifier2.classifier.ClassifierUnit;
+import org.ripreal.textclassifier2.classifier.textreaders.EmptySheetException;
+import org.ripreal.textclassifier2.classifier.textreaders.ExcelFileReader;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableText;
@@ -29,7 +31,7 @@ import java.util.*;
 // todo: maybe don't save texts to database?
 public class MainWindow extends Application {
     private final Config config = new Config("./config/config.ini");
-    private final List<Classifier> classifiers = new ArrayList<>();
+    private final List<ClassifierUnit> classifiers = new ArrayList<>();
     private LogWindow logWindow;
     private DAOFactory daoFactory;
     private NGramStrategy nGramStrategy;
@@ -125,7 +127,7 @@ public class MainWindow extends Application {
         // read second sheet from a file
         List<ClassifiableText> classifiableTexts = getClassifiableTexts(file, 2);
 
-        for (Classifier classifier : classifiers) {
+        for (ClassifierUnit classifier : classifiers) {
             Characteristic characteristic = classifier.getCharacteristic();
             int correctlyClassified = 0;
 
@@ -179,7 +181,7 @@ public class MainWindow extends Application {
 
     private void createClassifiers(List<Characteristic> characteristics, List<VocabularyWord> vocabulary) {
         for (Characteristic characteristic : characteristics) {
-            Classifier classifier = new Classifier(characteristic, vocabulary, nGramStrategy);
+            ClassifierUnit classifier = new ClassifierUnit(characteristic, vocabulary, nGramStrategy);
             classifier.addObserver(logWindow);
             classifiers.add(classifier);
         }
@@ -203,7 +205,7 @@ public class MainWindow extends Application {
         try {
             for (Characteristic characteristic : characteristics) {
                 File trainedClassifier = new File(config.getDbPath() + "/" + characteristic.getName() + "NeuralNetworkClassifier");
-                classifiers.add(new Classifier(trainedClassifier, characteristic, vocabulary, nGramStrategy));
+                classifiers.add(new ClassifierUnit(trainedClassifier, characteristic, vocabulary, nGramStrategy));
             }
         } catch (Exception e) {
             return false;
@@ -213,12 +215,12 @@ public class MainWindow extends Application {
     }
 
     private void trainAndSaveClassifiers(List<ClassifiableText> classifiableTextForTrain) {
-        for (Classifier classifier : classifiers) {
+        for (ClassifierUnit classifier : classifiers) {
             classifier.train(classifiableTextForTrain);
             classifier.saveTrainedClassifier(new File(config.getDbPath() + "/" + classifier.toString()));
         }
 
-        Classifier.shutdown();
+        ClassifierUnit.shutdown();
     }
 
     private List<ClassifiableText> saveClassifiableTextsToStorage(List<ClassifiableText> classifiableTexts) {
@@ -316,7 +318,7 @@ public class MainWindow extends Application {
             //
 
             try {
-                for (Classifier classifier : classifiers) {
+                for (ClassifierUnit classifier : classifiers) {
                     CharacteristicValue classifiedValue = classifier.classify(classifiableText);
                     classifiedCharacteristics.append(classifier.getCharacteristic().getName()).append(": ").append(classifiedValue.getValue()).append("\n");
                 }
