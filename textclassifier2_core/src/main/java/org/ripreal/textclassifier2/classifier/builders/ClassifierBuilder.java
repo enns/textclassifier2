@@ -1,31 +1,65 @@
 package org.ripreal.textclassifier2.classifier.builders;
 
-import org.ripreal.textclassifier2.classifier.ClassifierUnit;
-import org.ripreal.textclassifier2.classifier.NeroClassifierUnit;
+import lombok.NonNull;
 import org.ripreal.textclassifier2.classifier.textreaders.ClassifiableReader;
 import org.ripreal.textclassifier2.model.Characteristic;
+import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
 
+import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 // BUILDER + FACTORY
 public class ClassifierBuilder {
 
-    private final List<ClassifierUnit> characteristics = new ArrayList<>();
-    private final List<Consumer<String>> listeners = new ArrayList<>();
-    private ClassifiableReader reader;
+    private final List<ClassifierUnit> units;
+    private final List<Consumer<String>> listeners;
+    private final Supplier<List<ClassifiableText>> supplier;
 
-    public static ClassifierBuilder builder() {
-        return new ClassifierBuilder();
+    public static ClassifierBuilder fromSupplier(@NonNull Supplier<List<ClassifiableText>> supplier) {
+        return new ClassifierBuilder(supplier);
     }
 
-    public void setTextReader(ClassifiableReader reader) {
-        this.reader = reader;
+    private ClassifierBuilder(Supplier<List<ClassifiableText>> supplier) {
+        this.units = new ArrayList<>();
+        this.listeners = new ArrayList<>();
+        this.supplier = supplier;
+    }
+
+    public void addNeroClassifier(Characteristic characteristic) {
+        addNeroClassifier(characteristic, new ArrayList<>(), NGramStrategy.getNGramStrategy(""));
+    }
+
+    public void addNeroClassifier(Characteristic characteristic, List<VocabularyWord> vocab, NGramStrategy nGramStrategy) {
+
+    }
+
+    public void addNeroClassifier(ClassifierUnit unit) {
+
+    }
+
+    public void build() {
+
+        List<ClassifiableText> classifiableTexts = supplier.get();
+        List<VocabularyWord> vocabulary = getVocabulary(classifiableTexts);
+        List<Characteristic> characteristics = getCharacteristics(classifiableTexts);
+
+        createClassifiers(characteristics, vocabulary);
+
+    }
+
+
+    public List<VocabularyWord> getVocabulary(List<ClassifiableText> classifiableTexts) {
+        return null;
+    }
+
+    public List<Characteristic> getCharacteristics(List<ClassifiableText> classifiableTexts) {
+        return null;
     }
 
     public ClassifierBuilder addNeroClassifer(Characteristic characteristic, List<> NGramStrategy ngram) {

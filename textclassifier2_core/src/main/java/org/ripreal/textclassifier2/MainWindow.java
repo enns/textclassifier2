@@ -14,7 +14,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import org.ripreal.textclassifier2.classifier.ClassifierUnit;
+import org.ripreal.textclassifier2.classifier.builders.ClassifierUnit;
 import org.ripreal.textclassifier2.classifier.textreaders.EmptySheetException;
 import org.ripreal.textclassifier2.classifier.textreaders.ExcelFileReader;
 import org.ripreal.textclassifier2.model.Characteristic;

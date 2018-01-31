@@ -3,6 +3,9 @@ package org.ripreal.textclassifier2.ngram;
 import java.util.Set;
 
 public interface NGramStrategy {
+
+    public enum NGRAM_TYPES {UNIGRAM, FILTERED_UNIGRAM,  }
+
     static NGramStrategy getNGramStrategy(String type) {
         switch (type) {
             case "unigram":

@@ -1,9 +1,6 @@
 package org.ripreal.textclassifier2.classifier.builders;
 
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import org.ripreal.textclassifier2.classifier.ClassifierUnit;
-import org.ripreal.textclassifier2.classifier.textreaders.ClassifiableReader;
 import org.ripreal.textclassifier2.classifier.textreaders.DataSourceException;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.ClassifiableText;
@@ -12,7 +9,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 
 // FACADE + BRIDGE
 @NoArgsConstructor

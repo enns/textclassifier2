@@ -1,6 +1,5 @@
-package org.ripreal.textclassifier2.classifier;
+package org.ripreal.textclassifier2.classifier.builders;
 
-import lombok.NoArgsConstructor;
 import org.encog.Encog;
 import org.encog.engine.network.activation.ActivationSigmoid;
 import org.encog.ml.data.basic.BasicMLDataSet;
@@ -9,6 +8,7 @@ import org.encog.neural.networks.layers.BasicLayer;
 import org.encog.neural.networks.training.propagation.Propagation;
 import org.encog.neural.networks.training.propagation.resilient.ResilientPropagation;
 import org.encog.persist.PersistError;
+import org.ripreal.textclassifier2.classifier.builders.ClassifierUnit;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableText;
