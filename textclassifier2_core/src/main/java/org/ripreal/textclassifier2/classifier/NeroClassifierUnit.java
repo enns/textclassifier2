@@ -1,5 +1,6 @@
 package org.ripreal.textclassifier2.classifier;
 
+import lombok.NoArgsConstructor;
 import org.encog.Encog;
 import org.encog.engine.network.activation.ActivationSigmoid;
 import org.encog.ml.data.basic.BasicMLDataSet;
@@ -71,25 +72,6 @@ public class NeroClassifierUnit implements ClassifierUnit, Observable {
         Encog.getInstance().shutdown();
     }
 
-    private BasicNetwork createNeuralNetwork() {
-        BasicNetwork network = new BasicNetwork();
-
-        // input layer
-        network.addLayer(new BasicLayer(null, true, inputLayerSize));
-
-        // hidden layer
-        network.addLayer(new BasicLayer(new ActivationSigmoid(), true, inputLayerSize / 6));
-        network.addLayer(new BasicLayer(new ActivationSigmoid(), true, inputLayerSize / 6 / 4));
-
-        // output layer
-        network.addLayer(new BasicLayer(new ActivationSigmoid(), false, outputLayerSize));
-
-        network.getStructure().finalizeStructure();
-        network.reset();
-
-        return network;
-    }
-
     public CharacteristicValue classify(ClassifiableText classifiableText) {
         double[] output = new double[outputLayerSize];
 
@@ -98,35 +80,6 @@ public class NeroClassifierUnit implements ClassifierUnit, Observable {
         Encog.getInstance().shutdown();
 
         return convertVectorToCharacteristic(output);
-    }
-
-    private CharacteristicValue convertVectorToCharacteristic(double[] vector) {
-        int idOfMaxValue = getIdOfMaxValue(vector);
-
-        // find CharacteristicValue with found Id
-        //
-
-        for (CharacteristicValue c : characteristic.getPossibleValues()) {
-            if (c.getOrderNumber() == idOfMaxValue) {
-                return c;
-            }
-        }
-
-        return null;
-    }
-
-    private int getIdOfMaxValue(double[] vector) {
-        int indexOfMaxValue = 0;
-        double maxValue = vector[0];
-
-        for (int i = 1; i < vector.length; i++) {
-            if (vector[i] > maxValue) {
-                maxValue = vector[i];
-                indexOfMaxValue = i;
-            }
-        }
-
-        return indexOfMaxValue + 1;
     }
 
     public void saveTrainedClassifier(File trainedNetwork) {
@@ -161,6 +114,54 @@ public class NeroClassifierUnit implements ClassifierUnit, Observable {
 
         train.finishTraining();
         notifyObservers("Classifier for '" + characteristic.getName() + "' characteristic trained. Wait...");
+    }
+
+    private BasicNetwork createNeuralNetwork() {
+        BasicNetwork network = new BasicNetwork();
+
+        // input layer
+        network.addLayer(new BasicLayer(null, true, inputLayerSize));
+
+        // hidden layer
+        network.addLayer(new BasicLayer(new ActivationSigmoid(), true, inputLayerSize / 6));
+        network.addLayer(new BasicLayer(new ActivationSigmoid(), true, inputLayerSize / 6 / 4));
+
+        // output layer
+        network.addLayer(new BasicLayer(new ActivationSigmoid(), false, outputLayerSize));
+
+        network.getStructure().finalizeStructure();
+        network.reset();
+
+        return network;
+    }
+
+    private CharacteristicValue convertVectorToCharacteristic(double[] vector) {
+        int idOfMaxValue = getIdOfMaxValue(vector);
+
+        // find CharacteristicValue with found Id
+        //
+
+        for (CharacteristicValue c : characteristic.getPossibleValues()) {
+            if (c.getOrderNumber() == idOfMaxValue) {
+                return c;
+            }
+        }
+
+        return null;
+    }
+
+    private int getIdOfMaxValue(double[] vector) {
+        int indexOfMaxValue = 0;
+        double maxValue = vector[0];
+
+        for (int i = 1; i < vector.length; i++) {
+            if (vector[i] > maxValue) {
+                maxValue = vector[i];
+                indexOfMaxValue = i;
+            }
+        }
+
+        return indexOfMaxValue + 1;
     }
 
     private double[][] getInput(List<ClassifiableText> classifiableTexts) {
