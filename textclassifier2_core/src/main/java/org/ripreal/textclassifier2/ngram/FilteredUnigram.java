@@ -1,7 +1,5 @@
 package org.ripreal.textclassifier2.ngram;
 
-import org.ripreal.textclassifier2.PorterStemmer;
-
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Set;

@@ -3,7 +3,7 @@ package org.ripreal.textclassifier2;
 import com.irvil.textclassifier.model.Characteristic;
 import com.irvil.textclassifier.model.ClassifiableText;
 import org.junit.Test;
-import org.ripreal.textclassifier2.classifier.textreaders.ExcelFileReader;
+import org.ripreal.textclassifier2.textreaders.ExcelFileReader;
 
 import java.io.File;
 import java.io.FileNotFoundException;

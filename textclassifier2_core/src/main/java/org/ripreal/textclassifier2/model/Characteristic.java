@@ -11,7 +11,8 @@ public class Characteristic {
 
     private Set<CharacteristicValue> possibleValues;
 
-    public Characteristic() {
+    public static Characteristic byName(String name) {
+        return new Characteristic(name);
     }
 
     private Characteristic(int id, String name, Set<CharacteristicValue> possibleValues) {

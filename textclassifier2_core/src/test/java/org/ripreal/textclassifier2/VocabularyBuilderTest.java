@@ -4,6 +4,7 @@ import com.irvil.textclassifier.model.ClassifiableText;
 import com.irvil.textclassifier.model.VocabularyWord;
 import com.irvil.textclassifier.ngram.FilteredUnigram;
 import org.junit.Test;
+import org.ripreal.textclassifier2.builders.VocabularyBuilder;
 
 import java.util.ArrayList;
 import java.util.List;

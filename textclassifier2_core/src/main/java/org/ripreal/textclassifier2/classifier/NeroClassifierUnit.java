@@ -1,5 +1,6 @@
-package org.ripreal.textclassifier2.classifier.builders;
+package org.ripreal.textclassifier2.classifier;
 
+import lombok.Getter;
 import org.encog.Encog;
 import org.encog.engine.network.activation.ActivationSigmoid;
 import org.encog.ml.data.basic.BasicMLDataSet;
@@ -8,43 +9,34 @@ import org.encog.neural.networks.layers.BasicLayer;
 import org.encog.neural.networks.training.propagation.Propagation;
 import org.encog.neural.networks.training.propagation.resilient.ResilientPropagation;
 import org.encog.persist.PersistError;
-import org.ripreal.textclassifier2.classifier.builders.ClassifierUnit;
+import org.ripreal.textclassifier2.actions.ClassifierAction;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
-import org.ripreal.textclassifier2.observer.Observable;
-import org.ripreal.textclassifier2.observer.Observer;
-
 import java.io.File;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
 import static org.encog.persist.EncogDirectoryPersistence.loadObject;
 import static org.encog.persist.EncogDirectoryPersistence.saveObject;
 
 // todo: add other types of Classifiers (Naive Bayes classifier for example)
-public class NeroClassifierUnit implements ClassifierUnit, Observable {
+class NeroClassifierUnit implements ClassifierUnit {
+
+    @Getter
     private final Characteristic characteristic;
+    @Getter
+    private List<VocabularyWord> vocabulary;
     private final int inputLayerSize;
     private final int outputLayerSize;
     private final BasicNetwork network;
-    private final List<VocabularyWord> vocabulary;
     private final NGramStrategy nGramStrategy;
-    private final List<Observer> observers = new ArrayList<>();
+    private final List<ClassifierAction> listeners = new ArrayList<>();
 
-    public NeroClassifierUnit(File trainedNetwork, Characteristic characteristic, List<VocabularyWord> vocabulary, NGramStrategy nGramStrategy) {
-        if (characteristic == null ||
-                characteristic.getName().equals("") ||
-                characteristic.getPossibleValues() == null ||
-                characteristic.getPossibleValues().size() == 0 ||
-                vocabulary == null ||
-                vocabulary.size() == 0 ||
-                nGramStrategy == null) {
-            throw new IllegalArgumentException();
-        }
+    private NeroClassifierUnit(File trainedNetwork, Characteristic characteristic, List<VocabularyWord> vocabulary, NGramStrategy nGramStrategy) {
 
         this.characteristic = characteristic;
         this.vocabulary = vocabulary;
@@ -64,11 +56,22 @@ public class NeroClassifierUnit implements ClassifierUnit, Observable {
         }
     }
 
-    public NeroClassifierUnit(Characteristic characteristic, List<VocabularyWord> vocabulary, NGramStrategy nGramStrategy) {
-        this(null, characteristic, vocabulary, nGramStrategy);
+    public NeroClassifierUnit(Characteristic characteristic, NGramStrategy nGramStrategy) {
+        this(null, characteristic, null, nGramStrategy);
     }
 
-    public static void shutdown() {
+    private boolean initialized() {
+        return !(characteristic == null ||
+            characteristic.getName().equals("") ||
+            characteristic.getPossibleValues() == null ||
+            characteristic.getPossibleValues().size() == 0 ||
+            vocabulary == null ||
+            vocabulary.size() == 0 ||
+            nGramStrategy == null
+        );
+    }
+
+    public void shutdown() {
         Encog.getInstance().shutdown();
     }
 
@@ -82,20 +85,26 @@ public class NeroClassifierUnit implements ClassifierUnit, Observable {
         return convertVectorToCharacteristic(output);
     }
 
-    public void saveTrainedClassifier(File trainedNetwork) {
-        saveObject(trainedNetwork, network);
-        notifyObservers("Trained Classifier for '" + characteristic.getName() + "' characteristic saved. Wait...");
+    public void saveTrainedClassifier(File file) {
+        saveObject(file, network);
+        dispatch("Trained Classifier for '" + characteristic.getName() + "' characteristic saved. Wait...");
     }
 
-    public Characteristic getCharacteristic() {
-        return characteristic;
+    public void saveTrainedClassifier(OutputStream stream) {
+        saveObject(stream, network);
+        dispatch("Trained Classifier for '" + characteristic.getName() + "' characteristic saved. Wait...");
     }
 
-    public void train(List<ClassifiableText> classifiableTexts) {
+    public void build(List<ClassifiableText> classifiableTexts) {
         // prepare input and ideal vectors
         // input <- ClassifiableText text vector
         // ideal <- characteristicValue vector
         //
+
+        if (!initialized()) {
+            dispatch("Not all necessary parameters were specified. Go to initialization...");
+            this.vocabulary = NGramStrategy.getVocabulary(nGramStrategy, classifiableTexts);
+        }
 
         double[][] input = getInput(classifiableTexts);
         double[][] ideal = getIdeal(classifiableTexts);
@@ -109,11 +118,11 @@ public class NeroClassifierUnit implements ClassifierUnit, Observable {
         // todo: throw exception if iteration count more than 1000
         do {
             train.iteration();
-            notifyObservers("Training Classifier for '" + characteristic.getName() + "' characteristic. Errors: " + String.format("%.2f", train.getError() * 100) + "%. Wait...");
+            dispatch("Training Classifier for '" + characteristic.getName() + "' characteristic. Errors: " + String.format("%.2f", train.getError() * 100) + "%. Wait...");
         } while (train.getError() > 0.01);
 
         train.finishTraining();
-        notifyObservers("Classifier for '" + characteristic.getName() + "' characteristic trained. Wait...");
+        dispatch("Classifier for '" + characteristic.getName() + "' characteristic trained. Wait...");
     }
 
     private BasicNetwork createNeuralNetwork() {
@@ -237,19 +246,12 @@ public class NeroClassifierUnit implements ClassifierUnit, Observable {
     }
 
     @Override
-    public void addObserver(Observer o) {
-        observers.add(o);
+    public void subscribe(ClassifierAction action) {
+        listeners.add(action);
     }
 
     @Override
-    public void removeObserver(Observer o) {
-        observers.remove(o);
-    }
-
-    @Override
-    public void notifyObservers(String text) {
-        for (Observer o : observers) {
-            o.update(text);
-        }
+    public void dispatch(String text) {
+        listeners.forEach(action -> action.dispatch(ClassifierAction.EventTypes.NERO_CLASSIFIER_EVENT, text));
     }
 }

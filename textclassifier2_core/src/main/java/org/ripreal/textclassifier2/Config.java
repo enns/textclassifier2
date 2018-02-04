@@ -27,6 +27,10 @@ public class Config {
         return getProperty("db_path");
     }
 
+    public String getTestDataPath() {
+        return getProperty("test_data_path");
+    }
+
     public String getDaoType() {
         return getProperty("dao_type");
     }

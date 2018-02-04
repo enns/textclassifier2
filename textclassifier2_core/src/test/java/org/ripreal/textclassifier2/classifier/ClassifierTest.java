@@ -8,7 +8,6 @@ import com.irvil.textclassifier.ngram.FilteredUnigram;
 import com.irvil.textclassifier.ngram.NGramStrategy;
 import org.junit.Before;
 import org.junit.Test;
-import org.ripreal.textclassifier2.classifier.builders.ClassifierUnit;
 
 import java.io.File;
 import java.util.*;

@@ -1,4 +1,4 @@
-package org.ripreal.textclassifier2;
+package org.ripreal.textclassifier2.ngram;
 
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.VocabularyWord;
@@ -20,7 +20,7 @@ class VocabularyBuilder {
         this.nGramStrategy = nGramStrategy;
     }
 
-    List<VocabularyWord> getVocabulary(List<ClassifiableText> classifiableTexts) {
+    public List<VocabularyWord> getVocabulary(List<ClassifiableText> classifiableTexts) {
         if (classifiableTexts == null ||
                 classifiableTexts.size() == 0) {
             throw new IllegalArgumentException();

@@ -1,24 +1,32 @@
 package org.ripreal.textclassifier2.ngram;
 
+import org.ripreal.textclassifier2.model.ClassifiableText;
+import org.ripreal.textclassifier2.model.VocabularyWord;
+
+import java.util.List;
 import java.util.Set;
 
 public interface NGramStrategy {
 
-    public enum NGRAM_TYPES {UNIGRAM, FILTERED_UNIGRAM,  }
+    public enum NGRAM_TYPES {UNIGRAM, FILTERED_UNIGRAM, BIGRAM, FILTERED_BIGRAM}
 
-    static NGramStrategy getNGramStrategy(String type) {
+    public static NGramStrategy getNGramStrategy(NGRAM_TYPES type) {
         switch (type) {
-            case "unigram":
+            case UNIGRAM:
                 return new Unigram();
-            case "filtered_unigram":
+            case FILTERED_UNIGRAM:
                 return new FilteredUnigram();
-            case "bigram":
+            case BIGRAM:
                 return new Bigram(new Unigram());
-            case "filtered_bigram":
+            case FILTERED_BIGRAM:
                 return new Bigram(new FilteredUnigram());
             default:
                 return null;
         }
+    }
+
+    public static List<VocabularyWord> getVocabulary(NGramStrategy nGramStrategy, List<ClassifiableText> texts) {
+        return new VocabularyBuilder(nGramStrategy).getVocabulary(texts);
     }
 
     Set<String> getNGram(String text);

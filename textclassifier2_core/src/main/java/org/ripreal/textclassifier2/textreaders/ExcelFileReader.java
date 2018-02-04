@@ -1,47 +1,50 @@
-package org.ripreal.textclassifier2.classifier.textreaders;
+package org.ripreal.textclassifier2.textreaders;
 
 import lombok.AllArgsConstructor;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.ripreal.textclassifier2.actions.ClassifierAction;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableText;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @AllArgsConstructor
-class ExcelFileReader implements ClassifiableReader {
+public class ExcelFileReader implements ClassifiableReader{
 
-    private Path filePath;
+    private File file;
     private int sheetNumber;
+    private final List<ClassifierAction> listeners = new ArrayList<>();
 
-    public List<ClassifiableText> toClassifiableTexts() throws IOException, DataSourceException {
-        File xlsxFile = new File(filePath.toUri());
-        if (!xlsxFile.exists() ||
+    public List<ClassifiableText> toClassifiableTexts() {
+
+        if (!file.exists() ||
                 sheetNumber < 1) {
             throw new IllegalArgumentException();
         }
 
-        try (XSSFWorkbook excelFile = new XSSFWorkbook(new FileInputStream(xlsxFile))) {
+        try (XSSFWorkbook excelFile = new XSSFWorkbook(new FileInputStream(file))) {
             XSSFSheet sheet = excelFile.getSheetAt(sheetNumber - 1);
 
             // at least two rows
             if (sheet.getLastRowNum() > 0) {
                 return getClassifiableTexts(sheet);
             } else {
-                throw new DataSourceException("Excel sheet (#" + sheetNumber + ") is empty");
+                dispatch("Excel sheet (#" + sheetNumber + ") is empty");
             }
         } catch (IllegalArgumentException e) {
-            throw new DataSourceException("Excel sheet (#" + sheetNumber + ") is not found");
+            dispatch("Excel sheet (#" + sheetNumber + ") is not found");
+        } catch (IOException e) {
+            dispatch(e.getMessage());
         }
+        return new ArrayList<>();
     }
 
     private List<ClassifiableText> getClassifiableTexts(XSSFSheet sheet) {
@@ -80,5 +83,15 @@ class ExcelFileReader implements ClassifiableReader {
         }
 
         return characteristics;
+    }
+
+    @Override
+    public void subscribe(ClassifierAction action) {
+        listeners.add(action);
+    }
+
+    @Override
+    public void dispatch(String text) {
+        listeners.forEach(action -> action.dispatch(ClassifierAction.EventTypes.EXCEL_FILE_READER_EVENT, text));
     }
 }
