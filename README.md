@@ -4,7 +4,5 @@
 Advanced neural network based on https://github.com/RusZ/TextClassifier
 
 TODO
-Make Helper class name more specific
-Redefine logging with Interception technique
-Refactor services as one with coupled classes
-Mention about DDD paradygme in description
+- Mention about DDD paradygme in description
+- Transfer network learning to Apache Ignite platform or S3 Cloud 
