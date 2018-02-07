@@ -1,8 +1,8 @@
 package org.ripreal.textclassifier2;
 
-import com.irvil.textclassifier.model.Characteristic;
-import com.irvil.textclassifier.model.ClassifiableText;
 import org.junit.Test;
+import org.ripreal.textclassifier2.model.Characteristic;
+import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.textreaders.ExcelFileReader;
 
 import java.io.File;
@@ -12,11 +12,11 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class ExcelFileReaderTest {
-    private final ExcelFileReader excelFileReader = new ExcelFileReader();
+    private final ExcelFileReader excelFileReader = new ExcelFileReader(new File("./test_db/test.xlsx"), 1);
 
     @Test
     public void xlsxToClassifiableTexts() throws Exception {
-        List<ClassifiableText> classifiableTexts = excelFileReader.xlsxToClassifiableTexts(new File("./test_db/test.xlsx"), 1);
+        List<ClassifiableText> classifiableTexts = excelFileReader.toClassifiableTexts();
 
         assertEquals(classifiableTexts.size(), 3);
 
@@ -38,11 +38,13 @@ public class ExcelFileReaderTest {
 
     @Test(expected = FileNotFoundException.class)
     public void xlsxToClassifiableTextsNotExistingFile() throws Exception {
-        excelFileReader.xlsxToClassifiableTexts(new File("./test_db/test1.xlsx"), 1);
+        excelFileReader.toClassifiableTexts();
     }
 
+    /*
     @Test(expected = IllegalArgumentException.class)
     public void xlsxToClassifiableTextsNotExistingFile1() throws Exception {
-        excelFileReader.xlsxToClassifiableTexts(null, 1);
+        excelFileReader.toClassifiableTexts();
     }
+    */
 }

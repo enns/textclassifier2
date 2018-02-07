@@ -26,8 +26,6 @@ public class Classifier {
 
     // CONSTRUCTORS
 
-    private Classifier() {}
-
     public static Classifier fromReader(Function<ClassifiableReaderBuilder, ClassifiableReader> provider) {
         Classifier classifier = new Classifier();
         classifier.reader = provider.apply(ClassifiableReaderBuilder.builder());

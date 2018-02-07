@@ -24,6 +24,7 @@ public class App {
     static {
         if (!CONFIG.isLoaded()) {
             System.out.println("Config file is not found or it is empty.");
+            System.exit(1);
         }
     }
 }

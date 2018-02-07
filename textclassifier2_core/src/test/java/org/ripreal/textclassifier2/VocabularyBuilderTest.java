@@ -1,10 +1,10 @@
 package org.ripreal.textclassifier2;
 
-import com.irvil.textclassifier.model.ClassifiableText;
-import com.irvil.textclassifier.model.VocabularyWord;
-import com.irvil.textclassifier.ngram.FilteredUnigram;
 import org.junit.Test;
-import org.ripreal.textclassifier2.builders.VocabularyBuilder;
+import org.ripreal.textclassifier2.model.ClassifiableText;
+import org.ripreal.textclassifier2.model.VocabularyWord;
+import org.ripreal.textclassifier2.ngram.FilteredUnigram;
+import org.ripreal.textclassifier2.ngram.NGramStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class VocabularyBuilderTest {
-    private final VocabularyBuilder vocabularyBuilder = new VocabularyBuilder(new FilteredUnigram());
+    private final NGramStrategy ngram = NGramStrategy.getNGramStrategy(NGramStrategy.NGRAM_TYPES.FILTERED_UNIGRAM);
 
     @Test
     public void getVocabulary() throws Exception {
@@ -26,7 +26,7 @@ public class VocabularyBuilderTest {
         classifiableTexts.add(new ClassifiableText("we rt"));
         classifiableTexts.add(new ClassifiableText("er rt"));
 
-        List<VocabularyWord> vocabulary = vocabularyBuilder.getVocabulary(classifiableTexts);
+        List<VocabularyWord> vocabulary = NGramStrategy.getVocabulary(ngram, classifiableTexts);
 
         assertEquals(vocabulary.size(), 3);
         assertEquals(vocabulary.get(0).getValue(), "rt");
@@ -39,18 +39,18 @@ public class VocabularyBuilderTest {
         List<ClassifiableText> classifiableTexts = new ArrayList<>();
         classifiableTexts.add(new ClassifiableText("qw we"));
 
-        List<VocabularyWord> vocabulary = vocabularyBuilder.getVocabulary(classifiableTexts);
+        List<VocabularyWord> vocabulary = NGramStrategy.getVocabulary(ngram, classifiableTexts);
 
         assertEquals(vocabulary.size(), 0);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void getVocabularyNull() throws Exception {
-        vocabularyBuilder.getVocabulary(null);
+        NGramStrategy.getVocabulary(null, null);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void getVocabularyEmpty() throws Exception {
-        vocabularyBuilder.getVocabulary(new ArrayList<>());
+        NGramStrategy.getVocabulary(ngram, new ArrayList<>());
     }
 }

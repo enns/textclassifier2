@@ -36,7 +36,17 @@ class NeroClassifierUnit implements ClassifierUnit {
     private final NGramStrategy nGramStrategy;
     private final List<ClassifierAction> listeners = new ArrayList<>();
 
-    private NeroClassifierUnit(File trainedNetwork, Characteristic characteristic, List<VocabularyWord> vocabulary, NGramStrategy nGramStrategy) {
+    public NeroClassifierUnit(File trainedNetwork, Characteristic characteristic, List<VocabularyWord> vocabulary, NGramStrategy nGramStrategy) {
+
+        if (characteristic == null ||
+            characteristic.getName().equals("") ||
+            characteristic.getPossibleValues() == null ||
+            characteristic.getPossibleValues().size() == 0 ||
+            vocabulary == null ||
+            vocabulary.size() == 0 ||
+            nGramStrategy == null) {
+            throw new IllegalArgumentException();
+        }
 
         this.characteristic = characteristic;
         this.vocabulary = vocabulary;
@@ -56,20 +66,14 @@ class NeroClassifierUnit implements ClassifierUnit {
         }
     }
 
-    public NeroClassifierUnit(Characteristic characteristic, NGramStrategy nGramStrategy) {
-        this(null, characteristic, null, nGramStrategy);
+    public NeroClassifierUnit(Characteristic characteristic, List<VocabularyWord> vocabulary, NGramStrategy nGramStrategy) {
+        new NeroClassifierUnit(null, characteristic, vocabulary, nGramStrategy);
     }
 
-    private boolean initialized() {
-        return !(characteristic == null ||
-            characteristic.getName().equals("") ||
-            characteristic.getPossibleValues() == null ||
-            characteristic.getPossibleValues().size() == 0 ||
-            vocabulary == null ||
-            vocabulary.size() == 0 ||
-            nGramStrategy == null
-        );
+    public static NeroClassifierUnit init() {
+        new NeroClassifierUnit();
     }
+
 
     public void shutdown() {
         Encog.getInstance().shutdown();
@@ -100,11 +104,6 @@ class NeroClassifierUnit implements ClassifierUnit {
         // input <- ClassifiableText text vector
         // ideal <- characteristicValue vector
         //
-
-        if (!initialized()) {
-            dispatch("Not all necessary parameters were specified. Go to initialization...");
-            this.vocabulary = NGramStrategy.getVocabulary(nGramStrategy, classifiableTexts);
-        }
 
         double[][] input = getInput(classifiableTexts);
         double[][] ideal = getIdeal(classifiableTexts);

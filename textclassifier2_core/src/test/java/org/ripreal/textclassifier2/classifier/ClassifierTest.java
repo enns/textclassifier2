@@ -1,13 +1,13 @@
 package org.ripreal.textclassifier2.classifier;
 
-import com.irvil.textclassifier.model.Characteristic;
-import com.irvil.textclassifier.model.CharacteristicValue;
-import com.irvil.textclassifier.model.ClassifiableText;
-import com.irvil.textclassifier.model.VocabularyWord;
-import com.irvil.textclassifier.ngram.FilteredUnigram;
-import com.irvil.textclassifier.ngram.NGramStrategy;
 import org.junit.Before;
 import org.junit.Test;
+import org.ripreal.textclassifier2.model.Characteristic;
+import org.ripreal.textclassifier2.model.CharacteristicValue;
+import org.ripreal.textclassifier2.model.ClassifiableText;
+import org.ripreal.textclassifier2.model.VocabularyWord;
+import org.ripreal.textclassifier2.ngram.FilteredUnigram;
+import org.ripreal.textclassifier2.ngram.NGramStrategy;
 
 import java.io.File;
 import java.util.*;
@@ -16,6 +16,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 public class ClassifierTest {
+    /*
     private final File trainedClassifier = new File("./test_db/TestNeuralNetworkClassifier");
     private final NGramStrategy nGramStrategy = new FilteredUnigram();
     private ClassifierUnit classifier;
@@ -69,7 +70,7 @@ public class ClassifierTest {
         // load trained classifier
         //
 
-        classifier = new ClassifierUnit(trainedClassifier, characteristic, vocabulary, nGramStrategy);
+        classifier = new NeroClassifierUnit(trainedClassifier, characteristic, vocabulary, nGramStrategy);
     }
 
     @Test
@@ -165,7 +166,7 @@ public class ClassifierTest {
         assertNotEquals(classifier.classify(classifiableTexts.get(1)).getValue(), "add");
 
         // train
-        classifier.train(classifiableTexts);
+        classifier.build(classifiableTexts);
 
         // make sure classifier became smart
         //
@@ -181,17 +182,8 @@ public class ClassifierTest {
     }
 
     @Test
-    public void notifyObservers() throws Exception {
-        final String[] msg = {"Msg from observer"};
-
-        classifier.addObserver((text) -> msg[0] = text);
-        classifier.notifyObservers("Test msg");
-
-        assertEquals(msg[0], "Test msg");
-    }
-
-    @Test
     public void shutdown() throws Exception {
         ClassifierUnit.shutdown();
     }
+    */
 }
