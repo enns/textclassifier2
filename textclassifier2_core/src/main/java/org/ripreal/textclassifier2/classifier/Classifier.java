@@ -20,6 +20,7 @@ public class Classifier {
     private ClassifiableReader reader = null;
 
     private final List<ClassifierUnit> classifierUnits = new ArrayList<>();
+
     private final List<ClassifierAction> listeners = new ArrayList<>();
 
     private final int AMOUNT_OF_TEXTS_FOR_CHECKING = 5;
@@ -77,8 +78,9 @@ public class Classifier {
     // INNER SECTION
 
     private void buildClassifiers(List<ClassifiableText> classifiableTexts) {
+
         for (ClassifierUnit classifier : classifierUnits) {
-            classifier.build(classifiableTexts);
+              classifier.build(classifiableTexts);
         }
     }
 

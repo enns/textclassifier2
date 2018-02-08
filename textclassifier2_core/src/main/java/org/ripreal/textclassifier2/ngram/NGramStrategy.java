@@ -25,8 +25,8 @@ public interface NGramStrategy {
         }
     }
 
-    public static List<VocabularyWord> getVocabulary(NGramStrategy nGramStrategy, List<ClassifiableText> texts) {
-        return new VocabularyBuilder(nGramStrategy).getVocabulary(texts);
+    default List<VocabularyWord> getVocabulary(List<ClassifiableText> texts) {
+        return new VocabularyBuilder(this).getVocabulary(texts);
     }
 
     Set<String> getNGram(String text);

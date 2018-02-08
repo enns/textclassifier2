@@ -27,26 +27,16 @@ import static org.encog.persist.EncogDirectoryPersistence.saveObject;
 class NeroClassifierUnit implements ClassifierUnit {
 
     @Getter
-    private final Characteristic characteristic;
+    private  Characteristic characteristic;
     @Getter
     private List<VocabularyWord> vocabulary;
-    private final int inputLayerSize;
-    private final int outputLayerSize;
-    private final BasicNetwork network;
-    private final NGramStrategy nGramStrategy;
-    private final List<ClassifierAction> listeners = new ArrayList<>();
+    private int inputLayerSize;
+    private int outputLayerSize;
+    private BasicNetwork network;
+    private NGramStrategy nGramStrategy;
+    private List<ClassifierAction> listeners = new ArrayList<>();
 
     public NeroClassifierUnit(File trainedNetwork, Characteristic characteristic, List<VocabularyWord> vocabulary, NGramStrategy nGramStrategy) {
-
-        if (characteristic == null ||
-            characteristic.getName().equals("") ||
-            characteristic.getPossibleValues() == null ||
-            characteristic.getPossibleValues().size() == 0 ||
-            vocabulary == null ||
-            vocabulary.size() == 0 ||
-            nGramStrategy == null) {
-            throw new IllegalArgumentException();
-        }
 
         this.characteristic = characteristic;
         this.vocabulary = vocabulary;
@@ -54,7 +44,29 @@ class NeroClassifierUnit implements ClassifierUnit {
         this.outputLayerSize = characteristic.getPossibleValues().size();
         this.nGramStrategy = nGramStrategy;
 
-        if (trainedNetwork == null) {
+        initInternal(trainedNetwork);
+
+    }
+
+    public NeroClassifierUnit(Characteristic characteristic, List<VocabularyWord> vocabulary, NGramStrategy nGramStrategy) {
+        this(null, characteristic, vocabulary, nGramStrategy);
+    }
+
+    NeroClassifierUnit(Characteristic characteristic, NGramStrategy nGramStrategy) {
+        this(null, characteristic, null, nGramStrategy);
+    }
+
+    private void initInternal(File trainedNetwork) {
+
+        if (this.characteristic == null ||
+                this.characteristic.getName().equals("") ||
+                this.characteristic.getPossibleValues() == null ||
+                this.characteristic.getPossibleValues().size() == 0 ||
+                this.nGramStrategy == null) {
+            throw new IllegalArgumentException();
+        }
+
+        if (this.network == null) {
             this.network = createNeuralNetwork();
         } else {
             // load neural network from file
@@ -65,15 +77,6 @@ class NeroClassifierUnit implements ClassifierUnit {
             }
         }
     }
-
-    public NeroClassifierUnit(Characteristic characteristic, List<VocabularyWord> vocabulary, NGramStrategy nGramStrategy) {
-        new NeroClassifierUnit(null, characteristic, vocabulary, nGramStrategy);
-    }
-
-    public static NeroClassifierUnit init() {
-        new NeroClassifierUnit();
-    }
-
 
     public void shutdown() {
         Encog.getInstance().shutdown();
@@ -100,6 +103,11 @@ class NeroClassifierUnit implements ClassifierUnit {
     }
 
     public void build(List<ClassifiableText> classifiableTexts) {
+
+        if (vocabulary == null) {
+            setVocabulary(nGramStrategy.getVocabulary(classifiableTexts));
+            initInternal(null);
+        }
         // prepare input and ideal vectors
         // input <- ClassifiableText text vector
         // ideal <- characteristicValue vector
@@ -122,6 +130,11 @@ class NeroClassifierUnit implements ClassifierUnit {
 
         train.finishTraining();
         dispatch("Classifier for '" + characteristic.getName() + "' characteristic trained. Wait...");
+    }
+
+    private void setVocabulary(List<VocabularyWord> vocabulary) {
+        this.vocabulary = vocabulary;
+        this.inputLayerSize = this.vocabulary.size();
     }
 
     private BasicNetwork createNeuralNetwork() {

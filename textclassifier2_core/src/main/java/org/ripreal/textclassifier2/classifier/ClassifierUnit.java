@@ -14,10 +14,6 @@ import java.util.List;
 
 interface ClassifierUnit extends ClassifierEventsDispatcher {
 
-    default ClassifierUnit init(){
-        return this.;
-    }
-
     Characteristic getCharacteristic();
 
     List<VocabularyWord> getVocabulary();

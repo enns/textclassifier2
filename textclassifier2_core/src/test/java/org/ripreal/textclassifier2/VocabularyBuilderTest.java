@@ -26,7 +26,7 @@ public class VocabularyBuilderTest {
         classifiableTexts.add(new ClassifiableText("we rt"));
         classifiableTexts.add(new ClassifiableText("er rt"));
 
-        List<VocabularyWord> vocabulary = NGramStrategy.getVocabulary(ngram, classifiableTexts);
+        List<VocabularyWord> vocabulary = ngram.getVocabulary(classifiableTexts);
 
         assertEquals(vocabulary.size(), 3);
         assertEquals(vocabulary.get(0).getValue(), "rt");
@@ -39,18 +39,18 @@ public class VocabularyBuilderTest {
         List<ClassifiableText> classifiableTexts = new ArrayList<>();
         classifiableTexts.add(new ClassifiableText("qw we"));
 
-        List<VocabularyWord> vocabulary = NGramStrategy.getVocabulary(ngram, classifiableTexts);
+        List<VocabularyWord> vocabulary = ngram.getVocabulary(classifiableTexts);
 
         assertEquals(vocabulary.size(), 0);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void getVocabularyNull() throws Exception {
-        NGramStrategy.getVocabulary(null, null);
+        ngram.getVocabulary(null);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void getVocabularyEmpty() throws Exception {
-        NGramStrategy.getVocabulary(ngram, new ArrayList<>());
+        ngram.getVocabulary(new ArrayList<>());
     }
 }
