@@ -8,6 +8,7 @@ import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.textreaders.ClassifiableReaderBuilder;
 
+import javax.rmi.PortableRemoteObject;
 import java.io.File;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -43,6 +44,7 @@ public class Classifier {
     public Classifier subscribe(ClassifierAction action) {
         listeners.add(action);
         classifierUnits.forEach(unit -> unit.subscribe(action));
+        reader.subscribe(action);
         return this;
     }
 

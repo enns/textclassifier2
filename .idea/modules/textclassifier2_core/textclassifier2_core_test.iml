@@ -100,7 +100,6 @@
     <orderEntry type="library" name="Gradle: io.netty:netty-resolver:4.1.17.Final" level="project" />
     <orderEntry type="library" name="Gradle: io.netty:netty-common:4.1.17.Final" level="project" />
     <orderEntry type="library" name="Gradle: org.ow2.asm:asm:5.0.4" level="project" />
-    <orderEntry type="module" module-name="textclassifier2_service_main" scope="TEST" />
   </component>
   <component name="TestModuleProperties" production-module="textclassifier2_core_main" />
 </module>

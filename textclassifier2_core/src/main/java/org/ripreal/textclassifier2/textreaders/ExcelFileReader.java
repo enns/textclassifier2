@@ -27,7 +27,7 @@ public class ExcelFileReader implements ClassifiableReader{
 
         if (!file.exists() ||
                 sheetNumber < 1) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("File with texts not exist or has wrong format!");
         }
 
         try (XSSFWorkbook excelFile = new XSSFWorkbook(new FileInputStream(file))) {

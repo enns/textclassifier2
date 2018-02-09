@@ -37,23 +37,16 @@ class NeroClassifierUnit implements ClassifierUnit {
     private List<ClassifierAction> listeners = new ArrayList<>();
 
     public NeroClassifierUnit(File trainedNetwork, Characteristic characteristic, List<VocabularyWord> vocabulary, NGramStrategy nGramStrategy) {
-
-        this.characteristic = characteristic;
-        this.vocabulary = vocabulary;
-        this.inputLayerSize = vocabulary.size();
-        this.outputLayerSize = characteristic.getPossibleValues().size();
-        this.nGramStrategy = nGramStrategy;
-
+        this(characteristic, nGramStrategy);
+        setVocabulary(vocabulary);
         initInternal(trainedNetwork);
-
     }
 
-    public NeroClassifierUnit(Characteristic characteristic, List<VocabularyWord> vocabulary, NGramStrategy nGramStrategy) {
-        this(null, characteristic, vocabulary, nGramStrategy);
-    }
 
     NeroClassifierUnit(Characteristic characteristic, NGramStrategy nGramStrategy) {
-        this(null, characteristic, null, nGramStrategy);
+        this.characteristic = characteristic;
+        this.outputLayerSize = characteristic.getPossibleValues().size();
+        this.nGramStrategy = nGramStrategy;
     }
 
     private void initInternal(File trainedNetwork) {
