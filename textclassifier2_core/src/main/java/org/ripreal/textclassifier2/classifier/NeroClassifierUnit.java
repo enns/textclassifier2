@@ -14,12 +14,16 @@ import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.VocabularyWord;
+import org.ripreal.textclassifier2.model.modelimp.DefVocabularyWord;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
+
+import javax.validation.constraints.NotNull;
 import java.io.File;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+
 import static org.encog.persist.EncogDirectoryPersistence.loadObject;
 import static org.encog.persist.EncogDirectoryPersistence.saveObject;
 
@@ -36,17 +40,20 @@ class NeroClassifierUnit implements ClassifierUnit {
     private NGramStrategy nGramStrategy;
     private List<ClassifierAction> listeners = new ArrayList<>();
 
-    public NeroClassifierUnit(File trainedNetwork, Characteristic characteristic, List<VocabularyWord> vocabulary, NGramStrategy nGramStrategy) {
+    public NeroClassifierUnit(File trainedNetwork, @NotNull Characteristic characteristic, @NotNull List<VocabularyWord> vocabulary, @NotNull NGramStrategy nGramStrategy) {
         this(characteristic, nGramStrategy);
         setVocabulary(vocabulary);
         initInternal(trainedNetwork);
     }
 
-
-    NeroClassifierUnit(Characteristic characteristic, NGramStrategy nGramStrategy) {
+    NeroClassifierUnit(@NotNull Characteristic characteristic, @NotNull NGramStrategy nGramStrategy) {
         this.characteristic = characteristic;
         this.outputLayerSize = characteristic.getPossibleValues().size();
         this.nGramStrategy = nGramStrategy;
+    }
+
+    public NGramStrategy getNGramStrategy() {
+        return nGramStrategy;
     }
 
     private void initInternal(File trainedNetwork) {
@@ -97,10 +104,7 @@ class NeroClassifierUnit implements ClassifierUnit {
 
     public void build(List<ClassifiableText> classifiableTexts) {
 
-        if (vocabulary == null) {
-            setVocabulary(nGramStrategy.getVocabulary(classifiableTexts));
-            initInternal(null);
-        }
+        initInternal(null);
         // prepare input and ideal vectors
         // input <- ClassifiableText text vector
         // ideal <- characteristicValue vector
@@ -125,7 +129,7 @@ class NeroClassifierUnit implements ClassifierUnit {
         dispatch("Classifier for '" + characteristic.getName() + "' characteristic trained. Wait...");
     }
 
-    private void setVocabulary(List<VocabularyWord> vocabulary) {
+    public void setVocabulary(List<VocabularyWord> vocabulary) {
         this.vocabulary = vocabulary;
         this.inputLayerSize = this.vocabulary.size();
     }
@@ -239,7 +243,8 @@ class NeroClassifierUnit implements ClassifierUnit {
 
     private VocabularyWord findWordInVocabulary(String word) {
         try {
-            return vocabulary.get(vocabulary.indexOf(new VocabularyWord(word)));
+            // todo: need more effective searching method
+            return vocabulary.get(vocabulary.indexOf(new DefVocabularyWord(word)));
         } catch (NullPointerException | IndexOutOfBoundsException e) {
             return null;
         }

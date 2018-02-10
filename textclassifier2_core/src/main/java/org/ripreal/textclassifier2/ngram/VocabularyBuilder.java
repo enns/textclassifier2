@@ -1,30 +1,25 @@
 package org.ripreal.textclassifier2.ngram;
 
+import lombok.NonNull;
+import org.ripreal.textclassifier2.model.CharacteristicFactory;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.VocabularyWord;
-import org.ripreal.textclassifier2.ngram.NGramStrategy;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-class VocabularyBuilder {
+public class VocabularyBuilder {
     private final NGramStrategy nGramStrategy;
 
-    VocabularyBuilder(NGramStrategy nGramStrategy) {
-        if (nGramStrategy == null) {
-            throw new IllegalArgumentException();
-        }
-
+    public VocabularyBuilder(@NotNull NGramStrategy nGramStrategy) {
         this.nGramStrategy = nGramStrategy;
     }
 
-    public List<VocabularyWord> getVocabulary(List<ClassifiableText> classifiableTexts) {
-        if (classifiableTexts == null ||
-                classifiableTexts.size() == 0) {
-            throw new IllegalArgumentException();
-        }
+    public List<VocabularyWord> getVocabulary(@NotEmpty List<ClassifiableText> classifiableTexts, @NotNull CharacteristicFactory factory) {
 
         Map<String, Integer> uniqueValues = new HashMap<>();
 
@@ -50,7 +45,7 @@ class VocabularyBuilder {
 
         for (Map.Entry<String, Integer> entry : uniqueValues.entrySet()) {
             if (entry.getValue() > 3) {
-                vocabulary.add(new VocabularyWord(entry.getKey()));
+                vocabulary.add(factory.newVocabularyWord(entry.getKey()));
             }
         }
 

@@ -8,19 +8,30 @@ import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
 
+import javax.validation.constraints.NotNull;
 import java.io.File;
 import java.io.OutputStream;
 import java.util.List;
 
 interface ClassifierUnit extends ClassifierEventsDispatcher {
 
+    // PROPERTIES
+
     Characteristic getCharacteristic();
 
     List<VocabularyWord> getVocabulary();
 
+    void setVocabulary(List<VocabularyWord> vocabulary);
+
+    NGramStrategy getNGramStrategy();
+
+    // BUILDING
+
     void subscribe(ClassifierAction action);
 
     void build(List<ClassifiableText> classifiableTexts);
+
+    // COMPOSITE METHODS
 
     CharacteristicValue classify(ClassifiableText classifiableText);
 

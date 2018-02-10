@@ -1,9 +1,9 @@
 package org.ripreal.textclassifier2;
 
-import org.ripreal.textclassifier2.actions.ClassifierAction;
 import org.ripreal.textclassifier2.classifier.Classifier;
 import org.ripreal.textclassifier2.model.Characteristic;
-import org.ripreal.textclassifier2.model.CharacteristicValue;
+import org.ripreal.textclassifier2.model.CharacteristicFactory;
+import org.ripreal.textclassifier2.model.modelimp.DefCharacteristicFactory;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
 
 import java.io.File;
@@ -15,14 +15,14 @@ public class App {
 
     public static void main(String... args) {
 
-        Characteristic characteristic = Characteristic.byName("Отдел");
-        characteristic.setPossibleValues(Collections.singleton(new CharacteristicValue("Техподдержка")));
 
         Classifier
-            .fromReader((builder) -> builder.newExcelFileReader(new File(CONFIG.getTestDataPath()), 1))
+            .fromReader(
+                (builder) -> builder.newExcelFileReader(new File(CONFIG.getTestDataPath()), 1),
+                    new DefCharacteristicFactory())
             .subscribe((action, msg) -> System.out.println(String.format("%s: %s", action, msg)))
             .addNeroClassifierUnit(
-                characteristic,
+                "Отдел",
                 NGramStrategy.getNGramStrategy(NGramStrategy.NGRAM_TYPES.FILTERED_UNIGRAM))
             .build();
     }

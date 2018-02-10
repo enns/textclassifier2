@@ -1,10 +1,12 @@
 package org.ripreal.textclassifier2;
 
 import org.junit.Test;
+import org.ripreal.textclassifier2.model.CharacteristicFactory;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.VocabularyWord;
-import org.ripreal.textclassifier2.ngram.FilteredUnigram;
+import org.ripreal.textclassifier2.model.modelimp.DefCharacteristicFactory;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
+import org.ripreal.textclassifier2.ngram.VocabularyBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,20 +15,25 @@ import static org.junit.Assert.assertEquals;
 
 public class VocabularyBuilderTest {
     private final NGramStrategy ngram = NGramStrategy.getNGramStrategy(NGramStrategy.NGRAM_TYPES.FILTERED_UNIGRAM);
+    private final CharacteristicFactory characteristicFactory = new DefCharacteristicFactory();
 
     @Test
     public void getVocabulary() throws Exception {
-        List<ClassifiableText> classifiableTexts = new ArrayList<>();
-        classifiableTexts.add(new ClassifiableText("qw we"));
-        classifiableTexts.add(new ClassifiableText("er we"));
-        classifiableTexts.add(new ClassifiableText("we rt"));
-        classifiableTexts.add(new ClassifiableText("er rt"));
-        classifiableTexts.add(new ClassifiableText("qw we"));
-        classifiableTexts.add(new ClassifiableText("er we"));
-        classifiableTexts.add(new ClassifiableText("we rt"));
-        classifiableTexts.add(new ClassifiableText("er rt"));
 
-        List<VocabularyWord> vocabulary = ngram.getVocabulary(classifiableTexts);
+
+
+        List<ClassifiableText> classifiableTexts = new ArrayList<>();
+        classifiableTexts.add(characteristicFactory.newClassifiableText("qw we"));
+        classifiableTexts.add(characteristicFactory.newClassifiableText("er we"));
+        classifiableTexts.add(characteristicFactory.newClassifiableText("we rt"));
+        classifiableTexts.add(characteristicFactory.newClassifiableText("er rt"));
+        classifiableTexts.add(characteristicFactory.newClassifiableText("qw we"));
+        classifiableTexts.add(characteristicFactory.newClassifiableText("er we"));
+        classifiableTexts.add(characteristicFactory.newClassifiableText("we rt"));
+        classifiableTexts.add(characteristicFactory.newClassifiableText("er rt"));
+
+        VocabularyBuilder builder = new VocabularyBuilder(ngram);
+        List<VocabularyWord> vocabulary = builder.getVocabulary(classifiableTexts, characteristicFactory);
 
         assertEquals(vocabulary.size(), 3);
         assertEquals(vocabulary.get(0).getValue(), "rt");
@@ -37,20 +44,23 @@ public class VocabularyBuilderTest {
     @Test
     public void getVocabularyOneValue() throws Exception {
         List<ClassifiableText> classifiableTexts = new ArrayList<>();
-        classifiableTexts.add(new ClassifiableText("qw we"));
+        classifiableTexts.add(characteristicFactory.newClassifiableText("qw we"));
 
-        List<VocabularyWord> vocabulary = ngram.getVocabulary(classifiableTexts);
+        VocabularyBuilder builder = new VocabularyBuilder(ngram);
+        List<VocabularyWord> vocabulary = builder.getVocabulary(classifiableTexts, characteristicFactory);
 
         assertEquals(vocabulary.size(), 0);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void getVocabularyNull() throws Exception {
-        ngram.getVocabulary(null);
+        VocabularyBuilder builder = new VocabularyBuilder(ngram);
+        builder.getVocabulary(null, characteristicFactory);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void getVocabularyEmpty() throws Exception {
-        ngram.getVocabulary(new ArrayList<>());
+        VocabularyBuilder builder = new VocabularyBuilder(ngram);
+        builder.getVocabulary(new ArrayList<>(), characteristicFactory);
     }
 }

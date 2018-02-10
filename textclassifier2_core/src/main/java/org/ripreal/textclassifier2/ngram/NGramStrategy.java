@@ -1,9 +1,5 @@
 package org.ripreal.textclassifier2.ngram;
 
-import org.ripreal.textclassifier2.model.ClassifiableText;
-import org.ripreal.textclassifier2.model.VocabularyWord;
-
-import java.util.List;
 import java.util.Set;
 
 public interface NGramStrategy {
@@ -23,10 +19,6 @@ public interface NGramStrategy {
             default:
                 return null;
         }
-    }
-
-    default List<VocabularyWord> getVocabulary(List<ClassifiableText> texts) {
-        return new VocabularyBuilder(this).getVocabulary(texts);
     }
 
     Set<String> getNGram(String text);

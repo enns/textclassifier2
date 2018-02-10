@@ -1,14 +1,21 @@
 package org.ripreal.textclassifier2.classifier;
 
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.ripreal.textclassifier2.actions.ClassifierAction;
-import org.ripreal.textclassifier2.ngram.NGramStrategy;
-import org.ripreal.textclassifier2.textreaders.ClassifiableReader;
 import org.ripreal.textclassifier2.model.Characteristic;
+import org.ripreal.textclassifier2.model.CharacteristicFactory;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableText;
+import org.ripreal.textclassifier2.model.modelimp.DefCharacteristicFactory;
+import org.ripreal.textclassifier2.ngram.NGramStrategy;
+import org.ripreal.textclassifier2.ngram.VocabularyBuilder;
+import org.ripreal.textclassifier2.textreaders.ClassifiableReader;
 import org.ripreal.textclassifier2.textreaders.ClassifiableReaderBuilder;
 
-import javax.rmi.PortableRemoteObject;
+import javax.validation.constraints.Negative;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.File;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -16,9 +23,12 @@ import java.util.List;
 import java.util.function.Function;
 
 // BUILDER + COMPOSITE
-public class Classifier {
+@RequiredArgsConstructor
+public final class Classifier {
 
-    private ClassifiableReader reader = null;
+    private final ClassifiableReader reader;
+
+    private final CharacteristicFactory characteristicFactory;
 
     private final List<ClassifierUnit> classifierUnits = new ArrayList<>();
 
@@ -28,20 +38,27 @@ public class Classifier {
 
     // CONSTRUCTORS
 
-    public static Classifier fromReader(Function<ClassifiableReaderBuilder, ClassifiableReader> provider) {
-        Classifier classifier = new Classifier();
-        classifier.reader = provider.apply(ClassifiableReaderBuilder.builder());
+    public static Classifier fromReader(@NotNull Function<ClassifiableReaderBuilder, ClassifiableReader> provider,
+        @NotNull CharacteristicFactory characteristicFactory) {
+
+        ClassifiableReader reader = provider.apply(ClassifiableReaderBuilder.builder(characteristicFactory));
+        Classifier classifier = new Classifier(reader, characteristicFactory);
         return classifier;
     }
 
     // CLIENT SECTION
 
-    public Classifier addNeroClassifierUnit(Characteristic characteristic, NGramStrategy nGramStrategy) {
-        classifierUnits.add(new NeroClassifierUnit(characteristic, nGramStrategy));
+    public Classifier addNeroClassifierUnit(String characteristicName, @NotNull NGramStrategy nGramStrategy) {
+        classifierUnits.add(new NeroClassifierUnit(characteristicFactory.newCharacteristic(characteristicName), nGramStrategy));
         return this;
     }
 
-    public Classifier subscribe(ClassifierAction action) {
+    public Classifier addClassifierUnit(@NotNull ClassifierUnit unit) {
+        classifierUnits.add(unit);
+        return this;
+    }
+
+    public Classifier subscribe(@NotNull ClassifierAction action) {
         listeners.add(action);
         classifierUnits.forEach(unit -> unit.subscribe(action));
         reader.subscribe(action);
@@ -65,13 +82,13 @@ public class Classifier {
         return this;
     }
 
-    public void saveClassifiers(File file) {
+    public void saveClassifiers(@NotNull File file) {
         for (ClassifierUnit classifier : classifierUnits) {
             classifier.saveTrainedClassifier(file);
         }
     }
 
-    public void saveClassifiers(OutputStream stream) {
+    public void saveClassifiers(@NotNull OutputStream stream) {
         for (ClassifierUnit classifier : classifierUnits) {
             classifier.saveTrainedClassifier(stream);
         }
@@ -79,10 +96,11 @@ public class Classifier {
 
     // INNER SECTION
 
-    private void buildClassifiers(List<ClassifiableText> classifiableTexts) {
+    private void buildClassifiers(@NotNull List<ClassifiableText> classifiableTexts) {
 
         for (ClassifierUnit classifier : classifierUnits) {
-              classifier.build(classifiableTexts);
+            classifier.setVocabulary(new VocabularyBuilder(classifier.getNGramStrategy()).getVocabulary(classifiableTexts, characteristicFactory));
+            classifier.build(classifiableTexts);
         }
     }
 
@@ -92,7 +110,7 @@ public class Classifier {
         }
     }
 
-    private void checkClassifiersAccuracy(List<ClassifiableText> textForTesting) {
+    private void checkClassifiersAccuracy(@NotEmpty List<ClassifiableText> textForTesting) {
 
         for (ClassifierUnit classifier : classifierUnits) {
             Characteristic characteristic = classifier.getCharacteristic();
@@ -115,7 +133,7 @@ public class Classifier {
         return ! (reader == null || classifierUnits.size() == 0);
     }
 
-    private void dispatch(String text) {
+    private void dispatch(@NotNull String text) {
         listeners.forEach(action -> action.dispatch(ClassifierAction.EventTypes.CLASSIFIER_EVENT, text));
     }
 

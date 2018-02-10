@@ -1,20 +1,5 @@
 package org.ripreal.textclassifier2.classifier;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.ripreal.textclassifier2.model.Characteristic;
-import org.ripreal.textclassifier2.model.CharacteristicValue;
-import org.ripreal.textclassifier2.model.ClassifiableText;
-import org.ripreal.textclassifier2.model.VocabularyWord;
-import org.ripreal.textclassifier2.ngram.FilteredUnigram;
-import org.ripreal.textclassifier2.ngram.NGramStrategy;
-
-import java.io.File;
-import java.util.*;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-
 public class ClassifierTest {
     /*
     private final File trainedClassifier = new File("./test_db/TestNeuralNetworkClassifier");
