@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.ripreal.textclassifier2.CharacteristicUtils;
 import org.ripreal.textclassifier2.actions.ClassifierAction;
+import org.ripreal.textclassifier2.actions.ClassifierEventsDispatcher;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicFactory;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
@@ -13,17 +15,14 @@ import org.ripreal.textclassifier2.model.ClassifiableText;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @AllArgsConstructor
-public class ExcelFileReader implements ClassifiableReader{
+public class ExcelFileReader extends ClassifierEventsDispatcher implements ClassifiableReader  {
 
     private File file;
     private int sheetNumber;
-    private CharacteristicFactory factory;
+    private CharacteristicFactory characteristicFactory;
     private final List<ClassifierAction> listeners = new ArrayList<>();
 
     public List<ClassifiableText> toClassifiableTexts() {
@@ -60,7 +59,16 @@ public class ExcelFileReader implements ClassifiableReader{
 
             // exclude empty rows
             if (!sheet.getRow(i).getCell(0).getStringCellValue().equals("")) {
-                classifiableTexts.add(factory.newClassifiableText(sheet.getRow(i).getCell(0).getStringCellValue(), characteristicsValues));
+                classifiableTexts.add(characteristicFactory.newClassifiableText(sheet.getRow(i).getCell(0).getStringCellValue(), characteristicsValues));
+            }
+        }
+
+        //todo: now it's error prone approach. Value's order and parent should be filled somewhere ese.
+        for (Characteristic characteristic : characteristics) {
+            int i = 1;
+            for (CharacteristicValue characteristicValue : characteristic.getPossibleValues()) {
+                characteristicValue.setCharacteristic(characteristic);
+                characteristicValue.setOrderNumber(i++);
             }
         }
 
@@ -71,7 +79,16 @@ public class ExcelFileReader implements ClassifiableReader{
         Map<Characteristic, CharacteristicValue> characteristicsValues = new HashMap<>();
 
         for (int i = 1; i < row.getLastCellNum(); i++) {
-            characteristicsValues.put(characteristics.get(i - 1), factory.newCharacteristicValue(row.getCell(i).getStringCellValue()));
+            Characteristic characteristic = characteristics.get(i - 1);
+            String valueName = row.getCell(i).getStringCellValue();
+
+            CharacteristicValue value = CharacteristicUtils.findByValue(
+                characteristic.getPossibleValues(), valueName, characteristicFactory::newCharacteristicValue);
+            if (value == null) {
+                value = characteristicFactory.newCharacteristicValue(valueName);
+            }
+            characteristic.addPossibleValue(value);
+            characteristicsValues.put(characteristic, value);
         }
 
         return characteristicsValues;
@@ -82,7 +99,7 @@ public class ExcelFileReader implements ClassifiableReader{
 
         // first row from second to last columns contains Characteristics names
         for (int i = 1; i < sheet.getRow(0).getLastCellNum(); i++) {
-            characteristics.add(factory.newCharacteristic(sheet.getRow(0).getCell(i).getStringCellValue()));
+            characteristics.add(characteristicFactory.newCharacteristic(sheet.getRow(0).getCell(i).getStringCellValue()));
         }
 
         return characteristics;

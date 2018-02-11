@@ -7,37 +7,33 @@ import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
-
-import javax.validation.constraints.NotNull;
 import java.io.File;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
-interface ClassifierUnit extends ClassifierEventsDispatcher {
+public abstract class ClassifierUnit extends ClassifierEventsDispatcher {
 
     // PROPERTIES
 
-    Characteristic getCharacteristic();
+    abstract public Characteristic getCharacteristic();
 
-    List<VocabularyWord> getVocabulary();
+    abstract public List<VocabularyWord> getVocabulary();
 
-    void setVocabulary(List<VocabularyWord> vocabulary);
-
-    NGramStrategy getNGramStrategy();
+    abstract public NGramStrategy getNGramStrategy();
 
     // BUILDING
 
-    void subscribe(ClassifierAction action);
-
-    void build(List<ClassifiableText> classifiableTexts);
+    abstract void build(List<ClassifiableText> classifiableTexts);
 
     // COMPOSITE METHODS
 
-    CharacteristicValue classify(ClassifiableText classifiableText);
+    abstract public CharacteristicValue classify(ClassifiableText classifiableText);
 
-    void saveTrainedClassifier(File file);
+    abstract public void saveTrainedClassifier(File file);
 
-    void saveTrainedClassifier(OutputStream stream);
+    abstract public void saveTrainedClassifier(OutputStream stream);
 
-    void shutdown();
+    abstract public void shutdown();
+
 }

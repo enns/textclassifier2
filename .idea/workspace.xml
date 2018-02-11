@@ -6,25 +6,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bba0ba7e-ca43-4971-8a18-7484ab88eb43" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/CharacteristicValue.java" afterPath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/modelimp/DefCharacteristicValue.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/ClassifiableText.java" afterPath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/modelimp/DefClassifiableText.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/VocabularyWord.java" afterPath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/modelimp/DefVocabularyWord.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_service/out/production/classes/org/ripreal/textclassifier2/rest/CharacteristicResource.class" afterPath="$PROJECT_DIR$/textclassifier2_service/out/production/classes/org/ripreal/textclassifier2/rest/CharacteristicResource.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_service/out/production/classes/org/ripreal/textclassifier2/service/ClassifiableTextService.class" afterPath="$PROJECT_DIR$/textclassifier2_service/out/production/classes/org/ripreal/textclassifier2/service/ClassifiableTextService.class" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/Classifier.java" afterPath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/ClassifierBuilder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_core/test_db/test.xlsx" afterPath="$PROJECT_DIR$/textclassifier2_core/test_db/test.xlsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/App.java" afterPath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/App.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/actions/ClassifierAction.java" afterPath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/actions/ClassifierAction.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/actions/ClassifierEventsDispatcher.java" afterPath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/actions/ClassifierEventsDispatcher.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/Classifier.java" afterPath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/Classifier.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/ClassifierUnit.java" afterPath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/ClassifierUnit.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/NeroClassifierUnit.java" afterPath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/NeroClassifierUnit.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/Characteristic.java" afterPath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/Characteristic.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/ngram/NGramStrategy.java" afterPath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/ngram/NGramStrategy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/ngram/VocabularyBuilder.java" afterPath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/ngram/VocabularyBuilder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/textreaders/ClassifiableReaderBuilder.java" afterPath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/textreaders/ClassifiableReaderBuilder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/CharacteristicValue.java" afterPath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/CharacteristicValue.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/modelimp/DefCharacteristic.java" afterPath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/modelimp/DefCharacteristic.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/modelimp/DefCharacteristicFactory.java" afterPath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/modelimp/DefCharacteristicFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/modelimp/DefCharacteristicValue.java" afterPath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/modelimp/DefCharacteristicValue.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/modelimp/DefClassifiableText.java" afterPath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/modelimp/DefClassifiableText.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/modelimp/DefVocabularyWord.java" afterPath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/modelimp/DefVocabularyWord.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/textreaders/ClassifiableReader.java" afterPath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/textreaders/ClassifiableReader.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/textreaders/ExcelFileReader.java" afterPath="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/textreaders/ExcelFileReader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_core/src/test/java/org/ripreal/textclassifier2/ExcelFileReaderTest.java" afterPath="$PROJECT_DIR$/textclassifier2_core/src/test/java/org/ripreal/textclassifier2/ExcelFileReaderTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_core/src/test/java/org/ripreal/textclassifier2/VocabularyBuilderTest.java" afterPath="$PROJECT_DIR$/textclassifier2_core/src/test/java/org/ripreal/textclassifier2/VocabularyBuilderTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_core/src/test/java/org/ripreal/textclassifier2/classifier/ClassifierTest.java" afterPath="$PROJECT_DIR$/textclassifier2_core/src/test/java/org/ripreal/textclassifier2/classifier/ClassifierTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -62,37 +60,28 @@
       <file leaf-file-name="NeroClassifierUnit.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/NeroClassifierUnit.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="49" column="45" lean-forward="true" selection-start-line="49" selection-start-column="45" selection-end-line="49" selection-end-column="45" />
+            <state relative-caret-position="282">
+              <caret line="89" column="6" lean-forward="true" selection-start-line="89" selection-start-column="6" selection-end-line="89" selection-end-column="6" />
               <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ExcelFileReaderTest.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/test/java/org/ripreal/textclassifier2/ExcelFileReaderTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="444">
-              <caret line="50" column="1" lean-forward="true" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VocabularyBuilder.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/ngram/VocabularyBuilder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-              <folding>
-                <element signature="e#587#588#0" expanded="true" />
-                <element signature="e#637#638#0" expanded="true" />
-                <element signature="e#851#936#0" expanded="false" />
-                <element signature="e#1429#1488#0" expanded="false" />
+                <element signature="method#NeroClassifierUnit#0;class#NeroClassifierUnit#0" expanded="false" />
+                <element signature="method#NeroClassifierUnit#1;class#NeroClassifierUnit#0" expanded="false" />
+                <element signature="method#classify#0;class#NeroClassifierUnit#0" expanded="false" />
+                <element signature="method#saveTrainedClassifier#0;class#NeroClassifierUnit#0" expanded="false" />
+                <element signature="method#saveTrainedClassifier#1;class#NeroClassifierUnit#0" expanded="false" />
+                <element signature="method#build#0;class#NeroClassifierUnit#0" expanded="false" />
+                <element signature="e#3794#3828#0" expanded="false" />
+                <element signature="e#4058#4066#0" expanded="false" />
+                <element signature="method#createNeuralNetwork#0;class#NeroClassifierUnit#0" expanded="false" />
+                <element signature="method#convertVectorToCharacteristic#0;class#NeroClassifierUnit#0" expanded="false" />
+                <element signature="e#5457#5498#0" expanded="false" />
+                <element signature="method#getIdOfMaxValue#0;class#NeroClassifierUnit#0" expanded="false" />
+                <element signature="method#getInput#0;class#NeroClassifierUnit#0" expanded="false" />
+                <element signature="e#6240#6284#0" expanded="false" />
+                <element signature="method#getIdeal#0;class#NeroClassifierUnit#0" expanded="false" />
+                <element signature="e#6661#6720#0" expanded="false" />
+                <element signature="method#getCharacteristicAsVector#0;class#NeroClassifierUnit#0" expanded="false" />
+                <element signature="e#7557#7573#0" expanded="false" />
+                <element signature="method#dispatch#0;class#NeroClassifierUnit#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -101,26 +90,31 @@
       <file leaf-file-name="App.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/App.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="112">
+              <caret line="23" column="21" lean-forward="false" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Classifier.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/Classifier.java">
+      <file leaf-file-name="ClassifierBuilder.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/ClassifierBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
-              <caret line="135" column="34" lean-forward="true" selection-start-line="135" selection-start-column="34" selection-end-line="135" selection-end-column="34" />
+            <state relative-caret-position="-170">
+              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
               <folding>
-                <element signature="method#addClassifierUnit#0;class#Classifier#0" expanded="false" />
-                <element signature="method#build#0;class#Classifier#0" expanded="false" />
-                <element signature="method#saveClassifiers#0;class#Classifier#0" expanded="false" />
-                <element signature="method#saveClassifiers#1;class#Classifier#0" expanded="false" />
-                <element signature="method#buildClassifiers#0;class#Classifier#0" expanded="false" />
-                <element signature="method#checkClassifiersAccuracy#0;class#Classifier#0" expanded="false" />
-                <element signature="method#dispatch#0;class#Classifier#0" expanded="false" />
+                <element signature="method#fromReader#0;class#ClassifierBuilder#0" expanded="false" />
+                <element signature="method#addNeroClassifierUnit#0;class#ClassifierBuilder#0" expanded="false" />
+                <element signature="method#subscribe#0;class#ClassifierBuilder#0" expanded="false" />
+                <element signature="method#build#0;class#ClassifierBuilder#0" expanded="false" />
+                <element signature="method#buildClassifiers#0;class#ClassifierBuilder#0" expanded="false" />
+                <element signature="method#shutDownClassifiers#0;class#ClassifierBuilder#0" expanded="false" />
+                <element signature="method#dispatch#0;class#ClassifierBuilder#0" expanded="false" />
+                <element signature="e#3916#3940#0" expanded="false" />
+                <element signature="class#ClassifierUnitProxy#0;class#ClassifierBuilder#0" expanded="false" />
+                <element signature="class#ClassifierUnitSupplier#0;class#ClassifierBuilder#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -129,21 +123,9 @@
       <file leaf-file-name="ClassifierUnit.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/ClassifierUnit.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
-              <caret line="43" column="0" lean-forward="true" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+            <state relative-caret-position="231">
+              <caret line="36" column="36" lean-forward="true" selection-start-line="30" selection-start-column="4" selection-end-line="36" selection-end-column="36" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VocabularyBuilderTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/test/java/org/ripreal/textclassifier2/VocabularyBuilderTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="63" column="27" lean-forward="true" selection-start-line="63" selection-start-column="27" selection-end-line="63" selection-end-column="27" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -151,8 +133,28 @@
       <file leaf-file-name="ClassifiableReaderBuilder.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/textreaders/ClassifiableReaderBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="70">
-              <caret line="7" column="10" lean-forward="false" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
+            <state relative-caret-position="119">
+              <caret line="11" column="46" lean-forward="true" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClassifierAction.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/actions/ClassifierAction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClassifierEventsDispatcher.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/actions/ClassifierEventsDispatcher.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="5" column="50" lean-forward="true" selection-start-line="5" selection-start-column="50" selection-end-line="5" selection-end-column="50" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -160,30 +162,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ExcelFileReader.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/textreaders/ExcelFileReader.java">
+      <file leaf-file-name="Classifier.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/Classifier.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="137">
-              <caret line="25" column="33" lean-forward="false" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="33" />
+            <state relative-caret-position="44">
+              <caret line="24" column="22" lean-forward="true" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
               <folding>
-                <element signature="method#getClassifiableTexts#0;class#ExcelFileReader#0" expanded="false" />
-                <element signature="method#getCharacteristicsValues#0;class#ExcelFileReader#0" expanded="false" />
-                <element signature="method#getCharacteristics#0;class#ExcelFileReader#0" expanded="false" />
-                <element signature="method#dispatch#0;class#ExcelFileReader#0" expanded="false" />
+                <element signature="method#saveClassifiers#0;class#Classifier#0" expanded="false" />
+                <element signature="method#saveClassifiers#1;class#Classifier#0" expanded="false" />
+                <element signature="method#checkClassifiersAccuracy#0;class#Classifier#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DefVocabularyWord.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/modelimp/DefVocabularyWord.java">
+      <file leaf-file-name="ClassifiableReader.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/textreaders/ClassifiableReader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-              <folding>
-                <element signature="method#DefVocabularyWord#0;class#DefVocabularyWord#0" expanded="false" />
-                <element signature="method#DefVocabularyWord#1;class#DefVocabularyWord#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="136">
+              <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -193,8 +191,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -208,9 +206,12 @@
       <find>inputLayerSize</find>
       <find>classifiableTexts</find>
       <find>getPossibleValues</find>
-      <find>findWordInVocabulary</find>
       <find>factory3</find>
       <find>factory</find>
+      <find>getCharacteristicsValues</find>
+      <find>initialized</find>
+      <find>findWordInVocabulary</find>
+      <find>findCharacteristic</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -985,13 +986,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/AbstractClassifierRunner.java" />
-        <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/ClassifierRunner.java" />
-        <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/ClassifierComposite.java" />
         <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/NeroClassifier.java" />
         <option value="$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/service/decorators/LoggerDataService.java" />
-        <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/ClassifierBuilder.java" />
         <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/Builders/AbstractClassifierBuilder.java" />
         <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/Builders/NeroClassifierBuilder.java" />
         <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/Builders/ClassifierBuilder.java" />
@@ -1014,34 +1010,40 @@
         <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/DefaultCharacteristic.java" />
         <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/modelimp/DefaultCharacteristic.java" />
         <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/DefCharacteristicValue.java" />
-        <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/textreaders/ClassifiableReader.java" />
-        <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/textreaders/ExcelFileReader.java" />
         <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/ClassifiableText.java" />
         <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/CharacteristicFactory.java" />
         <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/ngram/NGramStrategy.java" />
-        <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/Characteristic.java" />
         <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/VocabularyWord.java" />
-        <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/modelimp/DefCharacteristic.java" />
-        <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/modelimp/DefCharacteristicValue.java" />
-        <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/modelimp/DefClassifiableText.java" />
-        <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/modelimp/DefCharacteristicFactory.java" />
-        <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/modelimp/DefVocabularyWord.java" />
         <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/textreaders/ClassifiableReaderBuilder.java" />
-        <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/App.java" />
         <option value="$PROJECT_DIR$/textclassifier2_core/src/test/java/org/ripreal/textclassifier2/VocabularyBuilderTest.java" />
         <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/ngram/VocabularyBuilder.java" />
-        <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/Classifier.java" />
-        <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/ClassifierUnit.java" />
-        <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/NeroClassifierUnit.java" />
         <option value="$PROJECT_DIR$/textclassifier2_core/src/test/java/org/ripreal/textclassifier2/ExcelFileReaderTest.java" />
+        <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/ClassifierUnit.java" />
+        <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/actions/ClassifierAction.java" />
+        <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/actions/ClassifierEventsDispatcher.java" />
+        <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/textreaders/ClassifiableReader.java" />
+        <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/Utils.java" />
+        <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/CharacteristicUtils.java" />
+        <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/textreaders/ExcelFileReader.java" />
+        <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/Characteristic.java" />
+        <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/CharacteristicValue.java" />
+        <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/NeroClassifierUnit.java" />
+        <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/modelimp/DefCharacteristicFactory.java" />
+        <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/modelimp/DefVocabularyWord.java" />
+        <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/modelimp/DefClassifiableText.java" />
+        <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/modelimp/DefCharacteristic.java" />
+        <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/modelimp/DefCharacteristicValue.java" />
+        <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/CharacteristicUtils.java" />
+        <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/ClassifierBuilder.java" />
+        <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/App.java" />
+        <option value="$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/Classifier.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="798" />
-    <option name="y" value="30" />
-    <option name="width" value="929" />
-    <option name="height" value="788" />
+    <option name="x" value="683" />
+    <option name="width" value="683" />
+    <option name="height" value="728" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -1061,7 +1063,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -1104,68 +1107,16 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="textclassifier2" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="textclassifier2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="textclassifier2" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="textclassifier2_core" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="textclassifier2" type="462c0819:PsiDirectoryNode" />
-              <item name="classifier" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="textclassifier2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="textclassifier2" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="textclassifier2_core" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="textclassifier2" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="textclassifier2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="textclassifier2" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="textclassifier2_core" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="textclassifier2" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="modelimp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="textclassifier2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="textclassifier2" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="textclassifier2_core" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="textclassifier2" type="462c0819:PsiDirectoryNode" />
-              <item name="ngram" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="textclassifier2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="textclassifier2" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="textclassifier2_core" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="textclassifier2" type="462c0819:PsiDirectoryNode" />
-              <item name="textreaders" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../TextClassifier" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
@@ -1367,13 +1318,14 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18835099" sideWeight="0.46097562" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1385,7 +1337,6 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1395,97 +1346,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/App.java</url>
-          <line>18</line>
-          <properties />
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/Config.java</url>
-          <line>30</line>
-          <properties />
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/NeroClassifierUnit.java</url>
-          <line>113</line>
-          <properties />
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/NeroClassifierUnit.java</url>
-          <line>198</line>
-          <properties />
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/NeroClassifierUnit.java</url>
-          <line>235</line>
-          <properties />
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/Classifier.java</url>
-          <line>67</line>
-          <properties class="org.ripreal.textclassifier2.classifier.Classifier" method="build">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="17" />
+      <option name="time" value="37" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.encog/encog-core/3.3.0/6ce052dc308c0a2b6b1bd937724dd8ba8fb5ae94/encog-core-3.3.0-sources.jar!/org/encog/neural/networks/training/propagation/Propagation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="158" column="16" lean-forward="false" selection-start-line="158" selection-start-column="16" selection-end-line="158" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.projectreactor/reactor-core/3.1.2.RELEASE/cd64a7bee9b9665b2028dd57013119d1f049ad56/reactor-core-3.1.2.RELEASE-sources.jar!/reactor/core/publisher/LambdaSubscriber.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="60" column="57" lean-forward="true" selection-start-line="60" selection-start-column="57" selection-end-line="60" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.projectreactor/reactor-core/3.1.2.RELEASE/cd64a7bee9b9665b2028dd57013119d1f049ad56/reactor-core-3.1.2.RELEASE-sources.jar!/reactor/core/publisher/Flux.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="6563" column="36" lean-forward="false" selection-start-line="6563" selection-start-column="36" selection-end-line="6563" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/service/decorators/LoggerDataService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="23" column="25" lean-forward="true" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="8" lean-forward="false" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/TrainedClassifier.java" />
-    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/PorterStemmer.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/java/lang/Exception.java" />
-    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/builders/IncorrectMethodCallException.java" />
-    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/textreaders/ClassifiableReader.java" />
-    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/VocabularyBuilder.java" />
-    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/LogWindow.java" />
-    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/textreaders/DataSourceException.java" />
-    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/builders/Classifier.java" />
-    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/textreaders/ExcelFileReader.java" />
-    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/builders/ClassifierBuilder.java" />
     <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/MainWindow.java" />
     <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/ProxyClassifierUnit.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/java/lang/Integer.java" />
@@ -1494,22 +1359,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/model/Characteristic.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/service/CharacteristicService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1529,43 +1378,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/CharacteristicValue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="17" lean-forward="false" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/textreaders/ClassifiableReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="9" column="11" lean-forward="false" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/actions/ClassifierAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="17" lean-forward="false" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/actions/ClassifierEventsDispatcher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/ngram/Bigram.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="325">
           <caret line="34" column="1" lean-forward="true" selection-start-line="34" selection-start-column="1" selection-end-line="34" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1573,15 +1389,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/ClassifiableText.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1593,18 +1400,186 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/CharacteristicFactory.java">
+    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/test/java/org/ripreal/textclassifier2/VocabularyBuilderTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="13" column="24" lean-forward="false" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+        <state relative-caret-position="884">
+          <caret line="63" column="27" lean-forward="false" selection-start-line="63" selection-start-column="27" selection-end-line="63" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/test/java/org/ripreal/textclassifier2/ExcelFileReaderTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="458">
+          <caret line="50" column="1" lean-forward="false" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/service/ClassifiableTextService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="18" column="13" lean-forward="true" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+          <folding>
+            <element signature="e#1366#1367#0" expanded="false" />
+            <element signature="e#1412#1413#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/service/CharacteristicService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#578#579#0" expanded="false" />
+            <element signature="e#621#622#0" expanded="false" />
+            <element signature="e#672#673#0" expanded="false" />
+            <element signature="e#740#741#0" expanded="false" />
+            <element signature="e#811#812#0" expanded="false" />
+            <element signature="e#859#860#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/test/java/org/ripreal/textclassifier2/rest/ClassifiableTextResourceTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="50" column="13" lean-forward="true" selection-start-line="50" selection-start-column="13" selection-end-line="50" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/test/java/org/ripreal/textclassifier2/rest/CharacteristicResourceTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="61">
+          <caret line="38" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/test/java/org/ripreal/textclassifier2/data/reactive/ClassifiableTextRepoTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="40" column="5" lean-forward="true" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#631#632#0" expanded="false" />
+            <element signature="e#678#679#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/testdata/ClassifiableTextTestDataHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="69" column="0" lean-forward="true" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/testdata/ClassifiableTextTestData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="14" column="13" lean-forward="true" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/service/VocabularyWordService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/data/reactive/CharacteristicMongoListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/data/reactive/repos/CharacteristicRepo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="7" column="17" lean-forward="true" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/rest/ClassifiableTextResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="22" column="13" lean-forward="true" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/service/decorators/LoggerDataService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/ngram/VocabularyBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding>
+            <element signature="e#851#936#0" expanded="false" />
+            <element signature="e#1429#1488#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.poi/poi-ooxml/3.16/b85d1cda3d8189599c58517e53e64cf3dc9caee0/poi-ooxml-3.16-sources.jar!/org/apache/poi/xssf/usermodel/XSSFSheet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="1423" column="0" lean-forward="false" selection-start-line="1423" selection-start-column="0" selection-end-line="1423" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/model/Characteristic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="29" column="1" lean-forward="true" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/Characteristic.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="17" lean-forward="true" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/model/CharacteristicValue.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+          <caret line="16" column="7" lean-forward="true" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/CharacteristicValue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="26" lean-forward="false" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="26" />
           <folding />
         </state>
       </provider>
@@ -1612,14 +1587,86 @@
     <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/VocabularyWord.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/CharacteristicFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/ClassifiableText.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="17" lean-forward="false" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/modelimp/DefClassifiableText.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="27" column="6" lean-forward="true" selection-start-line="27" selection-start-column="6" selection-end-line="27" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/modelimp/DefVocabularyWord.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="25" column="1" lean-forward="true" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
+          <folding>
+            <element signature="method#equals#0;class#DefVocabularyWord#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/modelimp/DefCharacteristic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="14" column="6" lean-forward="true" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+          <folding>
+            <element signature="method#equals#0;class#DefCharacteristic#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/modelimp/DefCharacteristicFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#761#762#0" expanded="true" />
+            <element signature="e#815#816#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/modelimp/DefCharacteristicValue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="17" column="12" lean-forward="false" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/textreaders/ExcelFileReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="84" column="0" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/Config.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
+        <state relative-caret-position="374">
           <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
           <folding>
             <element signature="e#822#823#0" expanded="true" />
@@ -1627,156 +1674,131 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/modelimp/DefCharacteristic.java">
+    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/CharacteristicUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#DefCharacteristic#0;class#DefCharacteristic#0" expanded="false" />
-            <element signature="method#equals#0;class#DefCharacteristic#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/modelimp/DefClassifiableText.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding>
-            <element signature="method#DefClassifiableText#0;class#DefClassifiableText#0" expanded="false" />
-            <element signature="method#DefClassifiableText#1;class#DefClassifiableText#0" expanded="false" />
-            <element signature="method#getCharacteristicValue#0;class#DefClassifiableText#0" expanded="false" />
-            <element signature="method#equals#0;class#DefClassifiableText#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/modelimp/DefCharacteristicFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/modelimp/DefCharacteristicValue.java">
+    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/textreaders/ClassifiableReader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="6" lean-forward="false" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/model/modelimp/DefVocabularyWord.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding>
-            <element signature="method#DefVocabularyWord#0;class#DefVocabularyWord#0" expanded="false" />
-            <element signature="method#DefVocabularyWord#1;class#DefVocabularyWord#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/textreaders/ExcelFileReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="25" column="33" lean-forward="false" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="33" />
-          <folding>
-            <element signature="method#getClassifiableTexts#0;class#ExcelFileReader#0" expanded="false" />
-            <element signature="method#getCharacteristicsValues#0;class#ExcelFileReader#0" expanded="false" />
-            <element signature="method#getCharacteristics#0;class#ExcelFileReader#0" expanded="false" />
-            <element signature="method#dispatch#0;class#ExcelFileReader#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="136">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/textreaders/ClassifiableReaderBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="70">
-          <caret line="7" column="10" lean-forward="false" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/App.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        <state relative-caret-position="119">
+          <caret line="11" column="46" lean-forward="true" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/test/java/org/ripreal/textclassifier2/VocabularyBuilderTest.java">
+    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/actions/ClassifierAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="63" column="27" lean-forward="true" selection-start-line="63" selection-start-column="27" selection-end-line="63" selection-end-column="27" />
+        <state relative-caret-position="68">
+          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/actions/ClassifierEventsDispatcher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="5" column="50" lean-forward="true" selection-start-line="5" selection-start-column="50" selection-end-line="5" selection-end-column="50" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/ngram/VocabularyBuilder.java">
+    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/NeroClassifierUnit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        <state relative-caret-position="282">
+          <caret line="89" column="6" lean-forward="true" selection-start-line="89" selection-start-column="6" selection-end-line="89" selection-end-column="6" />
           <folding>
-            <element signature="e#587#588#0" expanded="true" />
-            <element signature="e#637#638#0" expanded="true" />
-            <element signature="e#851#936#0" expanded="false" />
-            <element signature="e#1429#1488#0" expanded="false" />
+            <element signature="method#NeroClassifierUnit#0;class#NeroClassifierUnit#0" expanded="false" />
+            <element signature="method#NeroClassifierUnit#1;class#NeroClassifierUnit#0" expanded="false" />
+            <element signature="method#classify#0;class#NeroClassifierUnit#0" expanded="false" />
+            <element signature="method#saveTrainedClassifier#0;class#NeroClassifierUnit#0" expanded="false" />
+            <element signature="method#saveTrainedClassifier#1;class#NeroClassifierUnit#0" expanded="false" />
+            <element signature="method#build#0;class#NeroClassifierUnit#0" expanded="false" />
+            <element signature="e#3794#3828#0" expanded="false" />
+            <element signature="e#4058#4066#0" expanded="false" />
+            <element signature="method#createNeuralNetwork#0;class#NeroClassifierUnit#0" expanded="false" />
+            <element signature="method#convertVectorToCharacteristic#0;class#NeroClassifierUnit#0" expanded="false" />
+            <element signature="e#5457#5498#0" expanded="false" />
+            <element signature="method#getIdOfMaxValue#0;class#NeroClassifierUnit#0" expanded="false" />
+            <element signature="method#getInput#0;class#NeroClassifierUnit#0" expanded="false" />
+            <element signature="e#6240#6284#0" expanded="false" />
+            <element signature="method#getIdeal#0;class#NeroClassifierUnit#0" expanded="false" />
+            <element signature="e#6661#6720#0" expanded="false" />
+            <element signature="method#getCharacteristicAsVector#0;class#NeroClassifierUnit#0" expanded="false" />
+            <element signature="e#7557#7573#0" expanded="false" />
+            <element signature="method#dispatch#0;class#NeroClassifierUnit#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/Classifier.java">
+    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/ClassifierBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="135" column="34" lean-forward="true" selection-start-line="135" selection-start-column="34" selection-end-line="135" selection-end-column="34" />
+        <state relative-caret-position="-170">
+          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding>
-            <element signature="method#addClassifierUnit#0;class#Classifier#0" expanded="false" />
-            <element signature="method#build#0;class#Classifier#0" expanded="false" />
-            <element signature="method#saveClassifiers#0;class#Classifier#0" expanded="false" />
-            <element signature="method#saveClassifiers#1;class#Classifier#0" expanded="false" />
-            <element signature="method#buildClassifiers#0;class#Classifier#0" expanded="false" />
-            <element signature="method#checkClassifiersAccuracy#0;class#Classifier#0" expanded="false" />
-            <element signature="method#dispatch#0;class#Classifier#0" expanded="false" />
+            <element signature="method#fromReader#0;class#ClassifierBuilder#0" expanded="false" />
+            <element signature="method#addNeroClassifierUnit#0;class#ClassifierBuilder#0" expanded="false" />
+            <element signature="method#subscribe#0;class#ClassifierBuilder#0" expanded="false" />
+            <element signature="method#build#0;class#ClassifierBuilder#0" expanded="false" />
+            <element signature="method#buildClassifiers#0;class#ClassifierBuilder#0" expanded="false" />
+            <element signature="method#shutDownClassifiers#0;class#ClassifierBuilder#0" expanded="false" />
+            <element signature="method#dispatch#0;class#ClassifierBuilder#0" expanded="false" />
+            <element signature="e#3916#3940#0" expanded="false" />
+            <element signature="class#ClassifierUnitProxy#0;class#ClassifierBuilder#0" expanded="false" />
+            <element signature="class#ClassifierUnitSupplier#0;class#ClassifierBuilder#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/ClassifierUnit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="43" column="0" lean-forward="true" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+        <state relative-caret-position="231">
+          <caret line="36" column="36" lean-forward="true" selection-start-line="30" selection-start-column="4" selection-end-line="36" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/NeroClassifierUnit.java">
+    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/App.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="49" column="45" lean-forward="true" selection-start-line="49" selection-start-column="45" selection-end-line="49" selection-end-column="45" />
+        <state relative-caret-position="112">
+          <caret line="23" column="21" lean-forward="false" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/test/java/org/ripreal/textclassifier2/ExcelFileReaderTest.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_77/src.zip!/java/util/function/Consumer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="50" column="1" lean-forward="true" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
+        <state relative-caret-position="113">
+          <caret line="48" column="9" lean-forward="false" selection-start-line="48" selection-start-column="9" selection-end-line="48" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/textclassifier2_core/src/main/java/org/ripreal/textclassifier2/classifier/Classifier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="24" column="22" lean-forward="true" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="method#saveClassifiers#0;class#Classifier#0" expanded="false" />
+            <element signature="method#saveClassifiers#1;class#Classifier#0" expanded="false" />
+            <element signature="method#checkClassifiersAccuracy#0;class#Classifier#0" expanded="false" />
           </folding>
         </state>
       </provider>

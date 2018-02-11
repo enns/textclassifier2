@@ -7,9 +7,5 @@ public interface CharacteristicValue {
 
     void setOrderNumber(int orderNumber);
 
-    int getId();
-
-    void setId(int id);
-
     String getValue();
 }

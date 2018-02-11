@@ -9,18 +9,14 @@ import org.encog.neural.networks.layers.BasicLayer;
 import org.encog.neural.networks.training.propagation.Propagation;
 import org.encog.neural.networks.training.propagation.resilient.ResilientPropagation;
 import org.encog.persist.PersistError;
+import org.ripreal.textclassifier2.CharacteristicUtils;
 import org.ripreal.textclassifier2.actions.ClassifierAction;
-import org.ripreal.textclassifier2.model.Characteristic;
-import org.ripreal.textclassifier2.model.CharacteristicValue;
-import org.ripreal.textclassifier2.model.ClassifiableText;
-import org.ripreal.textclassifier2.model.VocabularyWord;
+import org.ripreal.textclassifier2.model.*;
 import org.ripreal.textclassifier2.model.modelimp.DefVocabularyWord;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
 
-import javax.validation.constraints.NotNull;
 import java.io.File;
 import java.io.OutputStream;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -28,45 +24,35 @@ import static org.encog.persist.EncogDirectoryPersistence.loadObject;
 import static org.encog.persist.EncogDirectoryPersistence.saveObject;
 
 // todo: add other types of Classifiers (Naive Bayes classifier for example)
-class NeroClassifierUnit implements ClassifierUnit {
+class NeroClassifierUnit extends ClassifierUnit {
 
     @Getter
-    private  Characteristic characteristic;
+    private final Characteristic characteristic;
     @Getter
-    private List<VocabularyWord> vocabulary;
-    private int inputLayerSize;
-    private int outputLayerSize;
-    private BasicNetwork network;
-    private NGramStrategy nGramStrategy;
-    private List<ClassifierAction> listeners = new ArrayList<>();
+    private final List<VocabularyWord> vocabulary;
+    private final int inputLayerSize;
+    private final int outputLayerSize;
+    private final BasicNetwork network;
+    private final NGramStrategy nGramStrategy;
 
-    public NeroClassifierUnit(File trainedNetwork, @NotNull Characteristic characteristic, @NotNull List<VocabularyWord> vocabulary, @NotNull NGramStrategy nGramStrategy) {
-        this(characteristic, nGramStrategy);
-        setVocabulary(vocabulary);
-        initInternal(trainedNetwork);
-    }
-
-    NeroClassifierUnit(@NotNull Characteristic characteristic, @NotNull NGramStrategy nGramStrategy) {
-        this.characteristic = characteristic;
-        this.outputLayerSize = characteristic.getPossibleValues().size();
-        this.nGramStrategy = nGramStrategy;
-    }
-
-    public NGramStrategy getNGramStrategy() {
-        return nGramStrategy;
-    }
-
-    private void initInternal(File trainedNetwork) {
-
-        if (this.characteristic == null ||
-                this.characteristic.getName().equals("") ||
-                this.characteristic.getPossibleValues() == null ||
-                this.characteristic.getPossibleValues().size() == 0 ||
-                this.nGramStrategy == null) {
+    public NeroClassifierUnit(File trainedNetwork, Characteristic characteristic, List<VocabularyWord> vocabulary, NGramStrategy nGramStrategy) {
+        if (characteristic == null ||
+                characteristic.getName().equals("") ||
+                characteristic.getPossibleValues() == null ||
+                characteristic.getPossibleValues().size() == 0 ||
+                vocabulary == null ||
+                vocabulary.size() == 0 ||
+                nGramStrategy == null) {
             throw new IllegalArgumentException();
         }
 
-        if (this.network == null) {
+        this.characteristic = characteristic;
+        this.vocabulary = vocabulary;
+        this.inputLayerSize = vocabulary.size();
+        this.outputLayerSize = characteristic.getPossibleValues().size();
+        this.nGramStrategy = nGramStrategy;
+
+        if (trainedNetwork == null) {
             this.network = createNeuralNetwork();
         } else {
             // load neural network from file
@@ -76,6 +62,15 @@ class NeroClassifierUnit implements ClassifierUnit {
                 throw new IllegalArgumentException();
             }
         }
+    }
+
+    public NeroClassifierUnit(Characteristic characteristic, List<VocabularyWord> vocabulary, NGramStrategy nGramStrategy) {
+        this(null, characteristic, vocabulary, nGramStrategy);
+    }
+
+
+    public NGramStrategy getNGramStrategy() {
+        return nGramStrategy;
     }
 
     public void shutdown() {
@@ -104,7 +99,6 @@ class NeroClassifierUnit implements ClassifierUnit {
 
     public void build(List<ClassifiableText> classifiableTexts) {
 
-        initInternal(null);
         // prepare input and ideal vectors
         // input <- ClassifiableText text vector
         // ideal <- characteristicValue vector
@@ -127,11 +121,6 @@ class NeroClassifierUnit implements ClassifierUnit {
 
         train.finishTraining();
         dispatch("Classifier for '" + characteristic.getName() + "' characteristic trained. Wait...");
-    }
-
-    public void setVocabulary(List<VocabularyWord> vocabulary) {
-        this.vocabulary = vocabulary;
-        this.inputLayerSize = this.vocabulary.size();
     }
 
     private BasicNetwork createNeuralNetwork() {
@@ -231,7 +220,7 @@ class NeroClassifierUnit implements ClassifierUnit {
         //
 
         for (String word : uniqueValues) {
-            VocabularyWord vw = findWordInVocabulary(word);
+            VocabularyWord vw = CharacteristicUtils.findByValue(vocabulary, word, DefVocabularyWord::new);
 
             if (vw != null) { // word found in vocabulary
                 vector[vw.getId() - 1] = 1;
@@ -241,23 +230,9 @@ class NeroClassifierUnit implements ClassifierUnit {
         return vector;
     }
 
-    private VocabularyWord findWordInVocabulary(String word) {
-        try {
-            // todo: need more effective searching method
-            return vocabulary.get(vocabulary.indexOf(new DefVocabularyWord(word)));
-        } catch (NullPointerException | IndexOutOfBoundsException e) {
-            return null;
-        }
-    }
-
     @Override
     public String toString() {
         return characteristic.getName() + "NeuralNetworkClassifier";
-    }
-
-    @Override
-    public void subscribe(ClassifierAction action) {
-        listeners.add(action);
     }
 
     @Override

@@ -1,33 +1,18 @@
 package org.ripreal.textclassifier2.model.modelimp;
 
-
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import org.ripreal.textclassifier2.model.VocabularyWord;
 
+@Data
+@RequiredArgsConstructor
+@AllArgsConstructor
 public class DefVocabularyWord implements VocabularyWord {
 
     private int id;
 
-    private String value;
-
-    public DefVocabularyWord() {
-    }
-
-    public DefVocabularyWord(int id, String value) {
-        this.id = id;
-        this.value = value;
-    }
-
-    public DefVocabularyWord(String value) {
-        this(0, value);
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getValue() {
-        return value;
-    }
+    private final String value;
 
     @Override
     public boolean equals(Object o) {

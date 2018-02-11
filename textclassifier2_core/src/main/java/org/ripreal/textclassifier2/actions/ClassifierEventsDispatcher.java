@@ -1,8 +1,17 @@
 package org.ripreal.textclassifier2.actions;
 
-public interface ClassifierEventsDispatcher {
+import java.util.ArrayList;
+import java.util.List;
 
-    void subscribe(ClassifierAction action);
+public abstract class ClassifierEventsDispatcher {
 
-    void dispatch(String text);
+    protected final List<ClassifierAction> listeners = new ArrayList<>();
+
+    public void subscribe(ClassifierAction action) {
+        listeners.add(action);
+    }
+
+    public void dispatch(String text) {
+        listeners.forEach(action -> action.dispatch(ClassifierAction.EventTypes.NOT_SPECIFIED_EVENT, text));
+    }
 }
