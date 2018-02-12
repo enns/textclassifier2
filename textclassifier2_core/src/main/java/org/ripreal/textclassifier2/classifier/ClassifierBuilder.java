@@ -1,16 +1,24 @@
 package org.ripreal.textclassifier2.classifier;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.ripreal.textclassifier2.CharacteristicUtils;
 import org.ripreal.textclassifier2.actions.ClassifierAction;
-import org.ripreal.textclassifier2.model.*;
+import org.ripreal.textclassifier2.model.Characteristic;
+import org.ripreal.textclassifier2.model.CharacteristicFactory;
+import org.ripreal.textclassifier2.model.ClassifiableText;
+import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
 import org.ripreal.textclassifier2.ngram.VocabularyBuilder;
 import org.ripreal.textclassifier2.textreaders.ClassifiableReader;
 import org.ripreal.textclassifier2.textreaders.ClassifiableReaderBuilder;
 
 import javax.validation.constraints.NotNull;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -84,13 +92,16 @@ public final class ClassifierBuilder {
         List<ClassifierUnit> units = new ArrayList<>();
         for (ClassifierUnitProxy proxy: classifierUnits) {
 
-            proxy.setVocabulary(new VocabularyBuilder(proxy.getNGramStrategy()).getVocabulary(classifiableTexts, characteristicFactory));
+            proxy.setVocabulary(new VocabularyBuilder(
+                proxy.getNGramStrategy()).getVocabulary(classifiableTexts, characteristicFactory));
+
             proxy.setCharacteristic(
                 CharacteristicUtils.findByValue(
                     characteristics,
                     proxy.getCharacteristic().getName(),
                     characteristicFactory::newCharacteristic)
             );
+
             ClassifierUnit unit = proxy.get();
             listeners.forEach(unit::subscribe);
 

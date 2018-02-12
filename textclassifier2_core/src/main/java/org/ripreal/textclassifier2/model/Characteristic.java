@@ -8,7 +8,5 @@ public interface Characteristic {
 
     Set<CharacteristicValue> getPossibleValues();
 
-    void setPossibleValues(Set<CharacteristicValue> possibleValues);
-
     void addPossibleValue(CharacteristicValue value);
 }

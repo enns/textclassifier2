@@ -26,4 +26,9 @@ class DefCharacteristicValue implements CharacteristicValue {
     public int hashCode() {
         return this.value.hashCode();
     }
+
+    @Override
+    public String toString() {
+        return value;
+    }
 }

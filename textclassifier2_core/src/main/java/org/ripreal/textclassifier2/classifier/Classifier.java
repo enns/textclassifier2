@@ -1,7 +1,6 @@
 package org.ripreal.textclassifier2.classifier;
 
 import lombok.RequiredArgsConstructor;
-import org.ripreal.textclassifier2.actions.ClassifierAction;
 import org.ripreal.textclassifier2.actions.ClassifierEventsDispatcher;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicValue;

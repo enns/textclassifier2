@@ -9,6 +9,7 @@ import org.ripreal.textclassifier2.textreaders.ExcelFileReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 
 public class ExcelFileReaderTest {

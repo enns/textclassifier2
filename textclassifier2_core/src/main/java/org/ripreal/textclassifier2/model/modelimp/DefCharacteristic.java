@@ -5,14 +5,13 @@ import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
 
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.Set;
 @Data
 class DefCharacteristic implements Characteristic {
 
     private final String name;
 
-    private Set<CharacteristicValue> possibleValues = new HashSet<>();
+    private final Set<CharacteristicValue> possibleValues = new HashSet<>();
 
     public void addPossibleValue(CharacteristicValue value) {
         possibleValues.add(value);
@@ -27,4 +26,5 @@ class DefCharacteristic implements Characteristic {
     public int hashCode() {
         return this.name.hashCode();
     }
+
 }

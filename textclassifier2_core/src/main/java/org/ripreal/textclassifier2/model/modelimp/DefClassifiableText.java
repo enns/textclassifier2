@@ -29,4 +29,5 @@ class DefClassifiableText implements ClassifiableText {
     public int hashCode() {
         return this.text.hashCode();
     }
+
 }

@@ -1,6 +1,5 @@
 package org.ripreal.textclassifier2.ngram;
 
-import lombok.NonNull;
 import org.ripreal.textclassifier2.model.CharacteristicFactory;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.VocabularyWord;

@@ -11,7 +11,10 @@ import org.encog.neural.networks.training.propagation.resilient.ResilientPropaga
 import org.encog.persist.PersistError;
 import org.ripreal.textclassifier2.CharacteristicUtils;
 import org.ripreal.textclassifier2.actions.ClassifierAction;
-import org.ripreal.textclassifier2.model.*;
+import org.ripreal.textclassifier2.model.Characteristic;
+import org.ripreal.textclassifier2.model.CharacteristicValue;
+import org.ripreal.textclassifier2.model.ClassifiableText;
+import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.ripreal.textclassifier2.model.modelimp.DefVocabularyWord;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
 
@@ -35,7 +38,9 @@ class NeroClassifierUnit extends ClassifierUnit {
     private final BasicNetwork network;
     private final NGramStrategy nGramStrategy;
 
-    public NeroClassifierUnit(File trainedNetwork, Characteristic characteristic, List<VocabularyWord> vocabulary, NGramStrategy nGramStrategy) {
+    // CONSTRUCTORS
+
+    private NeroClassifierUnit(File trainedNetwork, Characteristic characteristic, List<VocabularyWord> vocabulary, NGramStrategy nGramStrategy) {
         if (characteristic == null ||
                 characteristic.getName().equals("") ||
                 characteristic.getPossibleValues() == null ||
@@ -64,17 +69,36 @@ class NeroClassifierUnit extends ClassifierUnit {
         }
     }
 
-    public NeroClassifierUnit(Characteristic characteristic, List<VocabularyWord> vocabulary, NGramStrategy nGramStrategy) {
+    NeroClassifierUnit(Characteristic characteristic, List<VocabularyWord> vocabulary, NGramStrategy nGramStrategy) {
         this(null, characteristic, vocabulary, nGramStrategy);
     }
 
+    // CLIENT SECTION
 
-    public NGramStrategy getNGramStrategy() {
-        return nGramStrategy;
-    }
+    public void build(List<ClassifiableText> classifiableTexts) {
 
-    public void shutdown() {
-        Encog.getInstance().shutdown();
+        // prepare input and ideal vectors
+        // input <- ClassifiableText text vector
+        // ideal <- characteristicValue vector
+        //
+
+        double[][] input = getInput(classifiableTexts);
+        double[][] ideal = getIdeal(classifiableTexts);
+
+        // train
+        //
+
+        Propagation train = new ResilientPropagation(network, new BasicMLDataSet(input, ideal));
+        train.setThreadCount(16);
+
+        // todo: throw exception if iteration count more than 1000
+        do {
+            train.iteration();
+            dispatch("Training Classifier for '" + characteristic.getName() + "' characteristic. Errors: " + String.format("%.2f", train.getError() * 100) + "%. Wait...");
+        } while (train.getError() > 16.01);
+
+        train.finishTraining();
+        dispatch("Classifier for '" + characteristic.getName() + "' characteristic trained. Wait...");
     }
 
     public CharacteristicValue classify(ClassifiableText classifiableText) {
@@ -97,31 +121,11 @@ class NeroClassifierUnit extends ClassifierUnit {
         dispatch("Trained Classifier for '" + characteristic.getName() + "' characteristic saved. Wait...");
     }
 
-    public void build(List<ClassifiableText> classifiableTexts) {
-
-        // prepare input and ideal vectors
-        // input <- ClassifiableText text vector
-        // ideal <- characteristicValue vector
-        //
-
-        double[][] input = getInput(classifiableTexts);
-        double[][] ideal = getIdeal(classifiableTexts);
-
-        // train
-        //
-
-        Propagation train = new ResilientPropagation(network, new BasicMLDataSet(input, ideal));
-        train.setThreadCount(16);
-
-        // todo: throw exception if iteration count more than 1000
-        do {
-            train.iteration();
-            dispatch("Training Classifier for '" + characteristic.getName() + "' characteristic. Errors: " + String.format("%.2f", train.getError() * 100) + "%. Wait...");
-        } while (train.getError() > 0.01);
-
-        train.finishTraining();
-        dispatch("Classifier for '" + characteristic.getName() + "' characteristic trained. Wait...");
+    public void shutdown() {
+        Encog.getInstance().shutdown();
     }
+
+    // PRIVATE SECTION
 
     private BasicNetwork createNeuralNetwork() {
         BasicNetwork network = new BasicNetwork();
@@ -223,12 +227,14 @@ class NeroClassifierUnit extends ClassifierUnit {
             VocabularyWord vw = CharacteristicUtils.findByValue(vocabulary, word, DefVocabularyWord::new);
 
             if (vw != null) { // word found in vocabulary
-                vector[vw.getId() - 1] = 1;
+                vector[vocabulary.indexOf(vw)] = 1;
             }
         }
 
         return vector;
     }
+
+    // DO-KNOW-HOW-TO-NAME-IT
 
     @Override
     public String toString() {

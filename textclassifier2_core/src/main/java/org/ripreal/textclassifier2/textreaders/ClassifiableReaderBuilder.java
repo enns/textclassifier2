@@ -1,7 +1,6 @@
 package org.ripreal.textclassifier2.textreaders;
 
 import lombok.RequiredArgsConstructor;
-import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicFactory;
 
 import java.io.File;
