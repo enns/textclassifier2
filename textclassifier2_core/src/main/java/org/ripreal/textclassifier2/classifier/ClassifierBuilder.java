@@ -1,9 +1,6 @@
 package org.ripreal.textclassifier2.classifier;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.ripreal.textclassifier2.CharacteristicUtils;
 import org.ripreal.textclassifier2.actions.ClassifierAction;
 import org.ripreal.textclassifier2.model.Characteristic;
@@ -14,8 +11,6 @@ import org.ripreal.textclassifier2.ngram.NGramStrategy;
 import org.ripreal.textclassifier2.ngram.VocabularyBuilder;
 import org.ripreal.textclassifier2.textreaders.ClassifiableReader;
 import org.ripreal.textclassifier2.textreaders.ClassifiableReaderBuilder;
-
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -38,8 +33,8 @@ public final class ClassifierBuilder {
 
     // CONSTRUCTORS
 
-    public static ClassifierBuilder fromReader(@NotNull Function<ClassifiableReaderBuilder, ClassifiableReader> provider,
-        @NotNull CharacteristicFactory characteristicFactory) {
+    public static ClassifierBuilder fromReader(@NonNull Function<ClassifiableReaderBuilder, ClassifiableReader> provider,
+        @NonNull CharacteristicFactory characteristicFactory) {
 
         ClassifiableReader reader = provider.apply(ClassifiableReaderBuilder.builder(characteristicFactory));
         ClassifierBuilder classifier = new ClassifierBuilder(reader, characteristicFactory);
@@ -48,7 +43,7 @@ public final class ClassifierBuilder {
 
     // CLIENT SECTION
 
-    public ClassifierBuilder addNeroClassifierUnit(@NotNull String characteristicName, @NotNull NGramStrategy nGramStrategy) {
+    public ClassifierBuilder addNeroClassifierUnit(@NonNull String characteristicName, @NonNull NGramStrategy nGramStrategy) {
         classifierUnits.add(
             new ClassifierUnitProxy(
                 NeroClassifierUnit::new,
@@ -59,7 +54,7 @@ public final class ClassifierBuilder {
         return this;
     }
 
-    public ClassifierBuilder subscribe(@NotNull ClassifierAction action) {
+    public ClassifierBuilder subscribe(@NonNull ClassifierAction action) {
         listeners.add(action);
         reader.subscribe(action);
         return this;
@@ -81,7 +76,7 @@ public final class ClassifierBuilder {
 
     // INNER SECTION
 
-    private List<ClassifierUnit> buildClassifiers(@NotNull List<ClassifiableText> classifiableTexts) {
+    private List<ClassifierUnit> buildClassifiers(@NonNull List<ClassifiableText> classifiableTexts) {
 
         Set<Characteristic> characteristics = classifiableTexts.stream()
             .flatMap(text -> text.getCharacteristics().keySet().stream())
@@ -122,7 +117,7 @@ public final class ClassifierBuilder {
         }
     }
 
-    private void dispatch(@NotNull String text) {
+    private void dispatch(@NonNull String text) {
         listeners.forEach(action -> action.dispatch(ClassifierAction.EventTypes.CLASSIFIER_EVENT, text));
     }
 

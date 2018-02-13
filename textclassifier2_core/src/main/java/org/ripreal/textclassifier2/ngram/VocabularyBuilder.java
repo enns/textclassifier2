@@ -1,11 +1,9 @@
 package org.ripreal.textclassifier2.ngram;
 
+import lombok.NonNull;
 import org.ripreal.textclassifier2.model.CharacteristicFactory;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.VocabularyWord;
-
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,11 +12,14 @@ import java.util.Map;
 public class VocabularyBuilder {
     private final NGramStrategy nGramStrategy;
 
-    public VocabularyBuilder(@NotNull NGramStrategy nGramStrategy) {
+    public VocabularyBuilder(@NonNull NGramStrategy nGramStrategy) {
         this.nGramStrategy = nGramStrategy;
     }
 
-    public List<VocabularyWord> getVocabulary(@NotEmpty List<ClassifiableText> classifiableTexts, @NotNull CharacteristicFactory factory) {
+    public List<VocabularyWord> getVocabulary(@NonNull List<ClassifiableText> classifiableTexts, @NonNull CharacteristicFactory factory) {
+
+        if (classifiableTexts.isEmpty())
+            throw new IllegalArgumentException();
 
         Map<String, Integer> uniqueValues = new HashMap<>();
 

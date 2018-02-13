@@ -1,12 +1,11 @@
 package org.ripreal.textclassifier2.classifier;
 
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.ripreal.textclassifier2.actions.ClassifierEventsDispatcher;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableText;
-
-import javax.validation.constraints.NotNull;
 import java.io.File;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -18,25 +17,25 @@ public final class Classifier extends ClassifierEventsDispatcher {
 
     private final List<ClassifierUnit> classifierUnits;
 
-    public List<CharacteristicValue> classify(@NotNull ClassifiableText classifiableText) {
+    public List<CharacteristicValue> classify(@NonNull ClassifiableText classifiableText) {
         List<CharacteristicValue> values = new ArrayList<>();
         classifierUnits.forEach(unit -> values.add(unit.classify(classifiableText)));
         return values;
     }
 
-    public void saveClassifiers(@NotNull File file) {
+    public void saveClassifiers(@NonNull File file) {
         for (ClassifierUnit classifier : classifierUnits) {
             classifier.saveTrainedClassifier(file);
         }
     }
 
-    public void saveClassifiers(@NotNull OutputStream stream) {
+    public void saveClassifiers(@NonNull OutputStream stream) {
         for (ClassifierUnit classifier : classifierUnits) {
             classifier.saveTrainedClassifier(stream);
         }
     }
 
-    private void checkClassifiersAccuracy(@NotNull List<ClassifierUnit> units, @NotNull List<ClassifiableText> textForTesting) {
+    private void checkClassifiersAccuracy(@NonNull List<ClassifierUnit> units, @NonNull List<ClassifiableText> textForTesting) {
 
         for (ClassifierUnit unit : units) {
             Characteristic characteristic = unit.getCharacteristic();

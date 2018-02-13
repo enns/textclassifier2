@@ -1,10 +1,9 @@
 package org.ripreal.textclassifier2.model.modelimp;
 
 import lombok.Data;
+import lombok.NonNull;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
-
-import javax.validation.constraints.NotNull;
 
 @Data
 class DefCharacteristicValue implements CharacteristicValue {
@@ -15,7 +14,7 @@ class DefCharacteristicValue implements CharacteristicValue {
 
     private final String value;
 
-    private @NotNull Characteristic characteristic;
+    private Characteristic characteristic;
 
     @Override
     public boolean equals(Object o) {
