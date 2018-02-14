@@ -4,9 +4,9 @@ import java.util.Set;
 
 public interface NGramStrategy {
 
-    public enum NGRAM_TYPES {UNIGRAM, FILTERED_UNIGRAM, BIGRAM, FILTERED_BIGRAM}
+    enum NGRAM_TYPES {UNIGRAM, FILTERED_UNIGRAM, BIGRAM, FILTERED_BIGRAM}
 
-    public static NGramStrategy getNGramStrategy(NGRAM_TYPES type) {
+    static NGramStrategy getNGramStrategy(NGRAM_TYPES type) {
         switch (type) {
             case UNIGRAM:
                 return new Unigram();

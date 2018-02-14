@@ -1,60 +1,74 @@
 package org.ripreal.textclassifier2.classifier;
 
+import org.junit.Before;
+import org.ripreal.textclassifier2.model.Characteristic;
+import org.ripreal.textclassifier2.model.CharacteristicFactory;
+import org.ripreal.textclassifier2.model.CharacteristicValue;
+import org.ripreal.textclassifier2.model.VocabularyWord;
+import org.ripreal.textclassifier2.model.modelimp.DefCharacteristicFactory;
+import org.ripreal.textclassifier2.ngram.NGramStrategy;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
+
 public class ClassifierTest {
-    /*
+
     private final File trainedClassifier = new File("./test_db/TestNeuralNetworkClassifier");
-    private final NGramStrategy nGramStrategy = new FilteredUnigram();
-    private ClassifierUnit classifier;
+    private final NGramStrategy nGramStrategy = NGramStrategy.getNGramStrategy(NGramStrategy.NGRAM_TYPES.FILTERED_UNIGRAM);
+    private Classifier classifier;
     private Characteristic characteristic;
     private List<VocabularyWord> vocabulary;
+    private final CharacteristicFactory characteristicFactory = new DefCharacteristicFactory();
 
     @Before
     public void loadFromFile() {
         // create characteristic
         //
 
-        Set<CharacteristicValue> possibleValues = new LinkedHashSet<>();
-        possibleValues.add(new CharacteristicValue(1, "get"));
-        possibleValues.add(new CharacteristicValue(2, "set"));
-        possibleValues.add(new CharacteristicValue(3, "add"));
-        characteristic = new Characteristic("Method", possibleValues);
+        characteristic = characteristicFactory.newCharacteristic("Method");
+        characteristic.addPossibleValue(characteristicFactory.newCharacteristicValue("get"));
+        characteristic.addPossibleValue(characteristicFactory.newCharacteristicValue("set"));
+        characteristic.addPossibleValue(characteristicFactory.newCharacteristicValue("add"));
 
         // create vocabulary
         //
 
         vocabulary = new ArrayList<>();
-        vocabulary.add(new VocabularyWord(1, "their"));
-        vocabulary.add(new VocabularyWord(2, "specified"));
-        vocabulary.add(new VocabularyWord(3, "that"));
-        vocabulary.add(new VocabularyWord(4, "and"));
-        vocabulary.add(new VocabularyWord(5, "shifts"));
-        vocabulary.add(new VocabularyWord(6, "subsequent"));
-        vocabulary.add(new VocabularyWord(7, "if"));
-        vocabulary.add(new VocabularyWord(8, "element"));
-        vocabulary.add(new VocabularyWord(9, "adds"));
-        vocabulary.add(new VocabularyWord(10, "in"));
-        vocabulary.add(new VocabularyWord(11, "replaces"));
-        vocabulary.add(new VocabularyWord(12, "one"));
-        vocabulary.add(new VocabularyWord(13, "this"));
-        vocabulary.add(new VocabularyWord(14, "optional"));
-        vocabulary.add(new VocabularyWord(15, "right"));
-        vocabulary.add(new VocabularyWord(16, "list"));
-        vocabulary.add(new VocabularyWord(17, "any"));
-        vocabulary.add(new VocabularyWord(18, "the"));
-        vocabulary.add(new VocabularyWord(19, "with"));
-        vocabulary.add(new VocabularyWord(20, "indices"));
-        vocabulary.add(new VocabularyWord(21, "at"));
-        vocabulary.add(new VocabularyWord(22, "currently"));
-        vocabulary.add(new VocabularyWord(23, "elements"));
-        vocabulary.add(new VocabularyWord(24, "returns"));
-        vocabulary.add(new VocabularyWord(25, "position"));
-        vocabulary.add(new VocabularyWord(26, "to"));
-        vocabulary.add(new VocabularyWord(27, "operation"));
-        vocabulary.add(new VocabularyWord(28, "inserts"));
+        vocabulary.add(characteristicFactory.newVocabularyWord("their"));
+        vocabulary.add(characteristicFactory.newVocabularyWord("specified"));
+        vocabulary.add(characteristicFactory.newVocabularyWord("that"));
+        vocabulary.add(characteristicFactory.newVocabularyWord("and"));
+        vocabulary.add(characteristicFactory.newVocabularyWord("shifts"));
+        vocabulary.add(characteristicFactory.newVocabularyWord("subsequent"));
+        vocabulary.add(characteristicFactory.newVocabularyWord("if"));
+        vocabulary.add(characteristicFactory.newVocabularyWord("element"));
+        vocabulary.add(characteristicFactory.newVocabularyWord("adds"));
+        vocabulary.add(characteristicFactory.newVocabularyWord("in"));
+        vocabulary.add(characteristicFactory.newVocabularyWord("replaces"));
+        vocabulary.add(characteristicFactory.newVocabularyWord("one"));
+        vocabulary.add(characteristicFactory.newVocabularyWord("this"));
+        vocabulary.add(characteristicFactory.newVocabularyWord("optional"));
+        vocabulary.add(characteristicFactory.newVocabularyWord("right"));
+        vocabulary.add(characteristicFactory.newVocabularyWord("list"));
+        vocabulary.add(characteristicFactory.newVocabularyWord("any"));
+        vocabulary.add(characteristicFactory.newVocabularyWord("the"));
+        vocabulary.add(characteristicFactory.newVocabularyWord("with"));
+        vocabulary.add(characteristicFactory.newVocabularyWord("indices"));
+        vocabulary.add(characteristicFactory.newVocabularyWord("at"));
+        vocabulary.add(characteristicFactory.newVocabularyWord("currently"));
+        vocabulary.add(characteristicFactory.newVocabularyWord("elements"));
+        vocabulary.add(characteristicFactory.newVocabularyWord("returns"));
+        vocabulary.add(characteristicFactory.newVocabularyWord("position"));
+        vocabulary.add(characteristicFactory.newVocabularyWord("to"));
+        vocabulary.add(characteristicFactory.newVocabularyWord("operation"));
+        vocabulary.add(characteristicFactory.newVocabularyWord("inserts"));
 
         // load trained classifier
         //
-
+        ClassifierBuilder.fromReader()
         classifier = new NeroClassifierUnit(trainedClassifier, characteristic, vocabulary, nGramStrategy);
     }
 

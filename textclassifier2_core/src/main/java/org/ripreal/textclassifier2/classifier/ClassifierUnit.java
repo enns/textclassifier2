@@ -9,7 +9,7 @@ import java.io.File;
 import java.io.OutputStream;
 import java.util.List;
 
-public abstract class ClassifierUnit extends ClassifierEventsDispatcher {
+abstract class ClassifierUnit extends ClassifierEventsDispatcher {
 
     // PROPERTIES
 

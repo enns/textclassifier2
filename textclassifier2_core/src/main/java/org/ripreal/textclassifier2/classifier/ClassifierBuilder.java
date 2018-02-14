@@ -1,5 +1,6 @@
 package org.ripreal.textclassifier2.classifier;
 
+import com.sun.istack.internal.NotNull;
 import lombok.*;
 import org.ripreal.textclassifier2.CharacteristicUtils;
 import org.ripreal.textclassifier2.actions.ClassifierAction;
@@ -33,17 +34,18 @@ public final class ClassifierBuilder {
 
     // CONSTRUCTORS
 
-    public static ClassifierBuilder fromReader(@NonNull Function<ClassifiableReaderBuilder, ClassifiableReader> provider,
-        @NonNull CharacteristicFactory characteristicFactory) {
+    public static ClassifierBuilder fromReader(@NotNull Function<ClassifiableReaderBuilder, ClassifiableReader> provider,
+        @NotNull CharacteristicFactory characteristicFactory) {
 
         ClassifiableReader reader = provider.apply(ClassifiableReaderBuilder.builder(characteristicFactory));
         ClassifierBuilder classifier = new ClassifierBuilder(reader, characteristicFactory);
         return classifier;
     }
 
+
     // CLIENT SECTION
 
-    public ClassifierBuilder addNeroClassifierUnit(@NonNull String characteristicName, @NonNull NGramStrategy nGramStrategy) {
+    public ClassifierBuilder addNeroClassifierUnit(@NotNull String characteristicName, @NonNull NGramStrategy nGramStrategy) {
         classifierUnits.add(
             new ClassifierUnitProxy(
                 NeroClassifierUnit::new,
@@ -54,7 +56,7 @@ public final class ClassifierBuilder {
         return this;
     }
 
-    public ClassifierBuilder subscribe(@NonNull ClassifierAction action) {
+    public ClassifierBuilder subscribe(@NotNull ClassifierAction action) {
         listeners.add(action);
         reader.subscribe(action);
         return this;
@@ -76,13 +78,12 @@ public final class ClassifierBuilder {
 
     // INNER SECTION
 
-    private List<ClassifierUnit> buildClassifiers(@NonNull List<ClassifiableText> classifiableTexts) {
+    private List<ClassifierUnit> buildClassifiers(@NotNull List<ClassifiableText> classifiableTexts) {
 
         Set<Characteristic> characteristics = classifiableTexts.stream()
             .flatMap(text -> text.getCharacteristics().keySet().stream())
             .distinct()
             .collect(Collectors.toSet());
-
 
         List<ClassifierUnit> units = new ArrayList<>();
         for (ClassifierUnitProxy proxy: classifierUnits) {
@@ -117,7 +118,7 @@ public final class ClassifierBuilder {
         }
     }
 
-    private void dispatch(@NonNull String text) {
+    private void dispatch(@NotNull String text) {
         listeners.forEach(action -> action.dispatch(ClassifierAction.EventTypes.CLASSIFIER_EVENT, text));
     }
 

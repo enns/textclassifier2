@@ -1,5 +1,6 @@
 package org.ripreal.textclassifier2.classifier;
 
+import com.sun.istack.internal.NotNull;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.ripreal.textclassifier2.actions.ClassifierEventsDispatcher;
@@ -17,25 +18,25 @@ public final class Classifier extends ClassifierEventsDispatcher {
 
     private final List<ClassifierUnit> classifierUnits;
 
-    public List<CharacteristicValue> classify(@NonNull ClassifiableText classifiableText) {
+    public List<CharacteristicValue> classify(@NotNull ClassifiableText classifiableText) {
         List<CharacteristicValue> values = new ArrayList<>();
         classifierUnits.forEach(unit -> values.add(unit.classify(classifiableText)));
         return values;
     }
 
-    public void saveClassifiers(@NonNull File file) {
+    public void saveClassifiers(@NotNull File file) {
         for (ClassifierUnit classifier : classifierUnits) {
             classifier.saveTrainedClassifier(file);
         }
     }
 
-    public void saveClassifiers(@NonNull OutputStream stream) {
+    public void saveClassifiers(@NotNull OutputStream stream) {
         for (ClassifierUnit classifier : classifierUnits) {
             classifier.saveTrainedClassifier(stream);
         }
     }
 
-    private void checkClassifiersAccuracy(@NonNull List<ClassifierUnit> units, @NonNull List<ClassifiableText> textForTesting) {
+    public void checkClassifiersAccuracy(@NotNull List<ClassifierUnit> units, @NotNull List<ClassifiableText> textForTesting) {
 
         for (ClassifierUnit unit : units) {
             Characteristic characteristic = unit.getCharacteristic();

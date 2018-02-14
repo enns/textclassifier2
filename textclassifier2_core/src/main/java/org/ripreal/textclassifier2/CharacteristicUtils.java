@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.function.Function;
 
 public class CharacteristicUtils {
-    @SuppressWarnings("findByValue")
+    @SuppressWarnings("unchecked")
     public static <T> T findByValue(Collection<T> collection, String value, Function<String, T> supplier) {
         List<T> available = Arrays.asList((T[]) collection.toArray());
         try {
