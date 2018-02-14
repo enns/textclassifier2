@@ -1,12 +1,15 @@
 package org.ripreal.textclassifier2.classifier;
 
 import org.junit.Before;
+import org.junit.Test;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicFactory;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.ripreal.textclassifier2.model.modelimp.DefCharacteristicFactory;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
+import org.ripreal.textclassifier2.textreaders.ClassifiableReaderBuilder;
+import org.ripreal.textclassifier2.textreaders.ClassifiableTextReader;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -22,6 +25,7 @@ public class ClassifierTest {
     private Characteristic characteristic;
     private List<VocabularyWord> vocabulary;
     private final CharacteristicFactory characteristicFactory = new DefCharacteristicFactory();
+    private final ClassifiableTextReader reader = new ClassifiableTextReader();
 
     @Before
     public void loadFromFile() {
@@ -66,22 +70,20 @@ public class ClassifierTest {
         vocabulary.add(characteristicFactory.newVocabularyWord("operation"));
         vocabulary.add(characteristicFactory.newVocabularyWord("inserts"));
 
-        // load trained classifier
-        //
-        ClassifierBuilder.fromReader()
-        classifier = new NeroClassifierUnit(trainedClassifier, characteristic, vocabulary, nGramStrategy);
-    }
+        ClassifierBuilder builder = ClassifierBuilder.fromReader(reader, characteristicFactory);
+        builder.addNeroClassifierUnit(trainedClassifier, characteristic.getName(), vocabulary, nGramStrategy);
 
-    @Test
-    public void createNetwork() {
-        new ClassifierUnit(characteristic, vocabulary, nGramStrategy);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void nonexistentFile() {
-        new ClassifierUnit(new File("./test_db/nonexistentFile"), characteristic, vocabulary, nGramStrategy);
+        ClassifierBuilder
+            .fromReader((builder) -> builder.newExcelFileReader(
+                new File("./test_db/nonexistentFile"), 1),
+                new DefCharacteristicFactory())
+            .build();
     }
-
+    /*
     @Test(expected = IllegalArgumentException.class)
     public void nullCharacteristic() {
         new ClassifierUnit(trainedClassifier, null, vocabulary, nGramStrategy);

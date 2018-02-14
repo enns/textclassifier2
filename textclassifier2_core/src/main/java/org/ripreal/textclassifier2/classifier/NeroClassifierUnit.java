@@ -17,7 +17,6 @@ import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.ripreal.textclassifier2.model.modelimp.DefVocabularyWord;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
-
 import java.io.File;
 import java.io.OutputStream;
 import java.util.List;
@@ -40,7 +39,7 @@ class NeroClassifierUnit extends ClassifierUnit {
 
     // CONSTRUCTORS
 
-    private NeroClassifierUnit(File trainedNetwork, Characteristic characteristic, List<VocabularyWord> vocabulary, NGramStrategy nGramStrategy) {
+    NeroClassifierUnit(File trainedNetwork,  Characteristic characteristic,  List<VocabularyWord> vocabulary, NGramStrategy nGramStrategy) {
         if (characteristic == null ||
                 characteristic.getName().equals("") ||
                 characteristic.getPossibleValues() == null ||
@@ -67,10 +66,6 @@ class NeroClassifierUnit extends ClassifierUnit {
                 throw new IllegalArgumentException();
             }
         }
-    }
-
-    NeroClassifierUnit(Characteristic characteristic, List<VocabularyWord> vocabulary, NGramStrategy nGramStrategy) {
-        this(null, characteristic, vocabulary, nGramStrategy);
     }
 
     // CLIENT SECTION

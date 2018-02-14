@@ -11,7 +11,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ClassifiableReaderBuilder {
 
-    public final CharacteristicFactory characteristicFactory;
+    private final CharacteristicFactory characteristicFactory;
 
     public static ClassifiableReaderBuilder builder(CharacteristicFactory characteristicFactory) {
         return new ClassifiableReaderBuilder(characteristicFactory);
@@ -22,6 +22,6 @@ public class ClassifiableReaderBuilder {
     }
 
     public ClassifiableReader newClassifiableTextReader(List<ClassifiableText> texts) {
-        return new ClassifiableTextReader(texts);
+        return new ClassifiableTextReader();
     }
 }
