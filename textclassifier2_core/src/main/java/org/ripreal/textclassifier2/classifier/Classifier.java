@@ -18,6 +18,14 @@ public final class Classifier extends ClassifierEventsDispatcher {
 
     private final List<ClassifierUnit> classifierUnits;
 
+    public void build(List<ClassifiableText> texts) {
+        classifierUnits.forEach((item) -> item.build(texts));
+    }
+
+    public void shutdown() {
+        classifierUnits.forEach(ClassifierUnit::shutdown);
+    }
+
     public List<CharacteristicValue> classify(@NotNull ClassifiableText classifiableText) {
         List<CharacteristicValue> values = new ArrayList<>();
         classifierUnits.forEach(unit -> values.add(unit.classify(classifiableText)));

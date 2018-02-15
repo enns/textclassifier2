@@ -22,6 +22,6 @@ public class ClassifiableReaderBuilder {
     }
 
     public ClassifiableReader newClassifiableTextReader(List<ClassifiableText> texts) {
-        return new ClassifiableTextReader();
+        return new FromVocabularyReader();
     }
 }

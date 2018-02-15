@@ -81,7 +81,7 @@ public final class ClassifierBuilder {
             return null;
         }
 
-        List<ClassifierUnit> units = buildClassifiers(reader.toClassifiableTexts());
+        List<ClassifierUnit> units = buildClassifiers();
 
         shutDownClassifiers(units);
 
@@ -90,20 +90,14 @@ public final class ClassifierBuilder {
 
     // INNER SECTION
 
-    private List<ClassifierUnit> buildClassifiers(@NotNull List<ClassifiableText> classifiableTexts) {
+    private List<ClassifierUnit> buildClassifiers() {
 
-        Set<Characteristic> characteristics = classifiableTexts.stream()
-            .flatMap(text -> text.getCharacteristics().keySet().stream())
-            .distinct()
-            .collect(Collectors.toSet());
+        Set<Characteristic> characteristics = reader.toCharacteristics();
 
         List<ClassifierUnit> units = new ArrayList<>();
         for (ClassifierUnitProxy proxy: classifierUnits) {
 
-            if (proxy.getVocabulary() == null) {
-                proxy.setVocabulary(new VocabularyBuilder(
-                        proxy.getNGramStrategy()).getVocabulary(classifiableTexts, characteristicFactory));
-            }
+            proxy.setVocabulary(reader.toVocabulary(proxy.getNGramStrategy()));
 
             proxy.setCharacteristic(
                 CharacteristicUtils.findByValue(
@@ -115,10 +109,13 @@ public final class ClassifierBuilder {
             ClassifierUnit unit = proxy.get();
             listeners.forEach(unit::subscribe);
 
-            unit.build(classifiableTexts);
+            unit.build(reader.toClassifiableTexts());
 
             units.add(unit);
         }
+
+        reader.reset();
+
         return units;
     }
 

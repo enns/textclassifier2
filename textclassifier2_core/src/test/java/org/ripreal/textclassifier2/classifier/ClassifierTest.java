@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.ripreal.textclassifier2.model.*;
 import org.ripreal.textclassifier2.model.modelimp.DefCharacteristicFactory;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
-import org.ripreal.textclassifier2.textreaders.ClassifiableTextReader;
+import org.ripreal.textclassifier2.textreaders.FromVocabularyReader;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class ClassifierTest {
     private Characteristic characteristic;
     private List<VocabularyWord> vocabulary;
     private CharacteristicFactory characteristicFactory;
-    private final ClassifiableTextReader reader = new ClassifiableTextReader();
+    private final FromVocabularyReader reader = new FromVocabularyReader();
 
     @Before
     public void init() {
@@ -72,7 +72,6 @@ public class ClassifierTest {
 
         ClassifierBuilder builder = ClassifierBuilder.fromReader(reader, characteristicFactory);
         builder.addNeroClassifierUnit(trainedClassifier, characteristic.getName(), vocabulary, nGramStrategy);
-        classifier = builder.build();
        }
 
     @Test(expected = IllegalArgumentException.class)
@@ -111,6 +110,7 @@ public class ClassifierTest {
 
     @Test
     public void classify() throws Exception {
+
         ClassifiableText ctGet = characteristicFactory.newClassifiableText("Returns the element at the specified position in this list");
         List<CharacteristicValue> cvGet = classifier.classify(ctGet);
 
@@ -156,8 +156,6 @@ public class ClassifierTest {
         // make sure classifier is stupid
         //
 
-        ClassifierBuilder.fromReader()
-
         assertNotEquals(classifier.classify(classifiableTexts.get(0)).get(0).getValue(), "get");
         assertNotEquals(classifier.classify(classifiableTexts.get(1)).get(0).getValue(), "add");
 
@@ -179,7 +177,7 @@ public class ClassifierTest {
 
     @Test
     public void shutdown() throws Exception {
-        ClassifierUnit.shutdown();
+        classifier.shutdown();
     }
 
 }

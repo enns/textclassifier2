@@ -15,20 +15,28 @@ import org.ripreal.textclassifier2.model.ClassifiableText;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @AllArgsConstructor
 public class ExcelFileReader extends ClassifierEventsDispatcher implements ClassifiableReader  {
 
-    private File file;
-    private int sheetNumber;
-    private CharacteristicFactory characteristicFactory;
+    private final File file;
+    private final int sheetNumber;
+    private final CharacteristicFactory characteristicFactory;
     private final List<ClassifierAction> listeners = new ArrayList<>();
+    private List<ClassifiableText> classifiableText;
 
+    @Override
+    public CharacteristicFactory getCharacteristicFactory() {
+        return characteristicFactory;
+    }
+
+    @Override
     public List<ClassifiableText> toClassifiableTexts() {
+
+        if(classifiableText != null) {
+            return classifiableText;
+        }
 
         if (!file.exists() ||
                 sheetNumber < 1) {
@@ -50,6 +58,11 @@ public class ExcelFileReader extends ClassifierEventsDispatcher implements Class
             dispatch(e.getMessage());
         }
         return new ArrayList<>();
+    }
+
+    @Override
+    public void reset() {
+
     }
 
     private List<ClassifiableText> getClassifiableTexts(XSSFSheet sheet) {
