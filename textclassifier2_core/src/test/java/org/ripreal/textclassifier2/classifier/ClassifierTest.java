@@ -2,20 +2,19 @@ package org.ripreal.textclassifier2.classifier;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.ripreal.textclassifier2.model.Characteristic;
-import org.ripreal.textclassifier2.model.CharacteristicFactory;
-import org.ripreal.textclassifier2.model.CharacteristicValue;
-import org.ripreal.textclassifier2.model.VocabularyWord;
+import org.ripreal.textclassifier2.model.*;
 import org.ripreal.textclassifier2.model.modelimp.DefCharacteristicFactory;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
-import org.ripreal.textclassifier2.textreaders.ClassifiableReaderBuilder;
 import org.ripreal.textclassifier2.textreaders.ClassifiableTextReader;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class ClassifierTest {
 
@@ -24,13 +23,14 @@ public class ClassifierTest {
     private Classifier classifier;
     private Characteristic characteristic;
     private List<VocabularyWord> vocabulary;
-    private final CharacteristicFactory characteristicFactory = new DefCharacteristicFactory();
+    private CharacteristicFactory characteristicFactory;
     private final ClassifiableTextReader reader = new ClassifiableTextReader();
 
     @Before
-    public void loadFromFile() {
+    public void init() {
         // create characteristic
         //
+         characteristicFactory = new DefCharacteristicFactory();
 
         characteristic = characteristicFactory.newCharacteristic("Method");
         characteristic.addPossibleValue(characteristicFactory.newCharacteristicValue("get"));
@@ -72,8 +72,8 @@ public class ClassifierTest {
 
         ClassifierBuilder builder = ClassifierBuilder.fromReader(reader, characteristicFactory);
         builder.addNeroClassifierUnit(trainedClassifier, characteristic.getName(), vocabulary, nGramStrategy);
-
-    }
+        classifier = builder.build();
+       }
 
     @Test(expected = IllegalArgumentException.class)
     public void nonexistentFile() {
@@ -83,88 +83,83 @@ public class ClassifierTest {
                 new DefCharacteristicFactory())
             .build();
     }
-    /*
+
     @Test(expected = IllegalArgumentException.class)
     public void nullCharacteristic() {
-        new ClassifierUnit(trainedClassifier, null, vocabulary, nGramStrategy);
+        new NeroClassifierUnit(trainedClassifier, null, vocabulary, nGramStrategy);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void emptyCharacteristic() {
-        new ClassifierUnit(trainedClassifier, new Characteristic("Test"), vocabulary, nGramStrategy);
+        new NeroClassifierUnit(trainedClassifier, characteristicFactory.newCharacteristic("Test"), vocabulary, nGramStrategy);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void nullVocabulary() {
-        new ClassifierUnit(trainedClassifier, characteristic, null, nGramStrategy);
+        new NeroClassifierUnit(trainedClassifier, characteristic, null, nGramStrategy);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void emptyVocabulary() {
-        new ClassifierUnit(trainedClassifier, characteristic, new ArrayList<>(), nGramStrategy);
+        new NeroClassifierUnit(trainedClassifier, characteristic, new ArrayList<>(), nGramStrategy);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void nullNGram() {
-        new ClassifierUnit(trainedClassifier, characteristic, vocabulary, null);
+        new NeroClassifierUnit(trainedClassifier, characteristic, vocabulary, null);
     }
 
     @Test
     public void classify() throws Exception {
-        ClassifiableText ctGet = new ClassifiableText("Returns the element at the specified position in this list");
-        CharacteristicValue cvGet = classifier.classify(ctGet);
+        ClassifiableText ctGet = characteristicFactory.newClassifiableText("Returns the element at the specified position in this list");
+        List<CharacteristicValue> cvGet = classifier.classify(ctGet);
 
-        assertEquals(cvGet.getOrderNumber(), 1);
-        assertEquals(cvGet.getValue(), "get");
-
-        //
-
-        ClassifiableText ctSet = new ClassifiableText("Replaces the element at the specified position in this list with the specified element (optional operation)");
-        CharacteristicValue cvSet = classifier.classify(ctSet);
-
-        assertEquals(cvSet.getOrderNumber(), 2);
-        assertEquals(cvSet.getValue(), "set");
+        assertEquals(cvGet.get(0).getOrderNumber(), 1);
+        assertEquals(cvGet.get(0).getValue(), "get");
 
         //
 
-        ClassifiableText ctAdd = new ClassifiableText("Inserts the specified element at the specified position in this list (optional operation). Shifts the element currently at that position (if any) and any subsequent elements to the right (adds one to their indices)");
-        CharacteristicValue cvAdd = classifier.classify(ctAdd);
+        ClassifiableText ctSet = characteristicFactory.newClassifiableText("Replaces the element at the specified position in this list with the specified element (optional operation)");
+        List<CharacteristicValue> cvSet = classifier.classify(ctSet);
 
-        assertEquals(cvAdd.getOrderNumber(), 3);
-        assertEquals(cvAdd.getValue(), "add");
+        assertEquals(cvSet.get(0).getOrderNumber(), 2);
+        assertEquals(cvSet.get(0).getValue(), "set");
+
+        //
+
+        ClassifiableText ctAdd = characteristicFactory.newClassifiableText("Inserts the specified element at the specified position in this list (optional operation). Shifts the element currently at that position (if any) and any subsequent elements to the right (adds one to their indices)");
+        List<CharacteristicValue> cvAdd = classifier.classify(ctAdd);
+
+        assertEquals(cvAdd.get(0).getOrderNumber(), 3);
+        assertEquals(cvAdd.get(0).getValue(), "add");
     }
 
     @Test
     public void saveTrainedClassifier() throws Exception {
-        classifier.saveTrainedClassifier(new File("./test_db/TestSave"));
+        classifier.saveClassifiers(new File("./test_db/TestSave"));
         assertEquals(new File("./test_db/TestSave").delete(), true);
     }
 
     @Test
-    public void getCharacteristicName() throws Exception {
-        assertEquals(classifier.getCharacteristic().getName(), "Method");
-    }
-
-    @Test
     public void train() throws Exception {
-        // create list for train
-        //
 
         List<ClassifiableText> classifiableTexts = new ArrayList<>();
 
         Map<Characteristic, CharacteristicValue> characteristics = new HashMap<>();
-        characteristics.put(new Characteristic("Method"), new CharacteristicValue(1, "get"));
-        classifiableTexts.add(new ClassifiableText("shifts right any this operation", characteristics));
+        characteristics.put(characteristicFactory.newCharacteristic("Method"), characteristicFactory.newCharacteristicValue("get"));
+        classifiableTexts.add(characteristicFactory.newClassifiableText("shifts right any this operation", characteristics));
 
         characteristics = new HashMap<>();
-        characteristics.put(new Characteristic("Method"), new CharacteristicValue(3, "add"));
-        classifiableTexts.add(new ClassifiableText("that at returns", characteristics));
+        characteristics.put(characteristicFactory.newCharacteristic("Method"), characteristicFactory.newCharacteristicValue("add"));
+        classifiableTexts.add(characteristicFactory.newClassifiableText("that at returns", characteristics));
 
         // make sure classifier is stupid
         //
 
-        assertNotEquals(classifier.classify(classifiableTexts.get(0)).getValue(), "get");
-        assertNotEquals(classifier.classify(classifiableTexts.get(1)).getValue(), "add");
+        ClassifierBuilder.fromReader()
+
+        assertNotEquals(classifier.classify(classifiableTexts.get(0)).get(0).getValue(), "get");
+        assertNotEquals(classifier.classify(classifiableTexts.get(1)).get(0).getValue(), "add");
 
         // train
         classifier.build(classifiableTexts);
@@ -172,9 +167,9 @@ public class ClassifierTest {
         // make sure classifier became smart
         //
 
-        assertEquals(classifier.classify(classifiableTexts.get(0)).getValue(), "get");
-        assertEquals(classifier.classify(classifiableTexts.get(1)).getValue(), "add");
-        assertEquals(classifier.classify(new ClassifiableText("shifts right sdawwda any this operation")).getValue(), "get");
+        assertEquals(classifier.classify(classifiableTexts.get(0)).get(0).getValue(), "get");
+        assertEquals(classifier.classify(classifiableTexts.get(1)).get(0).getValue(), "add");
+        assertEquals(classifier.classify(characteristicFactory.newClassifiableText("shifts right sdawwda any this operation")).get(0).getValue(), "get");
     }
 
     @Test
@@ -186,5 +181,5 @@ public class ClassifierTest {
     public void shutdown() throws Exception {
         ClassifierUnit.shutdown();
     }
-    */
+
 }

@@ -37,6 +37,7 @@ subprojects { sp ->
     apply plugin: "io.spring.dependency-management"
 
     dependencies {
+        compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
         testCompile("junit:junit")
         compile("org.projectlombok:lombok")
     }

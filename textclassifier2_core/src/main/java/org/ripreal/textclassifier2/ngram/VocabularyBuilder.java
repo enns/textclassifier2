@@ -4,6 +4,7 @@ import lombok.NonNull;
 import org.ripreal.textclassifier2.model.CharacteristicFactory;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.VocabularyWord;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

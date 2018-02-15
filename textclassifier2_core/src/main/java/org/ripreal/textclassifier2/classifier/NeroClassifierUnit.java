@@ -17,6 +17,9 @@ import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.ripreal.textclassifier2.model.modelimp.DefVocabularyWord;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
+
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.File;
 import java.io.OutputStream;
 import java.util.List;
@@ -26,7 +29,7 @@ import static org.encog.persist.EncogDirectoryPersistence.loadObject;
 import static org.encog.persist.EncogDirectoryPersistence.saveObject;
 
 // todo: add other types of Classifiers (Naive Bayes classifier for example)
-class NeroClassifierUnit extends ClassifierUnit {
+public class NeroClassifierUnit extends ClassifierUnit {
 
     @Getter
     private final Characteristic characteristic;
@@ -39,14 +42,10 @@ class NeroClassifierUnit extends ClassifierUnit {
 
     // CONSTRUCTORS
 
-    NeroClassifierUnit(File trainedNetwork,  Characteristic characteristic,  List<VocabularyWord> vocabulary, NGramStrategy nGramStrategy) {
-        if (characteristic == null ||
-                characteristic.getName().equals("") ||
+    NeroClassifierUnit(File trainedNetwork, @NotNull Characteristic characteristic, @NotEmpty List<VocabularyWord> vocabulary, @NotNull NGramStrategy nGramStrategy) {
+        if (characteristic.getName().equals("") ||
                 characteristic.getPossibleValues() == null ||
-                characteristic.getPossibleValues().size() == 0 ||
-                vocabulary == null ||
-                vocabulary.size() == 0 ||
-                nGramStrategy == null) {
+                characteristic.getPossibleValues().size() == 0) {
             throw new IllegalArgumentException();
         }
 

@@ -1,7 +1,5 @@
 package org.ripreal.textclassifier2.textreaders;
 
-import com.sun.istack.internal.NotNull;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -15,7 +13,7 @@ public class ClassifiableTextReader extends ClassifierEventsDispatcher implement
 
     @Getter
     @Setter
-    private @NotNull List<ClassifiableText> texts;
+    private List<ClassifiableText> texts;
 
     @Override
     public List<ClassifiableText> toClassifiableTexts() {

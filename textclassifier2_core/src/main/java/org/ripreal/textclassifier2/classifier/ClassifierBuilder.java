@@ -1,6 +1,5 @@
 package org.ripreal.textclassifier2.classifier;
 
-import com.sun.istack.internal.NotNull;
 import lombok.*;
 import org.ripreal.textclassifier2.CharacteristicUtils;
 import org.ripreal.textclassifier2.actions.ClassifierAction;
@@ -13,6 +12,7 @@ import org.ripreal.textclassifier2.ngram.VocabularyBuilder;
 import org.ripreal.textclassifier2.textreaders.ClassifiableReader;
 import org.ripreal.textclassifier2.textreaders.ClassifiableReaderBuilder;
 
+import javax.validation.constraints.NotNull;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public final class ClassifierBuilder {
 
-    private @NotNull
+    private
     final ClassifiableReader reader;
 
     private @NotNull final CharacteristicFactory characteristicFactory;
@@ -100,8 +100,10 @@ public final class ClassifierBuilder {
         List<ClassifierUnit> units = new ArrayList<>();
         for (ClassifierUnitProxy proxy: classifierUnits) {
 
-            proxy.setVocabulary(new VocabularyBuilder(
-                proxy.getNGramStrategy()).getVocabulary(classifiableTexts, characteristicFactory));
+            if (proxy.getVocabulary() == null) {
+                proxy.setVocabulary(new VocabularyBuilder(
+                        proxy.getNGramStrategy()).getVocabulary(classifiableTexts, characteristicFactory));
+            }
 
             proxy.setCharacteristic(
                 CharacteristicUtils.findByValue(
@@ -140,7 +142,7 @@ public final class ClassifierBuilder {
         private final ClassifierUnitSupplier supplier;
         @Getter private final File trainedClassifier;
         @Getter private final NGramStrategy nGramStrategy;
-        @Setter private List<VocabularyWord> vocabulary;
+        @Getter @Setter private List<VocabularyWord> vocabulary;
         @Getter @Setter private Characteristic characteristic;
 
         public ClassifierUnit get() {

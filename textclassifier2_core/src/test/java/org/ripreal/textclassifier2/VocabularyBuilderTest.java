@@ -20,8 +20,6 @@ public class VocabularyBuilderTest {
     @Test
     public void getVocabulary() throws Exception {
 
-
-
         List<ClassifiableText> classifiableTexts = new ArrayList<>();
         classifiableTexts.add(characteristicFactory.newClassifiableText("qw we"));
         classifiableTexts.add(characteristicFactory.newClassifiableText("er we"));

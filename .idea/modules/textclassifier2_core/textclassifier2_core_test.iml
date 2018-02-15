@@ -10,6 +10,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="textclassifier2_core_main" />
+    <orderEntry type="library" name="Gradle: javax.validation:validation-api:2.0.1.Final" level="project" />
     <orderEntry type="library" name="Gradle: org.projectlombok:lombok:1.16.18" level="project" />
     <orderEntry type="library" name="Gradle: org.encog:encog-core:3.3.0" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.poi:poi-ooxml:3.16" level="project" />

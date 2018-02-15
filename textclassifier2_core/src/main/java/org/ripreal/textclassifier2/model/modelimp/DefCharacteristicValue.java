@@ -1,7 +1,6 @@
 package org.ripreal.textclassifier2.model.modelimp;
 
 import lombok.Data;
-import lombok.NonNull;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
 
