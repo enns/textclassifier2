@@ -41,8 +41,7 @@ public final class ClassifierBuilder {
         @NotNull CharacteristicFactory characteristicFactory) {
 
         ClassifiableReader reader = provider.apply(ClassifiableReaderBuilder.builder(characteristicFactory));
-        ClassifierBuilder classifier = new ClassifierBuilder(reader, characteristicFactory);
-        return classifier;
+        return new ClassifierBuilder(reader, characteristicFactory);
     }
 
     public static ClassifierBuilder fromReader(@NotNull ClassifiableReader reader, @NotNull CharacteristicFactory characteristicFactory) {

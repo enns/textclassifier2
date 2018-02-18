@@ -1,6 +1,9 @@
 package org.ripreal.textclassifier2.textreaders;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -12,30 +15,29 @@ import org.ripreal.textclassifier2.model.CharacteristicFactory;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 
+import javax.validation.constraints.NotNull;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.*;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ExcelFileReader extends ClassifierEventsDispatcher implements ClassifiableReader  {
-
+    @NonNull
     private final File file;
+    @NonNull
     private final int sheetNumber;
+    @NonNull
+    @Getter
     private final CharacteristicFactory characteristicFactory;
-    private final List<ClassifierAction> listeners = new ArrayList<>();
-    private List<ClassifiableText> classifiableText;
-
-    @Override
-    public CharacteristicFactory getCharacteristicFactory() {
-        return characteristicFactory;
-    }
+    @NonNull
+    private List<ClassifiableText> cached_classifiableText = new ArrayList<>();
 
     @Override
     public List<ClassifiableText> toClassifiableTexts() {
 
-        if(classifiableText != null) {
-            return classifiableText;
+        if(! cached_classifiableText.isEmpty()) {
+            return cached_classifiableText;
         }
 
         if (!file.exists() ||
@@ -48,7 +50,7 @@ public class ExcelFileReader extends ClassifierEventsDispatcher implements Class
 
             // at least two rows
             if (sheet.getLastRowNum() > 0) {
-                return getClassifiableTexts(sheet);
+                cached_classifiableText = getClassifiableTexts(sheet);
             } else {
                 dispatch("Excel sheet (#" + sheetNumber + ") is empty");
             }
@@ -57,7 +59,7 @@ public class ExcelFileReader extends ClassifierEventsDispatcher implements Class
         } catch (IOException e) {
             dispatch(e.getMessage());
         }
-        return new ArrayList<>();
+        return cached_classifiableText;
     }
 
     @Override

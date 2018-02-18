@@ -5,7 +5,8 @@ import org.junit.Test;
 import org.ripreal.textclassifier2.model.*;
 import org.ripreal.textclassifier2.model.modelimp.DefCharacteristicFactory;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
-import org.ripreal.textclassifier2.textreaders.FromVocabularyReader;
+import org.ripreal.textclassifier2.textreaders.ClassifiableReader;
+import org.ripreal.textclassifier2.textreaders.DefaultClassifiableReader;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class ClassifierTest {
     private Characteristic characteristic;
     private List<VocabularyWord> vocabulary;
     private CharacteristicFactory characteristicFactory;
-    private final FromVocabularyReader reader = new FromVocabularyReader();
+    private ClassifiableReader reader;
 
     @Before
     public void init() {
@@ -69,6 +70,8 @@ public class ClassifierTest {
         vocabulary.add(characteristicFactory.newVocabularyWord("to"));
         vocabulary.add(characteristicFactory.newVocabularyWord("operation"));
         vocabulary.add(characteristicFactory.newVocabularyWord("inserts"));
+
+        reader = new DefaultClassifiableReader(null, characteristicFactory);
 
         ClassifierBuilder builder = ClassifierBuilder.fromReader(reader, characteristicFactory);
         builder.addNeroClassifierUnit(trainedClassifier, characteristic.getName(), vocabulary, nGramStrategy);

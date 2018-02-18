@@ -6,6 +6,7 @@ import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.modelimp.DefCharacteristicFactory;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
+import org.ripreal.textclassifier2.ngram.VocabularyBuilder;
 import org.ripreal.textclassifier2.textreaders.ClassifiableReader;
 import org.ripreal.textclassifier2.textreaders.ClassifiableReaderBuilder;
 

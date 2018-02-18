@@ -5,10 +5,8 @@ import org.ripreal.textclassifier2.model.CharacteristicFactory;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.VocabularyWord;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import javax.validation.constraints.NotEmpty;
+import java.util.*;
 
 public class VocabularyBuilder {
     private final NGramStrategy nGramStrategy;
@@ -17,7 +15,7 @@ public class VocabularyBuilder {
         this.nGramStrategy = nGramStrategy;
     }
 
-    public List<VocabularyWord> getVocabulary(@NonNull List<ClassifiableText> classifiableTexts, @NonNull CharacteristicFactory factory) {
+    public List<VocabularyWord> getVocabulary(List<ClassifiableText> classifiableTexts, @NonNull CharacteristicFactory factory) {
 
         if (classifiableTexts.isEmpty())
             throw new IllegalArgumentException();
