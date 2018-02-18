@@ -1,6 +1,7 @@
 package org.ripreal.textclassifier2.classifier;
 
 import lombok.Getter;
+import lombok.NonNull;
 import org.encog.Encog;
 import org.encog.engine.network.activation.ActivationSigmoid;
 import org.encog.ml.data.basic.BasicMLDataSet;
@@ -17,9 +18,6 @@ import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.ripreal.textclassifier2.model.modelimp.DefVocabularyWord;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
-
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.io.File;
 import java.io.OutputStream;
 import java.util.List;
@@ -42,10 +40,11 @@ public class NeroClassifierUnit extends ClassifierUnit {
 
     // CONSTRUCTORS
 
-    NeroClassifierUnit(File trainedNetwork, @NotNull Characteristic characteristic, @NotEmpty List<VocabularyWord> vocabulary, @NotNull NGramStrategy nGramStrategy) {
+    NeroClassifierUnit(File trainedNetwork, @NonNull Characteristic characteristic, @NonNull List<VocabularyWord> vocabulary, @NonNull NGramStrategy nGramStrategy) {
         if (characteristic.getName().equals("") ||
                 characteristic.getPossibleValues() == null ||
-                characteristic.getPossibleValues().size() == 0) {
+                characteristic.getPossibleValues().size() == 0 ||
+                vocabulary.isEmpty()) {
             throw new IllegalArgumentException();
         }
 

@@ -14,8 +14,6 @@ import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicFactory;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableText;
-
-import javax.validation.constraints.NotNull;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -25,7 +23,6 @@ import java.util.*;
 public class ExcelFileReader extends ClassifierEventsDispatcher implements ClassifiableReader  {
     @NonNull
     private final File file;
-    @NonNull
     private final int sheetNumber;
     @NonNull
     @Getter
@@ -36,7 +33,7 @@ public class ExcelFileReader extends ClassifierEventsDispatcher implements Class
     @Override
     public List<ClassifiableText> toClassifiableTexts() {
 
-        if(! cached_classifiableText.isEmpty()) {
+        if(!cached_classifiableText.isEmpty()) {
             return cached_classifiableText;
         }
 
@@ -64,7 +61,7 @@ public class ExcelFileReader extends ClassifierEventsDispatcher implements Class
 
     @Override
     public void reset() {
-
+        cached_classifiableText = new ArrayList<>();
     }
 
     private List<ClassifiableText> getClassifiableTexts(XSSFSheet sheet) {
