@@ -7,7 +7,7 @@ public interface CharacteristicFactory {
 
     Characteristic newCharacteristic(String name);
 
-    CharacteristicValue newCharacteristicValue(String value);
+    CharacteristicValue newCharacteristicValue(String value, int orderNumber, Characteristic characteristic);
 
     ClassifiableText newClassifiableText(String text);
 

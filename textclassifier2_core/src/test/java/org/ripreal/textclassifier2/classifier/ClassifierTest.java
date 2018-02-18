@@ -5,14 +5,10 @@ import org.junit.Test;
 import org.ripreal.textclassifier2.model.*;
 import org.ripreal.textclassifier2.model.modelimp.DefCharacteristicFactory;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
-import org.ripreal.textclassifier2.textreaders.ClassifiableReader;
-import org.ripreal.textclassifier2.textreaders.DefaultClassifiableReader;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.IOException;
+import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -25,7 +21,6 @@ public class ClassifierTest {
     private Characteristic characteristic;
     private List<VocabularyWord> vocabulary;
     private CharacteristicFactory characteristicFactory;
-    private ClassifiableReader reader;
 
     @Before
     public void init() {
@@ -34,9 +29,9 @@ public class ClassifierTest {
          characteristicFactory = new DefCharacteristicFactory();
 
         characteristic = characteristicFactory.newCharacteristic("Method");
-        characteristic.addPossibleValue(characteristicFactory.newCharacteristicValue("get"));
-        characteristic.addPossibleValue(characteristicFactory.newCharacteristicValue("set"));
-        characteristic.addPossibleValue(characteristicFactory.newCharacteristicValue("add"));
+        characteristic.addPossibleValue(characteristicFactory.newCharacteristicValue("get", 1, characteristic));
+        characteristic.addPossibleValue(characteristicFactory.newCharacteristicValue("set", 2, characteristic));
+        characteristic.addPossibleValue(characteristicFactory.newCharacteristicValue("add", 3, characteristic));
 
         // create vocabulary
         //
@@ -71,11 +66,20 @@ public class ClassifierTest {
         vocabulary.add(characteristicFactory.newVocabularyWord("operation"));
         vocabulary.add(characteristicFactory.newVocabularyWord("inserts"));
 
-        reader = new DefaultClassifiableReader(null, characteristicFactory);
+        boolean exist = trainedClassifier.exists();
+        File file = new File("./t1");
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println(file.toPath().toAbsolutePath().toString());
+        classifier = new Classifier(
+            Collections.singletonList(
+                new NeroClassifierUnit(trainedClassifier, characteristic, vocabulary, nGramStrategy))
+        );
 
-        ClassifierBuilder builder = ClassifierBuilder.fromReader(reader, characteristicFactory);
-        builder.addNeroClassifierUnit(trainedClassifier, characteristic.getName(), vocabulary, nGramStrategy);
-       }
+   }
 
     @Test(expected = IllegalArgumentException.class)
     public void nonexistentFile() {
@@ -144,16 +148,16 @@ public class ClassifierTest {
     }
 
     @Test
-    public void train() throws Exception {
+    public void build() throws Exception {
 
         List<ClassifiableText> classifiableTexts = new ArrayList<>();
 
         Map<Characteristic, CharacteristicValue> characteristics = new HashMap<>();
-        characteristics.put(characteristicFactory.newCharacteristic("Method"), characteristicFactory.newCharacteristicValue("get"));
+        characteristics.put(characteristicFactory.newCharacteristic("Method"), characteristicFactory.newCharacteristicValue("get", 1, characteristic));
         classifiableTexts.add(characteristicFactory.newClassifiableText("shifts right any this operation", characteristics));
 
         characteristics = new HashMap<>();
-        characteristics.put(characteristicFactory.newCharacteristic("Method"), characteristicFactory.newCharacteristicValue("add"));
+        characteristics.put(characteristicFactory.newCharacteristic("Method"), characteristicFactory.newCharacteristicValue("add", 3, characteristic));
         classifiableTexts.add(characteristicFactory.newClassifiableText("that at returns", characteristics));
 
         // make sure classifier is stupid

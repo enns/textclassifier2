@@ -82,7 +82,6 @@ public class ExcelFileReader extends ClassifierEventsDispatcher implements Class
         for (Characteristic characteristic : characteristics) {
             int i = 1;
             for (CharacteristicValue characteristicValue : characteristic.getPossibleValues()) {
-                characteristicValue.setCharacteristic(characteristic);
                 characteristicValue.setOrderNumber(i++);
             }
         }
@@ -98,9 +97,9 @@ public class ExcelFileReader extends ClassifierEventsDispatcher implements Class
             String valueName = row.getCell(i).getStringCellValue();
 
             CharacteristicValue value = CharacteristicUtils.findByValue(
-                characteristic.getPossibleValues(), valueName, characteristicFactory::newCharacteristicValue);
+                characteristic.getPossibleValues(), valueName, (val) -> characteristicFactory.newCharacteristicValue(val, 0, characteristic));
             if (value == null) {
-                value = characteristicFactory.newCharacteristicValue(valueName);
+                value = characteristicFactory.newCharacteristicValue(valueName, 0, characteristic);
             }
             characteristic.addPossibleValue(value);
             characteristicsValues.put(characteristic, value);
@@ -129,4 +128,5 @@ public class ExcelFileReader extends ClassifierEventsDispatcher implements Class
     public void dispatch(String text) {
         listeners.forEach(action -> action.dispatch(ClassifierAction.EventTypes.EXCEL_FILE_READER_EVENT, text));
     }
+
 }

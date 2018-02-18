@@ -88,7 +88,7 @@ public class NeroClassifierUnit extends ClassifierUnit {
         do {
             train.iteration();
             dispatch("Training Classifier for '" + characteristic.getName() + "' characteristic. Errors: " + String.format("%.2f", train.getError() * 100) + "%. Wait...");
-        } while (train.getError() > 16.01);
+        } while (train.getError() > 0.01);
 
         train.finishTraining();
         dispatch("Classifier for '" + characteristic.getName() + "' characteristic trained. Wait...");

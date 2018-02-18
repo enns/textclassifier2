@@ -27,7 +27,10 @@ public final class Classifier extends ClassifierEventsDispatcher {
 
     public List<CharacteristicValue> classify(@NonNull ClassifiableText classifiableText) {
         List<CharacteristicValue> values = new ArrayList<>();
-        classifierUnits.forEach(unit -> values.add(unit.classify(classifiableText)));
+        classifierUnits.forEach(unit -> {
+            values.add(unit.classify(classifiableText));
+            }
+        );
         return values;
     }
 

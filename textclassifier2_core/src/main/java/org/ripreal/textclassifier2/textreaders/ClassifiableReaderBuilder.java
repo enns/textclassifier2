@@ -21,7 +21,4 @@ public class ClassifiableReaderBuilder {
         return new ExcelFileReader(file, sheetNumber, characteristicFactory);
     }
 
-    public ClassifiableReader newClassifiableTextReader(List<ClassifiableText> texts, CharacteristicFactory characteristicFactory) {
-        return new DefaultClassifiableReader(texts, characteristicFactory);
-    }
 }

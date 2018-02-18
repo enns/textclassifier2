@@ -15,8 +15,8 @@ public class DefCharacteristicFactory implements CharacteristicFactory {
         return new DefCharacteristic(name);
     }
 
-    public CharacteristicValue newCharacteristicValue(String value){
-        return new DefCharacteristicValue(value);
+    public CharacteristicValue newCharacteristicValue(String value, int orderNumber, Characteristic characteristic) {
+        return new DefCharacteristicValue(value, orderNumber, characteristic);
     }
 
     public ClassifiableText newClassifiableText(String text){
