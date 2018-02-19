@@ -81,16 +81,7 @@ public class ClassifierTest {
 
    }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void nonexistentFile() {
-        ClassifierBuilder
-            .fromReader((builder) -> builder.newExcelFileReader(
-                new File("./test_db/nonexistentFile"), 1),
-                new DefCharacteristicFactory())
-            .build();
-    }
-
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = NullPointerException.class)
     public void nullCharacteristic() {
         new NeroClassifierUnit(trainedClassifier, null, vocabulary, nGramStrategy);
     }
@@ -110,7 +101,7 @@ public class ClassifierTest {
         new NeroClassifierUnit(trainedClassifier, characteristic, new ArrayList<>(), nGramStrategy);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = NullPointerException.class)
     public void nullNGram() {
         new NeroClassifierUnit(trainedClassifier, characteristic, vocabulary, null);
     }
@@ -175,11 +166,6 @@ public class ClassifierTest {
         assertEquals(classifier.classify(classifiableTexts.get(0)).get(0).getValue(), "get");
         assertEquals(classifier.classify(classifiableTexts.get(1)).get(0).getValue(), "add");
         assertEquals(classifier.classify(characteristicFactory.newClassifiableText("shifts right sdawwda any this operation")).get(0).getValue(), "get");
-    }
-
-    @Test
-    public void toStringTest() throws Exception {
-        assertEquals(classifier.toString(), "MethodNeuralNetworkClassifier");
     }
 
     @Test

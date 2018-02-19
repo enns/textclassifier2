@@ -1,6 +1,7 @@
 package org.ripreal.textclassifier2;
 
 import org.junit.Test;
+import org.ripreal.textclassifier2.classifier.ClassifierBuilder;
 import org.ripreal.textclassifier2.model.CharacteristicFactory;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.modelimp.DefCharacteristicFactory;
@@ -41,6 +42,15 @@ public class ExcelFileReaderTest {
     @Test(expected = FileNotFoundException.class)
     public void xlsxToClassifiableTextsNotExistingFile() throws Exception {
         excelFileReader.toClassifiableTexts();
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void nonexistentFile() {
+        ClassifierBuilder
+                .fromReader((builder) -> builder.newExcelFileReader(
+                        new File("./test_db/nonexistentFile"), 1),
+                        new DefCharacteristicFactory())
+                .build();
     }
 
     /*
