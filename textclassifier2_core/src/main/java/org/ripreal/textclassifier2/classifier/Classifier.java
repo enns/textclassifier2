@@ -36,13 +36,13 @@ public final class Classifier extends ClassifierEventsDispatcher {
 
     public void saveClassifiers(@NonNull File file) {
         for (ClassifierUnit classifier : classifierUnits) {
-            classifier.saveTrainedClassifier(file);
+            classifier.saveClassifier(file);
         }
     }
 
     public void saveClassifiers(@NonNull OutputStream stream) {
         for (ClassifierUnit classifier : classifierUnits) {
-            classifier.saveTrainedClassifier(stream);
+            classifier.saveClassifier(stream);
         }
     }
 

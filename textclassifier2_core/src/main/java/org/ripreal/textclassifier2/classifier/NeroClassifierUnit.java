@@ -70,6 +70,7 @@ public class NeroClassifierUnit extends ClassifierUnit {
 
     public void build(List<ClassifiableText> classifiableTexts) {
 
+
         // prepare input and ideal vectors
         // input <- ClassifiableText text vector
         // ideal <- characteristicValue vector
@@ -104,12 +105,12 @@ public class NeroClassifierUnit extends ClassifierUnit {
         return convertVectorToCharacteristic(output);
     }
 
-    public void saveTrainedClassifier(File file) {
+    public void saveClassifier(File file) {
         saveObject(file, network);
         dispatch("Trained Classifier for '" + characteristic.getName() + "' characteristic saved. Wait...");
     }
 
-    public void saveTrainedClassifier(OutputStream stream) {
+    public void saveClassifier(OutputStream stream) {
         saveObject(stream, network);
         dispatch("Trained Classifier for '" + characteristic.getName() + "' characteristic saved. Wait...");
     }
@@ -147,6 +148,7 @@ public class NeroClassifierUnit extends ClassifierUnit {
 
         for (CharacteristicValue c : characteristic.getPossibleValues()) {
             if (c.getOrderNumber() == idOfMaxValue) {
+                //todo: rewrite as optional
                 return c;
             }
         }
@@ -202,8 +204,16 @@ public class NeroClassifierUnit extends ClassifierUnit {
     // count = 5; id = 4;
     // vector = {0, 0, 0, 1, 0}
     private double[] getCharacteristicAsVector(ClassifiableText classifiableText) {
+
+        int orderNumber = classifiableText.getCharacteristicValue(characteristic.getName()).getOrderNumber();
+
+        if (orderNumber < 1 || orderNumber > outputLayerSize)
+            throw new IllegalArgumentException("OrderNumber property of a characteristic value " +
+            "should start with 1 and be not greater than outputLayerSize");
+
         double[] vector = new double[outputLayerSize];
-        vector[classifiableText.getCharacteristicValue(characteristic.getName()).getOrderNumber() - 1] = 1;
+
+        vector[orderNumber - 1] = 1;
         return vector;
     }
 

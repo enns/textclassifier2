@@ -23,9 +23,9 @@ abstract class ClassifierUnit extends ClassifierEventsDispatcher {
 
     abstract public CharacteristicValue classify(ClassifiableText classifiableText);
 
-    abstract public void saveTrainedClassifier(File file);
+    abstract public void saveClassifier(File file);
 
-    abstract public void saveTrainedClassifier(OutputStream stream);
+    abstract public void saveClassifier(OutputStream stream);
 
     abstract public void shutdown();
 
