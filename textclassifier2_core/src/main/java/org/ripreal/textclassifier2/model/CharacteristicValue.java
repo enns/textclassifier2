@@ -8,4 +8,5 @@ public interface CharacteristicValue {
     void setOrderNumber(int orderNumber);
 
     String getValue();
+
 }

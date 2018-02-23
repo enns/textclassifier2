@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_textclassifier2_test" default="compile.module.textclassifier2_test">
+  <dirname property="module.textclassifier2_test.basedir" file="${ant.file.module_textclassifier2_test}"/>
+  
+  <property name="module.jdk.home.textclassifier2_test" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.textclassifier2_test" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.textclassifier2_test" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.textclassifier2_test" value="-encoding UTF-8 -source 1.8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="textclassifier2_test.output.dir" value="undefined"/>
+  <property name="textclassifier2_test.testoutput.dir" value="${module.textclassifier2_test.basedir}/../../out/test/classes"/>
+  
+  <path id="textclassifier2_test.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="textclassifier2_test.module.production.classpath">
+    <path refid="${module.jdk.classpath.textclassifier2_test}"/>
+    <pathelement location="${textclassifier2_main.output.dir}"/>
+  </path>
+  
+  <path id="textclassifier2_test.runtime.production.module.classpath">
+    <path refid="textclassifier2_main.runtime.production.module.classpath"/>
+  </path>
+  
+  <path id="textclassifier2_test.module.classpath">
+    <path refid="${module.jdk.classpath.textclassifier2_test}"/>
+    <pathelement location="${textclassifier2_main.output.dir}"/>
+  </path>
+  
+  <path id="textclassifier2_test.runtime.module.classpath">
+    <pathelement location="${textclassifier2_test.testoutput.dir}"/>
+    <path refid="textclassifier2_main.runtime.module.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.textclassifier2_test">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.textclassifier2_test">
+    <patternset refid="excluded.from.module.textclassifier2_test"/>
+  </patternset>
+  
+  
+  <target name="compile.module.textclassifier2_test" depends="compile.module.textclassifier2_test.production,compile.module.textclassifier2_test.tests" description="Compile module textclassifier2_test"/>
+  
+  <target name="compile.module.textclassifier2_test.production" depends="register.custom.compilers,compile.module.textclassifier2_main" description="Compile module textclassifier2_test; production classes"/>
+  
+  <target name="compile.module.textclassifier2_test.tests" depends="register.custom.compilers,compile.module.textclassifier2_test.production" description="compile module textclassifier2_test; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.textclassifier2_test" description="cleanup module">
+    <delete dir="${textclassifier2_test.output.dir}"/>
+    <delete dir="${textclassifier2_test.testoutput.dir}"/>
+  </target>
+</project>

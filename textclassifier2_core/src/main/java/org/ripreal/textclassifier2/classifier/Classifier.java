@@ -6,10 +6,12 @@ import org.ripreal.textclassifier2.actions.ClassifierEventsDispatcher;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableText;
+
 import java.io.File;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 // COMPOSITE
 @RequiredArgsConstructor
@@ -28,8 +30,8 @@ public final class Classifier extends ClassifierEventsDispatcher {
     public List<CharacteristicValue> classify(@NonNull ClassifiableText classifiableText) {
         List<CharacteristicValue> values = new ArrayList<>();
         classifierUnits.forEach(unit -> {
-            values.add(unit.classify(classifiableText));
-            }
+                    unit.classify(classifiableText).map(values::add);
+                }
         );
         return values;
     }
@@ -54,9 +56,9 @@ public final class Classifier extends ClassifierEventsDispatcher {
 
             for (ClassifiableText classifiableText : textForTesting) {
                 CharacteristicValue idealValue = classifiableText.getCharacteristicValue(characteristic.getName());
-                CharacteristicValue classifiedValue = unit.classify(classifiableText);
+                Optional<CharacteristicValue> classifiedValue = unit.classify(classifiableText);
 
-                if (classifiedValue.getValue().equals(idealValue.getValue())) {
+                if (classifiedValue.isPresent() && classifiedValue.get().getValue().equals(idealValue.getValue())) {
                     correctlyClassified++;
                 }
             }

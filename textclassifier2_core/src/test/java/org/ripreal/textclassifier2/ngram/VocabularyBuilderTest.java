@@ -1,12 +1,10 @@
-package org.ripreal.textclassifier2;
+package org.ripreal.textclassifier2.ngram;
 
 import org.junit.Test;
 import org.ripreal.textclassifier2.model.CharacteristicFactory;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.ripreal.textclassifier2.model.modelimp.DefCharacteristicFactory;
-import org.ripreal.textclassifier2.ngram.NGramStrategy;
-import org.ripreal.textclassifier2.ngram.VocabularyBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +48,7 @@ public class VocabularyBuilderTest {
         assertEquals(vocabulary.size(), 0);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = NullPointerException.class)
     public void getVocabularyNull() throws Exception {
         VocabularyBuilder builder = new VocabularyBuilder(ngram);
         builder.getVocabulary(null, characteristicFactory);

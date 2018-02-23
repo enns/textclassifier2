@@ -31,4 +31,8 @@ public class ClassifiableText {
                 && this.characteristics.equals(((ClassifiableText) o).getCharacteristics());
     }
 
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }

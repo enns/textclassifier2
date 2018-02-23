@@ -11,7 +11,7 @@ public class DefCharacteristicFactory implements CharacteristicFactory {
     private int VOCABULARY_ID_INCREMENT = 1;
     private int CLASSIFIABLE_TEXT_ID_INCREMENT = 1;
 
-    public Characteristic newCharacteristic(String name){
+    public Characteristic newCharacteristic(String name) {
         return new DefCharacteristic(name);
     }
 
@@ -19,7 +19,7 @@ public class DefCharacteristicFactory implements CharacteristicFactory {
         return new DefCharacteristicValue(value, orderNumber, characteristic);
     }
 
-    public ClassifiableText newClassifiableText(String text){
+    public ClassifiableText newClassifiableText(String text) {
         return newClassifiableText(text, null);
     }
 
@@ -27,7 +27,7 @@ public class DefCharacteristicFactory implements CharacteristicFactory {
         return new DefClassifiableText(CLASSIFIABLE_TEXT_ID_INCREMENT++, text, characteristics);
     }
 
-    public VocabularyWord newVocabularyWord(String value){
+    public VocabularyWord newVocabularyWord(String value) {
         return new DefVocabularyWord(VOCABULARY_ID_INCREMENT++, value);
     }
 }

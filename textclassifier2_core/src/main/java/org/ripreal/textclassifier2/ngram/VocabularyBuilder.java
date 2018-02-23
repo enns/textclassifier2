@@ -4,7 +4,11 @@ import lombok.NonNull;
 import org.ripreal.textclassifier2.model.CharacteristicFactory;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.VocabularyWord;
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class VocabularyBuilder {
     private final NGramStrategy nGramStrategy;

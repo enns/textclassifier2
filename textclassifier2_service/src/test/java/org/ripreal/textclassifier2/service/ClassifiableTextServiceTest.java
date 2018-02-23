@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
+import static org.junit.Assert.assertNotNull;
+
 @NoArgsConstructor
 public class ClassifiableTextServiceTest extends AbstractServiceTest<ClassifiableText> {
 
@@ -26,15 +28,10 @@ public class ClassifiableTextServiceTest extends AbstractServiceTest<Classifiabl
     }
 
     @Test
-    public void findAll() throws Exception {
-    }
-
-    @Test
-    public void findById() throws Exception {
-    }
-
-    @Test
-    public void deleteAll() throws Exception {
+    public void testFindById() throws Exception {
+        DataService<ClassifiableText> service = createDataService();
+        ClassifiableText text = service.saveAll(getTestData()).blockLast();
+        assertNotNull(service.findById(text.getId()).block());
     }
 
 }

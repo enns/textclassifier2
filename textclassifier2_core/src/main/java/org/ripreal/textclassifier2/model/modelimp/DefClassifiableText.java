@@ -6,6 +6,7 @@ import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 
 import java.util.Map;
+
 @Data
 class DefClassifiableText implements ClassifiableText {
 

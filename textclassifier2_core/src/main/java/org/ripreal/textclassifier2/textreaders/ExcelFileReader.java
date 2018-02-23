@@ -1,6 +1,5 @@
 package org.ripreal.textclassifier2.textreaders;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -14,13 +13,17 @@ import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicFactory;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableText;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
-public class ExcelFileReader extends ClassifierEventsDispatcher implements ClassifiableReader  {
+public class ExcelFileReader extends ClassifierEventsDispatcher implements ClassifiableReader {
     @NonNull
     private final File file;
     private final int sheetNumber;
@@ -33,13 +36,14 @@ public class ExcelFileReader extends ClassifierEventsDispatcher implements Class
     @Override
     public List<ClassifiableText> toClassifiableTexts() {
 
-        if(!cached_classifiableText.isEmpty()) {
+        if (!cached_classifiableText.isEmpty()) {
             return cached_classifiableText;
         }
 
         if (!file.exists() ||
                 sheetNumber < 1) {
-            throw new IllegalArgumentException("File with texts not exist or has wrong format!");
+            dispatch("File with texts not exist or has wrong format!");
+            return cached_classifiableText;
         }
 
         try (XSSFWorkbook excelFile = new XSSFWorkbook(new FileInputStream(file))) {
@@ -97,7 +101,7 @@ public class ExcelFileReader extends ClassifierEventsDispatcher implements Class
             String valueName = row.getCell(i).getStringCellValue();
 
             CharacteristicValue value = CharacteristicUtils.findByValue(
-                characteristic.getPossibleValues(), valueName, (val) -> characteristicFactory.newCharacteristicValue(val, 0, characteristic));
+                    characteristic.getPossibleValues(), valueName, (val) -> characteristicFactory.newCharacteristicValue(val, 0, characteristic));
             if (value == null) {
                 value = characteristicFactory.newCharacteristicValue(valueName, 0, characteristic);
             }

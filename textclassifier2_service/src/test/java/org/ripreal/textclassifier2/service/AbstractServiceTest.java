@@ -9,19 +9,18 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {App.class})
 public abstract class AbstractServiceTest<T> {
 
-    private DataService<T> service;
-
     @Before
     public void setUp() {
-        service = createDataService();
-        service
-                .deleteAll()
-                .thenMany(service.saveAll(getTestData()))
-                .blockLast();
+        DataService<T> service = createDataService();
+        service.deleteAll();
     }
 
     protected abstract DataService<T> createDataService();
@@ -29,16 +28,15 @@ public abstract class AbstractServiceTest<T> {
     protected abstract List<T> getTestData();
 
     @Test
-    public void saveAll() throws Exception {
-        //TEST CREATE
-        /*
-        List<T> data = getTestData();
-        Iterable<T> savedData = service.saveAll(data).toIterable();
-        assertEquals(savedData.iterator().hasNext(), true);
+    public void testCRUD() throws Exception {
 
-        for (T savedEntry : savedData) {
-            assertEquals(data.iterator().next(), savedEntry);
-        }
-        */
+        List<T> testData = getTestData();
+
+        //TEST CREATE
+        DataService<T> service = createDataService();
+
+        assertNotNull(service.saveAll(testData).blockLast());
+        assertNotNull(service.findAll().blockLast());
+        assertNull(service.deleteAll().blockLast());
     }
 }

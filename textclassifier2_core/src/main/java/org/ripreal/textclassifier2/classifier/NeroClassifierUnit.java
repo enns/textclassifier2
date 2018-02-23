@@ -18,9 +18,11 @@ import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.ripreal.textclassifier2.model.modelimp.DefVocabularyWord;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
+
 import java.io.File;
 import java.io.OutputStream;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import static org.encog.persist.EncogDirectoryPersistence.loadObject;
@@ -95,7 +97,7 @@ public class NeroClassifierUnit extends ClassifierUnit {
         dispatch("Classifier for '" + characteristic.getName() + "' characteristic trained. Wait...");
     }
 
-    public CharacteristicValue classify(ClassifiableText classifiableText) {
+    public Optional<CharacteristicValue> classify(ClassifiableText classifiableText) {
         double[] output = new double[outputLayerSize];
 
         // calculate output vector
@@ -140,7 +142,7 @@ public class NeroClassifierUnit extends ClassifierUnit {
         return network;
     }
 
-    private CharacteristicValue convertVectorToCharacteristic(double[] vector) {
+    private Optional<CharacteristicValue> convertVectorToCharacteristic(double[] vector) {
         int idOfMaxValue = getIdOfMaxValue(vector);
 
         // find CharacteristicValue with found Id
@@ -149,11 +151,11 @@ public class NeroClassifierUnit extends ClassifierUnit {
         for (CharacteristicValue c : characteristic.getPossibleValues()) {
             if (c.getOrderNumber() == idOfMaxValue) {
                 //todo: rewrite as optional
-                return c;
+                return Optional.of(c);
             }
         }
 
-        return null;
+        return Optional.empty();
     }
 
     private int getIdOfMaxValue(double[] vector) {
@@ -209,7 +211,7 @@ public class NeroClassifierUnit extends ClassifierUnit {
 
         if (orderNumber < 1 || orderNumber > outputLayerSize)
             throw new IllegalArgumentException("OrderNumber property of a characteristic value " +
-            "should start with 1 and be not greater than outputLayerSize");
+                    "should start with 1 and be not greater than outputLayerSize");
 
         double[] vector = new double[outputLayerSize];
 

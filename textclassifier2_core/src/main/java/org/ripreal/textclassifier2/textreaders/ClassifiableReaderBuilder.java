@@ -2,10 +2,8 @@ package org.ripreal.textclassifier2.textreaders;
 
 import lombok.RequiredArgsConstructor;
 import org.ripreal.textclassifier2.model.CharacteristicFactory;
-import org.ripreal.textclassifier2.model.ClassifiableText;
 
 import java.io.File;
-import java.util.List;
 
 // FACTORY
 @RequiredArgsConstructor

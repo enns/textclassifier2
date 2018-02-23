@@ -10,8 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.*;
 
 public class NeroClassifierUnitTest {
 
@@ -26,7 +25,7 @@ public class NeroClassifierUnitTest {
     public void init() {
         // create characteristic
         //
-         characteristicFactory = new DefCharacteristicFactory();
+        characteristicFactory = new DefCharacteristicFactory();
 
         characteristic = characteristicFactory.newCharacteristic("Method");
         characteristic.addPossibleValue(characteristicFactory.newCharacteristicValue("get", 1, characteristic));
@@ -75,7 +74,7 @@ public class NeroClassifierUnitTest {
         }
         System.out.println(file.toPath().toAbsolutePath().toString());
         classifier = new NeroClassifierUnit(trainedClassifier, characteristic, vocabulary, nGramStrategy);
-   }
+    }
 
     @Test(expected = NullPointerException.class)
     public void nullCharacteristic() {
@@ -87,7 +86,7 @@ public class NeroClassifierUnitTest {
         new NeroClassifierUnit(trainedClassifier, characteristicFactory.newCharacteristic("Test"), vocabulary, nGramStrategy);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = NullPointerException.class)
     public void nullVocabulary() {
         new NeroClassifierUnit(trainedClassifier, characteristic, null, nGramStrategy);
     }
@@ -106,26 +105,38 @@ public class NeroClassifierUnitTest {
     public void classify() throws Exception {
 
         ClassifiableText ctGet = characteristicFactory.newClassifiableText("Returns the element at the specified position in this list");
-        CharacteristicValue cvGet = classifier.classify(ctGet);
+        Optional<CharacteristicValue> cvGet = classifier.classify(ctGet);
 
-        assertEquals(cvGet.getOrderNumber(), 1);
-        assertEquals(cvGet.getValue(), "get");
+        assertEquals(cvGet.get().getOrderNumber(), 1);
+        assertEquals(cvGet.get().getValue(), "get");
 
         //
 
         ClassifiableText ctSet = characteristicFactory.newClassifiableText("Replaces the element at the specified position in this list with the specified element (optional operation)");
-        CharacteristicValue cvSet = classifier.classify(ctSet);
+        Optional<CharacteristicValue> cvSet = classifier.classify(ctSet);
 
-        assertEquals(cvSet.getOrderNumber(), 2);
-        assertEquals(cvSet.getValue(), "set");
+        assertEquals(cvSet.get().getOrderNumber(), 2);
+        assertEquals(cvSet.get().getValue(), "set");
 
         //
 
         ClassifiableText ctAdd = characteristicFactory.newClassifiableText("Inserts the specified element at the specified position in this list (optional operation). Shifts the element currently at that position (if any) and any subsequent elements to the right (adds one to their indices)");
-        CharacteristicValue cvAdd = classifier.classify(ctAdd);
+        Optional<CharacteristicValue> cvAdd = classifier.classify(ctAdd);
 
-        assertEquals(cvAdd.getOrderNumber(), 3);
-        assertEquals(cvAdd.getValue(), "add");
+        assertEquals(cvAdd.get().getOrderNumber(), 3);
+        assertEquals(cvAdd.get().getValue(), "add");
+
+        characteristic.getPossibleValues().clear();
+
+        List<ClassifiableText> classifiableTexts = new ArrayList<>();
+
+        Map<Characteristic, CharacteristicValue> characteristics = new HashMap<>();
+        characteristics = new HashMap<>();
+        characteristics.put(characteristicFactory.newCharacteristic("Method"), characteristicFactory.newCharacteristicValue("add", 56, characteristic));
+        classifiableTexts.add(characteristicFactory.newClassifiableText("that at returns", characteristics));
+
+        Optional<CharacteristicValue> val = classifier.classify(classifiableTexts.get(0));
+        assertTrue(!val.isPresent());
 
     }
 
@@ -151,8 +162,8 @@ public class NeroClassifierUnitTest {
         // make sure classifier is stupid
         //
 
-        assertNotEquals(classifier.classify(classifiableTexts.get(0)).getValue(), "get");
-        assertNotEquals(classifier.classify(classifiableTexts.get(1)).getValue(), "add");
+        assertNotEquals(classifier.classify(classifiableTexts.get(0)).get().getValue(), "get");
+        assertNotEquals(classifier.classify(classifiableTexts.get(1)).get().getValue(), "add");
 
         // train
         classifier.build(classifiableTexts);
@@ -160,9 +171,9 @@ public class NeroClassifierUnitTest {
         // make sure classifier became smart
         //
 
-        assertEquals(classifier.classify(classifiableTexts.get(0)).getValue(), "get");
-        assertEquals(classifier.classify(classifiableTexts.get(1)).getValue(), "add");
-        assertEquals(classifier.classify(characteristicFactory.newClassifiableText("shifts right sdawwda any this operation")).getValue(), "get");
+        assertEquals(classifier.classify(classifiableTexts.get(0)).get().getValue(), "get");
+        assertEquals(classifier.classify(classifiableTexts.get(1)).get().getValue(), "add");
+        assertEquals(classifier.classify(characteristicFactory.newClassifiableText("shifts right sdawwda any this operation")).get().getValue(), "get");
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -175,21 +186,6 @@ public class NeroClassifierUnitTest {
         classifiableTexts.add(characteristicFactory.newClassifiableText("that at returns", characteristics));
 
         classifier.build(classifiableTexts);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void buildWrongOrderOrderNumber() {
-
-        characteristic.getPossibleValues().clear();
-
-        List<ClassifiableText> classifiableTexts = new ArrayList<>();
-
-        Map<Characteristic, CharacteristicValue> characteristics = new HashMap<>();
-        characteristics = new HashMap<>();
-        characteristics.put(characteristicFactory.newCharacteristic("Method"), characteristicFactory.newCharacteristicValue("add", 56, characteristic));
-        classifiableTexts.add(characteristicFactory.newClassifiableText("that at returns", characteristics));
-
-        CharacteristicValue val = classifier.classify(classifiableTexts.get(0));
     }
 
     @Test

@@ -6,15 +6,15 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.ripreal.textclassifier2.model.*;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class ClassifiableTextTestDataHelper {
 
     public static List<ClassifiableText> getTextTestData() {
-        Characteristic characteristic1 = new Characteristic("Отдел");
+
+        List<Characteristic> characteristics = getCharacteristicTestData();
+
+        Characteristic characteristic1 = characteristics.get(0);
 
         Set<CharacteristicValue> vals = new HashSet<>();
         CharacteristicValue auto = new CharacteristicValue("Автосалон", 0, characteristic1);
@@ -26,7 +26,7 @@ public class ClassifiableTextTestDataHelper {
 
         // characteristic1.setPossibleValues(vals);
 
-        Characteristic characteristic2 = new Characteristic("Тип");
+        Characteristic characteristic2 = characteristics.get(1);
 
         Set<CharacteristicValue> vals2 = new HashSet<>();
         CharacteristicValue it = new CharacteristicValue("Техподдержка", 0, characteristic2);
@@ -58,6 +58,14 @@ public class ClassifiableTextTestDataHelper {
                 new VocabularyWord("треб"),
                 new VocabularyWord("найти")
         );
+    }
+
+    public static List<Characteristic> getCharacteristicTestData() {
+        // order has meaning
+        List<Characteristic> characteristics = new ArrayList<>();
+        characteristics.add(new Characteristic("Отдел"));
+        characteristics.add(new Characteristic("Тип"));
+        return characteristics;
     }
 
     public static String ConvertObjectToJson(Object data) throws JsonProcessingException {

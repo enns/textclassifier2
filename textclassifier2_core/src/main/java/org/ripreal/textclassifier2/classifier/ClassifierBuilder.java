@@ -9,6 +9,7 @@ import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
 import org.ripreal.textclassifier2.textreaders.ClassifiableReader;
 import org.ripreal.textclassifier2.textreaders.ClassifiableReaderBuilder;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +33,7 @@ public final class ClassifierBuilder {
     // CONSTRUCTORS
 
     public static ClassifierBuilder fromReader(@NonNull Function<ClassifiableReaderBuilder, ClassifiableReader> provider,
-        @NonNull CharacteristicFactory characteristicFactory) {
+                                               @NonNull CharacteristicFactory characteristicFactory) {
 
         ClassifiableReader reader = provider.apply(ClassifiableReaderBuilder.builder(characteristicFactory));
         return new ClassifierBuilder(reader, characteristicFactory);
@@ -45,18 +46,18 @@ public final class ClassifierBuilder {
     // CLIENT SECTION
 
     public ClassifierBuilder addNeroClassifierUnit(@NonNull String characteristicName, @NonNull NGramStrategy nGramStrategy) {
-        addNeroClassifierUnit(null, characteristicName,null, nGramStrategy);
+        addNeroClassifierUnit(null, characteristicName, null, nGramStrategy);
         return this;
     }
 
     public ClassifierBuilder addNeroClassifierUnit(File trainedClassifier, @NonNull String characteristicName, List<VocabularyWord> vocabulary, @NonNull NGramStrategy nGramStrategy) {
         classifierUnits.add(
                 new ClassifierUnitProxy(
-                    NeroClassifierUnit::new,
-                    trainedClassifier,
-                    nGramStrategy,
-                    vocabulary,
-                    characteristicFactory.newCharacteristic(characteristicName)
+                        NeroClassifierUnit::new,
+                        trainedClassifier,
+                        nGramStrategy,
+                        vocabulary,
+                        characteristicFactory.newCharacteristic(characteristicName)
                 ));
         return this;
     }
@@ -88,15 +89,15 @@ public final class ClassifierBuilder {
         Set<Characteristic> characteristics = reader.toCharacteristics();
 
         List<ClassifierUnit> units = new ArrayList<>();
-        for (ClassifierUnitProxy proxy: classifierUnits) {
+        for (ClassifierUnitProxy proxy : classifierUnits) {
 
             proxy.setVocabulary(reader.toVocabulary(proxy.getNGramStrategy()));
 
             proxy.setCharacteristic(
-                CharacteristicUtils.findByValue(
-                    characteristics,
-                    proxy.getCharacteristic().getName(),
-                    characteristicFactory::newCharacteristic)
+                    CharacteristicUtils.findByValue(
+                            characteristics,
+                            proxy.getCharacteristic().getName(),
+                            characteristicFactory::newCharacteristic)
             );
 
             ClassifierUnit unit = proxy.get();
@@ -113,7 +114,7 @@ public final class ClassifierBuilder {
     }
 
     private boolean initialized() {
-        return ! (reader == null || classifierUnits.size() == 0);
+        return !(reader == null || classifierUnits.size() == 0);
     }
 
     private void shutDownClassifiers(List<ClassifierUnit> units) {
@@ -130,14 +131,22 @@ public final class ClassifierBuilder {
     @AllArgsConstructor
     class ClassifierUnitProxy {
         private final ClassifierUnitSupplier supplier;
-        @Getter private final File trainedClassifier;
-        @Getter private final NGramStrategy nGramStrategy;
-        @Getter @Setter private List<VocabularyWord> vocabulary;
-        @Getter @Setter private Characteristic characteristic;
+        @Getter
+        private final File trainedClassifier;
+        @Getter
+        private final NGramStrategy nGramStrategy;
+        @Getter
+        @Setter
+        private List<VocabularyWord> vocabulary;
+        @Getter
+        @Setter
+        private Characteristic characteristic;
 
         public ClassifierUnit get() {
             return supplier.get(trainedClassifier, characteristic, vocabulary, nGramStrategy);
-        };
+        }
+
+        ;
     }
 
     @FunctionalInterface

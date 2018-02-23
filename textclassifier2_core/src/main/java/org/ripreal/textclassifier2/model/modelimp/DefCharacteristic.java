@@ -6,6 +6,7 @@ import org.ripreal.textclassifier2.model.CharacteristicValue;
 
 import java.util.HashSet;
 import java.util.Set;
+
 @Data
 class DefCharacteristic implements Characteristic {
 
