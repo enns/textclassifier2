@@ -2,7 +2,7 @@ package org.ripreal.textclassifier2.rest;
 
 import org.junit.Test;
 import org.ripreal.textclassifier2.model.ClassifiableText;
-import org.ripreal.textclassifier2.testdata.ClassifiableTextTestDataHelper;
+import org.ripreal.textclassifier2.testdata.ClassifiableTestData;
 import org.springframework.http.MediaType;
 import reactor.core.publisher.Mono;
 
@@ -25,7 +25,7 @@ public class ClassifiableTextResourceTest extends AbstractResourceTest {
 
     @Test
     public void save() throws Exception {
-        ClassifiableText text = ClassifiableTextTestDataHelper.getTextTestData().get(0);
+        ClassifiableText text = ClassifiableTestData.getTextTestData().get(0);
         webClient.post()
                 .uri(URI.create(this.server + "/texts"))
                 .accept(MediaType.APPLICATION_JSON)

@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ripreal.textclassifier2.App;
+import org.ripreal.textclassifier2.model.Characteristic;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -20,7 +21,7 @@ public abstract class AbstractServiceTest<T> {
     @Before
     public void setUp() {
         DataService<T> service = createDataService();
-        service.deleteAll();
+        service.deleteAll().blockLast();
     }
 
     protected abstract DataService<T> createDataService();
@@ -32,11 +33,15 @@ public abstract class AbstractServiceTest<T> {
 
         List<T> testData = getTestData();
 
-        //TEST CREATE
         DataService<T> service = createDataService();
 
+        // TEST CRUD
+
         assertNotNull(service.saveAll(testData).blockLast());
-        assertNotNull(service.findAll().blockLast());
+
+        assertEquals((long) testData.size(), service.findAll().toStream().count());
+
         assertNull(service.deleteAll().blockLast());
+
     }
 }

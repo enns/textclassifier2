@@ -8,7 +8,7 @@ import org.ripreal.textclassifier2.model.*;
 
 import java.util.*;
 
-public class ClassifiableTextTestDataHelper {
+public class ClassifiableTestData {
 
     public static List<ClassifiableText> getTextTestData() {
 

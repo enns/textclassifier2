@@ -3,7 +3,7 @@ package org.ripreal.textclassifier2.classifier;
 import org.junit.Before;
 import org.junit.Test;
 import org.ripreal.textclassifier2.model.*;
-import org.ripreal.textclassifier2.model.modelimp.DefCharacteristicFactory;
+import org.ripreal.textclassifier2.model.modelimp.DefClassifiableFactory;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
 
 import java.io.File;
@@ -19,13 +19,13 @@ public class NeroClassifierUnitTest {
     private NeroClassifierUnit classifier;
     private Characteristic characteristic;
     private List<VocabularyWord> vocabulary;
-    private CharacteristicFactory characteristicFactory;
+    private ClassifiableFactory characteristicFactory;
 
     @Before
     public void init() {
         // create characteristic
         //
-        characteristicFactory = new DefCharacteristicFactory();
+        characteristicFactory = new DefClassifiableFactory();
 
         characteristic = characteristicFactory.newCharacteristic("Method");
         characteristic.addPossibleValue(characteristicFactory.newCharacteristicValue("get", 1, characteristic));

@@ -1,7 +1,7 @@
 package org.ripreal.textclassifier2.ngram;
 
 import lombok.NonNull;
-import org.ripreal.textclassifier2.model.CharacteristicFactory;
+import org.ripreal.textclassifier2.model.ClassifiableFactory;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.VocabularyWord;
 
@@ -17,7 +17,7 @@ public class VocabularyBuilder {
         this.nGramStrategy = nGramStrategy;
     }
 
-    public List<VocabularyWord> getVocabulary(List<ClassifiableText> classifiableTexts, @NonNull CharacteristicFactory factory) {
+    public List<VocabularyWord> getVocabulary(List<ClassifiableText> classifiableTexts, @NonNull ClassifiableFactory factory) {
 
         if (classifiableTexts.isEmpty())
             throw new IllegalArgumentException();

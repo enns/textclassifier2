@@ -4,7 +4,7 @@ import org.ripreal.textclassifier2.classifier.Classifier;
 import org.ripreal.textclassifier2.classifier.ClassifierBuilder;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableText;
-import org.ripreal.textclassifier2.model.modelimp.DefCharacteristicFactory;
+import org.ripreal.textclassifier2.model.modelimp.DefClassifiableFactory;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
 import org.ripreal.textclassifier2.textreaders.ClassifiableReader;
 import org.ripreal.textclassifier2.textreaders.ClassifiableReaderBuilder;
@@ -19,13 +19,13 @@ public class App {
     public static void main(String... args) {
 
         Classifier classifier = ClassifierBuilder
-                .fromReader((builder) -> builder.newExcelFileReader(new File(CONFIG.getTestDataPath()), 1), new DefCharacteristicFactory())
+                .fromReader((builder) -> builder.newExcelFileReader(new File(CONFIG.getTestDataPath()), 1), new DefClassifiableFactory())
                 .subscribe((action, msg) -> System.out.println(String.format("%s: %s", action, msg)))
                 .addNeroClassifierUnit("Отдел", NGramStrategy.getNGramStrategy(NGramStrategy.NGRAM_TYPES.FILTERED_BIGRAM))
                 .addNeroClassifierUnit("Тип", NGramStrategy.getNGramStrategy(NGramStrategy.NGRAM_TYPES.FILTERED_UNIGRAM))
                 .build();
 
-        ClassifiableReader reader = ClassifiableReaderBuilder.builder(new DefCharacteristicFactory()).newExcelFileReader(new File(CONFIG.getTestDataPath()), 1);
+        ClassifiableReader reader = ClassifiableReaderBuilder.builder(new DefClassifiableFactory()).newExcelFileReader(new File(CONFIG.getTestDataPath()), 1);
         ClassifiableText text = reader.toClassifiableTexts().get(0);
         List<CharacteristicValue> charact = classifier.classify(text);
         System.out.println(String.format("Classified text %s", text.getText()));

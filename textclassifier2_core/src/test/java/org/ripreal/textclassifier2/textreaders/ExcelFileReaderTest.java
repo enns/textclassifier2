@@ -1,9 +1,9 @@
 package org.ripreal.textclassifier2.textreaders;
 
 import org.junit.Test;
-import org.ripreal.textclassifier2.model.CharacteristicFactory;
+import org.ripreal.textclassifier2.model.ClassifiableFactory;
 import org.ripreal.textclassifier2.model.ClassifiableText;
-import org.ripreal.textclassifier2.model.modelimp.DefCharacteristicFactory;
+import org.ripreal.textclassifier2.model.modelimp.DefClassifiableFactory;
 
 import java.io.File;
 import java.util.List;
@@ -12,8 +12,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class ExcelFileReaderTest {
-    private final ExcelFileReader excelFileReader = new ExcelFileReader(new File("./test_db/test.xlsx"), 1, new DefCharacteristicFactory());
-    private final CharacteristicFactory characteristicFactory = new DefCharacteristicFactory();
+    private final ExcelFileReader excelFileReader = new ExcelFileReader(new File("./test_db/test.xlsx"), 1, new DefClassifiableFactory());
+    private final ClassifiableFactory characteristicFactory = new DefClassifiableFactory();
 
     @Test
     public void xlsxToClassifiableTexts() throws Exception {

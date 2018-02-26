@@ -3,7 +3,7 @@ package org.ripreal.textclassifier2.model;
 import java.util.Map;
 
 // ABSTRACT FACTORY
-public interface CharacteristicFactory {
+public interface ClassifiableFactory {
 
     Characteristic newCharacteristic(String name);
 

@@ -14,12 +14,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Profile("test")
 @Configuration
-public class ClassifiableTextTestData {
+public class TestDataRunner {
 
     private final DataService<ClassifiableText> textService;
     private final DataService<VocabularyWord> vocabService;
 
-    public ClassifiableTextTestData(ClassifiableTextService textService, VocabularyWordService vocabService) {
+    public TestDataRunner(ClassifiableTextService textService, VocabularyWordService vocabService) {
         this.textService = new LoggerDataService<>(textService);
         this.vocabService = new LoggerDataService<>(vocabService);
     }
@@ -30,10 +30,10 @@ public class ClassifiableTextTestData {
         return args -> {
             textService
                     .deleteAll()
-                    .thenMany(textService.saveAll(ClassifiableTextTestDataHelper.getTextTestData()));
+                    .thenMany(textService.saveAll(ClassifiableTestData.getTextTestData()));
             vocabService
                     .deleteAll()
-                    .thenMany(vocabService.saveAll(ClassifiableTextTestDataHelper.getVocabTestData()));
+                    .thenMany(vocabService.saveAll(ClassifiableTestData.getVocabTestData()));
         };
     }
 }

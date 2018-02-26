@@ -2,7 +2,7 @@ package org.ripreal.textclassifier2.textreaders;
 
 import org.ripreal.textclassifier2.actions.ClassifierAction;
 import org.ripreal.textclassifier2.model.Characteristic;
-import org.ripreal.textclassifier2.model.CharacteristicFactory;
+import org.ripreal.textclassifier2.model.ClassifiableFactory;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
@@ -16,7 +16,7 @@ public interface ClassifiableReader {
 
     // PROPERTIES
 
-    CharacteristicFactory getCharacteristicFactory();
+    ClassifiableFactory getCharacteristicFactory();
 
     // CLIENT SECTION
 

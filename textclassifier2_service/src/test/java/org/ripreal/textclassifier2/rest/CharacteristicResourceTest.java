@@ -2,7 +2,7 @@ package org.ripreal.textclassifier2.rest;
 
 import org.junit.Test;
 import org.ripreal.textclassifier2.model.Characteristic;
-import org.ripreal.textclassifier2.testdata.ClassifiableTextTestDataHelper;
+import org.ripreal.textclassifier2.testdata.ClassifiableTestData;
 import org.springframework.http.MediaType;
 import reactor.core.publisher.Mono;
 
@@ -32,7 +32,7 @@ public class CharacteristicResourceTest extends AbstractResourceTest {
 
     @Test
     public void save() throws Exception {
-        Mono<Characteristic> characteristic = ClassifiableTextTestDataHelper
+        Mono<Characteristic> characteristic = ClassifiableTestData
                 .getTextTestData()
                 .stream()
                 .flatMap(item -> item.getCharacteristics().stream())

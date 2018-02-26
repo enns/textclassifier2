@@ -4,7 +4,7 @@ import lombok.*;
 import org.ripreal.textclassifier2.CharacteristicUtils;
 import org.ripreal.textclassifier2.actions.ClassifierAction;
 import org.ripreal.textclassifier2.model.Characteristic;
-import org.ripreal.textclassifier2.model.CharacteristicFactory;
+import org.ripreal.textclassifier2.model.ClassifiableFactory;
 import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
 import org.ripreal.textclassifier2.textreaders.ClassifiableReader;
@@ -23,7 +23,7 @@ public final class ClassifierBuilder {
     @NonNull
     private final ClassifiableReader reader;
     @NonNull
-    private final CharacteristicFactory characteristicFactory;
+    private final ClassifiableFactory characteristicFactory;
     @NonNull
     private final List<ClassifierUnitProxy> classifierUnits = new ArrayList<>();
     @NonNull
@@ -33,13 +33,13 @@ public final class ClassifierBuilder {
     // CONSTRUCTORS
 
     public static ClassifierBuilder fromReader(@NonNull Function<ClassifiableReaderBuilder, ClassifiableReader> provider,
-                                               @NonNull CharacteristicFactory characteristicFactory) {
+                                               @NonNull ClassifiableFactory characteristicFactory) {
 
         ClassifiableReader reader = provider.apply(ClassifiableReaderBuilder.builder(characteristicFactory));
         return new ClassifierBuilder(reader, characteristicFactory);
     }
 
-    public static ClassifierBuilder fromReader(@NonNull ClassifiableReader reader, @NonNull CharacteristicFactory characteristicFactory) {
+    public static ClassifierBuilder fromReader(@NonNull ClassifiableReader reader, @NonNull ClassifiableFactory characteristicFactory) {
         return new ClassifierBuilder(reader, characteristicFactory);
     }
 

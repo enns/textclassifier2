@@ -464,23 +464,1261 @@
   
   <!-- Modules -->
   
-  <import file="${basedir}/.idea/modules/module_textclassifier2.xml"/>
   
-  <import file="${basedir}/.idea/modules/textclassifier2_core/module_textclassifier2_core.xml"/>
+  <!-- Module textclassifier2 -->
   
-  <import file="${basedir}/.idea/modules/textclassifier2_core/module_textclassifier2_core_main.xml"/>
+  <dirname property="module.textclassifier2.basedir" file="${ant.file}"/>
   
-  <import file="${basedir}/.idea/modules/module_textclassifier2_main.xml"/>
   
-  <import file="${basedir}/.idea/modules/textclassifier2_service/module_textclassifier2_service.xml"/>
+  <property name="module.jdk.home.textclassifier2" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.textclassifier2" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.textclassifier2" value="${project.jdk.classpath}"/>
   
-  <import file="${basedir}/.idea/modules/textclassifier2_service/module_textclassifier2_service_main.xml"/>
+  <property name="compiler.args.textclassifier2" value="-encoding UTF-8 -source 1.8 -target 1.8 ${compiler.args}"/>
   
-  <import file="${basedir}/.idea/modules/textclassifier2_core/module_textclassifier2_core_test.xml"/>
+  <property name="textclassifier2.output.dir" value="undefined"/>
+  <property name="textclassifier2.testoutput.dir" value="undefined"/>
   
-  <import file="${basedir}/.idea/modules/textclassifier2_service/module_textclassifier2_service_test.xml"/>
+  <path id="textclassifier2.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
   
-  <import file="${basedir}/.idea/modules/module_textclassifier2_test.xml"/>
+  <path id="textclassifier2.module.production.classpath">
+    <path refid="${module.jdk.classpath.textclassifier2}"/>
+  </path>
+  
+  <path id="textclassifier2.runtime.production.module.classpath"/>
+  
+  <path id="textclassifier2.module.classpath">
+    <path refid="${module.jdk.classpath.textclassifier2}"/>
+  </path>
+  
+  <path id="textclassifier2.runtime.module.classpath"/>
+  
+  
+  <patternset id="excluded.from.module.textclassifier2">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.textclassifier2">
+    <patternset refid="excluded.from.module.textclassifier2"/>
+  </patternset>
+  
+  
+  <target name="compile.module.textclassifier2" depends="compile.module.textclassifier2.production,compile.module.textclassifier2.tests" description="Compile module textclassifier2"/>
+  
+  <target name="compile.module.textclassifier2.production" depends="register.custom.compilers" description="Compile module textclassifier2; production classes"/>
+  
+  <target name="compile.module.textclassifier2.tests" depends="register.custom.compilers,compile.module.textclassifier2.production" description="compile module textclassifier2; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.textclassifier2" description="cleanup module">
+    <delete dir="${textclassifier2.output.dir}"/>
+    <delete dir="${textclassifier2.testoutput.dir}"/>
+  </target>
+  
+  
+  <!-- Module textclassifier2_core -->
+  
+  <dirname property="module.textclassifier2_core.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.textclassifier2_core" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.textclassifier2_core" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.textclassifier2_core" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.textclassifier2_core" value="-encoding UTF-8 -source 1.8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="textclassifier2_core.output.dir" value="undefined"/>
+  <property name="textclassifier2_core.testoutput.dir" value="undefined"/>
+  
+  <path id="textclassifier2_core.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="textclassifier2_core.module.production.classpath">
+    <path refid="${module.jdk.classpath.textclassifier2_core}"/>
+  </path>
+  
+  <path id="textclassifier2_core.runtime.production.module.classpath"/>
+  
+  <path id="textclassifier2_core.module.classpath">
+    <path refid="${module.jdk.classpath.textclassifier2_core}"/>
+  </path>
+  
+  <path id="textclassifier2_core.runtime.module.classpath"/>
+  
+  
+  <patternset id="excluded.from.module.textclassifier2_core">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.textclassifier2_core">
+    <patternset refid="excluded.from.module.textclassifier2_core"/>
+  </patternset>
+  
+  
+  <target name="compile.module.textclassifier2_core" depends="compile.module.textclassifier2_core.production,compile.module.textclassifier2_core.tests" description="Compile module textclassifier2_core"/>
+  
+  <target name="compile.module.textclassifier2_core.production" depends="register.custom.compilers" description="Compile module textclassifier2_core; production classes"/>
+  
+  <target name="compile.module.textclassifier2_core.tests" depends="register.custom.compilers,compile.module.textclassifier2_core.production" description="compile module textclassifier2_core; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.textclassifier2_core" description="cleanup module">
+    <delete dir="${textclassifier2_core.output.dir}"/>
+    <delete dir="${textclassifier2_core.testoutput.dir}"/>
+  </target>
+  
+  
+  <!-- Module textclassifier2_core_main -->
+  
+  <dirname property="module.textclassifier2_core_main.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.textclassifier2_core_main" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.textclassifier2_core_main" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.textclassifier2_core_main" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.textclassifier2_core_main" value="-encoding UTF-8 -source 1.8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="textclassifier2_core_main.output.dir" value="${module.textclassifier2_core_main.basedir}/textclassifier2_core/out/production/classes"/>
+  <property name="textclassifier2_core_main.testoutput.dir" value="${module.textclassifier2_core_main.basedir}/textclassifier2_core/out/production/classes"/>
+  
+  <path id="textclassifier2_core_main.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="textclassifier2_core_main.module.production.classpath">
+    <path refid="${module.jdk.classpath.textclassifier2_core_main}"/>
+    <path refid="library.gradle:_org.projectlombok:lombok:1.16.18.classpath"/>
+    <path refid="library.gradle:_org.encog:encog-core:3.3.0.classpath"/>
+    <path refid="library.gradle:_org.apache.poi:poi-ooxml:3.16.classpath"/>
+    <path refid="library.gradle:_org.apache.commons:commons-math3:3.0.classpath"/>
+    <path refid="library.gradle:_org.apache.poi:poi:3.16.classpath"/>
+    <path refid="library.gradle:_org.apache.poi:poi-ooxml-schemas:3.16.classpath"/>
+    <path refid="library.gradle:_com.github.virtuald:curvesapi:1.04.classpath"/>
+    <path refid="library.gradle:_commons-codec:commons-codec:1.11.classpath"/>
+    <path refid="library.gradle:_org.apache.commons:commons-collections4:4.1.classpath"/>
+    <path refid="library.gradle:_org.apache.xmlbeans:xmlbeans:2.6.0.classpath"/>
+    <path refid="library.gradle:_stax:stax-api:1.0.1.classpath"/>
+  </path>
+  
+  <path id="textclassifier2_core_main.runtime.production.module.classpath">
+    <pathelement location="${textclassifier2_core_main.output.dir}"/>
+    <path refid="library.gradle:_org.projectlombok:lombok:1.16.18.classpath"/>
+    <path refid="library.gradle:_org.encog:encog-core:3.3.0.classpath"/>
+    <path refid="library.gradle:_org.apache.poi:poi-ooxml:3.16.classpath"/>
+    <path refid="library.gradle:_org.apache.commons:commons-math3:3.0.classpath"/>
+    <path refid="library.gradle:_org.apache.poi:poi:3.16.classpath"/>
+    <path refid="library.gradle:_org.apache.poi:poi-ooxml-schemas:3.16.classpath"/>
+    <path refid="library.gradle:_com.github.virtuald:curvesapi:1.04.classpath"/>
+    <path refid="library.gradle:_commons-codec:commons-codec:1.11.classpath"/>
+    <path refid="library.gradle:_org.apache.commons:commons-collections4:4.1.classpath"/>
+    <path refid="library.gradle:_org.apache.xmlbeans:xmlbeans:2.6.0.classpath"/>
+    <path refid="library.gradle:_stax:stax-api:1.0.1.classpath"/>
+  </path>
+  
+  <path id="textclassifier2_core_main.module.classpath">
+    <path refid="${module.jdk.classpath.textclassifier2_core_main}"/>
+    <pathelement location="${textclassifier2_core_main.output.dir}"/>
+    <path refid="library.gradle:_org.projectlombok:lombok:1.16.18.classpath"/>
+    <path refid="library.gradle:_org.encog:encog-core:3.3.0.classpath"/>
+    <path refid="library.gradle:_org.apache.poi:poi-ooxml:3.16.classpath"/>
+    <path refid="library.gradle:_org.apache.commons:commons-math3:3.0.classpath"/>
+    <path refid="library.gradle:_org.apache.poi:poi:3.16.classpath"/>
+    <path refid="library.gradle:_org.apache.poi:poi-ooxml-schemas:3.16.classpath"/>
+    <path refid="library.gradle:_com.github.virtuald:curvesapi:1.04.classpath"/>
+    <path refid="library.gradle:_commons-codec:commons-codec:1.11.classpath"/>
+    <path refid="library.gradle:_org.apache.commons:commons-collections4:4.1.classpath"/>
+    <path refid="library.gradle:_org.apache.xmlbeans:xmlbeans:2.6.0.classpath"/>
+    <path refid="library.gradle:_stax:stax-api:1.0.1.classpath"/>
+  </path>
+  
+  <path id="textclassifier2_core_main.runtime.module.classpath">
+    <pathelement location="${textclassifier2_core_main.output.dir}"/>
+    <path refid="library.gradle:_org.projectlombok:lombok:1.16.18.classpath"/>
+    <path refid="library.gradle:_org.encog:encog-core:3.3.0.classpath"/>
+    <path refid="library.gradle:_org.apache.poi:poi-ooxml:3.16.classpath"/>
+    <path refid="library.gradle:_org.apache.commons:commons-math3:3.0.classpath"/>
+    <path refid="library.gradle:_org.apache.poi:poi:3.16.classpath"/>
+    <path refid="library.gradle:_org.apache.poi:poi-ooxml-schemas:3.16.classpath"/>
+    <path refid="library.gradle:_com.github.virtuald:curvesapi:1.04.classpath"/>
+    <path refid="library.gradle:_commons-codec:commons-codec:1.11.classpath"/>
+    <path refid="library.gradle:_org.apache.commons:commons-collections4:4.1.classpath"/>
+    <path refid="library.gradle:_org.apache.xmlbeans:xmlbeans:2.6.0.classpath"/>
+    <path refid="library.gradle:_stax:stax-api:1.0.1.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.textclassifier2_core_main">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.textclassifier2_core_main">
+    <patternset refid="excluded.from.module.textclassifier2_core_main"/>
+  </patternset>
+  
+  <path id="textclassifier2_core_main.module.sourcepath">
+    <dirset dir="${module.textclassifier2_core_main.basedir}/textclassifier2_core/src/main">
+      <include name="java"/>
+      <include name="resources"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.textclassifier2_core_main" depends="compile.module.textclassifier2_core_main.production,compile.module.textclassifier2_core_main.tests" description="Compile module textclassifier2_core_main"/>
+  
+  <target name="compile.module.textclassifier2_core_main.production" depends="register.custom.compilers" description="Compile module textclassifier2_core_main; production classes">
+    <mkdir dir="${textclassifier2_core_main.output.dir}"/>
+    <javac2 destdir="${textclassifier2_core_main.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.textclassifier2_core_main}/javac">
+      <compilerarg line="${compiler.args.textclassifier2_core_main}"/>
+      <bootclasspath refid="textclassifier2_core_main.module.bootclasspath"/>
+      <classpath refid="textclassifier2_core_main.module.production.classpath"/>
+      <src refid="textclassifier2_core_main.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.textclassifier2_core_main"/>
+    </javac2>
+    
+    <copy todir="${textclassifier2_core_main.output.dir}">
+      <fileset dir="${module.textclassifier2_core_main.basedir}/textclassifier2_core/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.textclassifier2_core_main.basedir}/textclassifier2_core/src/main/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.textclassifier2_core_main.tests" depends="register.custom.compilers,compile.module.textclassifier2_core_main.production" description="compile module textclassifier2_core_main; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.textclassifier2_core_main" description="cleanup module">
+    <delete dir="${textclassifier2_core_main.output.dir}"/>
+    <delete dir="${textclassifier2_core_main.testoutput.dir}"/>
+  </target>
+  
+  
+  <!-- Module textclassifier2_main -->
+  
+  <dirname property="module.textclassifier2_main.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.textclassifier2_main" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.textclassifier2_main" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.textclassifier2_main" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.textclassifier2_main" value="-encoding UTF-8 -source 1.8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="textclassifier2_main.output.dir" value="${module.textclassifier2_main.basedir}/out/production/classes"/>
+  <property name="textclassifier2_main.testoutput.dir" value="${module.textclassifier2_main.basedir}/out/production/classes"/>
+  
+  <path id="textclassifier2_main.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="textclassifier2_main.module.production.classpath">
+    <path refid="${module.jdk.classpath.textclassifier2_main}"/>
+  </path>
+  
+  <path id="textclassifier2_main.runtime.production.module.classpath">
+    <pathelement location="${textclassifier2_main.output.dir}"/>
+  </path>
+  
+  <path id="textclassifier2_main.module.classpath">
+    <path refid="${module.jdk.classpath.textclassifier2_main}"/>
+    <pathelement location="${textclassifier2_main.output.dir}"/>
+  </path>
+  
+  <path id="textclassifier2_main.runtime.module.classpath">
+    <pathelement location="${textclassifier2_main.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.textclassifier2_main">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.textclassifier2_main">
+    <patternset refid="excluded.from.module.textclassifier2_main"/>
+  </patternset>
+  
+  
+  <target name="compile.module.textclassifier2_main" depends="compile.module.textclassifier2_main.production,compile.module.textclassifier2_main.tests" description="Compile module textclassifier2_main"/>
+  
+  <target name="compile.module.textclassifier2_main.production" depends="register.custom.compilers" description="Compile module textclassifier2_main; production classes"/>
+  
+  <target name="compile.module.textclassifier2_main.tests" depends="register.custom.compilers,compile.module.textclassifier2_main.production" description="compile module textclassifier2_main; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.textclassifier2_main" description="cleanup module">
+    <delete dir="${textclassifier2_main.output.dir}"/>
+    <delete dir="${textclassifier2_main.testoutput.dir}"/>
+  </target>
+  
+  
+  <!-- Module textclassifier2_service -->
+  
+  <dirname property="module.textclassifier2_service.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.textclassifier2_service" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.textclassifier2_service" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.textclassifier2_service" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.textclassifier2_service" value="-encoding UTF-8 -source 1.8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="textclassifier2_service.output.dir" value="undefined"/>
+  <property name="textclassifier2_service.testoutput.dir" value="undefined"/>
+  
+  <path id="textclassifier2_service.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="textclassifier2_service.module.production.classpath">
+    <path refid="${module.jdk.classpath.textclassifier2_service}"/>
+  </path>
+  
+  <path id="textclassifier2_service.runtime.production.module.classpath"/>
+  
+  <path id="textclassifier2_service.module.classpath">
+    <path refid="${module.jdk.classpath.textclassifier2_service}"/>
+  </path>
+  
+  <path id="textclassifier2_service.runtime.module.classpath"/>
+  
+  
+  <patternset id="excluded.from.module.textclassifier2_service">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.textclassifier2_service">
+    <patternset refid="excluded.from.module.textclassifier2_service"/>
+  </patternset>
+  
+  
+  <target name="compile.module.textclassifier2_service" depends="compile.module.textclassifier2_service.production,compile.module.textclassifier2_service.tests" description="Compile module textclassifier2_service"/>
+  
+  <target name="compile.module.textclassifier2_service.production" depends="register.custom.compilers" description="Compile module textclassifier2_service; production classes"/>
+  
+  <target name="compile.module.textclassifier2_service.tests" depends="register.custom.compilers,compile.module.textclassifier2_service.production" description="compile module textclassifier2_service; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.textclassifier2_service" description="cleanup module">
+    <delete dir="${textclassifier2_service.output.dir}"/>
+    <delete dir="${textclassifier2_service.testoutput.dir}"/>
+  </target>
+  
+  
+  <!-- Module textclassifier2_service_main -->
+  
+  <dirname property="module.textclassifier2_service_main.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.textclassifier2_service_main" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.textclassifier2_service_main" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.textclassifier2_service_main" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.textclassifier2_service_main" value="-encoding UTF-8 -source 1.8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="textclassifier2_service_main.output.dir" value="${module.textclassifier2_service_main.basedir}/textclassifier2_service/out/production/classes"/>
+  <property name="textclassifier2_service_main.testoutput.dir" value="${module.textclassifier2_service_main.basedir}/textclassifier2_service/out/production/classes"/>
+  
+  <path id="textclassifier2_service_main.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="textclassifier2_service_main.module.production.classpath">
+    <path refid="${module.jdk.classpath.textclassifier2_service_main}"/>
+    <path refid="library.gradle:_org.projectlombok:lombok:1.16.18.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-data-mongodb-reactive:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-webflux:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-json:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-autoconfigure:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-logging:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_javax.annotation:javax.annotation-api:1.3.1.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-mongodb:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-webflux:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-web:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-context:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-tx:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-commons:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-aop:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-beans:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-expression:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-core:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.yaml:snakeyaml:1.19.classpath"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver:3.5.0.classpath"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver-reactivestreams:1.6.0.classpath"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver-async:3.5.0.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-reactor-netty:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_io.projectreactor.ipc:reactor-netty:0.7.2.release.classpath"/>
+    <path refid="library.gradle:_io.projectreactor:reactor-core:3.1.2.release.classpath"/>
+    <path refid="library.gradle:_org.hibernate.validator:hibernate-validator:6.0.5.final.classpath"/>
+    <path refid="library.gradle:_org.synchronoss.cloud:nio-multipart-parser:1.1.0.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-classic:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-to-slf4j:2.10.0.classpath"/>
+    <path refid="library.gradle:_org.slf4j:jul-to-slf4j:1.7.25.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-jcl:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.synchronoss.cloud:nio-stream-storage:1.1.3.classpath"/>
+    <path refid="library.gradle:_org.slf4j:slf4j-api:1.7.25.classpath"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver-core:3.5.0.classpath"/>
+    <path refid="library.gradle:_org.mongodb:bson:3.5.0.classpath"/>
+    <path refid="library.gradle:_org.reactivestreams:reactive-streams:1.0.1.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.2.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.2.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.2.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-databind:2.9.2.classpath"/>
+    <path refid="library.gradle:_javax.validation:validation-api:2.0.0.final.classpath"/>
+    <path refid="library.gradle:_org.jboss.logging:jboss-logging:3.3.1.final.classpath"/>
+    <path refid="library.gradle:_com.fasterxml:classmate:1.3.4.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-core:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-api:2.10.0.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-annotations:2.9.0.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-core:2.9.2.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-handler-proxy:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-codec-http:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-handler:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-transport-native-epoll:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-codec-socks:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-codec:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-transport-native-unix-common:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-transport:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-buffer:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-resolver:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-common:4.1.17.final.classpath"/>
+  </path>
+  
+  <path id="textclassifier2_service_main.runtime.production.module.classpath">
+    <pathelement location="${textclassifier2_service_main.output.dir}"/>
+    <path refid="library.gradle:_org.projectlombok:lombok:1.16.18.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-data-mongodb-reactive:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-webflux:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-json:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-autoconfigure:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-logging:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-devtools:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_javax.annotation:javax.annotation-api:1.3.1.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-mongodb:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-webflux:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-web:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-context:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-tx:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-commons:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-aop:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-beans:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-expression:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-core:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.yaml:snakeyaml:1.19.classpath"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver:3.5.0.classpath"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver-reactivestreams:1.6.0.classpath"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver-async:3.5.0.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-reactor-netty:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_io.projectreactor.ipc:reactor-netty:0.7.2.release.classpath"/>
+    <path refid="library.gradle:_io.projectreactor:reactor-core:3.1.2.release.classpath"/>
+    <path refid="library.gradle:_org.hibernate.validator:hibernate-validator:6.0.5.final.classpath"/>
+    <path refid="library.gradle:_org.synchronoss.cloud:nio-multipart-parser:1.1.0.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-classic:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-to-slf4j:2.10.0.classpath"/>
+    <path refid="library.gradle:_org.slf4j:jul-to-slf4j:1.7.25.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-jcl:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.synchronoss.cloud:nio-stream-storage:1.1.3.classpath"/>
+    <path refid="library.gradle:_org.slf4j:slf4j-api:1.7.25.classpath"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver-core:3.5.0.classpath"/>
+    <path refid="library.gradle:_org.mongodb:bson:3.5.0.classpath"/>
+    <path refid="library.gradle:_org.reactivestreams:reactive-streams:1.0.1.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.2.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.2.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.2.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-databind:2.9.2.classpath"/>
+    <path refid="library.gradle:_javax.validation:validation-api:2.0.0.final.classpath"/>
+    <path refid="library.gradle:_org.jboss.logging:jboss-logging:3.3.1.final.classpath"/>
+    <path refid="library.gradle:_com.fasterxml:classmate:1.3.4.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-core:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-api:2.10.0.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-annotations:2.9.0.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-core:2.9.2.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-handler-proxy:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-codec-http:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-handler:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-transport-native-epoll:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-codec-socks:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-codec:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-transport-native-unix-common:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-transport:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-buffer:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-resolver:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-common:4.1.17.final.classpath"/>
+  </path>
+  
+  <path id="textclassifier2_service_main.module.classpath">
+    <path refid="${module.jdk.classpath.textclassifier2_service_main}"/>
+    <pathelement location="${textclassifier2_service_main.output.dir}"/>
+    <path refid="library.gradle:_org.projectlombok:lombok:1.16.18.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-data-mongodb-reactive:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-webflux:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-json:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-autoconfigure:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-logging:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-devtools:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_javax.annotation:javax.annotation-api:1.3.1.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-mongodb:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-webflux:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-web:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-context:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-tx:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-commons:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-aop:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-beans:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-expression:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-core:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.yaml:snakeyaml:1.19.classpath"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver:3.5.0.classpath"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver-reactivestreams:1.6.0.classpath"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver-async:3.5.0.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-reactor-netty:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_io.projectreactor.ipc:reactor-netty:0.7.2.release.classpath"/>
+    <path refid="library.gradle:_io.projectreactor:reactor-core:3.1.2.release.classpath"/>
+    <path refid="library.gradle:_org.hibernate.validator:hibernate-validator:6.0.5.final.classpath"/>
+    <path refid="library.gradle:_org.synchronoss.cloud:nio-multipart-parser:1.1.0.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-classic:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-to-slf4j:2.10.0.classpath"/>
+    <path refid="library.gradle:_org.slf4j:jul-to-slf4j:1.7.25.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-jcl:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.synchronoss.cloud:nio-stream-storage:1.1.3.classpath"/>
+    <path refid="library.gradle:_org.slf4j:slf4j-api:1.7.25.classpath"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver-core:3.5.0.classpath"/>
+    <path refid="library.gradle:_org.mongodb:bson:3.5.0.classpath"/>
+    <path refid="library.gradle:_org.reactivestreams:reactive-streams:1.0.1.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.2.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.2.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.2.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-databind:2.9.2.classpath"/>
+    <path refid="library.gradle:_javax.validation:validation-api:2.0.0.final.classpath"/>
+    <path refid="library.gradle:_org.jboss.logging:jboss-logging:3.3.1.final.classpath"/>
+    <path refid="library.gradle:_com.fasterxml:classmate:1.3.4.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-core:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-api:2.10.0.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-annotations:2.9.0.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-core:2.9.2.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-handler-proxy:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-codec-http:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-handler:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-transport-native-epoll:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-codec-socks:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-codec:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-transport-native-unix-common:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-transport:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-buffer:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-resolver:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-common:4.1.17.final.classpath"/>
+  </path>
+  
+  <path id="textclassifier2_service_main.runtime.module.classpath">
+    <pathelement location="${textclassifier2_service_main.output.dir}"/>
+    <path refid="library.gradle:_org.projectlombok:lombok:1.16.18.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-data-mongodb-reactive:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-webflux:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-json:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-autoconfigure:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-logging:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-devtools:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_javax.annotation:javax.annotation-api:1.3.1.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-mongodb:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-webflux:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-web:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-context:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-tx:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-commons:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-aop:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-beans:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-expression:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-core:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.yaml:snakeyaml:1.19.classpath"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver:3.5.0.classpath"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver-reactivestreams:1.6.0.classpath"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver-async:3.5.0.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-reactor-netty:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_io.projectreactor.ipc:reactor-netty:0.7.2.release.classpath"/>
+    <path refid="library.gradle:_io.projectreactor:reactor-core:3.1.2.release.classpath"/>
+    <path refid="library.gradle:_org.hibernate.validator:hibernate-validator:6.0.5.final.classpath"/>
+    <path refid="library.gradle:_org.synchronoss.cloud:nio-multipart-parser:1.1.0.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-classic:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-to-slf4j:2.10.0.classpath"/>
+    <path refid="library.gradle:_org.slf4j:jul-to-slf4j:1.7.25.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-jcl:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.synchronoss.cloud:nio-stream-storage:1.1.3.classpath"/>
+    <path refid="library.gradle:_org.slf4j:slf4j-api:1.7.25.classpath"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver-core:3.5.0.classpath"/>
+    <path refid="library.gradle:_org.mongodb:bson:3.5.0.classpath"/>
+    <path refid="library.gradle:_org.reactivestreams:reactive-streams:1.0.1.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.2.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.2.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.2.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-databind:2.9.2.classpath"/>
+    <path refid="library.gradle:_javax.validation:validation-api:2.0.0.final.classpath"/>
+    <path refid="library.gradle:_org.jboss.logging:jboss-logging:3.3.1.final.classpath"/>
+    <path refid="library.gradle:_com.fasterxml:classmate:1.3.4.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-core:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-api:2.10.0.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-annotations:2.9.0.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-core:2.9.2.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-handler-proxy:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-codec-http:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-handler:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-transport-native-epoll:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-codec-socks:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-codec:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-transport-native-unix-common:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-transport:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-buffer:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-resolver:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-common:4.1.17.final.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.textclassifier2_service_main">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.textclassifier2_service_main">
+    <patternset refid="excluded.from.module.textclassifier2_service_main"/>
+  </patternset>
+  
+  <path id="textclassifier2_service_main.module.sourcepath">
+    <dirset dir="${module.textclassifier2_service_main.basedir}/textclassifier2_service/src/main">
+      <include name="java"/>
+      <include name="resources"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.textclassifier2_service_main" depends="compile.module.textclassifier2_service_main.production,compile.module.textclassifier2_service_main.tests" description="Compile module textclassifier2_service_main"/>
+  
+  <target name="compile.module.textclassifier2_service_main.production" depends="register.custom.compilers" description="Compile module textclassifier2_service_main; production classes">
+    <mkdir dir="${textclassifier2_service_main.output.dir}"/>
+    <javac2 destdir="${textclassifier2_service_main.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.textclassifier2_service_main}/javac">
+      <compilerarg line="${compiler.args.textclassifier2_service_main}"/>
+      <bootclasspath refid="textclassifier2_service_main.module.bootclasspath"/>
+      <classpath refid="textclassifier2_service_main.module.production.classpath"/>
+      <src refid="textclassifier2_service_main.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.textclassifier2_service_main"/>
+    </javac2>
+    
+    <copy todir="${textclassifier2_service_main.output.dir}">
+      <fileset dir="${module.textclassifier2_service_main.basedir}/textclassifier2_service/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.textclassifier2_service_main.basedir}/textclassifier2_service/src/main/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.textclassifier2_service_main.tests" depends="register.custom.compilers,compile.module.textclassifier2_service_main.production" description="compile module textclassifier2_service_main; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.textclassifier2_service_main" description="cleanup module">
+    <delete dir="${textclassifier2_service_main.output.dir}"/>
+    <delete dir="${textclassifier2_service_main.testoutput.dir}"/>
+  </target>
+  
+  
+  <!-- Module textclassifier2_core_test -->
+  
+  <dirname property="module.textclassifier2_core_test.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.textclassifier2_core_test" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.textclassifier2_core_test" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.textclassifier2_core_test" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.textclassifier2_core_test" value="-encoding UTF-8 -source 1.8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="textclassifier2_core_test.output.dir" value="undefined"/>
+  <property name="textclassifier2_core_test.testoutput.dir" value="${module.textclassifier2_core_test.basedir}/textclassifier2_core/out/test/classes"/>
+  
+  <path id="textclassifier2_core_test.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="textclassifier2_core_test.module.production.classpath">
+    <path refid="${module.jdk.classpath.textclassifier2_core_test}"/>
+    <pathelement location="${textclassifier2_core_main.output.dir}"/>
+    <path refid="library.gradle:_org.projectlombok:lombok:1.16.18.classpath"/>
+    <path refid="library.gradle:_org.encog:encog-core:3.3.0.classpath"/>
+    <path refid="library.gradle:_org.apache.poi:poi-ooxml:3.16.classpath"/>
+    <path refid="library.gradle:_junit:junit:4.12.classpath"/>
+    <path refid="library.gradle:_org.apache.commons:commons-math3:3.0.classpath"/>
+    <path refid="library.gradle:_org.apache.poi:poi:3.16.classpath"/>
+    <path refid="library.gradle:_org.apache.poi:poi-ooxml-schemas:3.16.classpath"/>
+    <path refid="library.gradle:_com.github.virtuald:curvesapi:1.04.classpath"/>
+    <path refid="library.gradle:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+    <path refid="library.gradle:_commons-codec:commons-codec:1.11.classpath"/>
+    <path refid="library.gradle:_org.apache.commons:commons-collections4:4.1.classpath"/>
+    <path refid="library.gradle:_org.apache.xmlbeans:xmlbeans:2.6.0.classpath"/>
+    <path refid="library.gradle:_stax:stax-api:1.0.1.classpath"/>
+  </path>
+  
+  <path id="textclassifier2_core_test.runtime.production.module.classpath">
+    <path refid="textclassifier2_core_main.runtime.production.module.classpath"/>
+    <path refid="library.gradle:_org.projectlombok:lombok:1.16.18.classpath"/>
+    <path refid="library.gradle:_org.encog:encog-core:3.3.0.classpath"/>
+    <path refid="library.gradle:_org.apache.poi:poi-ooxml:3.16.classpath"/>
+    <path refid="library.gradle:_junit:junit:4.12.classpath"/>
+    <path refid="library.gradle:_org.apache.commons:commons-math3:3.0.classpath"/>
+    <path refid="library.gradle:_org.apache.poi:poi:3.16.classpath"/>
+    <path refid="library.gradle:_org.apache.poi:poi-ooxml-schemas:3.16.classpath"/>
+    <path refid="library.gradle:_com.github.virtuald:curvesapi:1.04.classpath"/>
+    <path refid="library.gradle:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+    <path refid="library.gradle:_commons-codec:commons-codec:1.11.classpath"/>
+    <path refid="library.gradle:_org.apache.commons:commons-collections4:4.1.classpath"/>
+    <path refid="library.gradle:_org.apache.xmlbeans:xmlbeans:2.6.0.classpath"/>
+    <path refid="library.gradle:_stax:stax-api:1.0.1.classpath"/>
+  </path>
+  
+  <path id="textclassifier2_core_test.module.classpath">
+    <path refid="${module.jdk.classpath.textclassifier2_core_test}"/>
+    <pathelement location="${textclassifier2_core_main.output.dir}"/>
+    <path refid="library.gradle:_org.projectlombok:lombok:1.16.18.classpath"/>
+    <path refid="library.gradle:_org.encog:encog-core:3.3.0.classpath"/>
+    <path refid="library.gradle:_org.apache.poi:poi-ooxml:3.16.classpath"/>
+    <path refid="library.gradle:_junit:junit:4.12.classpath"/>
+    <path refid="library.gradle:_org.apache.commons:commons-math3:3.0.classpath"/>
+    <path refid="library.gradle:_org.apache.poi:poi:3.16.classpath"/>
+    <path refid="library.gradle:_org.apache.poi:poi-ooxml-schemas:3.16.classpath"/>
+    <path refid="library.gradle:_com.github.virtuald:curvesapi:1.04.classpath"/>
+    <path refid="library.gradle:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+    <path refid="library.gradle:_commons-codec:commons-codec:1.11.classpath"/>
+    <path refid="library.gradle:_org.apache.commons:commons-collections4:4.1.classpath"/>
+    <path refid="library.gradle:_org.apache.xmlbeans:xmlbeans:2.6.0.classpath"/>
+    <path refid="library.gradle:_stax:stax-api:1.0.1.classpath"/>
+  </path>
+  
+  <path id="textclassifier2_core_test.runtime.module.classpath">
+    <pathelement location="${textclassifier2_core_test.testoutput.dir}"/>
+    <path refid="textclassifier2_core_main.runtime.module.classpath"/>
+    <path refid="library.gradle:_org.projectlombok:lombok:1.16.18.classpath"/>
+    <path refid="library.gradle:_org.encog:encog-core:3.3.0.classpath"/>
+    <path refid="library.gradle:_org.apache.poi:poi-ooxml:3.16.classpath"/>
+    <path refid="library.gradle:_junit:junit:4.12.classpath"/>
+    <path refid="library.gradle:_org.apache.commons:commons-math3:3.0.classpath"/>
+    <path refid="library.gradle:_org.apache.poi:poi:3.16.classpath"/>
+    <path refid="library.gradle:_org.apache.poi:poi-ooxml-schemas:3.16.classpath"/>
+    <path refid="library.gradle:_com.github.virtuald:curvesapi:1.04.classpath"/>
+    <path refid="library.gradle:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+    <path refid="library.gradle:_commons-codec:commons-codec:1.11.classpath"/>
+    <path refid="library.gradle:_org.apache.commons:commons-collections4:4.1.classpath"/>
+    <path refid="library.gradle:_org.apache.xmlbeans:xmlbeans:2.6.0.classpath"/>
+    <path refid="library.gradle:_stax:stax-api:1.0.1.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.textclassifier2_core_test">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.textclassifier2_core_test">
+    <patternset refid="excluded.from.module.textclassifier2_core_test"/>
+  </patternset>
+  
+  <path id="textclassifier2_core_test.module.test.sourcepath">
+    <dirset dir="${module.textclassifier2_core_test.basedir}/textclassifier2_core/src/test">
+      <include name="java"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.textclassifier2_core_test" depends="compile.module.textclassifier2_core_test.production,compile.module.textclassifier2_core_test.tests" description="Compile module textclassifier2_core_test"/>
+  
+  <target name="compile.module.textclassifier2_core_test.production" depends="register.custom.compilers,compile.module.textclassifier2_core_main" description="Compile module textclassifier2_core_test; production classes"/>
+  
+  <target name="compile.module.textclassifier2_core_test.tests" depends="register.custom.compilers,compile.module.textclassifier2_core_test.production" description="compile module textclassifier2_core_test; test classes" unless="skip.tests">
+    <mkdir dir="${textclassifier2_core_test.testoutput.dir}"/>
+    <javac2 destdir="${textclassifier2_core_test.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.textclassifier2_core_test}/javac">
+      <compilerarg line="${compiler.args.textclassifier2_core_test}"/>
+      <bootclasspath refid="textclassifier2_core_test.module.bootclasspath"/>
+      <classpath refid="textclassifier2_core_test.module.classpath"/>
+      <src refid="textclassifier2_core_test.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.textclassifier2_core_test"/>
+    </javac2>
+    
+    <copy todir="${textclassifier2_core_test.testoutput.dir}">
+      <fileset dir="${module.textclassifier2_core_test.basedir}/textclassifier2_core/src/test/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.textclassifier2_core_test" description="cleanup module">
+    <delete dir="${textclassifier2_core_test.output.dir}"/>
+    <delete dir="${textclassifier2_core_test.testoutput.dir}"/>
+  </target>
+  
+  
+  <!-- Module textclassifier2_service_test -->
+  
+  <dirname property="module.textclassifier2_service_test.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.textclassifier2_service_test" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.textclassifier2_service_test" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.textclassifier2_service_test" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.textclassifier2_service_test" value="-encoding UTF-8 -source 1.8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="textclassifier2_service_test.output.dir" value="undefined"/>
+  <property name="textclassifier2_service_test.testoutput.dir" value="${module.textclassifier2_service_test.basedir}/textclassifier2_service/out/test/classes"/>
+  
+  <path id="textclassifier2_service_test.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="textclassifier2_service_test.module.production.classpath">
+    <path refid="${module.jdk.classpath.textclassifier2_service_test}"/>
+    <pathelement location="${textclassifier2_service_main.output.dir}"/>
+    <path refid="library.gradle:_org.projectlombok:lombok:1.16.18.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-data-mongodb-reactive:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-webflux:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-test:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-json:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_junit:junit:4.12.classpath"/>
+    <path refid="library.gradle:_io.projectreactor:reactor-test:3.1.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-test-autoconfigure:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-autoconfigure:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-test:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-logging:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_javax.annotation:javax.annotation-api:1.3.1.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-mongodb:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-webflux:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-web:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-test:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-context:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-tx:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-commons:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-aop:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-beans:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-expression:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-core:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.yaml:snakeyaml:1.19.classpath"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver:3.5.0.classpath"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver-reactivestreams:1.6.0.classpath"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver-async:3.5.0.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-reactor-netty:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_io.projectreactor.ipc:reactor-netty:0.7.2.release.classpath"/>
+    <path refid="library.gradle:_io.projectreactor:reactor-core:3.1.2.release.classpath"/>
+    <path refid="library.gradle:_org.hibernate.validator:hibernate-validator:6.0.5.final.classpath"/>
+    <path refid="library.gradle:_org.synchronoss.cloud:nio-multipart-parser:1.1.0.classpath"/>
+    <path refid="library.gradle:_org.hamcrest:hamcrest-library:1.3.classpath"/>
+    <path refid="library.gradle:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+    <path refid="library.gradle:_com.jayway.jsonpath:json-path:2.4.0.classpath"/>
+    <path refid="library.gradle:_org.assertj:assertj-core:3.8.0.classpath"/>
+    <path refid="library.gradle:_org.mockito:mockito-core:2.12.0.classpath"/>
+    <path refid="library.gradle:_org.skyscreamer:jsonassert:1.5.0.classpath"/>
+    <path refid="library.gradle:_org.xmlunit:xmlunit-core:2.5.1.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-classic:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-to-slf4j:2.10.0.classpath"/>
+    <path refid="library.gradle:_org.slf4j:jul-to-slf4j:1.7.25.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-jcl:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.synchronoss.cloud:nio-stream-storage:1.1.3.classpath"/>
+    <path refid="library.gradle:_org.slf4j:slf4j-api:1.7.25.classpath"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver-core:3.5.0.classpath"/>
+    <path refid="library.gradle:_org.mongodb:bson:3.5.0.classpath"/>
+    <path refid="library.gradle:_org.reactivestreams:reactive-streams:1.0.1.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.2.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.2.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.2.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-databind:2.9.2.classpath"/>
+    <path refid="library.gradle:_javax.validation:validation-api:2.0.0.final.classpath"/>
+    <path refid="library.gradle:_org.jboss.logging:jboss-logging:3.3.1.final.classpath"/>
+    <path refid="library.gradle:_com.fasterxml:classmate:1.3.4.classpath"/>
+    <path refid="library.gradle:_net.minidev:json-smart:2.3.classpath"/>
+    <path refid="library.gradle:_net.bytebuddy:byte-buddy:1.7.9.classpath"/>
+    <path refid="library.gradle:_net.bytebuddy:byte-buddy-agent:1.7.9.classpath"/>
+    <path refid="library.gradle:_org.objenesis:objenesis:2.6.classpath"/>
+    <path refid="library.gradle:_com.vaadin.external.google:android-json:0.0.20131108.vaadin1.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-core:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-api:2.10.0.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-annotations:2.9.0.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-core:2.9.2.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-handler-proxy:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-codec-http:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-handler:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-transport-native-epoll:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_net.minidev:accessors-smart:1.2.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-codec-socks:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-codec:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-transport-native-unix-common:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-transport:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-buffer:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-resolver:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-common:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_org.ow2.asm:asm:5.0.4.classpath"/>
+  </path>
+  
+  <path id="textclassifier2_service_test.runtime.production.module.classpath">
+    <path refid="textclassifier2_service_main.runtime.production.module.classpath"/>
+    <path refid="library.gradle:_org.projectlombok:lombok:1.16.18.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-data-mongodb-reactive:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-webflux:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-test:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-json:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_junit:junit:4.12.classpath"/>
+    <path refid="library.gradle:_io.projectreactor:reactor-test:3.1.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-devtools:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-test-autoconfigure:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-autoconfigure:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-test:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-logging:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_javax.annotation:javax.annotation-api:1.3.1.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-mongodb:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-webflux:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-web:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-test:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-context:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-tx:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-commons:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-aop:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-beans:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-expression:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-core:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.yaml:snakeyaml:1.19.classpath"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver:3.5.0.classpath"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver-reactivestreams:1.6.0.classpath"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver-async:3.5.0.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-reactor-netty:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_io.projectreactor.ipc:reactor-netty:0.7.2.release.classpath"/>
+    <path refid="library.gradle:_io.projectreactor:reactor-core:3.1.2.release.classpath"/>
+    <path refid="library.gradle:_org.hibernate.validator:hibernate-validator:6.0.5.final.classpath"/>
+    <path refid="library.gradle:_org.synchronoss.cloud:nio-multipart-parser:1.1.0.classpath"/>
+    <path refid="library.gradle:_org.hamcrest:hamcrest-library:1.3.classpath"/>
+    <path refid="library.gradle:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+    <path refid="library.gradle:_com.jayway.jsonpath:json-path:2.4.0.classpath"/>
+    <path refid="library.gradle:_org.assertj:assertj-core:3.8.0.classpath"/>
+    <path refid="library.gradle:_org.mockito:mockito-core:2.12.0.classpath"/>
+    <path refid="library.gradle:_org.skyscreamer:jsonassert:1.5.0.classpath"/>
+    <path refid="library.gradle:_org.xmlunit:xmlunit-core:2.5.1.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-classic:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-to-slf4j:2.10.0.classpath"/>
+    <path refid="library.gradle:_org.slf4j:jul-to-slf4j:1.7.25.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-jcl:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.synchronoss.cloud:nio-stream-storage:1.1.3.classpath"/>
+    <path refid="library.gradle:_org.slf4j:slf4j-api:1.7.25.classpath"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver-core:3.5.0.classpath"/>
+    <path refid="library.gradle:_org.mongodb:bson:3.5.0.classpath"/>
+    <path refid="library.gradle:_org.reactivestreams:reactive-streams:1.0.1.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.2.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.2.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.2.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-databind:2.9.2.classpath"/>
+    <path refid="library.gradle:_javax.validation:validation-api:2.0.0.final.classpath"/>
+    <path refid="library.gradle:_org.jboss.logging:jboss-logging:3.3.1.final.classpath"/>
+    <path refid="library.gradle:_com.fasterxml:classmate:1.3.4.classpath"/>
+    <path refid="library.gradle:_net.minidev:json-smart:2.3.classpath"/>
+    <path refid="library.gradle:_net.bytebuddy:byte-buddy:1.7.9.classpath"/>
+    <path refid="library.gradle:_net.bytebuddy:byte-buddy-agent:1.7.9.classpath"/>
+    <path refid="library.gradle:_org.objenesis:objenesis:2.6.classpath"/>
+    <path refid="library.gradle:_com.vaadin.external.google:android-json:0.0.20131108.vaadin1.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-core:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-api:2.10.0.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-annotations:2.9.0.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-core:2.9.2.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-handler-proxy:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-codec-http:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-handler:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-transport-native-epoll:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_net.minidev:accessors-smart:1.2.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-codec-socks:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-codec:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-transport-native-unix-common:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-transport:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-buffer:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-resolver:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-common:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_org.ow2.asm:asm:5.0.4.classpath"/>
+  </path>
+  
+  <path id="textclassifier2_service_test.module.classpath">
+    <path refid="${module.jdk.classpath.textclassifier2_service_test}"/>
+    <pathelement location="${textclassifier2_service_main.output.dir}"/>
+    <path refid="library.gradle:_org.projectlombok:lombok:1.16.18.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-data-mongodb-reactive:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-webflux:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-test:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-json:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_junit:junit:4.12.classpath"/>
+    <path refid="library.gradle:_io.projectreactor:reactor-test:3.1.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-devtools:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-test-autoconfigure:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-autoconfigure:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-test:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-logging:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_javax.annotation:javax.annotation-api:1.3.1.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-mongodb:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-webflux:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-web:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-test:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-context:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-tx:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-commons:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-aop:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-beans:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-expression:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-core:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.yaml:snakeyaml:1.19.classpath"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver:3.5.0.classpath"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver-reactivestreams:1.6.0.classpath"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver-async:3.5.0.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-reactor-netty:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_io.projectreactor.ipc:reactor-netty:0.7.2.release.classpath"/>
+    <path refid="library.gradle:_io.projectreactor:reactor-core:3.1.2.release.classpath"/>
+    <path refid="library.gradle:_org.hibernate.validator:hibernate-validator:6.0.5.final.classpath"/>
+    <path refid="library.gradle:_org.synchronoss.cloud:nio-multipart-parser:1.1.0.classpath"/>
+    <path refid="library.gradle:_org.hamcrest:hamcrest-library:1.3.classpath"/>
+    <path refid="library.gradle:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+    <path refid="library.gradle:_com.jayway.jsonpath:json-path:2.4.0.classpath"/>
+    <path refid="library.gradle:_org.assertj:assertj-core:3.8.0.classpath"/>
+    <path refid="library.gradle:_org.mockito:mockito-core:2.12.0.classpath"/>
+    <path refid="library.gradle:_org.skyscreamer:jsonassert:1.5.0.classpath"/>
+    <path refid="library.gradle:_org.xmlunit:xmlunit-core:2.5.1.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-classic:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-to-slf4j:2.10.0.classpath"/>
+    <path refid="library.gradle:_org.slf4j:jul-to-slf4j:1.7.25.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-jcl:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.synchronoss.cloud:nio-stream-storage:1.1.3.classpath"/>
+    <path refid="library.gradle:_org.slf4j:slf4j-api:1.7.25.classpath"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver-core:3.5.0.classpath"/>
+    <path refid="library.gradle:_org.mongodb:bson:3.5.0.classpath"/>
+    <path refid="library.gradle:_org.reactivestreams:reactive-streams:1.0.1.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.2.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.2.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.2.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-databind:2.9.2.classpath"/>
+    <path refid="library.gradle:_javax.validation:validation-api:2.0.0.final.classpath"/>
+    <path refid="library.gradle:_org.jboss.logging:jboss-logging:3.3.1.final.classpath"/>
+    <path refid="library.gradle:_com.fasterxml:classmate:1.3.4.classpath"/>
+    <path refid="library.gradle:_net.minidev:json-smart:2.3.classpath"/>
+    <path refid="library.gradle:_net.bytebuddy:byte-buddy:1.7.9.classpath"/>
+    <path refid="library.gradle:_net.bytebuddy:byte-buddy-agent:1.7.9.classpath"/>
+    <path refid="library.gradle:_org.objenesis:objenesis:2.6.classpath"/>
+    <path refid="library.gradle:_com.vaadin.external.google:android-json:0.0.20131108.vaadin1.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-core:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-api:2.10.0.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-annotations:2.9.0.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-core:2.9.2.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-handler-proxy:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-codec-http:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-handler:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-transport-native-epoll:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_net.minidev:accessors-smart:1.2.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-codec-socks:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-codec:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-transport-native-unix-common:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-transport:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-buffer:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-resolver:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-common:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_org.ow2.asm:asm:5.0.4.classpath"/>
+  </path>
+  
+  <path id="textclassifier2_service_test.runtime.module.classpath">
+    <pathelement location="${textclassifier2_service_test.testoutput.dir}"/>
+    <path refid="textclassifier2_service_main.runtime.module.classpath"/>
+    <path refid="library.gradle:_org.projectlombok:lombok:1.16.18.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-data-mongodb-reactive:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-webflux:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-test:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-json:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_junit:junit:4.12.classpath"/>
+    <path refid="library.gradle:_io.projectreactor:reactor-test:3.1.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-devtools:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-test-autoconfigure:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-autoconfigure:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-test:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-logging:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_javax.annotation:javax.annotation-api:1.3.1.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-mongodb:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-webflux:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-web:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-test:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-context:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-tx:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-commons:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-aop:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-beans:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-expression:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-core:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.yaml:snakeyaml:1.19.classpath"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver:3.5.0.classpath"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver-reactivestreams:1.6.0.classpath"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver-async:3.5.0.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-reactor-netty:2.0.0.m7.classpath"/>
+    <path refid="library.gradle:_io.projectreactor.ipc:reactor-netty:0.7.2.release.classpath"/>
+    <path refid="library.gradle:_io.projectreactor:reactor-core:3.1.2.release.classpath"/>
+    <path refid="library.gradle:_org.hibernate.validator:hibernate-validator:6.0.5.final.classpath"/>
+    <path refid="library.gradle:_org.synchronoss.cloud:nio-multipart-parser:1.1.0.classpath"/>
+    <path refid="library.gradle:_org.hamcrest:hamcrest-library:1.3.classpath"/>
+    <path refid="library.gradle:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+    <path refid="library.gradle:_com.jayway.jsonpath:json-path:2.4.0.classpath"/>
+    <path refid="library.gradle:_org.assertj:assertj-core:3.8.0.classpath"/>
+    <path refid="library.gradle:_org.mockito:mockito-core:2.12.0.classpath"/>
+    <path refid="library.gradle:_org.skyscreamer:jsonassert:1.5.0.classpath"/>
+    <path refid="library.gradle:_org.xmlunit:xmlunit-core:2.5.1.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-classic:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-to-slf4j:2.10.0.classpath"/>
+    <path refid="library.gradle:_org.slf4j:jul-to-slf4j:1.7.25.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-jcl:5.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.synchronoss.cloud:nio-stream-storage:1.1.3.classpath"/>
+    <path refid="library.gradle:_org.slf4j:slf4j-api:1.7.25.classpath"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver-core:3.5.0.classpath"/>
+    <path refid="library.gradle:_org.mongodb:bson:3.5.0.classpath"/>
+    <path refid="library.gradle:_org.reactivestreams:reactive-streams:1.0.1.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.2.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.2.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.2.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-databind:2.9.2.classpath"/>
+    <path refid="library.gradle:_javax.validation:validation-api:2.0.0.final.classpath"/>
+    <path refid="library.gradle:_org.jboss.logging:jboss-logging:3.3.1.final.classpath"/>
+    <path refid="library.gradle:_com.fasterxml:classmate:1.3.4.classpath"/>
+    <path refid="library.gradle:_net.minidev:json-smart:2.3.classpath"/>
+    <path refid="library.gradle:_net.bytebuddy:byte-buddy:1.7.9.classpath"/>
+    <path refid="library.gradle:_net.bytebuddy:byte-buddy-agent:1.7.9.classpath"/>
+    <path refid="library.gradle:_org.objenesis:objenesis:2.6.classpath"/>
+    <path refid="library.gradle:_com.vaadin.external.google:android-json:0.0.20131108.vaadin1.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-core:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-api:2.10.0.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-annotations:2.9.0.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-core:2.9.2.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-handler-proxy:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-codec-http:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-handler:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-transport-native-epoll:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_net.minidev:accessors-smart:1.2.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-codec-socks:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-codec:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-transport-native-unix-common:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-transport:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-buffer:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-resolver:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-common:4.1.17.final.classpath"/>
+    <path refid="library.gradle:_org.ow2.asm:asm:5.0.4.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.textclassifier2_service_test">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.textclassifier2_service_test">
+    <patternset refid="excluded.from.module.textclassifier2_service_test"/>
+  </patternset>
+  
+  <path id="textclassifier2_service_test.module.test.sourcepath">
+    <dirset dir="${module.textclassifier2_service_test.basedir}/textclassifier2_service/src/test">
+      <include name="java"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.textclassifier2_service_test" depends="compile.module.textclassifier2_service_test.production,compile.module.textclassifier2_service_test.tests" description="Compile module textclassifier2_service_test"/>
+  
+  <target name="compile.module.textclassifier2_service_test.production" depends="register.custom.compilers,compile.module.textclassifier2_service_main" description="Compile module textclassifier2_service_test; production classes"/>
+  
+  <target name="compile.module.textclassifier2_service_test.tests" depends="register.custom.compilers,compile.module.textclassifier2_service_test.production" description="compile module textclassifier2_service_test; test classes" unless="skip.tests">
+    <mkdir dir="${textclassifier2_service_test.testoutput.dir}"/>
+    <javac2 destdir="${textclassifier2_service_test.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.textclassifier2_service_test}/javac">
+      <compilerarg line="${compiler.args.textclassifier2_service_test}"/>
+      <bootclasspath refid="textclassifier2_service_test.module.bootclasspath"/>
+      <classpath refid="textclassifier2_service_test.module.classpath"/>
+      <src refid="textclassifier2_service_test.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.textclassifier2_service_test"/>
+    </javac2>
+    
+    <copy todir="${textclassifier2_service_test.testoutput.dir}">
+      <fileset dir="${module.textclassifier2_service_test.basedir}/textclassifier2_service/src/test/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.textclassifier2_service_test" description="cleanup module">
+    <delete dir="${textclassifier2_service_test.output.dir}"/>
+    <delete dir="${textclassifier2_service_test.testoutput.dir}"/>
+  </target>
+  
+  
+  <!-- Module textclassifier2_test -->
+  
+  <dirname property="module.textclassifier2_test.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.textclassifier2_test" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.textclassifier2_test" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.textclassifier2_test" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.textclassifier2_test" value="-encoding UTF-8 -source 1.8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="textclassifier2_test.output.dir" value="undefined"/>
+  <property name="textclassifier2_test.testoutput.dir" value="${module.textclassifier2_test.basedir}/out/test/classes"/>
+  
+  <path id="textclassifier2_test.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="textclassifier2_test.module.production.classpath">
+    <path refid="${module.jdk.classpath.textclassifier2_test}"/>
+    <pathelement location="${textclassifier2_main.output.dir}"/>
+  </path>
+  
+  <path id="textclassifier2_test.runtime.production.module.classpath">
+    <path refid="textclassifier2_main.runtime.production.module.classpath"/>
+  </path>
+  
+  <path id="textclassifier2_test.module.classpath">
+    <path refid="${module.jdk.classpath.textclassifier2_test}"/>
+    <pathelement location="${textclassifier2_main.output.dir}"/>
+  </path>
+  
+  <path id="textclassifier2_test.runtime.module.classpath">
+    <pathelement location="${textclassifier2_test.testoutput.dir}"/>
+    <path refid="textclassifier2_main.runtime.module.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.textclassifier2_test">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.textclassifier2_test">
+    <patternset refid="excluded.from.module.textclassifier2_test"/>
+  </patternset>
+  
+  
+  <target name="compile.module.textclassifier2_test" depends="compile.module.textclassifier2_test.production,compile.module.textclassifier2_test.tests" description="Compile module textclassifier2_test"/>
+  
+  <target name="compile.module.textclassifier2_test.production" depends="register.custom.compilers,compile.module.textclassifier2_main" description="Compile module textclassifier2_test; production classes"/>
+  
+  <target name="compile.module.textclassifier2_test.tests" depends="register.custom.compilers,compile.module.textclassifier2_test.production" description="compile module textclassifier2_test; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.textclassifier2_test" description="cleanup module">
+    <delete dir="${textclassifier2_test.output.dir}"/>
+    <delete dir="${textclassifier2_test.testoutput.dir}"/>
+  </target>
   
   <target name="init" description="Build initialization">
     <!-- Perform any build initialization in this target -->

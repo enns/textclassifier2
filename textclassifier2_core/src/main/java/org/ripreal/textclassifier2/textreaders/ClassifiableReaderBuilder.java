@@ -1,7 +1,7 @@
 package org.ripreal.textclassifier2.textreaders;
 
 import lombok.RequiredArgsConstructor;
-import org.ripreal.textclassifier2.model.CharacteristicFactory;
+import org.ripreal.textclassifier2.model.ClassifiableFactory;
 
 import java.io.File;
 
@@ -9,9 +9,9 @@ import java.io.File;
 @RequiredArgsConstructor
 public class ClassifiableReaderBuilder {
 
-    private final CharacteristicFactory characteristicFactory;
+    private final ClassifiableFactory characteristicFactory;
 
-    public static ClassifiableReaderBuilder builder(CharacteristicFactory characteristicFactory) {
+    public static ClassifiableReaderBuilder builder(ClassifiableFactory characteristicFactory) {
         return new ClassifiableReaderBuilder(characteristicFactory);
     }
 

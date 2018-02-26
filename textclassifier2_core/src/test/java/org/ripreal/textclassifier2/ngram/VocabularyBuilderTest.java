@@ -1,10 +1,10 @@
 package org.ripreal.textclassifier2.ngram;
 
 import org.junit.Test;
-import org.ripreal.textclassifier2.model.CharacteristicFactory;
+import org.ripreal.textclassifier2.model.ClassifiableFactory;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.VocabularyWord;
-import org.ripreal.textclassifier2.model.modelimp.DefCharacteristicFactory;
+import org.ripreal.textclassifier2.model.modelimp.DefClassifiableFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ import static org.junit.Assert.assertEquals;
 
 public class VocabularyBuilderTest {
     private final NGramStrategy ngram = NGramStrategy.getNGramStrategy(NGramStrategy.NGRAM_TYPES.FILTERED_UNIGRAM);
-    private final CharacteristicFactory characteristicFactory = new DefCharacteristicFactory();
+    private final ClassifiableFactory characteristicFactory = new DefClassifiableFactory();
 
     @Test
     public void getVocabulary() throws Exception {

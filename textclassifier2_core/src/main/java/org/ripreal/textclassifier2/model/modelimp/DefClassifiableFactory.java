@@ -4,7 +4,7 @@ import org.ripreal.textclassifier2.model.*;
 
 import java.util.Map;
 
-public class DefCharacteristicFactory implements CharacteristicFactory {
+public class DefClassifiableFactory implements ClassifiableFactory {
 
     // Increment this var manually each time when a new characteristic is produced.
     // Normally you would implement auto-increment and enforced it by database property.

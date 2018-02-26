@@ -4,7 +4,7 @@ import lombok.NoArgsConstructor;
 import org.junit.Test;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.service.decorators.LoggerDataService;
-import org.ripreal.textclassifier2.testdata.ClassifiableTextTestDataHelper;
+import org.ripreal.textclassifier2.testdata.ClassifiableTestData;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -24,7 +24,7 @@ public class ClassifiableTextServiceTest extends AbstractServiceTest<Classifiabl
 
     @Override
     protected List<ClassifiableText> getTestData() {
-        return ClassifiableTextTestDataHelper.getTextTestData();
+        return ClassifiableTestData.getTextTestData();
     }
 
     @Test

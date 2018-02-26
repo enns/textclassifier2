@@ -10,7 +10,7 @@ import org.ripreal.textclassifier2.CharacteristicUtils;
 import org.ripreal.textclassifier2.actions.ClassifierAction;
 import org.ripreal.textclassifier2.actions.ClassifierEventsDispatcher;
 import org.ripreal.textclassifier2.model.Characteristic;
-import org.ripreal.textclassifier2.model.CharacteristicFactory;
+import org.ripreal.textclassifier2.model.ClassifiableFactory;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 
@@ -29,7 +29,7 @@ public class ExcelFileReader extends ClassifierEventsDispatcher implements Class
     private final int sheetNumber;
     @NonNull
     @Getter
-    private final CharacteristicFactory characteristicFactory;
+    private final ClassifiableFactory characteristicFactory;
     @NonNull
     private List<ClassifiableText> cached_classifiableText = new ArrayList<>();
 
