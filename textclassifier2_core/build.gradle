@@ -2,3 +2,15 @@ dependencies {
     compile 'org.encog:encog-core:3.3.0'
     compile 'org.apache.poi:poi-ooxml:3.16'
 }
+
+//create a single Jar with all dependencies
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'text classifier core lib',
+                'Implementation-Version': version,
+                'Main-Class': 'org.ripreal.textclassifier2.App'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}

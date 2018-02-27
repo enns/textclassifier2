@@ -42,7 +42,7 @@ public class ExcelFileReader extends ClassifierEventsDispatcher implements Class
 
         if (!file.exists() ||
                 sheetNumber < 1) {
-            dispatch("File with texts not exist or has wrong format!");
+            dispatch(String.format("Excel file with path %s not exist or has wrong format!", file.getAbsolutePath()));
             return cached_classifiableText;
         }
 

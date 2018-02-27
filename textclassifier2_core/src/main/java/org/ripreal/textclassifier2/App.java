@@ -35,7 +35,8 @@ public class App {
 
     static {
         if (!CONFIG.isLoaded()) {
-            System.out.println("Config file is not found or it is empty.");
+            System.out.println(String.format(
+                "Config file on %s is not found or it is empty.", App.CONFIG.getDbPath()));
             System.exit(1);
         }
     }

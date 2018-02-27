@@ -39,5 +39,6 @@ subprojects { sp ->
     dependencies {
         testCompile("junit:junit")
         compile("org.projectlombok:lombok")
+        compile files('textclassifier2_core/build/libs/textclassifier2_core-all-0.0.1.jar')
     }
 }
