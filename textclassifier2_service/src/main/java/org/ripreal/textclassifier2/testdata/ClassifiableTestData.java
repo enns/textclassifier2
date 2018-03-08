@@ -4,67 +4,67 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import org.ripreal.textclassifier2.entries.*;
 import org.ripreal.textclassifier2.model.*;
+import org.ripreal.textclassifier2.ngram.NGramStrategy;
 
 import java.util.*;
 
 public class ClassifiableTestData {
 
-    public static List<ClassifiableText> getTextTestData() {
+    public static List<PersistClassifiableText> getTextTestData() {
 
-        List<Characteristic> characteristics = getCharacteristicTestData();
+        List<PersistCharacteristic> characteristics = getCharacteristicTestData();
 
-        Characteristic characteristic1 = characteristics.get(0);
+        PersistCharacteristic characteristic1 = characteristics.get(0);
 
-        Set<CharacteristicValue> vals = new HashSet<>();
-        CharacteristicValue auto = new CharacteristicValue("Автосалон", 0, characteristic1);
+        Set<PersistCharacteristicValue> vals = new HashSet<>();
+        PersistCharacteristicValue auto = new PersistCharacteristicValue("Автосалон", 0, characteristic1);
         vals.add(auto);
-        CharacteristicValue agro = new CharacteristicValue("Агро", 1, characteristic1);
+        PersistCharacteristicValue agro = new PersistCharacteristicValue("Агро", 1, characteristic1);
         vals.add(agro);
-        CharacteristicValue logistic = new CharacteristicValue("Логистика", 1, characteristic1);
+        PersistCharacteristicValue logistic = new PersistCharacteristicValue("Логистика", 1, characteristic1);
         vals.add(logistic);
 
         // characteristic1.setPossibleValues(vals);
 
-        Characteristic characteristic2 = characteristics.get(1);
+        PersistCharacteristic characteristic2 = characteristics.get(1);
 
-        Set<CharacteristicValue> vals2 = new HashSet<>();
-        CharacteristicValue it = new CharacteristicValue("Техподдержка", 0, characteristic2);
+        Set<PersistCharacteristicValue> vals2 = new HashSet<>();
+        PersistCharacteristicValue it = new PersistCharacteristicValue("Техподдержка", 0, characteristic2);
         vals2.add(it);
-        CharacteristicValue dev = new CharacteristicValue("Разработчики", 1, characteristic2);
+        PersistCharacteristicValue dev = new PersistCharacteristicValue("Разработчики", 1, characteristic2);
         vals2.add(dev);
-        CharacteristicValue analytics = new CharacteristicValue("Методисты", 1, characteristic2);
+        PersistCharacteristicValue analytics = new PersistCharacteristicValue("Методисты", 1, characteristic2);
         vals2.add(analytics);
 
-        //   characteristic2.setPossibleValues(vals2);
-
-        ClassifiableText text1 = new ClassifiableText("Требуется починить телефон");
-        text1.setCharacteristics(new HashSet<CharactValuePair>(Arrays.asList(
-                new CharactValuePair(characteristic2, it),
-                new CharactValuePair(characteristic1, auto)
+        PersistClassifiableText text1 = new PersistClassifiableText("Требуется починить телефон",
+            new HashSet<>(Arrays.asList(
+                new PersistCharactValuePair(characteristic2, it),
+                new PersistCharactValuePair(characteristic1, auto)
         )));
 
-        ClassifiableText text2 = new ClassifiableText("Требуется починить заказы клиента в 1с");
-        text2.setCharacteristics(new HashSet<CharactValuePair>(Arrays.asList(
-                new CharactValuePair(characteristic2, dev),
-                new CharactValuePair(characteristic1, agro)
+        PersistClassifiableText text2 = new PersistClassifiableText("Требуется починить заказы клиента в 1с",
+            new HashSet<>(Arrays.asList(
+                new PersistCharactValuePair(characteristic2, dev),
+                new PersistCharactValuePair(characteristic1, agro)
         )));
 
         return Arrays.asList(text1, text2);
     }
 
-    public static List<VocabularyWord> getVocabTestData() {
+    public static List<PersistVocabularyWord> getVocabTestData() {
         return Arrays.asList(
-                new VocabularyWord("треб"),
-                new VocabularyWord("найти")
+                new PersistVocabularyWord("треб", NGramStrategy.NGRAM_TYPES.FILTERED_UNIGRAM.toString()),
+                new PersistVocabularyWord("найти", NGramStrategy.NGRAM_TYPES.FILTERED_UNIGRAM.toString())
         );
     }
 
-    public static List<Characteristic> getCharacteristicTestData() {
+    public static List<PersistCharacteristic> getCharacteristicTestData() {
         // order has meaning
-        List<Characteristic> characteristics = new ArrayList<>();
-        characteristics.add(new Characteristic("Отдел"));
-        characteristics.add(new Characteristic("Тип"));
+        List<PersistCharacteristic> characteristics = new ArrayList<>();
+        characteristics.add(new PersistCharacteristic("Отдел"));
+        characteristics.add(new PersistCharacteristic("Тип"));
         return characteristics;
     }
 

@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = "2.0.0.M7"
+        springBootVersion = "2.0.0.RELEASE"
     }
     repositories {
         mavenCentral()
@@ -39,6 +39,16 @@ subprojects { sp ->
     dependencies {
         testCompile("junit:junit")
         compile("org.projectlombok:lombok")
-        compile files('textclassifier2_core/build/libs/textclassifier2_core-all-0.0.1.jar')
+        //compile files(fileTree(dir: 'lib', includes: ['*.jar']))
+    }
+}
+
+task assembleSubModules(type: Copy) {
+    destinationDir = file("lib")
+
+    into("lib") {
+        project.subprojects.each { p ->
+            from(p.tasks.withType(Jar)*.outputs)
+        }
     }
 }

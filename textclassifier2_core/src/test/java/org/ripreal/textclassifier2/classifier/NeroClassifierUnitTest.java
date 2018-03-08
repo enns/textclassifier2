@@ -130,9 +130,10 @@ public class NeroClassifierUnitTest {
 
         List<ClassifiableText> classifiableTexts = new ArrayList<>();
 
-        Map<Characteristic, CharacteristicValue> characteristics = new HashMap<>();
-        characteristics = new HashMap<>();
-        characteristics.put(characteristicFactory.newCharacteristic("Method"), characteristicFactory.newCharacteristicValue("add", 56, characteristic));
+        Set<CharacteristicValuePair> characteristics = new HashSet<>();
+        characteristics.add(characteristicFactory.newCharacteristicValuePair(
+            characteristicFactory.newCharacteristic("Method"),
+            characteristicFactory.newCharacteristicValue("add", 56, characteristic)));
         classifiableTexts.add(characteristicFactory.newClassifiableText("that at returns", characteristics));
 
         Optional<CharacteristicValue> val = classifier.classify(classifiableTexts.get(0));
@@ -151,12 +152,18 @@ public class NeroClassifierUnitTest {
 
         List<ClassifiableText> classifiableTexts = new ArrayList<>();
 
-        Map<Characteristic, CharacteristicValue> characteristics = new HashMap<>();
-        characteristics.put(characteristicFactory.newCharacteristic("Method"), characteristicFactory.newCharacteristicValue("get", 1, characteristic));
+        Set<CharacteristicValuePair> characteristics = new HashSet<>();
+        characteristics.add(characteristicFactory.newCharacteristicValuePair(
+                characteristicFactory.newCharacteristic("Method"),
+                characteristicFactory.newCharacteristicValue("get", 1, characteristic)
+        ));
         classifiableTexts.add(characteristicFactory.newClassifiableText("shifts right any this operation", characteristics));
 
-        characteristics = new HashMap<>();
-        characteristics.put(characteristicFactory.newCharacteristic("Method"), characteristicFactory.newCharacteristicValue("add", 3, characteristic));
+        characteristics = new HashSet<>();
+        characteristics.add(characteristicFactory.newCharacteristicValuePair(
+                characteristicFactory.newCharacteristic("Method"),
+                characteristicFactory.newCharacteristicValue("add", 3, characteristic))
+        );
         classifiableTexts.add(characteristicFactory.newClassifiableText("that at returns", characteristics));
 
         // make sure classifier is stupid
@@ -179,10 +186,13 @@ public class NeroClassifierUnitTest {
     @Test(expected = IllegalArgumentException.class)
     public void buildZeroOrderNumber() {
         List<ClassifiableText> classifiableTexts = new ArrayList<>();
-
-        Map<Characteristic, CharacteristicValue> characteristics = new HashMap<>();
-        characteristics = new HashMap<>();
-        characteristics.put(characteristicFactory.newCharacteristic("Method"), characteristicFactory.newCharacteristicValue("add", 0, characteristic));
+        
+        Set<CharacteristicValuePair> characteristics = new HashSet<>();
+        CharacteristicValuePair pair = characteristicFactory.newCharacteristicValuePair(
+                characteristicFactory.newCharacteristic("Method"),
+                characteristicFactory.newCharacteristicValue("add", 0, characteristic)
+        );
+        characteristics.add(pair);
         classifiableTexts.add(characteristicFactory.newClassifiableText("that at returns", characteristics));
 
         classifier.build(classifiableTexts);

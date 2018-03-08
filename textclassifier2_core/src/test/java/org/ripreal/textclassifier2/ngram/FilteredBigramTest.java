@@ -9,6 +9,6 @@ public class FilteredBigramTest extends NGramStrategyTest {
 
     @Override
     protected NGramStrategy getNGramStrategy() {
-        return new Bigram(new FilteredUnigram());
+        return NGramStrategy.getNGramStrategy(NGramStrategy.NGRAM_TYPES.FILTERED_BIGRAM);
     }
 }

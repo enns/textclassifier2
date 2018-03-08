@@ -1,10 +1,21 @@
 package org.ripreal.textclassifier2.ngram;
 
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 class FilteredUnigram implements NGramStrategy {
+
+    @NonNull
+    private final NGRAM_TYPES ngramType;
+
+    FilteredUnigram(NGRAM_TYPES ngramType) {
+        this.ngramType = ngramType;
+    }
+
     @Override
     public Set<String> getNGram(String text) {
         // get all significant words
@@ -21,6 +32,11 @@ class FilteredUnigram implements NGramStrategy {
         return uniqueValues;
     }
 
+    @Override
+    public NGRAM_TYPES getNGramType() {
+        return ngramType;
+    }
+
     private String clean(String text) {
         // remove all digits and punctuation marks
         if (text != null) {
@@ -29,4 +45,5 @@ class FilteredUnigram implements NGramStrategy {
             return "";
         }
     }
+
 }

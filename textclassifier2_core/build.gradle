@@ -14,3 +14,8 @@ task fatJar(type: Jar) {
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
 }
+
+
+// Project configuration:
+//version = '0.0.1'
+//group = 'org.ripreal.textclassifier2'

@@ -1,6 +1,11 @@
 package org.ripreal.textclassifier2.model;
 
+import org.ripreal.textclassifier2.model.modelimp.*;
+
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
 
 // ABSTRACT FACTORY
 public interface ClassifiableFactory {
@@ -9,9 +14,12 @@ public interface ClassifiableFactory {
 
     CharacteristicValue newCharacteristicValue(String value, int orderNumber, Characteristic characteristic);
 
+    VocabularyWord newVocabularyWord(String value);
+
+    CharacteristicValuePair newCharacteristicValuePair(Characteristic characteristic, CharacteristicValue characteristicValue);
+
     ClassifiableText newClassifiableText(String text);
 
-    ClassifiableText newClassifiableText(String text, Map<Characteristic, CharacteristicValue> characteristics);
+    ClassifiableText newClassifiableText(String text, Set<CharacteristicValuePair> characteristics);
 
-    VocabularyWord newVocabularyWord(String value);
 }

@@ -1,8 +1,9 @@
 package org.ripreal.textclassifier2.service;
 
 import lombok.RequiredArgsConstructor;
+import org.ripreal.textclassifier2.data.reactive.queries.RepoSpecification;
 import org.ripreal.textclassifier2.data.reactive.repos.CharacteristicRepo;
-import org.ripreal.textclassifier2.model.Characteristic;
+import org.ripreal.textclassifier2.entries.PersistCharacteristic;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -11,12 +12,12 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class CharacteristicService implements DataService<Characteristic> {
+public class CharacteristicService implements DataService<PersistCharacteristic> {
 
     private final CharacteristicRepo repository;
 
     @Override
-    public Flux<Characteristic> findAll() {
+    public Flux<PersistCharacteristic> findAll() {
         return repository.findAll();
     }
 
@@ -26,12 +27,17 @@ public class CharacteristicService implements DataService<Characteristic> {
     }
 
     @Override
-    public Mono<Characteristic> findById(String name) {
+    public Flux<PersistCharacteristic> query(RepoSpecification<PersistCharacteristic> spec) {
+        return spec.get();
+    }
+
+    @Override
+    public Mono<PersistCharacteristic> findById(String name) {
         return repository.findById(name);
     }
 
     @Override
-    public Flux<Characteristic> saveAll(List<Characteristic> characteristic) {
+    public Flux<PersistCharacteristic> saveAll(List<PersistCharacteristic> characteristic) {
         return repository.saveAll(characteristic);
     }
 }

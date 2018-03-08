@@ -10,7 +10,7 @@ import org.ripreal.textclassifier2.model.VocabularyWord;
 @AllArgsConstructor
 public class DefVocabularyWord implements VocabularyWord {
 
-    private int id;
+    private String id;
 
     private final String value;
 

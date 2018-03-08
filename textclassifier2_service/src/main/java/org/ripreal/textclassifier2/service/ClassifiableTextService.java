@@ -1,10 +1,11 @@
 package org.ripreal.textclassifier2.service;
 
 import lombok.RequiredArgsConstructor;
+import org.ripreal.textclassifier2.data.reactive.queries.RepoSpecification;
 import org.ripreal.textclassifier2.data.reactive.repos.CharacteristicRepo;
 import org.ripreal.textclassifier2.data.reactive.repos.CharacteristicValueRepo;
 import org.ripreal.textclassifier2.data.reactive.repos.ClassifiableTextRepo;
-import org.ripreal.textclassifier2.model.ClassifiableText;
+import org.ripreal.textclassifier2.entries.PersistClassifiableText;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Flux;
@@ -14,18 +15,18 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ClassifiableTextService implements DataService<ClassifiableText> {
+public class ClassifiableTextService implements DataService<PersistClassifiableText> {
     private final ClassifiableTextRepo textRepo;
     private final CharacteristicRepo charRepo;
     private final CharacteristicValueRepo charValRepo;
 
     @Override
-    public Flux<ClassifiableText> findAll() {
+    public Flux<PersistClassifiableText> findAll() {
         return textRepo.findAll();
     }
 
     @Override
-    public Mono<ClassifiableText> findById(String id) {
+    public Mono<PersistClassifiableText> findById(String id) {
         return textRepo.findById(id);
     }
 
@@ -38,8 +39,13 @@ public class ClassifiableTextService implements DataService<ClassifiableText> {
     }
 
     @Override
-    public Flux<ClassifiableText> saveAll(List<ClassifiableText> texts) {
+    public Flux<PersistClassifiableText> saveAll(List<PersistClassifiableText> texts) {
         return textRepo.saveAll(texts);
+    }
+
+    @Override
+    public Flux<PersistClassifiableText> query(RepoSpecification<PersistClassifiableText> spec) {
+        return spec.get();
     }
 
 }

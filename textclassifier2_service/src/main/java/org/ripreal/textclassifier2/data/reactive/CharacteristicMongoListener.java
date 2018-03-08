@@ -1,9 +1,9 @@
 package org.ripreal.textclassifier2.data.reactive;
 
 import lombok.RequiredArgsConstructor;
-import org.ripreal.textclassifier2.model.CharactValuePair;
-import org.ripreal.textclassifier2.model.CharacteristicValue;
-import org.ripreal.textclassifier2.model.ClassifiableText;
+import org.ripreal.textclassifier2.entries.PersistCharacteristicValue;
+import org.ripreal.textclassifier2.entries.PersistClassifiableText;
+import org.ripreal.textclassifier2.model.*;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.mapping.event.AbstractMongoEventListener;
 import org.springframework.data.mongodb.core.mapping.event.BeforeConvertEvent;
@@ -27,27 +27,26 @@ public class CharacteristicMongoListener extends AbstractMongoEventListener<Obje
 
         Object source = event.getSource();
 
-        if (source instanceof ClassifiableText) {
-            ClassifiableText text = (ClassifiableText) source;
+        if (source instanceof PersistClassifiableText) {
+            PersistClassifiableText text = (PersistClassifiableText) source;
             if (text.getCharacteristics() != null) {
-                for (CharactValuePair entry : text.getCharacteristics()) {
+                for (CharacteristicValuePair entry : text.getCharacteristics()) {
                     mongoOperations.save(entry.getKey());
-                    checkNSave(entry.getVal()); // checking doubles
+                    checkNSave(entry.getValue()); // checking doubles
                 }
             }
         }
-
     }
 
     public void checkNSave(CharacteristicValue valueRequest) {
 
-        CharacteristicValue valueExisting = mongoOperations.findAndModify(
+        PersistCharacteristicValue valueExisting = mongoOperations.findAndModify(
                 new Query(Criteria
                         .where("value").is(valueRequest.getValue())
                         .and("characteristic").is(valueRequest.getCharacteristic())
                 ),
                 Update.update("orderNumber", valueRequest.getOrderNumber()),
-                CharacteristicValue.class
+                PersistCharacteristicValue.class
         );
 
         if (valueExisting != null)

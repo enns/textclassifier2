@@ -1,10 +1,10 @@
 package org.ripreal.textclassifier2.service;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ripreal.textclassifier2.App;
-import org.ripreal.textclassifier2.model.Characteristic;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -20,6 +20,12 @@ public abstract class AbstractServiceTest<T> {
 
     @Before
     public void setUp() {
+        DataService<T> service = createDataService();
+        service.deleteAll().blockLast();
+    }
+
+    @After
+    public void tearDown() {
         DataService<T> service = createDataService();
         service.deleteAll().blockLast();
     }

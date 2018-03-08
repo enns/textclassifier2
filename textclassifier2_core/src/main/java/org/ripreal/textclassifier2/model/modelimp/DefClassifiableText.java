@@ -3,22 +3,29 @@ package org.ripreal.textclassifier2.model.modelimp;
 import lombok.Data;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
+import org.ripreal.textclassifier2.model.CharacteristicValuePair;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 
 import java.util.Map;
+import java.util.Set;
 
 @Data
-class DefClassifiableText implements ClassifiableText {
+public class DefClassifiableText implements ClassifiableText {
 
-    private final int id;
+    private final String id;
 
     private final String text;
 
-    private final Map<Characteristic, CharacteristicValue> characteristics;
+    private final Set<CharacteristicValuePair> characteristics;
 
     @Override
     public CharacteristicValue getCharacteristicValue(String characteristicName) {
-        return characteristics.get(new DefCharacteristic(characteristicName));
+        //todo: check and make appropriate handler for missing charactericivValue via Optional
+        return characteristics.stream()
+            .filter((pair) -> pair.getKey().equals(new DefCharacteristic(characteristicName)))
+            .map(CharacteristicValuePair::getValue)
+            .findFirst()
+            .orElseThrow(() -> new RuntimeException("characteristic value not exists!"));
     }
 
     @Override

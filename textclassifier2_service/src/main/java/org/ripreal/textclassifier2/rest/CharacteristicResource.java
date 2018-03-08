@@ -1,6 +1,6 @@
 package org.ripreal.textclassifier2.rest;
 
-import org.ripreal.textclassifier2.model.Characteristic;
+import org.ripreal.textclassifier2.entries.PersistCharacteristic;
 import org.ripreal.textclassifier2.rest.exceptions.ThereIsNoSuchCharacteristic;
 import org.ripreal.textclassifier2.service.CharacteristicService;
 import org.ripreal.textclassifier2.service.DataService;
@@ -16,19 +16,20 @@ import java.util.Collections;
 @RequestMapping("characteristics")
 public class CharacteristicResource {
 
-    private final DataService<Characteristic> service;
+    private final DataService<PersistCharacteristic> service;
 
     public CharacteristicResource(CharacteristicService service) {
         this.service = new LoggerDataService<>(service);
     }
 
     @GetMapping(value = "all", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Flux<Characteristic> findAll() {
+    public Flux<PersistCharacteristic> findAll() {
         return service.findAll();
     }
 
     @GetMapping(value = "{name}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Mono<Characteristic> findByName(@PathVariable String name) {
+    public Mono<PersistCharacteristic> findByName(@PathVariable String name) {
+
         return service.findById(name)
                 .doOnSuccess(
                         (el) -> {
@@ -39,7 +40,7 @@ public class CharacteristicResource {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Flux<Characteristic> save(@RequestBody Characteristic characteristic) {
+    public Flux<PersistCharacteristic> save(@RequestBody PersistCharacteristic characteristic) {
         return service.saveAll(Collections.singletonList(characteristic));
     }
 }

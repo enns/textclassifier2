@@ -9,6 +9,6 @@ public class FilteredUnigramTest extends NGramStrategyTest {
 
     @Override
     protected NGramStrategy getNGramStrategy() {
-        return new FilteredUnigram();
+        return new FilteredUnigram(NGramStrategy.NGRAM_TYPES.FILTERED_UNIGRAM);
     }
 }

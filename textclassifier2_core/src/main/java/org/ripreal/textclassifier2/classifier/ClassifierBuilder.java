@@ -7,9 +7,7 @@ import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.ClassifiableFactory;
 import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
-import org.ripreal.textclassifier2.textreaders.ClassifiableReader;
-import org.ripreal.textclassifier2.textreaders.ClassifiableReaderBuilder;
-
+import org.ripreal.textclassifier2.translators.ClassifiableTranslator;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +19,7 @@ import java.util.function.Function;
 public final class ClassifierBuilder {
 
     @NonNull
-    private final ClassifiableReader reader;
+    private final ClassifiableTranslator reader;
     @NonNull
     private final ClassifiableFactory characteristicFactory;
     @NonNull
@@ -32,15 +30,8 @@ public final class ClassifierBuilder {
 
     // CONSTRUCTORS
 
-    public static ClassifierBuilder fromReader(@NonNull Function<ClassifiableReaderBuilder, ClassifiableReader> provider,
-                                               @NonNull ClassifiableFactory characteristicFactory) {
-
-        ClassifiableReader reader = provider.apply(ClassifiableReaderBuilder.builder(characteristicFactory));
-        return new ClassifierBuilder(reader, characteristicFactory);
-    }
-
-    public static ClassifierBuilder fromReader(@NonNull ClassifiableReader reader, @NonNull ClassifiableFactory characteristicFactory) {
-        return new ClassifierBuilder(reader, characteristicFactory);
+    public static ClassifierBuilder fromReader(@NonNull ClassifiableTranslator reader) {
+        return new ClassifierBuilder(reader, reader.getCharacteristicFactory());
     }
 
     // CLIENT SECTION

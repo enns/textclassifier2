@@ -1,5 +1,8 @@
 package org.ripreal.textclassifier2.ngram;
 
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -7,14 +10,15 @@ import java.util.Set;
 
 // decorator
 class Bigram implements NGramStrategy {
-    private NGramStrategy nGramStrategy;
+
+    @NonNull
+    private final NGRAM_TYPES ngramType;
+    @NonNull
+    private final NGramStrategy nGramStrategy;
 
     Bigram(NGramStrategy nGramStrategy) {
-        if (nGramStrategy == null) {
-            throw new IllegalArgumentException();
-        }
-
         this.nGramStrategy = nGramStrategy;
+        this.ngramType = nGramStrategy.getNGramType();
     }
 
     @Override
@@ -31,5 +35,10 @@ class Bigram implements NGramStrategy {
         }
 
         return uniqueValues;
+    }
+
+    @Override
+    public NGRAM_TYPES getNGramType() {
+        return ngramType;
     }
 }

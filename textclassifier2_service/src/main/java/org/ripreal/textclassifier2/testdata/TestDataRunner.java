@@ -1,7 +1,7 @@
 package org.ripreal.textclassifier2.testdata;
 
-import org.ripreal.textclassifier2.model.ClassifiableText;
-import org.ripreal.textclassifier2.model.VocabularyWord;
+import org.ripreal.textclassifier2.entries.PersistClassifiableText;
+import org.ripreal.textclassifier2.entries.PersistVocabularyWord;
 import org.ripreal.textclassifier2.service.ClassifiableTextService;
 import org.ripreal.textclassifier2.service.DataService;
 import org.ripreal.textclassifier2.service.VocabularyWordService;
@@ -16,8 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Configuration
 public class TestDataRunner {
 
-    private final DataService<ClassifiableText> textService;
-    private final DataService<VocabularyWord> vocabService;
+    private final DataService<PersistClassifiableText> textService;
+    private final DataService<PersistVocabularyWord> vocabService;
 
     public TestDataRunner(ClassifiableTextService textService, VocabularyWordService vocabService) {
         this.textService = new LoggerDataService<>(textService);
@@ -29,11 +29,19 @@ public class TestDataRunner {
     public CommandLineRunner init() {
         return args -> {
             textService
+                    .deleteAll().blockLast();
+
+            textService.saveAll(ClassifiableTestData.getTextTestData()).blockLast();
+
+            /*
+            textService
                     .deleteAll()
                     .thenMany(textService.saveAll(ClassifiableTestData.getTextTestData()));
+
             vocabService
                     .deleteAll()
                     .thenMany(vocabService.saveAll(ClassifiableTestData.getVocabTestData()));
+            */
         };
     }
 }

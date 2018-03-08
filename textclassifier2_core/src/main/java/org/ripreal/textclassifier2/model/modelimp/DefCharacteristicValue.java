@@ -8,7 +8,10 @@ import org.ripreal.textclassifier2.model.CharacteristicValue;
 
 @Data
 @AllArgsConstructor
-class DefCharacteristicValue implements CharacteristicValue {
+public class DefCharacteristicValue implements CharacteristicValue {
+
+    @NonNull
+    private String id;
 
     @NonNull
     private String value;

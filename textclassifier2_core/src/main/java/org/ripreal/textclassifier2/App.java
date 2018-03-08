@@ -6,26 +6,27 @@ import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.modelimp.DefClassifiableFactory;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
-import org.ripreal.textclassifier2.textreaders.ClassifiableReader;
-import org.ripreal.textclassifier2.textreaders.ClassifiableReaderBuilder;
+import org.ripreal.textclassifier2.translators.ClassifiableTranslator;
+import org.ripreal.textclassifier2.translators.ExcelFileTranslator;
 
 import java.io.File;
 import java.util.List;
 
 public class App {
 
-    private final static Config CONFIG = new Config("./config/config.ini");
+    private final static String CONFIG_PATH = "./config/config.ini";
+    private final static Config CONFIG = new Config(CONFIG_PATH);
 
     public static void main(String... args) {
 
         Classifier classifier = ClassifierBuilder
-                .fromReader((builder) -> builder.newExcelFileReader(new File(CONFIG.getTestDataPath()), 1), new DefClassifiableFactory())
+                .fromReader(new ExcelFileTranslator(new File(CONFIG.getTestDataPath()), 1, new DefClassifiableFactory()))
                 .subscribe((action, msg) -> System.out.println(String.format("%s: %s", action, msg)))
                 .addNeroClassifierUnit("Отдел", NGramStrategy.getNGramStrategy(NGramStrategy.NGRAM_TYPES.FILTERED_BIGRAM))
                 .addNeroClassifierUnit("Тип", NGramStrategy.getNGramStrategy(NGramStrategy.NGRAM_TYPES.FILTERED_UNIGRAM))
                 .build();
 
-        ClassifiableReader reader = ClassifiableReaderBuilder.builder(new DefClassifiableFactory()).newExcelFileReader(new File(CONFIG.getTestDataPath()), 1);
+        ClassifiableTranslator reader = new ExcelFileTranslator(new File(CONFIG.getTestDataPath()), 1, new DefClassifiableFactory());
         ClassifiableText text = reader.toClassifiableTexts().get(0);
         List<CharacteristicValue> charact = classifier.classify(text);
         System.out.println(String.format("Classified text %s", text.getText()));
@@ -36,7 +37,7 @@ public class App {
     static {
         if (!CONFIG.isLoaded()) {
             System.out.println(String.format(
-                "Config file on %s is not found or it is empty.", App.CONFIG.getDbPath()));
+                "Config file on %s is not found or it is empty.", CONFIG_PATH));
             System.exit(1);
         }
     }

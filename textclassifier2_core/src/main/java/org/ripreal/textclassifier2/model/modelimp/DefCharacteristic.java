@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Data
-class DefCharacteristic implements Characteristic {
+public class DefCharacteristic implements Characteristic {
 
     private final String name;
 

@@ -2,6 +2,7 @@ package org.ripreal.textclassifier2.service.decorators;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.ripreal.textclassifier2.data.reactive.queries.RepoSpecification;
 import org.ripreal.textclassifier2.service.DataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import reactor.core.publisher.Flux;
@@ -20,7 +21,10 @@ public class LoggerDataService<T> implements DataService<T> {
     public Flux<T> saveAll(List<T> entities) {
         return service.saveAll(entities)
                 .doOnRequest((request) -> log.info("start request"))
-                .doOnNext((item) -> log.info("written to db {}", item));
+                .doOnNext((item) -> log.info("written to db {}", item))
+                .doOnComplete(() -> log.info("completed request"))
+                .doOnError((a1) -> log.error("request error {}", a1))
+                .doOnTerminate(() -> log.info("terminated request"));
     }
 
     @Override
@@ -42,5 +46,12 @@ public class LoggerDataService<T> implements DataService<T> {
         return service.deleteAll()
                 .doOnRequest((request) -> log.info("start request"))
                 .doOnNext((item) -> log.info("found {}", item));
+    }
+
+    @Override
+    public Flux<T> query(RepoSpecification<T> spec) {
+        return service.query(spec)
+            .doOnRequest((request) -> log.info("start query specification request"))
+            .doOnNext((item) -> log.info("found {}", item));
     }
 }
