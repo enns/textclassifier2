@@ -5,6 +5,7 @@
 /target/
 gradle.properties
 /textclassifier2_core/build/
+/textclassifier2_core/out/
 /textclassifier2_core/gradle.properties
 /textclassifier2_service/build/
 /textclassifier2_service/out/
