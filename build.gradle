@@ -39,7 +39,6 @@ subprojects { sp ->
     dependencies {
         testCompile("junit:junit")
         compile("org.projectlombok:lombok")
-        //compile files(fileTree(dir: 'lib', includes: ['*.jar']))
     }
 }
 

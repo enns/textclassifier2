@@ -65,14 +65,6 @@ public class NeroClassifierUnitTest {
         vocabulary.add(characteristicFactory.newVocabularyWord("operation"));
         vocabulary.add(characteristicFactory.newVocabularyWord("inserts"));
 
-        boolean exist = trainedClassifier.exists();
-        File file = new File("./t1");
-        try {
-            file.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println(file.toPath().toAbsolutePath().toString());
         classifier = new NeroClassifierUnit(trainedClassifier, characteristic, vocabulary, nGramStrategy);
     }
 
