@@ -1,4 +1,4 @@
-# textclassifier2
+# Text classifier 2
 [![Build Status](https://travis-ci.org/ripreal/textclassifier2.svg?branch=master)](https://travis-ci.org/ripreal/textclassifier2)
 [![codecov](https://codecov.io/gh/ripreal/textclassifier2/branch/master/graph/badge.svg)](https://codecov.io/gh/ripreal/textclassifier2)
 [![BCH compliance](https://bettercodehub.com/edge/badge/ripreal/textclassifier2?branch=master)](https://bettercodehub.com/)
