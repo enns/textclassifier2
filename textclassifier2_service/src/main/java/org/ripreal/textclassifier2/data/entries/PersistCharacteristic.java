@@ -1,29 +1,38 @@
-package org.ripreal.textclassifier2.entries;
+package org.ripreal.textclassifier2.data.entries;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.ripreal.textclassifier2.data.mapper.DeserializableField;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Set;
 
 @Data
 @Document
+@NoArgsConstructor
 @RequiredArgsConstructor
 public class PersistCharacteristic implements Characteristic {
 
     @Id
     @NonNull
+    @DeserializableField
     private String name;
-    //@DBRef @NonNull private Set<CharacteristicValue> possibleValues = new HashSet<>();
+    @JsonIgnore
+    @Transient
+    private Set<CharacteristicValue> possibleValues;
 
-    public PersistCharacteristic() {}
-
+    @Override
+    @JsonIgnore
+    @Transient
     public Set<CharacteristicValue> getPossibleValues() {
-        return null;
+        return possibleValues;
     }
 
     @Override

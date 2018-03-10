@@ -3,7 +3,7 @@ package org.ripreal.textclassifier2.service;
 import lombok.RequiredArgsConstructor;
 import org.ripreal.textclassifier2.data.reactive.queries.RepoSpecification;
 import org.ripreal.textclassifier2.data.reactive.repos.VocabularyWordRepo;
-import org.ripreal.textclassifier2.entries.PersistVocabularyWord;
+import org.ripreal.textclassifier2.data.entries.PersistVocabularyWord;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

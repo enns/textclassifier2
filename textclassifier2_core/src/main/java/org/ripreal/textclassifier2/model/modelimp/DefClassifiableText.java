@@ -3,10 +3,7 @@ package org.ripreal.textclassifier2.model.modelimp;
 import lombok.Data;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
-import org.ripreal.textclassifier2.model.CharacteristicValuePair;
 import org.ripreal.textclassifier2.model.ClassifiableText;
-
-import java.util.Map;
 import java.util.Set;
 
 @Data
@@ -16,14 +13,13 @@ public class DefClassifiableText implements ClassifiableText {
 
     private final String text;
 
-    private final Set<CharacteristicValuePair> characteristics;
+    private final Set<CharacteristicValue> characteristics;
 
     @Override
     public CharacteristicValue getCharacteristicValue(String characteristicName) {
         //todo: check and make appropriate handler for missing charactericivValue via Optional
         return characteristics.stream()
-            .filter((pair) -> pair.getKey().equals(new DefCharacteristic(characteristicName)))
-            .map(CharacteristicValuePair::getValue)
+            .filter(value -> value.getCharacteristic().equals(new DefCharacteristic(characteristicName)))
             .findFirst()
             .orElseThrow(() -> new RuntimeException("characteristic value not exists!"));
     }

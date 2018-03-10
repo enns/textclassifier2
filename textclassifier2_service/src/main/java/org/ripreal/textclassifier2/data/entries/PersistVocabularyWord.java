@@ -1,13 +1,13 @@
-package org.ripreal.textclassifier2.entries;
+package org.ripreal.textclassifier2.data.entries;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.ripreal.textclassifier2.model.Characteristic;
+import org.ripreal.textclassifier2.data.mapper.DeserializableField;
 import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
@@ -17,10 +17,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class PersistVocabularyWord implements VocabularyWord {
 
     @Id
+    @JsonIgnore
     private String id;
     @NonNull
+    @DeserializableField
     private String value;
     @NonNull
+    @DeserializableField
     private String ngram;
 
     @Override

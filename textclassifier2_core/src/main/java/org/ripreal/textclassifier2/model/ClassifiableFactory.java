@@ -16,10 +16,8 @@ public interface ClassifiableFactory {
 
     VocabularyWord newVocabularyWord(String value);
 
-    CharacteristicValuePair newCharacteristicValuePair(Characteristic characteristic, CharacteristicValue characteristicValue);
-
     ClassifiableText newClassifiableText(String text);
 
-    ClassifiableText newClassifiableText(String text, Set<CharacteristicValuePair> characteristics);
+    ClassifiableText newClassifiableText(String text, Set<CharacteristicValue> characteristics);
 
 }

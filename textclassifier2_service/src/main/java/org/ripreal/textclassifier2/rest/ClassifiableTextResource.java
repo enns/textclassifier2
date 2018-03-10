@@ -1,6 +1,6 @@
 package org.ripreal.textclassifier2.rest;
 
-import org.ripreal.textclassifier2.entries.PersistClassifiableText;
+import org.ripreal.textclassifier2.data.entries.PersistClassifiableText;
 import org.ripreal.textclassifier2.service.ClassifiableTextService;
 import org.ripreal.textclassifier2.service.DataService;
 import org.ripreal.textclassifier2.service.decorators.LoggerDataService;

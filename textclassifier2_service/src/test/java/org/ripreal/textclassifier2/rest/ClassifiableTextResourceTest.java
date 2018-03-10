@@ -1,13 +1,11 @@
 package org.ripreal.textclassifier2.rest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import org.junit.Test;
-import org.ripreal.textclassifier2.entries.PersistClassifiableText;
+import org.ripreal.textclassifier2.data.entries.PersistClassifiableText;
 import org.ripreal.textclassifier2.testdata.ClassifiableTestData;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.reactive.function.client.ClientResponse;
 import reactor.core.publisher.Mono;
 
 import java.net.URI;
@@ -15,6 +13,9 @@ import java.net.URI;
 import static org.junit.Assert.assertTrue;
 
 public class ClassifiableTextResourceTest extends AbstractResourceTest {
+
+    @Autowired
+    ObjectMapper mapper;
 
     @Test
     public void findAll() throws Exception {
@@ -41,11 +42,11 @@ public class ClassifiableTextResourceTest extends AbstractResourceTest {
                 }
                 )
                 .block();
+
         // repeat test with other method
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
-        ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
-        String requestJson = ow.writeValueAsString(text);
+        /*
+        String requestJson = mapper.writeValueAsString(text);
+        PersistClassifiableText pText = mapper.readValue(requestJson, PersistClassifiableText.class);
 
         ClientResponse resp = webClient.post()
                 .uri(URI.create(this.server + "/texts"))
@@ -54,6 +55,7 @@ public class ClassifiableTextResourceTest extends AbstractResourceTest {
                 .syncBody(requestJson).exchange().block();
 
         assertTrue(resp.statusCode().is2xxSuccessful());
+        */
     }
 
 }

@@ -1,6 +1,6 @@
 package org.ripreal.textclassifier2.rest;
 
-import org.ripreal.textclassifier2.entries.PersistCharacteristic;
+import org.ripreal.textclassifier2.data.entries.PersistCharacteristic;
 import org.ripreal.textclassifier2.rest.exceptions.ThereIsNoSuchCharacteristic;
 import org.ripreal.textclassifier2.service.CharacteristicService;
 import org.ripreal.textclassifier2.service.DataService;
@@ -29,7 +29,6 @@ public class CharacteristicResource {
 
     @GetMapping(value = "{name}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<PersistCharacteristic> findByName(@PathVariable String name) {
-
         return service.findById(name)
                 .doOnSuccess(
                         (el) -> {

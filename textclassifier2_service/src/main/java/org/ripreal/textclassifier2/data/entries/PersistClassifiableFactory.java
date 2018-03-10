@@ -1,4 +1,4 @@
-package org.ripreal.textclassifier2.entries;
+package org.ripreal.textclassifier2.data.entries;
 
 import org.ripreal.textclassifier2.model.*;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
@@ -26,17 +26,12 @@ public class PersistClassifiableFactory implements ClassifiableFactory {
     }
 
     @Override
-    public CharacteristicValuePair newCharacteristicValuePair(Characteristic characteristic, CharacteristicValue characteristicValue) {
-        return new PersistCharactValuePair(characteristic, characteristicValue);
-    }
-
-    @Override
     public ClassifiableText newClassifiableText(String text) {
         return new PersistClassifiableText(text, new HashSet<>());
     }
 
     @Override
-    public ClassifiableText newClassifiableText(String text, Set<CharacteristicValuePair> characteristics) {
+    public ClassifiableText newClassifiableText(String text, Set<CharacteristicValue> characteristics) {
         return new PersistClassifiableText(text, characteristics);
     }
 }

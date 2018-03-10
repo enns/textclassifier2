@@ -5,7 +5,7 @@ import org.ripreal.textclassifier2.data.reactive.queries.RepoSpecification;
 import org.ripreal.textclassifier2.data.reactive.repos.CharacteristicRepo;
 import org.ripreal.textclassifier2.data.reactive.repos.CharacteristicValueRepo;
 import org.ripreal.textclassifier2.data.reactive.repos.ClassifiableTextRepo;
-import org.ripreal.textclassifier2.entries.PersistClassifiableText;
+import org.ripreal.textclassifier2.data.entries.PersistClassifiableText;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Flux;

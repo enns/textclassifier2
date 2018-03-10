@@ -1,7 +1,7 @@
 package org.ripreal.textclassifier2.testdata;
 
-import org.ripreal.textclassifier2.entries.PersistClassifiableText;
-import org.ripreal.textclassifier2.entries.PersistVocabularyWord;
+import org.ripreal.textclassifier2.data.entries.PersistClassifiableText;
+import org.ripreal.textclassifier2.data.entries.PersistVocabularyWord;
 import org.ripreal.textclassifier2.service.ClassifiableTextService;
 import org.ripreal.textclassifier2.service.DataService;
 import org.ripreal.textclassifier2.service.VocabularyWordService;

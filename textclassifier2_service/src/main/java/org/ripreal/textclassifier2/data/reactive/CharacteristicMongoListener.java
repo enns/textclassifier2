@@ -1,8 +1,9 @@
 package org.ripreal.textclassifier2.data.reactive;
 
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.ripreal.textclassifier2.entries.PersistCharacteristicValue;
-import org.ripreal.textclassifier2.entries.PersistClassifiableText;
+import org.ripreal.textclassifier2.data.entries.PersistCharacteristicValue;
+import org.ripreal.textclassifier2.data.entries.PersistClassifiableText;
 import org.ripreal.textclassifier2.model.*;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.mapping.event.AbstractMongoEventListener;
@@ -30,15 +31,15 @@ public class CharacteristicMongoListener extends AbstractMongoEventListener<Obje
         if (source instanceof PersistClassifiableText) {
             PersistClassifiableText text = (PersistClassifiableText) source;
             if (text.getCharacteristics() != null) {
-                for (CharacteristicValuePair entry : text.getCharacteristics()) {
-                    mongoOperations.save(entry.getKey());
-                    checkNSave(entry.getValue()); // checking doubles
+                for (CharacteristicValue entry : text.getCharacteristics()) {
+                    //mongoOperations.save(entry.getKey());
+                    checkNSave(entry); // checking doubles
                 }
             }
         }
     }
 
-    public void checkNSave(CharacteristicValue valueRequest) {
+    public void checkNSave(@NonNull CharacteristicValue valueRequest) {
 
         PersistCharacteristicValue valueExisting = mongoOperations.findAndModify(
                 new Query(Criteria

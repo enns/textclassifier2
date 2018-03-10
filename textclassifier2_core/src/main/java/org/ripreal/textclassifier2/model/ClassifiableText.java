@@ -9,7 +9,7 @@ public interface ClassifiableText {
 
     String getText();
 
-    Set<CharacteristicValuePair> getCharacteristics();
+    Set<CharacteristicValue> getCharacteristics();
 
     CharacteristicValue getCharacteristicValue(String characteristicName);
 }

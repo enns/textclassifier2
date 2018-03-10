@@ -1,25 +1,20 @@
 package org.ripreal.textclassifier2.translators;
 
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.ripreal.textclassifier2.actions.ClassifierAction;
 import org.ripreal.textclassifier2.data.reactive.queries.FindVocabularyByNgramSpec;
-import org.ripreal.textclassifier2.entries.PersistCharacteristic;
-import org.ripreal.textclassifier2.entries.PersistClassifiableText;
-import org.ripreal.textclassifier2.entries.PersistVocabularyWord;
+import org.ripreal.textclassifier2.data.entries.PersistCharacteristic;
+import org.ripreal.textclassifier2.data.entries.PersistClassifiableText;
+import org.ripreal.textclassifier2.data.entries.PersistVocabularyWord;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.ClassifiableFactory;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
-import org.ripreal.textclassifier2.service.CharacteristicService;
 import org.ripreal.textclassifier2.service.DataService;
 import org.ripreal.textclassifier2.service.decorators.LoggerDataService;
-import org.ripreal.textclassifier2.translators.ClassifiableTranslator;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import reactor.core.publisher.Flux;
 
 import java.util.List;
 import java.util.Set;

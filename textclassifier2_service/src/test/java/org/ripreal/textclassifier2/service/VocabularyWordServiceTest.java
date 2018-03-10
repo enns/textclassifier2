@@ -1,7 +1,7 @@
 package org.ripreal.textclassifier2.service;
 
 import org.junit.Test;
-import org.ripreal.textclassifier2.entries.PersistVocabularyWord;
+import org.ripreal.textclassifier2.data.entries.PersistVocabularyWord;
 import org.ripreal.textclassifier2.service.decorators.LoggerDataService;
 import org.ripreal.textclassifier2.testdata.ClassifiableTestData;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -4,6 +4,8 @@ import java.util.Set;
 
 public interface Characteristic {
 
+    void setName(String name);
+
     String getName();
 
     Set<CharacteristicValue> getPossibleValues();

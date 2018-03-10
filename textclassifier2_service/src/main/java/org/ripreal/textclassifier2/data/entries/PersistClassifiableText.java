@@ -1,10 +1,12 @@
-package org.ripreal.textclassifier2.entries;
+package org.ripreal.textclassifier2.data.entries;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.ripreal.textclassifier2.model.CharacteristicValuePair;
+import org.ripreal.textclassifier2.data.mapper.DeserializableField;
+import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -18,13 +20,14 @@ import java.util.*;
 public class PersistClassifiableText implements ClassifiableText {
 
     @Id
+    @JsonIgnore
     private String id;
     @NonNull
+    @DeserializableField
     private String text;
     @NonNull
-    //@Field("characteristics")
-    //@JsonProperty("characteristics")
-    Set<CharacteristicValuePair> characteristics;
+    @DeserializableField
+    Set<CharacteristicValue> characteristics;
 
     @Override
     public boolean equals(Object o) {
@@ -39,21 +42,11 @@ public class PersistClassifiableText implements ClassifiableText {
         return super.hashCode();
     }
 
-    public PersistCharacteristicValue getCharacteristicValue(String characteristicName) {
-        throw new RuntimeException("not implemented");
-    }
-
-  //  @Transient
-  //  @JsonIgnore
-    public Set<CharacteristicValuePair> getCharacteristics() {
-
-        /*return characteristics.stream().collect(
-            HashMap::new,
-            (map, entry) -> map.put(entry.getKey(), entry.getVal()),
-            HashMap::putAll
-        );
-        */
-        return characteristics;
+    public CharacteristicValue getCharacteristicValue(String characteristicName) {
+        return characteristics.stream()
+            .filter(value -> value.getCharacteristic().equals(new PersistCharacteristic(characteristicName)))
+            .findFirst()
+            .orElseThrow(() -> new RuntimeException("characteristic value not exists!"));
     }
 
 }

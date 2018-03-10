@@ -68,7 +68,7 @@ public class ExcelFileTranslator extends ClassifierEventsDispatcher implements C
     public Set<Characteristic> toCharacteristics() {
         return toClassifiableTexts().stream()
                 .flatMap(text -> text.getCharacteristics().stream())
-                .map(CharacteristicValuePair::getKey)
+                .map(CharacteristicValue::getCharacteristic)
                 .distinct()
                 .collect(Collectors.toSet());
     }
@@ -89,7 +89,7 @@ public class ExcelFileTranslator extends ClassifierEventsDispatcher implements C
 
         // start from second row
         for (int i = 1; i <= sheet.getLastRowNum(); i++) {
-            Set<CharacteristicValuePair> characteristicsValues = getCharacteristicsValues(sheet.getRow(i), characteristics);
+            Set<CharacteristicValue> characteristicsValues = getCharacteristicsValues(sheet.getRow(i), characteristics);
 
             // exclude empty rows
             if (!sheet.getRow(i).getCell(0).getStringCellValue().equals("")) {
@@ -108,8 +108,8 @@ public class ExcelFileTranslator extends ClassifierEventsDispatcher implements C
         return classifiableTexts;
     }
 
-    private Set<CharacteristicValuePair> getCharacteristicsValues(Row row, List<Characteristic> characteristics) {
-        Set<CharacteristicValuePair> characteristicsValues = new HashSet<>();
+    private Set<CharacteristicValue> getCharacteristicsValues(Row row, List<Characteristic> characteristics) {
+        Set<CharacteristicValue> characteristicsValues = new HashSet<>();
 
         for (int i = 1; i < row.getLastCellNum(); i++) {
             Characteristic characteristic = characteristics.get(i - 1);
@@ -121,7 +121,7 @@ public class ExcelFileTranslator extends ClassifierEventsDispatcher implements C
                 value = characteristicFactory.newCharacteristicValue(valueName, 0, characteristic);
             }
             characteristic.addPossibleValue(value);
-            characteristicsValues.add(characteristicFactory.newCharacteristicValuePair(characteristic, value));
+            characteristicsValues.add(value);
         }
 
         return characteristicsValues;

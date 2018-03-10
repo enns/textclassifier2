@@ -1,6 +1,7 @@
 package org.ripreal.textclassifier2.model.modelimp;
 
 import lombok.Data;
+import lombok.NonNull;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
 
@@ -10,7 +11,8 @@ import java.util.Set;
 @Data
 public class DefCharacteristic implements Characteristic {
 
-    private final String name;
+    @NonNull
+    private String name;
 
     private final Set<CharacteristicValue> possibleValues = new HashSet<>();
 

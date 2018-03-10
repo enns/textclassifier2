@@ -4,11 +4,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import org.ripreal.textclassifier2.entries.*;
+import org.ripreal.textclassifier2.data.entries.*;
 import org.ripreal.textclassifier2.model.*;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class ClassifiableTestData {
 
@@ -39,16 +40,12 @@ public class ClassifiableTestData {
         vals2.add(analytics);
 
         PersistClassifiableText text1 = new PersistClassifiableText("Требуется починить телефон",
-            new HashSet<>(Arrays.asList(
-                new PersistCharactValuePair(characteristic2, it),
-                new PersistCharactValuePair(characteristic1, auto)
-        )));
+            new HashSet<>(Arrays.asList(it, auto)
+        ));
 
         PersistClassifiableText text2 = new PersistClassifiableText("Требуется починить заказы клиента в 1с",
-            new HashSet<>(Arrays.asList(
-                new PersistCharactValuePair(characteristic2, dev),
-                new PersistCharactValuePair(characteristic1, agro)
-        )));
+            new HashSet<>(Arrays.asList(dev, agro)
+        ));
 
         return Arrays.asList(text1, text2);
     }
@@ -58,6 +55,13 @@ public class ClassifiableTestData {
                 new PersistVocabularyWord("треб", NGramStrategy.NGRAM_TYPES.FILTERED_UNIGRAM.toString()),
                 new PersistVocabularyWord("найти", NGramStrategy.NGRAM_TYPES.FILTERED_UNIGRAM.toString())
         );
+    }
+
+    public static List<PersistCharacteristicValue> getCharacteristicValueTetData() {
+        return getTextTestData().stream()
+            .flatMap(text ->  text.getCharacteristics().stream())
+            .map(value -> (PersistCharacteristicValue) value)
+            .collect(Collectors.toList());
     }
 
     public static List<PersistCharacteristic> getCharacteristicTestData() {
