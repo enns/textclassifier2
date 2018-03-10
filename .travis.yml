@@ -3,5 +3,5 @@ jdk:
   - oraclejdk8
 before_install:
 - cd textclassifier2_core
-- chmod +x gradlew
+#- chmod +x gradlew
 script: gradle check
