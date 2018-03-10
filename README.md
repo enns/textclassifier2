@@ -1,6 +1,7 @@
 # textclassifier2
 [![Build Status](https://travis-ci.org/ripreal/textclassifier2.svg?branch=master)](https://travis-ci.org/ripreal/textclassifier2)
 [![codecov](https://codecov.io/gh/ripreal/textclassifier2/branch/master/graph/badge.svg)](https://codecov.io/gh/ripreal/textclassifier2)
+[![BCH compliance](https://bettercodehub.com/edge/badge/ripreal/textclassifier2?branch=master)](https://bettercodehub.com/)
 [![Join the chat at https://gitter.im/V8LogScannerWeb/Lobby?source=orgpage](https://badges.gitter.im/TextClassifier2/TextClassifier2.svg)](https://gitter.im/TextClassifier2/Lobby?source=orgpage) 
 
 Advanced neural network based on https://github.com/RusZ/TextClassifier
