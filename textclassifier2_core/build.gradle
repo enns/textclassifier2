@@ -1,3 +1,14 @@
+
+apply plugin: 'java'
+apply plugin: 'jacoco'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
 dependencies {
     compile 'org.encog:encog-core:3.3.0'
     compile 'org.apache.poi:poi-ooxml:3.16'
@@ -15,7 +26,11 @@ task fatJar(type: Jar) {
     with jar
 }
 
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled false
+    }
+}
 
-// Project configuration:
-//version = '0.0.1'
-//group = 'org.ripreal.textclassifier2'
+check.dependsOn jacocoTestReport
