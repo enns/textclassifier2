@@ -136,7 +136,7 @@ public class NeroClassifierUnit extends ClassifierUnit {
         if (!dir.isDirectory())
             throw new IllegalArgumentException("need directory not a file!");
 
-        File file = new File(dir.getName() + "/NeroClassifierUnit_save");
+        File file = new File(dir.getAbsolutePath() + "/NeroClassifierUnit_save");
         saveObject(file, network);
         dispatch("Trained Classifier for '" + characteristic.getName() + "' characteristic saved. Wait...");
     }

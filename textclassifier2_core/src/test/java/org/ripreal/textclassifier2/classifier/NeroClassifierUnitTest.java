@@ -134,7 +134,7 @@ public class NeroClassifierUnitTest {
     @Test
     public void saveClassifier() throws Exception {
         classifier.saveClassifier(new File("./test_db/TestSave"));
-        assertEquals(new File("./test_db/TestSave").delete(), true);
+        assertEquals(new File("./test_db/TestSave/NeroClassifierUnit_save").delete(), true);
     }
 
     @Test
