@@ -4,56 +4,49 @@
 [![BCH compliance](https://bettercodehub.com/edge/badge/ripreal/textclassifier2?branch=master)](https://bettercodehub.com/)
 [![Join the chat at https://gitter.im/V8LogScannerWeb/Lobby?source=orgpage](https://badges.gitter.im/TextClassifier2/TextClassifier2.svg)](https://gitter.im/TextClassifier2/Lobby?source=orgpage) 
 
-Advanced neural network based on https://github.com/RusZ/TextClassifier
+Service for text classification using several classifier algorithms including neural networks, naive bayes etc.
+Source of inspiration is being taken from https://github.com/RusZ/TextClassifier.
 
-TODO
-- Mention about DDD paradygme in description
-- Transfer network learning to Apache Ignite platform or S3 Cloud 
-# Text Classifier
+Currently project is being actively developed.
 
-Application for text classification using neural networks.
+Project use Gradle 4.2 build platform with 2 submodules:
+- textclassifier2_core - almost pure java app incapsulates core logic layer
+- textclassifier_service - spring boot 2.0. async app incapsulates service layer and infrastructure (storage) layer
 
 ## Requirements
 
 - Java SE Development Kit 8 (`jdk-1.8`)
+- Intellij 2017 (recommended) with lombock plugin
+- MongoDB v.3.6.0.
 
 ## Dependencies
-
 - Encog Machine Learning Framework (`org.encog:encog-core:3.3.0`)
 - Apache POI (`org.apache.poi:poi-ooxml:3.16`)
-- SQLiteJDBC (`org.xerial:sqlite-jdbc:3.19.3`)
+- Spring 5.0.
 - JUnit (`junit:junit:4.12`)
-- H2 Database Engine (`com.h2database:h2:1.4.196`)
-- Mockito (`org.mockito:mockito-core:2.8.47`)
-- Hibernate ORM (`org.hibernate:hibernate-core:5.2.10.Final`, `org.hibernate:hibernate-entitymanager:5.2.10.Final`)
-- SLF4J (`org.slf4j:slf4j-log4j12:1.7.25`)
-- Javassist (`org.javassist:javassist:3.22.0-CR2`)
-
-## Config.ini file description
-
-Parameter | Description | Possible values
------------- | ------------- | -------------
-db_path | Path for database files and trained classifiers | Example: ./db
-dao_type | Method of data storage and access | jdbc, hibernate
-dbms_type | Database management system | sqlite, h2
-db_filename | Database name | Example: TextClassifier
-ngram_strategy | Text splitting algorithm | unigram, filtered_unigram, bigram, filtered_bigram
 
 ## Quick start guide
 
-1. When you launch application first time, it will ask you for XLSX-file with data for training. The file can include one or two sheets. First sheet should contain data for training, second sheet should contain data for testing of accurancy. File structure:
+1. When you compile and launch textclassifier_service application first time, it will start Netty web server on 127.0.0
+.1:8080 and deploy REST interface. For API description look at sources
 
+2. When you compile and launch textclassifier_Core it will automatically read xsl file texts for testing inside
+project:
 <p align="center">
   <img src ="https://github.com/ripreal/textclassifier2/raw/master/textclassifier2_core/images/xlsx_example.png"/>
 </p>
 
-2. After that application will build vocabulary, will create and train neural network for each Characteristic.
-3. Restart application and use it for text classification.
+After that application will build vocabulary, will create and train neural network for each Characteristic.
 
 ## Author
-
-- [Ruslan Zakaryaev](https://github.com/RusZ)
+- ripreal
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+TODO
+- Mention about DDD paradygme in description
+- Transfer network learning to Apache Ignite platform or S3 Cloud
+# Text Classifier
+

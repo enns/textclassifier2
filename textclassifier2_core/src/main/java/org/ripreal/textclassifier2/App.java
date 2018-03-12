@@ -10,6 +10,7 @@ import org.ripreal.textclassifier2.translators.ClassifiableTranslator;
 import org.ripreal.textclassifier2.translators.ExcelFileTranslator;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class App {

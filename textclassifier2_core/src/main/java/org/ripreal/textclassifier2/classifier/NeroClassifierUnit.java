@@ -21,6 +21,7 @@ import org.ripreal.textclassifier2.ngram.NGramStrategy;
 
 import java.io.File;
 import java.io.OutputStream;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -29,6 +30,30 @@ import static org.encog.persist.EncogDirectoryPersistence.loadObject;
 import static org.encog.persist.EncogDirectoryPersistence.saveObject;
 
 // todo: add other types of Classifiers (Naive Bayes classifier for example)
+
+/**
+ * Uses a neural network to classify texts. Implements facade pattern to provide a convenient interface for creating and
+ * training network. Network layers are resolved during instantiation. Input layer size is equal of the size
+ * vocabulary list obtained. Vocabulary is computed from correctly classified texts (educational selection) using one
+ * of the {@link NGramStrategy} strategies. Output layer is defined as number of possible {@link CharacteristicValue}
+ * being part of chosen Characteristic. Number of hidden layers was set experimentally.
+ *<p>
+ * When the network get a text to classify the classifier convert the text as vector list. Each vector in
+ * the list is a vector obtained from the word in the vocabulary with the sze equals the vocabulary size. For example:
+ * <p>
+ * Hi___1 0 0 0
+ * <br>
+ * How_0 1 0 0
+ * <br>
+ * are__0 0 1 0
+ * <br>
+ * you_0 0 0 1
+ * <p>
+ * Network returns vector of possible {@link CharacteristicValue} and decoded with probability for each value.
+ *
+ * @author ripreal
+ * @author Ruslan Zakaryaev(https://github.com/RusZ)
+ */
 public class NeroClassifierUnit extends ClassifierUnit {
 
     @Getter
@@ -107,7 +132,11 @@ public class NeroClassifierUnit extends ClassifierUnit {
         return convertVectorToCharacteristic(output);
     }
 
-    public void saveClassifier(File file) {
+    public void saveClassifier(File dir) {
+        if (!dir.isDirectory())
+            throw new IllegalArgumentException("need directory not a file!");
+
+        File file = new File(dir.getName() + "/NeroClassifierUnit_save");
         saveObject(file, network);
         dispatch("Trained Classifier for '" + characteristic.getName() + "' characteristic saved. Wait...");
     }
