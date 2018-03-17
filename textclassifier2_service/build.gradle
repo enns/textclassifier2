@@ -28,4 +28,4 @@ dependencies {
     compile project(':textclassifier2_core')
 }
 
-mainClassName = 'org.ripreal.textclassifier2.App'
+mainClassName = 'org.ripreal.textclassifier2.ServiceApp'
