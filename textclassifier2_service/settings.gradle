@@ -1,0 +1,4 @@
+rootProject.name = 'textclassifier2'
+include 'textclassifier2_core'
+
+

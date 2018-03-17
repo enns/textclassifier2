@@ -9,6 +9,7 @@ import org.ripreal.textclassifier2.data.reactive.CharacteristicMongoListener;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
 import org.springframework.data.mongodb.core.MongoClientFactoryBean;
 import org.springframework.data.mongodb.core.MongoOperations;
@@ -16,8 +17,8 @@ import org.springframework.data.mongodb.core.MongoOperations;
 @Configuration
 public class MongoConfig {
 
-    @Value("${spring.data.mongodb.uri}")
-    private String mongoURI;
+    //@Value("${spring.data.mongodb.uri}")
+    private String mongoURI = "mongodb+srv://admin:kentdfu!@cluster0-bsfqs.mongodb.net/test";
 
     @Bean
     public CharacteristicMongoListener characteristicMongoListener(MongoOperations mongoOperations) {
@@ -25,10 +26,15 @@ public class MongoConfig {
     }
 
     @Bean
-    public MongoClient mongoClient() {
+    @Profile("production")
+    public MongoClient mongoClientCloud() {
         MongoClientURI uri = new MongoClientURI(mongoURI);
-        MongoClient mongoClient =  new MongoClient(uri);
-        return mongoClient;
+        return new MongoClient(uri);
     }
 
+    @Bean
+    @Profile("test")
+    public MongoClient mongoClientLocal() {
+        return new MongoClient();
+    }
 }
