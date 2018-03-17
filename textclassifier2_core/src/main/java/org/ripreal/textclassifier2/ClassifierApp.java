@@ -10,10 +10,10 @@ import org.ripreal.textclassifier2.translators.ClassifiableTranslator;
 import org.ripreal.textclassifier2.translators.ExcelFileTranslator;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import java.math.BigDecimal;
+import java.util.*;
 
-public class App {
+public class ClassifierApp {
 
     private final static String CONFIG_PATH = "./config/config.ini";
     private final static Config CONFIG = new Config(CONFIG_PATH);

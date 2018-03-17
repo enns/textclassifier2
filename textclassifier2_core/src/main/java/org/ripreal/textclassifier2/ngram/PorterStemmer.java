@@ -20,7 +20,7 @@ class PorterStemmer {
 
     public static String doStem(String word) {
         word = word.toLowerCase();
-        word = word.replace('ё', 'е');
+        word = word.replace("ё", "e");
 
         Matcher m = RVRE.matcher(word);
 

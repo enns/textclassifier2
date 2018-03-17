@@ -1,16 +1,3 @@
-buildscript {
-    ext {
-        springBootVersion = "2.0.0.RELEASE"
-    }
-    repositories {
-        mavenCentral()
-        maven { url "https://repo.spring.io/snapshot" }
-        maven { url "https://repo.spring.io/milestone" }
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
-    }
-}
 
 plugins {
     id "idea"
@@ -19,6 +6,8 @@ plugins {
 
 allprojects {
     apply plugin: "java"
+    apply plugin: 'maven'
+    apply plugin: 'jacoco'
     version = "0.0.1"
 
     sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
@@ -36,13 +25,29 @@ allprojects {
 
 subprojects { sp ->
 
-    apply plugin: "org.springframework.boot"
-    apply plugin: "io.spring.dependency-management"
-
     dependencies {
-        testCompile("junit:junit")
-        compile("org.projectlombok:lombok")
+        testCompile("junit:junit:4.12")
     }
+    test.useTestNG()
+}
+
+task codeCoverageReport(type: JacocoReport) {
+    executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
+
+    subprojects.each {
+        sourceSets it.sourceSets.main
+    }
+
+    reports {
+        xml.enabled true
+        xml.destination "${buildDir}/reports/jacoco/report.xml"
+        html.enabled false
+        csv.enabled false
+    }
+}
+
+codeCoverageReport.dependsOn {
+    subprojects*.test
 }
 
 task assembleSubModules(type: Copy) {

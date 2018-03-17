@@ -1,17 +1,11 @@
 package org.ripreal.textclassifier2.translators;
 
 import org.junit.*;
-import org.junit.runner.RunWith;
-import org.ripreal.textclassifier2.App;
+import org.ripreal.textclassifier2.SpringTestConfig;
 import org.ripreal.textclassifier2.service.ClassifiableTextService;
-import org.ripreal.textclassifier2.testdata.ClassifiableTestData;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
 
-@RunWith(SpringRunner.class)
-@ContextConfiguration(classes = {App.class})
-public class FromMongoToClassifiableTranslatorTest {
+public class FromMongoToClassifiableTranslatorTest extends SpringTestConfig {
 
     @Autowired
     FromMongoToClassifiableTranslator translator;

@@ -1,15 +1,10 @@
 
 apply plugin: 'java'
-apply plugin: 'jacoco'
-
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-
-repositories {
-    mavenCentral()
-}
+apply plugin : 'application'
+sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
 
 dependencies {
+    compile("org.projectlombok:lombok:1.16.20")
     compile 'org.encog:encog-core:3.3.0'
     compile 'org.apache.poi:poi-ooxml:3.16'
 }
@@ -26,11 +21,4 @@ task fatJar(type: Jar) {
     with jar
 }
 
-jacocoTestReport {
-    reports {
-        xml.enabled true
-        html.enabled false
-    }
-}
-
-check.dependsOn jacocoTestReport
+mainClassName = 'org.ripreal.textclassifier2.ClassifierApp'
