@@ -2,7 +2,7 @@ package org.ripreal.textclassifier2.classifier;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.ripreal.textclassifier2.actions.ClassifierEventsDispatcher;
+import lombok.extern.slf4j.Slf4j;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableText;
@@ -21,9 +21,9 @@ import java.util.Optional;
  *
  * @author Ripreal
  */
-
+@Slf4j
 @RequiredArgsConstructor
-public final class Classifier extends ClassifierEventsDispatcher {
+public final class Classifier {
 
     private final List<ClassifierUnit> classifierUnits;
 
@@ -112,7 +112,7 @@ public final class Classifier extends ClassifierEventsDispatcher {
 
             double accuracy =((double) correctlyClassified / textForTesting.size()) * 100;
 
-            dispatch(String.format("Accuracy of Classifier for '" + characteristic.getName()
+            log.info(String.format("Accuracy of Classifier for '" + characteristic.getName()
                     + "' characteristic: %.2f%%", accuracy));
         }
     }

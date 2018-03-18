@@ -4,9 +4,9 @@ apply plugin : 'application'
 sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
 
 dependencies {
-    compile("org.projectlombok:lombok:1.16.20")
     compile 'org.encog:encog-core:3.3.0'
     compile 'org.apache.poi:poi-ooxml:3.16'
+    compile 'org.slf4j:slf4j-api:1.7.25'
 }
 
 //create a single Jar with all dependencies

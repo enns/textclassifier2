@@ -1,8 +1,8 @@
 package org.ripreal.textclassifier2.classifier;
 
 import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 import org.ripreal.textclassifier2.CharacteristicUtils;
-import org.ripreal.textclassifier2.actions.ClassifierAction;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.ClassifiableFactory;
 import org.ripreal.textclassifier2.model.VocabularyWord;
@@ -15,6 +15,7 @@ import java.util.Set;
 import java.util.function.Function;
 
 // BUILDER + COMPOSITE
+@Slf4j
 @RequiredArgsConstructor
 public final class ClassifierBuilder {
 
@@ -24,8 +25,7 @@ public final class ClassifierBuilder {
     private final ClassifiableFactory characteristicFactory;
     @NonNull
     private final List<ClassifierUnitProxy> classifierUnits = new ArrayList<>();
-    @NonNull
-    private final List<ClassifierAction> listeners = new ArrayList<>();
+
     private final int AMOUNT_OF_TEXTS_FOR_CHECKING = 5;
 
     // CONSTRUCTORS
@@ -53,16 +53,10 @@ public final class ClassifierBuilder {
         return this;
     }
 
-    public ClassifierBuilder subscribe(@NonNull ClassifierAction action) {
-        listeners.add(action);
-        reader.subscribe(action);
-        return this;
-    }
-
     public Classifier build() {
 
         if (!initialized()) {
-            dispatch("Error. No classifier units were specified!");
+            log.info("Error. No classifier units were specified!");
             return null;
         }
 
@@ -92,7 +86,6 @@ public final class ClassifierBuilder {
             );
 
             ClassifierUnit unit = proxy.get();
-            listeners.forEach(unit::subscribe);
 
             unit.build(reader.toClassifiableTexts());
 
@@ -112,10 +105,6 @@ public final class ClassifierBuilder {
         for (ClassifierUnit classifier : units) {
             classifier.shutdown();
         }
-    }
-
-    private void dispatch(@NonNull String text) {
-        listeners.forEach(action -> action.dispatch(ClassifierAction.EventTypes.CLASSIFIER_EVENT, text));
     }
 
     @RequiredArgsConstructor

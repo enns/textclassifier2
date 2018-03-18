@@ -2,6 +2,7 @@ package org.ripreal.textclassifier2.classifier;
 
 import lombok.Getter;
 import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
 import org.encog.Encog;
 import org.encog.engine.network.activation.ActivationSigmoid;
 import org.encog.ml.data.basic.BasicMLDataSet;
@@ -11,7 +12,6 @@ import org.encog.neural.networks.training.propagation.Propagation;
 import org.encog.neural.networks.training.propagation.resilient.ResilientPropagation;
 import org.encog.persist.PersistError;
 import org.ripreal.textclassifier2.CharacteristicUtils;
-import org.ripreal.textclassifier2.actions.ClassifierAction;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableText;
@@ -54,7 +54,8 @@ import static org.encog.persist.EncogDirectoryPersistence.saveObject;
  * @author ripreal
  * @author Ruslan Zakaryaev(https://github.com/RusZ)
  */
-public class NeroClassifierUnit extends ClassifierUnit {
+@Slf4j
+public class NeroClassifierUnit implements ClassifierUnit {
 
     @Getter
     private final Characteristic characteristic;
@@ -115,11 +116,11 @@ public class NeroClassifierUnit extends ClassifierUnit {
         // todo: throw exception if iteration count more than 1000
         do {
             train.iteration();
-            dispatch("Training Classifier for '" + characteristic.getName() + "' characteristic. Errors: " + String.format("%.2f", train.getError() * 100) + "%. Wait...");
+            log.info("Training Classifier for '" + characteristic.getName() + "' characteristic. Errors: " + String.format("%.2f", train.getError() * 100) + "%. Wait...");
         } while (train.getError() > 0.01);
 
         train.finishTraining();
-        dispatch("Classifier for '" + characteristic.getName() + "' characteristic trained. Wait...");
+        log.info("Classifier for '" + characteristic.getName() + "' characteristic trained. Wait...");
     }
 
     public Optional<CharacteristicValue> classify(ClassifiableText classifiableText) {
@@ -138,12 +139,12 @@ public class NeroClassifierUnit extends ClassifierUnit {
 
         File file = new File(dir.getAbsolutePath() + "/NeroClassifierUnit_save");
         saveObject(file, network);
-        dispatch("Trained Classifier for '" + characteristic.getName() + "' characteristic saved. Wait...");
+        log.info("Trained Classifier for '" + characteristic.getName() + "' characteristic saved. Wait...");
     }
 
     public void saveClassifier(OutputStream stream) {
         saveObject(stream, network);
-        dispatch("Trained Classifier for '" + characteristic.getName() + "' characteristic saved. Wait...");
+        log.info("Trained Classifier for '" + characteristic.getName() + "' characteristic saved. Wait...");
     }
 
     public void shutdown() {
@@ -273,10 +274,5 @@ public class NeroClassifierUnit extends ClassifierUnit {
     @Override
     public String toString() {
         return characteristic.getName() + "NeuralNetworkClassifier";
-    }
-
-    @Override
-    public void dispatch(String text) {
-        listeners.forEach(action -> action.dispatch(ClassifierAction.EventTypes.NERO_CLASSIFIER_EVENT, text));
     }
 }

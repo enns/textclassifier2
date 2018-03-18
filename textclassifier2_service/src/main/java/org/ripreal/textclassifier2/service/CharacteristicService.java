@@ -1,7 +1,7 @@
 package org.ripreal.textclassifier2.service;
 
 import lombok.RequiredArgsConstructor;
-import org.ripreal.textclassifier2.data.reactive.queries.RepoSpecification;
+import org.ripreal.textclassifier2.data.queries.QuerySpecification;
 import org.ripreal.textclassifier2.data.reactive.repos.CharacteristicRepo;
 import org.ripreal.textclassifier2.data.entries.PersistCharacteristic;
 import org.springframework.stereotype.Service;
@@ -27,8 +27,8 @@ public class CharacteristicService implements DataService<PersistCharacteristic>
     }
 
     @Override
-    public Flux<PersistCharacteristic> query(RepoSpecification<PersistCharacteristic> spec) {
-        return spec.get();
+    public List<PersistCharacteristic> query(QuerySpecification spec) {
+        throw new Error("not implemented!");
     }
 
     @Override

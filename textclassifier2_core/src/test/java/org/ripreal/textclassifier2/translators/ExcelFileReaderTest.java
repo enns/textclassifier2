@@ -1,6 +1,7 @@
 package org.ripreal.textclassifier2.translators;
 
 import org.junit.Test;
+import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableFactory;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.modelimp.DefClassifiableFactory;
@@ -23,13 +24,17 @@ public class ExcelFileReaderTest {
 
         assertEquals(classifiableTexts.get(0).getText(), "Требуется починить телефон");
         assertEquals(classifiableTexts.get(0).getCharacteristics().size(), 2);
-        //assertEquals(classifiableTexts.get(0).getCharacteristics().get(characteristicFactory.newCharacteristic("Отдел")).getValue(), "Автосалон");
-        //assertEquals(classifiableTexts.get(0).getCharacteristics().get(characteristicFactory.newCharacteristic("Тип")).getValue(), "Техподдержка");
+        assertTrue(classifiableTexts.get(0).getCharacteristics().stream().anyMatch(
+                value -> value.getValue().equals("Автосалон")));
+        assertTrue(classifiableTexts.get(0).getCharacteristics().stream().anyMatch(
+                value -> value.getValue().equals("Техподдержка")));
 
         assertEquals(classifiableTexts.get(1).getText(), "У меня не проводится документ");
         assertEquals(classifiableTexts.get(1).getCharacteristics().size(), 2);
-        //assertEquals(classifiableTexts.get(1).getCharacteristics().get(characteristicFactory.newCharacteristic("Отдел")).getValue(), "Бухгалтерия");
-        //assertEquals(classifiableTexts.get(1).getCharacteristics().get(characteristicFactory.newCharacteristic("Тип")).getValue(), "Разработчики");
+        assertTrue(classifiableTexts.get(1).getCharacteristics().stream().anyMatch(
+                value -> value.getValue().equals("Бухгалтерия")));
+        assertTrue(classifiableTexts.get(1).getCharacteristics().stream().anyMatch(
+                value -> value.getValue().equals("Разработчики")));
 
     }
 
@@ -37,15 +42,12 @@ public class ExcelFileReaderTest {
     @Test
     public void nonExistentFile() {
         ExcelFileTranslator reader = new ExcelFileTranslator(new File("incorrect_path"), 1, characteristicFactory);
-
-        reader.subscribe((action, text) -> assertTrue(!text.isEmpty()));
         reader.toClassifiableTexts();
     }
 
     @Test
     public void IncorrectSheetNumber() {
         ExcelFileTranslator reader = new ExcelFileTranslator(new File("./test_db/test.xlsx"), 2, characteristicFactory);
-        reader.subscribe((action, text) -> assertTrue(!text.isEmpty()));
         reader.toClassifiableTexts();
     }
 }

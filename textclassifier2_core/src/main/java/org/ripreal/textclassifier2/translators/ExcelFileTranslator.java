@@ -1,26 +1,25 @@
 package org.ripreal.textclassifier2.translators;
 
-import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.ripreal.textclassifier2.CharacteristicUtils;
-import org.ripreal.textclassifier2.actions.ClassifierAction;
-import org.ripreal.textclassifier2.actions.ClassifierEventsDispatcher;
 import org.ripreal.textclassifier2.model.*;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
 import org.ripreal.textclassifier2.ngram.VocabularyBuilder;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Slf4j
 @RequiredArgsConstructor
-public class ExcelFileTranslator extends ClassifierEventsDispatcher implements ClassifiableTranslator {
+public class ExcelFileTranslator implements ClassifiableTranslator {
+
     @NonNull
     private final File file;
     private final int sheetNumber;
@@ -43,7 +42,7 @@ public class ExcelFileTranslator extends ClassifierEventsDispatcher implements C
 
         if (!file.exists() ||
                 sheetNumber < 1) {
-            dispatch(String.format("Excel file with path %s not exist or has wrong format!", file.getAbsolutePath()));
+            log.info(String.format("Excel file with path %s not exist or has wrong format!", file.getAbsolutePath()));
             return cached_classifiableText;
         }
 
@@ -54,12 +53,12 @@ public class ExcelFileTranslator extends ClassifierEventsDispatcher implements C
             if (sheet.getLastRowNum() > 0) {
                 cached_classifiableText = getClassifiableTexts(sheet);
             } else {
-                dispatch("Excel sheet (#" + sheetNumber + ") is empty");
+                log.info("Excel sheet (#" + sheetNumber + ") is empty");
             }
         } catch (IllegalArgumentException e) {
-            dispatch("Excel sheet (#" + sheetNumber + ") is not found");
+            log.info("Excel sheet (#" + sheetNumber + ") is not found");
         } catch (IOException e) {
-            dispatch(e.getMessage());
+            log.info(e.getMessage());
         }
         return cached_classifiableText;
     }
@@ -128,6 +127,7 @@ public class ExcelFileTranslator extends ClassifierEventsDispatcher implements C
     }
 
     private List<Characteristic> getCharacteristics(XSSFSheet sheet) {
+
         List<Characteristic> characteristics = new ArrayList<>();
 
         // first row from second to last columns contains Characteristics names
@@ -136,16 +136,6 @@ public class ExcelFileTranslator extends ClassifierEventsDispatcher implements C
         }
 
         return characteristics;
-    }
-
-    @Override
-    public void subscribe(ClassifierAction action) {
-        listeners.add(action);
-    }
-
-    @Override
-    public void dispatch(String text) {
-        listeners.forEach(action -> action.dispatch(ClassifierAction.EventTypes.EXCEL_FILE_READER_EVENT, text));
     }
 
 }

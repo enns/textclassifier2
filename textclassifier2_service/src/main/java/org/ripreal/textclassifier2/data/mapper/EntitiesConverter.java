@@ -13,6 +13,7 @@ import java.util.Set;
 
 @Slf4j
 class EntitiesConverter {
+
     static public <T> void convertTo(JsonNode node, ObjectCodec codec, T data) throws IOException {
         Object convertedValue = null;
         for (Field field : data.getClass().getDeclaredFields()) {
@@ -49,7 +50,6 @@ class EntitiesConverter {
             return type;
     }
 
-
     static private <T> void setValue(Field field, T object, Object value){
         for(Method method : object.getClass().getMethods()) {
             if (isSetter(method, field)) {
@@ -72,5 +72,4 @@ class EntitiesConverter {
         if (method.getParameterTypes().length != 1) return false;
         return true;
     }
-
 }

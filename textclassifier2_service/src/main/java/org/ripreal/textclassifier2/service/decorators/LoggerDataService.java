@@ -2,12 +2,11 @@ package org.ripreal.textclassifier2.service.decorators;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.ripreal.textclassifier2.data.reactive.queries.RepoSpecification;
+import org.ripreal.textclassifier2.data.queries.QuerySpecification;
 import org.ripreal.textclassifier2.service.DataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
 import java.util.List;
 
 @Slf4j
@@ -49,9 +48,8 @@ public class LoggerDataService<T> implements DataService<T> {
     }
 
     @Override
-    public Flux<T> query(RepoSpecification<T> spec) {
-        return service.query(spec)
-            .doOnRequest((request) -> log.info("start query specification request"))
-            .doOnNext((item) -> log.info("found {}", item));
+    public List<T> query(QuerySpecification spec) {
+        log.info("start query specification request");
+        return service.query(spec);
     }
 }

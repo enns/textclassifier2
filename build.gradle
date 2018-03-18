@@ -27,6 +27,7 @@ subprojects { sp ->
 
     dependencies {
         testCompile("junit:junit:4.12")
+        compile("org.projectlombok:lombok:1.16.20")
     }
     test.useTestNG()
 }

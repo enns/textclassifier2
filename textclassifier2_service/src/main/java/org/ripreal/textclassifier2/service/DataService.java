@@ -1,10 +1,8 @@
 package org.ripreal.textclassifier2.service;
 
-import org.ripreal.textclassifier2.data.reactive.queries.QuerySpecification;
-import org.ripreal.textclassifier2.data.reactive.queries.RepoSpecification;
+import org.ripreal.textclassifier2.data.queries.QuerySpecification;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
 import java.util.List;
 
 public interface DataService<T> {
@@ -16,6 +14,6 @@ public interface DataService<T> {
 
     Flux<Void> deleteAll();
 
-    Flux<T> query(RepoSpecification<T> spec);
+    List<T> query(QuerySpecification spec);
 
 }

@@ -7,6 +7,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {ServiceApp.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ActiveProfiles("production")
+@ActiveProfiles("test")
 public abstract class SpringTestConfig {
 }

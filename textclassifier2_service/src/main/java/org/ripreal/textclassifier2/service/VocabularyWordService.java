@@ -1,13 +1,14 @@
 package org.ripreal.textclassifier2.service;
 
 import lombok.RequiredArgsConstructor;
-import org.ripreal.textclassifier2.data.reactive.queries.RepoSpecification;
+import org.ripreal.textclassifier2.data.queries.QuerySpecification;
 import org.ripreal.textclassifier2.data.reactive.repos.VocabularyWordRepo;
 import org.ripreal.textclassifier2.data.entries.PersistVocabularyWord;
+import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -15,6 +16,7 @@ import java.util.List;
 public class VocabularyWordService implements DataService<PersistVocabularyWord> {
 
     private final VocabularyWordRepo vocabRepo;
+    private final MongoOperations mongoOperations;
 
     @Override
     public Flux<PersistVocabularyWord> saveAll(List<PersistVocabularyWord> entities) {
@@ -37,7 +39,12 @@ public class VocabularyWordService implements DataService<PersistVocabularyWord>
     }
 
     @Override
-    public Flux<PersistVocabularyWord> query(RepoSpecification<PersistVocabularyWord> spec) {
-        return spec.get();
+    public List<PersistVocabularyWord> query(QuerySpecification spec) {
+        List<PersistVocabularyWord> result = new ArrayList<>();
+        mongoOperations.find(
+                spec.get(),
+                PersistVocabularyWord.class,
+                "persistVocabularyWord");
+        return result;
     }
 }

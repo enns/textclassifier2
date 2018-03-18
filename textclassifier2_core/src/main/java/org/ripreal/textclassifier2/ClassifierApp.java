@@ -22,7 +22,6 @@ public class ClassifierApp {
 
         Classifier classifier = ClassifierBuilder
                 .fromReader(new ExcelFileTranslator(new File(CONFIG.getTestDataPath()), 1, new DefClassifiableFactory()))
-                .subscribe((action, msg) -> System.out.println(String.format("%s: %s", action, msg)))
                 .addNeroClassifierUnit("Отдел", NGramStrategy.getNGramStrategy(NGramStrategy.NGRAM_TYPES.FILTERED_BIGRAM))
                 .addNeroClassifierUnit("Тип", NGramStrategy.getNGramStrategy(NGramStrategy.NGRAM_TYPES.FILTERED_UNIGRAM))
                 .build();
