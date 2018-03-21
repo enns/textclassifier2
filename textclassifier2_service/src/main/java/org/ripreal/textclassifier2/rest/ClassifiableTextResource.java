@@ -1,5 +1,6 @@
 package org.ripreal.textclassifier2.rest;
 
+import org.ripreal.textclassifier2.classifier.Classifier;
 import org.ripreal.textclassifier2.data.entries.PersistClassifiableText;
 import org.ripreal.textclassifier2.service.ClassifiableTextService;
 import org.ripreal.textclassifier2.service.DataService;
@@ -29,4 +30,5 @@ public class ClassifiableTextResource {
     public Flux<PersistClassifiableText> save(@RequestBody PersistClassifiableText text) {
         return service.saveAll(Collections.singletonList(text));
     }
+
 }

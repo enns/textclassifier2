@@ -40,11 +40,9 @@ public class VocabularyWordService implements DataService<PersistVocabularyWord>
 
     @Override
     public List<PersistVocabularyWord> query(QuerySpecification spec) {
-        List<PersistVocabularyWord> result = new ArrayList<>();
-        mongoOperations.find(
+        return mongoOperations.find(
                 spec.get(),
                 PersistVocabularyWord.class,
                 "persistVocabularyWord");
-        return result;
     }
 }

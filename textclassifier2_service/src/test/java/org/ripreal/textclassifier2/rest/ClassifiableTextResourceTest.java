@@ -6,6 +6,7 @@ import org.ripreal.textclassifier2.data.entries.PersistClassifiableText;
 import org.ripreal.textclassifier2.testdata.ClassifiableTestData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.reactive.function.client.ClientResponse;
 import reactor.core.publisher.Mono;
 
 import java.net.URI;
@@ -44,7 +45,7 @@ public class ClassifiableTextResourceTest extends AbstractResourceTest {
                 .block();
 
         // repeat test with other method
-        /*
+
         String requestJson = mapper.writeValueAsString(text);
         PersistClassifiableText pText = mapper.readValue(requestJson, PersistClassifiableText.class);
 
@@ -55,7 +56,6 @@ public class ClassifiableTextResourceTest extends AbstractResourceTest {
                 .syncBody(requestJson).exchange().block();
 
         assertTrue(resp.statusCode().is2xxSuccessful());
-        */
     }
 
 }

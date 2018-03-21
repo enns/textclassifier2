@@ -18,7 +18,6 @@ public class CharacteristicResourceTest extends AbstractResourceTest {
     @Autowired
     private ObjectMapper mapper;
 
-    @Before
     @Test
     public void findAll() throws Exception {
         webClient.get()
@@ -46,7 +45,7 @@ public class CharacteristicResourceTest extends AbstractResourceTest {
                 .map(value -> Mono.just(value.getCharacteristic()))
                 .findFirst()
                 .orElse(Mono.empty());
-        /*
+
         webClient.post()
                 .uri(URI.create(this.server + "/characteristics"))
                 .accept(MediaType.APPLICATION_JSON)
@@ -55,7 +54,6 @@ public class CharacteristicResourceTest extends AbstractResourceTest {
                 .exchange()
                 .doOnNext(body -> assertTrue(body.statusCode().is2xxSuccessful()))
                 .block();
-        */
 
     }
 }

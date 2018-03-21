@@ -9,7 +9,7 @@ import java.io.OutputStream;
 import java.util.List;
 import java.util.Optional;
 
-interface ClassifierUnit {
+public interface ClassifierUnit {
 
     // PROPERTIES
 

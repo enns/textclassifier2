@@ -65,10 +65,9 @@ public class FromMongoToClassifiableTranslator implements ClassifiableTranslator
 
     @Override
     public List<VocabularyWord> toVocabulary(@NonNull NGramStrategy ngram) {
-        List<VocabularyWord> result = new ArrayList<>();
-        vocabularyService.query(
-            new FindVocabularyByNgramMongoSpec(ngram.getNGramType())).forEach(result::add);
-        return result;
+        return new ArrayList<>(
+            vocabularyService.query(
+                new FindVocabularyByNgramMongoSpec(ngram.getNGramType())));
     }
 
     @Override
