@@ -27,8 +27,6 @@ public class ClassifiableTestData {
         PersistCharacteristicValue logistic = new PersistCharacteristicValue("Логистика", 1, characteristic1);
         vals.add(logistic);
 
-        // characteristic1.setPossibleValues(vals);
-
         PersistCharacteristic characteristic2 = characteristics.get(1);
 
         Set<PersistCharacteristicValue> vals2 = new HashSet<>();

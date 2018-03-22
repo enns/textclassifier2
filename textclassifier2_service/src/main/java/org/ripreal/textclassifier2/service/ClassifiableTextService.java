@@ -1,6 +1,7 @@
 package org.ripreal.textclassifier2.service;
 
 import lombok.RequiredArgsConstructor;
+import org.ripreal.textclassifier2.data.entries.PersistVocabularyWord;
 import org.ripreal.textclassifier2.data.queries.QuerySpecification;
 import org.ripreal.textclassifier2.data.reactive.repos.CharacteristicRepo;
 import org.ripreal.textclassifier2.data.reactive.repos.CharacteristicValueRepo;
@@ -50,7 +51,10 @@ public class ClassifiableTextService implements DataService<PersistClassifiableT
 
     @Override
     public List<PersistClassifiableText> query(QuerySpecification spec) {
-        throw new Error("not implemented!");
+        return mongoOperations.find(
+                spec.get(),
+                PersistClassifiableText.class,
+                "persistClassifiableText");
     }
 
 }

@@ -25,6 +25,10 @@ allprojects {
 
 subprojects { sp ->
 
+    ext {
+        springBootVersion = "2.0.0.RELEASE"
+    }
+
     dependencies {
         testCompile("junit:junit:4.12")
         compile("org.projectlombok:lombok:1.16.20")

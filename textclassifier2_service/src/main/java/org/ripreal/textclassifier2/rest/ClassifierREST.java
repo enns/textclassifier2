@@ -29,7 +29,6 @@ public class ClassifierREST {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public void initClassifier(@RequestBody List<ClassifierOptions> options) {
-
         options.forEach(parameters -> {
             if (parameters.getClassifierType().equals("neural"))
                 builder.addNeroClassifierUnit(parameters.getCharacteristicName(),

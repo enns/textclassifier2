@@ -1,5 +1,5 @@
 rootProject.name = 'textclassifier2'
 include 'textclassifier2_service'
 include 'textclassifier2_core'
-
+include 'textclassifier2_security'
 

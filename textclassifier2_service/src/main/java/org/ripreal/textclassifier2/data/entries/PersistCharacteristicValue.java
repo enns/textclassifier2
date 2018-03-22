@@ -20,7 +20,7 @@ public class PersistCharacteristicValue implements CharacteristicValue {
 
     @Id
     @JsonIgnore
-    String id;
+    private String id;
     @NonNull
     @DeserializableField
     private String value;
