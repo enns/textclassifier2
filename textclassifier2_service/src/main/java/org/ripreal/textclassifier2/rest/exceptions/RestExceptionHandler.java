@@ -15,6 +15,11 @@ public class RestExceptionHandler {
         return new ResponseEntity<>(new WebControllerException("There is no such characteristic"), HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(IncorrectClassifierType.class)
+    protected ResponseEntity<WebControllerException> handleIncorrectClassifierTypeException() {
+        return new ResponseEntity<>(new WebControllerException("Illegal argument \"classifierType\" in options parameters"), HttpStatus.BAD_REQUEST);
+    }
+
     @Data
     @AllArgsConstructor
     private static class WebControllerException {
