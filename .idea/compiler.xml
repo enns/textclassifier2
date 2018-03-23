@@ -7,6 +7,8 @@
     <bytecodeTargetLevel>
       <module name="textclassifier2_core_main" target="1.8" />
       <module name="textclassifier2_core_test" target="1.8" />
+      <module name="textclassifier2_gateway_main" target="1.8" />
+      <module name="textclassifier2_gateway_test" target="1.8" />
       <module name="textclassifier2_main" target="1.8" />
       <module name="textclassifier2_security_main" target="1.8" />
       <module name="textclassifier2_security_test" target="1.8" />

@@ -3,10 +3,12 @@
 /lib/*
 /out/
 /target/
-gradle.properties
+^.*gradle.properties
 /textclassifier2_core/build/
 /textclassifier2_core/out/
 /textclassifier2_core/gradle.properties
 /textclassifier2_service/build/
 /textclassifier2_service/out/
+/textclassifier2_gateway/build/
+/textclassifier2_gateway/out/
 

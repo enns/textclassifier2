@@ -27,6 +27,7 @@ subprojects { sp ->
 
     ext {
         springBootVersion = "2.0.0.RELEASE"
+        springVersion = "5.0.0.RELEASE"
     }
 
     dependencies {

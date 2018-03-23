@@ -1,5 +1,5 @@
 apply plugin : 'java'
-apply plugin : 'application'
+apply plugin : "application"
 apply plugin: "org.springframework.boot"
 apply plugin: "io.spring.dependency-management"
 
@@ -16,13 +16,14 @@ buildscript {
 }
 
 dependencies {
-    testCompile("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
-    testCompile("io.projectreactor:reactor-test:3.1.5.RELEASE")
     compile("org.springframework.boot:spring-boot-starter:$springBootVersion")
-    compile("org.springframework.boot:spring-boot-starter-data-mongodb-reactive:$springBootVersion")
-    compile("org.springframework.boot:spring-boot-starter-webflux:$springBootVersion")
+    compile("org.springframework.boot:spring-boot-starter-security:$springBootVersion")
+    compile("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
+    testCompile("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
+    compile("org.springframework.security:spring-security-jwt:1.0.7.RELEASE")
+    compile("org.springframework.security.oauth:spring-security-oauth2:2.1.0.RELEASE")
     runtime("org.springframework.boot:spring-boot-devtools:$springBootVersion")
-    compile project(":textclassifier2_core")
+    runtime("com.h2database:h2")
 }
 
-mainClassName = 'org.ripreal.textclassifier2.ServiceApp'
+mainClassName = "org.ripreal.textclassifier2.gateway.GatewayTestApp"
