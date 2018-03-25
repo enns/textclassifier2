@@ -25,16 +25,13 @@ allprojects {
 
 subprojects { sp ->
 
-    ext {
-        springBootVersion = "2.0.0.RELEASE"
-        springVersion = "5.0.0.RELEASE"
-    }
-
     dependencies {
         testCompile("junit:junit:4.12")
         compile("org.projectlombok:lombok:1.16.20")
     }
     test.useTestNG()
+
+    task allDeps(type: DependencyReportTask) {}
 }
 
 task codeCoverageReport(type: JacocoReport) {
@@ -46,7 +43,7 @@ task codeCoverageReport(type: JacocoReport) {
 
     reports {
         xml.enabled true
-        xml.destination "${buildDir}/reports/jacoco/report.xml"
+        xml.destination file("${buildDir}/reports/jacoco/report.xml")
         html.enabled false
         csv.enabled false
     }

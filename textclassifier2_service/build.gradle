@@ -5,6 +5,11 @@ apply plugin: "io.spring.dependency-management"
 
 buildscript {
 
+    ext {
+        springBootVersion = "2.0.0.RELEASE"
+        springVersion = "5.0.0.RELEASE"
+    }
+
     repositories {
         mavenCentral()
         maven { url "https://repo.spring.io/snapshot" }
@@ -23,6 +28,12 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-webflux:$springBootVersion")
     runtime("org.springframework.boot:spring-boot-devtools:$springBootVersion")
     compile project(":textclassifier2_core")
+}
+
+processResources {
+    filesMatching("**/application.properties") {
+        expand( project.properties )
+    }
 }
 
 mainClassName = 'org.ripreal.textclassifier2.ServiceApp'
