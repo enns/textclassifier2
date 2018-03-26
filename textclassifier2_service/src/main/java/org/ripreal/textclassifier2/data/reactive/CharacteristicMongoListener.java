@@ -32,7 +32,6 @@ public class CharacteristicMongoListener extends AbstractMongoEventListener<Obje
             PersistClassifiableText text = (PersistClassifiableText) source;
             if (text.getCharacteristics() != null) {
                 for (CharacteristicValue entry : text.getCharacteristics()) {
-                    //mongoOperations.save(entry.getKey());
                     checkNSave(entry); // checking doubles
                 }
             }

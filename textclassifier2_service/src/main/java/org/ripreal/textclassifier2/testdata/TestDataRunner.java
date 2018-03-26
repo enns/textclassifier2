@@ -28,19 +28,10 @@ public class TestDataRunner {
     @Transactional
     public CommandLineRunner init() {
         return args -> {
-            textService
-                    .deleteAll().blockLast();
-
-            textService.saveAll(ClassifiableTestData.getTextTestData()).blockLast();
-
             /*
             textService
-                    .deleteAll()
-                    .thenMany(textService.saveAll(ClassifiableTestData.getTextTestData()));
-
-            vocabService
-                    .deleteAll()
-                    .thenMany(vocabService.saveAll(ClassifiableTestData.getVocabTestData()));
+                    .deleteAll().blockLast();
+            textService.saveAll(ClassifiableTestData.getTextTestData()).blockLast();
             */
         };
     }
