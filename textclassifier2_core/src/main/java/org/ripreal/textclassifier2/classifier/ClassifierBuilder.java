@@ -7,12 +7,11 @@ import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.ClassifiableFactory;
 import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
-import org.ripreal.textclassifier2.translators.ClassifiableTranslator;
+import org.ripreal.textclassifier2.storage.translators.ClassifiableTranslator;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.function.Function;
 
 // BUILDER + COMPOSITE
 @Slf4j

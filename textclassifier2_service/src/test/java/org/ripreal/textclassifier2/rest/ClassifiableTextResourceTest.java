@@ -2,8 +2,8 @@ package org.ripreal.textclassifier2.rest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
-import org.ripreal.textclassifier2.data.entries.PersistClassifiableText;
-import org.ripreal.textclassifier2.testdata.ClassifiableTestData;
+import org.ripreal.textclassifier2.storage.data.entities.MongoClassifiableText;
+import org.ripreal.textclassifier2.storage.testdata.ClassifiableTestData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.ClientResponse;
@@ -30,13 +30,13 @@ public class ClassifiableTextResourceTest extends AbstractResourceTest {
     @Test
     public void save() throws Exception {
 
-        PersistClassifiableText text = ClassifiableTestData.getTextTestData().get(0);
+        MongoClassifiableText text = ClassifiableTestData.getTextTestData().get(0);
 
         webClient.post()
                 .uri(URI.create(this.server + "/texts"))
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(Mono.just(text), PersistClassifiableText.class)
+                .body(Mono.just(text), MongoClassifiableText.class)
                 .exchange()
                 .doOnNext(body -> {
                     assertTrue(body.statusCode().is2xxSuccessful());
@@ -47,7 +47,7 @@ public class ClassifiableTextResourceTest extends AbstractResourceTest {
         // repeat test with other method
 
         String requestJson = mapper.writeValueAsString(text);
-        PersistClassifiableText pText = mapper.readValue(requestJson, PersistClassifiableText.class);
+        MongoClassifiableText pText = mapper.readValue(requestJson, MongoClassifiableText.class);
 
         ClientResponse resp = webClient.post()
                 .uri(URI.create(this.server + "/texts"))

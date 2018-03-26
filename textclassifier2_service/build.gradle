@@ -36,4 +36,4 @@ processResources {
     }
 }
 
-mainClassName = 'org.ripreal.textclassifier2.ServiceApp'
+mainClassName = 'org.ripreal.textclassifier2.storage.ServiceApp'

@@ -3,12 +3,10 @@ package org.ripreal.textclassifier2.rest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
-import org.ripreal.textclassifier2.rest.exceptions.IncorrectClassifierType;
+import org.ripreal.textclassifier2.storage.controller.ClassifierREST;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.reactive.function.client.ClientResponse;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 import java.io.IOException;
 import java.net.URI;

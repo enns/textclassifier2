@@ -28,6 +28,7 @@ dependencies {
     testCompile("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
     compile("org.springframework.security:spring-security-jwt:1.0.7.RELEASE")
     compile("org.springframework.security.oauth:spring-security-oauth2:2.1.0.RELEASE")
+    compile("com.fasterxml.jackson.core:jackson-databind:2.8.6")
     runtime("org.springframework.boot:spring-boot-devtools:$springBootVersion")
     runtime("com.h2database:h2")
 }

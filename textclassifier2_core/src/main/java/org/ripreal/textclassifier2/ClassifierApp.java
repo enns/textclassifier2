@@ -6,11 +6,10 @@ import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.modelimp.DefClassifiableFactory;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
-import org.ripreal.textclassifier2.translators.ClassifiableTranslator;
-import org.ripreal.textclassifier2.translators.ExcelFileTranslator;
+import org.ripreal.textclassifier2.storage.translators.ClassifiableTranslator;
+import org.ripreal.textclassifier2.storage.translators.ExcelFileTranslator;
 
 import java.io.File;
-import java.math.BigDecimal;
 import java.util.*;
 
 public class ClassifierApp {

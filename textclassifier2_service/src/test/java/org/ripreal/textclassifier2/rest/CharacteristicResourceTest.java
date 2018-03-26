@@ -1,10 +1,9 @@
 package org.ripreal.textclassifier2.rest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Before;
 import org.junit.Test;
 import org.ripreal.textclassifier2.model.Characteristic;
-import org.ripreal.textclassifier2.testdata.ClassifiableTestData;
+import org.ripreal.textclassifier2.storage.testdata.ClassifiableTestData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import reactor.core.publisher.Mono;
