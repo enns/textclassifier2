@@ -11,36 +11,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bba0ba7e-ca43-4971-8a18-7484ab88eb43" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/service/CharacteristicService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/service/VocabularyWordService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/textclassifier2_service/src/test/java/org/ripreal/textclassifier2/storage/service/AbstractServiceTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/textclassifier2_service/src/test/java/org/ripreal/textclassifier2/storage/service/CharacteristicTextServiceTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/textclassifier2_service/src/test/java/org/ripreal/textclassifier2/storage/service/VocabularyWordServiceTest.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.2.1/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.2.1/fileHashes/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.2.1/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.2.1/fileHashes/fileHashes.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_classmate_1_3_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_classmate_1_3_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_databind_2_8_6.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_databind_2_8_6.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_logging_log4j_log4j_api_2_10_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_logging_log4j_log4j_api_2_10_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_logging_log4j_log4j_to_slf4j_2_10_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_logging_log4j_log4j_to_slf4j_2_10_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradle.properties" afterPath="$PROJECT_DIR$/gradle.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_core/gradle.properties" afterPath="$PROJECT_DIR$/textclassifier2_core/gradle.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_service/gradle.properties" afterPath="$PROJECT_DIR$/textclassifier2_service/gradle.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/config/TextClassifierConfig.java" afterPath="$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/config/TextClassifierConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/controller/CharacteristicResource.java" afterPath="$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/controller/CharacteristicResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/controller/ClassifiableTextResource.java" afterPath="$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/controller/ClassifiableTextResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/data/entities/MongoClassifiableFactory.java" afterPath="$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/data/entities/MongoClassifiableFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/data/reactive/CharacteristicMongoListener.java" afterPath="$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/data/reactive/CharacteristicMongoListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/service/ClassifiableService.java" afterPath="$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/service/ClassifiableService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/service/MongoTextService.java" afterPath="$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/service/MongoTextService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/service/decorators/LoggerClassifiableTextService.java" afterPath="$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/service/decorators/LoggerClassifiableTextService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/testdata/ClassifiableTestData.java" afterPath="$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/testdata/ClassifiableTestData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/testdata/TestDataRunner.java" afterPath="$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/testdata/TestDataRunner.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/translators/MongoClassifiableTranslator.java" afterPath="$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/translators/MongoClassifiableTranslator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_service/src/test/java/org/ripreal/textclassifier2/rest/CharacteristicResourceTest.java" afterPath="$PROJECT_DIR$/textclassifier2_service/src/test/java/org/ripreal/textclassifier2/rest/CharacteristicResourceTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_service/src/test/java/org/ripreal/textclassifier2/rest/ClassifiableTextResourceTest.java" afterPath="$PROJECT_DIR$/textclassifier2_service/src/test/java/org/ripreal/textclassifier2/rest/ClassifiableTextResourceTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_service/src/test/java/org/ripreal/textclassifier2/storage/service/ClassifiableTextServiceTest.java" afterPath="$PROJECT_DIR$/textclassifier2_service/src/test/java/org/ripreal/textclassifier2/storage/service/ClassifiableTextServiceTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textclassifier2_service/src/test/java/org/ripreal/textclassifier2/storage/translators/MongoClassifiableTranslatorTest.java" afterPath="$PROJECT_DIR$/textclassifier2_service/src/test/java/org/ripreal/textclassifier2/storage/translators/MongoClassifiableTranslatorTest.java" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.2.1/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.2.1/fileHashes/fileHashes.bin" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.2.1/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.2.1/fileHashes/fileHashes.lock" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_classmate_1_3_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_classmate_1_3_4.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_logging_log4j_log4j_api_2_10_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_logging_log4j_log4j_api_2_10_0.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_logging_log4j_log4j_to_slf4j_2_10_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_logging_log4j_log4j_to_slf4j_2_10_0.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/textclassifier2_core/gradle.properties" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/textclassifier2_service/gradle.properties" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -109,81 +88,83 @@
       <file leaf-file-name="MongoClassifiableTranslator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/translators/MongoClassifiableTranslator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-68">
-              <caret line="23" column="22" lean-forward="false" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
+            <state relative-caret-position="0">
+              <caret line="23" column="10" lean-forward="false" selection-start-line="23" selection-start-column="10" selection-end-line="23" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <marker date="1522173908531" expanded="true" signature="2129:2138" ph="{...}" />
+                <marker date="1522173908531" expanded="true" signature="2178:2186" ph="{}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClassifiableTextServiceTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/test/java/org/ripreal/textclassifier2/storage/service/ClassifiableTextServiceTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="129">
-              <caret line="51" column="28" lean-forward="false" selection-start-line="51" selection-start-column="28" selection-end-line="51" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CharacteristicMongoListener.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CharacteristicMongoListener.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/data/reactive/CharacteristicMongoListener.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="490">
-              <caret line="50" column="0" lean-forward="true" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-              <folding>
-                <element signature="method#checkNSaveCharacteristicValue#0;class#CharacteristicMongoListener#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TestDataRunner.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/testdata/TestDataRunner.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="26" column="14" lean-forward="true" selection-start-line="26" selection-start-column="14" selection-end-line="26" selection-end-column="14" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClassifiableTestData.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/testdata/ClassifiableTestData.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-34">
-              <caret line="42" column="41" lean-forward="false" selection-start-line="42" selection-start-column="41" selection-end-line="42" selection-end-column="41" />
+              <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MongoClassifiableText.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/data/entities/MongoClassifiableText.java">
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/textclassifier2_core/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="13" column="14" lean-forward="false" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ServiceApp.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/ServiceApp.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.gradle" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/textclassifier2_service/settings.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/textclassifier2_service/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="119">
-              <caret line="29" column="29" lean-forward="false" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
+              <caret line="7" column="9" lean-forward="true" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MongoTextService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/service/MongoTextService.java">
+      <file leaf-file-name="JiraRESTWrapper.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/testdata/JiraRESTWrapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
-              <caret line="48" column="24" lean-forward="false" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
-              <folding>
-                <element signature="e#1255#1263#0" expanded="false" />
-                <element signature="method#saveAllVocabulary#0;class#MongoTextService#0" expanded="false" />
-                <element signature="e#2239#2248#0" expanded="false" />
-                <element signature="method#deleteAll#0;class#MongoTextService#0" expanded="false" />
-                <element signature="method#findVocabularyByNgram#0;class#MongoTextService#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="306">
+              <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gradlew" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gradlew">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -201,26 +182,10 @@
       <file leaf-file-name="TextClassifierConfig.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/config/TextClassifierConfig.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="18" column="9" lean-forward="true" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
+            <state relative-caret-position="187">
+              <caret line="21" column="5" lean-forward="false" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClassifierREST.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/controller/ClassifierREST.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-              <folding>
-                <element signature="e#615#630#0" expanded="false" />
-                <element signature="method#ClassifierREST#0;class#ClassifierREST#0" expanded="false" />
-                <element signature="method#initClassifier#0;class#ClassifierREST#0" expanded="false" />
-                <element signature="e#1138#1464#0" expanded="false" />
-                <element signature="class#ClassifierOptions#0;class#ClassifierREST#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -278,7 +243,7 @@
   <component name="GradleLocalSettings">
     <option name="myGradleHomes">
       <map>
-        <entry key="$PROJECT_DIR$" value="C:\Users\roman.kudakov\.gradle\wrapper\dists\gradle-4.2.1-all\domrskppdhf3wtn5mziw0c2zr\gradle-4.2.1" />
+        <entry key="$PROJECT_DIR$" value="C:\Users\user\.gradle\wrapper\dists\gradle-4.2.1-all\domrskppdhf3wtn5mziw0c2zr\gradle-4.2.1" />
       </map>
     </option>
     <option name="myGradleVersions">
@@ -1227,9 +1192,9 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="12170853287664" />
+        <entry key="$PROJECT_DIR$" value="10645224685403" />
         <entry key="$PROJECT_DIR$/build.gradle" value="4002760746" />
-        <entry key="$PROJECT_DIR$/gradle.properties" value="164671361" />
+        <entry key="$PROJECT_DIR$/gradle.properties" value="0" />
         <entry key="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" value="2573383592" />
         <entry key="$PROJECT_DIR$/settings.gradle" value="3408278342" />
         <entry key="$PROJECT_DIR$/textclassifier2_core/build.gradle" value="898796695" />
@@ -1469,6 +1434,11 @@
     <option name="externalProjectsViewState">
       <projects_view />
     </option>
+    <option name="projectSyncType">
+      <map>
+        <entry key="$PROJECT_DIR$" value="RE_IMPORT" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -1505,7 +1475,6 @@
         <option value="$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/controller/ClassifierREST.java" />
         <option value="$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/data/entities/MongoCharacteristicValue.java" />
         <option value="$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/service/ClassifiableTextService.java" />
-        <option value="$PROJECT_DIR$/gradle.properties" />
         <option value="$PROJECT_DIR$/textclassifier2_service/gradle.properties" />
         <option value="$PROJECT_DIR$/textclassifier2_core/gradle.properties" />
         <option value="$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/controller/CharacteristicResource.java" />
@@ -1524,6 +1493,7 @@
         <option value="$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/testdata/TestDataRunner.java" />
         <option value="$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/testdata/ClassifiableTestData.java" />
         <option value="$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/data/reactive/CharacteristicMongoListener.java" />
+        <option value="$PROJECT_DIR$/gradle.properties" />
       </list>
     </option>
   </component>
@@ -1538,10 +1508,11 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="991" />
-    <option name="width" value="929" />
-    <option name="height" value="1080" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -1637,6 +1608,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -1647,11 +1619,6 @@
             <path>
               <item name="textclassifier2" type="b2602c69:ProjectViewProjectNode" />
               <item name="textclassifier2" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="textclassifier2_core" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="textclassifier2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="textclassifier2" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="textclassifier2_service" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
             <path>
@@ -1683,68 +1650,6 @@
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="storage" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="textclassifier2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="textclassifier2" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="textclassifier2_service" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="storage" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="textclassifier2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="textclassifier2" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="textclassifier2_service" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="storage" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="textclassifier2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="textclassifier2" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="textclassifier2_service" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="storage" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="textclassifier2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="textclassifier2" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="textclassifier2_service" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="storage" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="entities" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="textclassifier2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="textclassifier2" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="textclassifier2_service" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="storage" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="reactive" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="textclassifier2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="textclassifier2" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="textclassifier2_service" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="storage" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="textclassifier2" type="b2602c69:ProjectViewProjectNode" />
@@ -1756,56 +1661,10 @@
               <item name="storage" type="462c0819:PsiDirectoryNode" />
               <item name="testdata" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="textclassifier2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="textclassifier2" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="textclassifier2_service" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="storage" type="462c0819:PsiDirectoryNode" />
-              <item name="translators" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="textclassifier2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="textclassifier2" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="textclassifier2_service" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="textclassifier2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="textclassifier2" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="textclassifier2_service" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="textclassifier2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="textclassifier2" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="textclassifier2_service" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="textclassifier2" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="textclassifier2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="textclassifier2" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="textclassifier2_service" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="textclassifier2" type="462c0819:PsiDirectoryNode" />
-              <item name="rest" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="PackagesPane">
         <subPane>
           <expand>
@@ -1829,10 +1688,11 @@
         </subPane>
       </pane>
       <pane id="AndroidView" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../springboot-jwt" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="reference.settings.project.gradle.running" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15527344" />
@@ -1938,6 +1798,65 @@
       <module name="" />
       <envs />
     </configuration>
+    <configuration name="app_core" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="org.ripreal.textclassifier2.ClassifierApp" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/textclassifier2_core" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="textclassifier2_core_main" />
+      <envs />
+      <method>
+        <option name="Make" enabled="false" />
+      </method>
+    </configuration>
+    <configuration name="app_gateway" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="org.ripreal.textclassifier2.gateway.GatewayTestApp" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/textclassifier2_gateway" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="textclassifier2_gateway_main" />
+      <envs />
+    </configuration>
+    <configuration name="app_service (production profile)" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="org.ripreal.textclassifier2.storage.ServiceApp" />
+      <option name="VM_PARAMETERS" value="-Dspring.profiles.active=production" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/textclassifier2_service" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="textclassifier2_service_main" />
+      <envs />
+    </configuration>
+    <configuration name="app_service (test profile)" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="org.ripreal.textclassifier2.storage.ServiceApp" />
+      <option name="VM_PARAMETERS" value="-Dspring.profiles.active=test" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/textclassifier2_service" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="textclassifier2_service_main" />
+      <envs />
+    </configuration>
     <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -1952,11 +1871,97 @@
         </option>
         <option name="vmOptions" value="" />
       </ExternalSystemSettings>
-    </configuration>
-    <configuration default="true" type="JarApplication" factoryName="JAR Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <envs />
+    </configuration>
+    <configuration name="textclassifier2 [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" value="" />
+      </ExternalSystemSettings>
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+    </configuration>
+    <configuration name="textclassifier2:textclassifier2_core [test]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/textclassifier2_core" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="test" />
+          </list>
+        </option>
+        <option name="vmOptions" value="" />
+      </ExternalSystemSettings>
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+    </configuration>
+    <configuration name="textclassifier2:textclassifier2_gateway [buildDependents]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/textclassifier2_gateway" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="buildDependents" />
+          </list>
+        </option>
+        <option name="vmOptions" value="" />
+      </ExternalSystemSettings>
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+    </configuration>
+    <configuration name="textclassifier2:textclassifier2_gateway [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/textclassifier2_gateway" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" value="" />
+      </ExternalSystemSettings>
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+    </configuration>
+    <configuration name="textclassifier2:textclassifier2_gateway [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/textclassifier2_gateway" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="dependencies" />
+          </list>
+        </option>
+        <option name="vmOptions" value="" />
+      </ExternalSystemSettings>
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
@@ -1977,46 +1982,6 @@
       </option>
       <envs />
       <patterns />
-    </configuration>
-    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
-      <module name="" />
-      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
-      <option name="PROGRAM_PARAMETERS" />
-      <predefined_log_file id="idea.log" enabled="true" />
-    </configuration>
-    <configuration default="true" type="Remote" factoryName="Remote">
-      <option name="USE_SOCKET_TRANSPORT" value="true" />
-      <option name="SERVER_MODE" value="false" />
-      <option name="SHMEM_ADDRESS" value="javadebug" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="5005" />
-    </configuration>
-    <configuration default="true" type="TestNG" factoryName="TestNG">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="OUTPUT_DIRECTORY" />
-      <option name="ANNOTATION_TYPE" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" />
-      <envs />
-      <properties />
-      <listeners />
     </configuration>
     <configuration name="all tests_core" type="JUnit" factoryName="JUnit">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
@@ -2079,149 +2044,50 @@
       <envs />
       <patterns />
     </configuration>
-    <configuration name="app_core" type="Application" factoryName="Application">
+    <configuration default="true" type="JarApplication" factoryName="JAR Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="org.ripreal.textclassifier2.ClassifierApp" />
-      <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/textclassifier2_core" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <envs />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="textclassifier2_core_main" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
       <envs />
-      <method>
-        <option name="Make" enabled="false" />
-      </method>
+      <properties />
+      <listeners />
     </configuration>
-    <configuration name="app_gateway" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="org.ripreal.textclassifier2.gateway.GatewayTestApp" />
-      <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/textclassifier2_gateway" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="textclassifier2_gateway_main" />
-      <envs />
-    </configuration>
-    <configuration name="app_service (production profile)" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="org.ripreal.textclassifier2.storage.ServiceApp" />
-      <option name="VM_PARAMETERS" value="-Dspring.profiles.active=production" />
-      <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/textclassifier2_service" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="textclassifier2_service_main" />
-      <envs />
-    </configuration>
-    <configuration name="app_service (test profile)" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="org.ripreal.textclassifier2.storage.ServiceApp" />
-      <option name="VM_PARAMETERS" value="-Dspring.profiles.active=test" />
-      <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/textclassifier2_service" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="textclassifier2_service_main" />
-      <envs />
-    </configuration>
-    <configuration name="textclassifier2 [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="build" />
-          </list>
-        </option>
-        <option name="vmOptions" value="" />
-      </ExternalSystemSettings>
-    </configuration>
-    <configuration name="textclassifier2:textclassifier2_core [test]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/textclassifier2_core" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="test" />
-          </list>
-        </option>
-        <option name="vmOptions" value="" />
-      </ExternalSystemSettings>
-    </configuration>
-    <configuration name="textclassifier2:textclassifier2_gateway [buildDependents]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/textclassifier2_gateway" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="buildDependents" />
-          </list>
-        </option>
-        <option name="vmOptions" value="" />
-      </ExternalSystemSettings>
-    </configuration>
-    <configuration name="textclassifier2:textclassifier2_gateway [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/textclassifier2_gateway" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="clean" />
-          </list>
-        </option>
-        <option name="vmOptions" value="" />
-      </ExternalSystemSettings>
-    </configuration>
-    <configuration name="textclassifier2:textclassifier2_gateway [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/textclassifier2_gateway" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="dependencies" />
-          </list>
-        </option>
-        <option name="vmOptions" value="" />
-      </ExternalSystemSettings>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file id="idea.log" enabled="true" />
     </configuration>
     <list size="12">
       <item index="0" class="java.lang.String" itemvalue="Application.app_gateway" />
@@ -2264,12 +2130,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="all_tests_service_(test_profile) - 2018.03.27 at 18h 16m 35s.xml">
-      <configuration name="all_tests_service (test_profile)" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="all_tests_service_(test_profile) - 2018.03.27 at 18h 23m 24s.xml">
-      <configuration name="all_tests_service (test_profile)" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="all_tests_service_(test_profile) - 2018.03.27 at 18h 28m 56s.xml">
       <configuration name="all_tests_service (test_profile)" configurationId="JUnit" />
     </history-entry>
@@ -2294,6 +2154,12 @@
     <history-entry file="all_tests_service_(test_profile) - 2018.03.27 at 18h 49m 25s.xml">
       <configuration name="all_tests_service (test_profile)" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="all_tests_service_(test_profile) - 2018.03.27 at 21h 42m 52s.xml">
+      <configuration name="all_tests_service (test_profile)" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="all_tests_service_(test_profile) - 2018.03.27 at 21h 54m 32s.xml">
+      <configuration name="all_tests_service (test_profile)" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -2305,11 +2171,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="991" y="0" width="929" height="1080" extended-state="0" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32594937" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31962025" sideWeight="0.4969743" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31862745" sideWeight="0.4969743" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -2317,25 +2183,25 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19562715" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47712418" sideWeight="0.49546143" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3267974" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.07019563" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.046898637" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3251634" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Jelastic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35903338" sideWeight="0.45534408" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23600605" sideWeight="0.45534408" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2278481" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24810892" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48312235" sideWeight="0.4969743" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48202613" sideWeight="0.4969743" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33282906" sideWeight="0.5446559" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Jelastic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" x="92" y="302" width="709" height="334" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3227848" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -2396,7 +2262,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/textclassifier2_service/src/test/java/org/ripreal/textclassifier2/storage/service/ClassifiableTextServiceTest.java</url>
-          <line>52</line>
+          <line>68</line>
           <properties />
           <option name="timeStamp" value="333" />
         </line-breakpoint>
@@ -2480,21 +2346,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/gradlew">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/textclassifier2_gateway/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="31" column="62" lean-forward="false" selection-start-line="31" selection-start-column="62" selection-end-line="31" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/textclassifier2_gateway/src/main/resources/sql-scripts/data.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -2545,46 +2396,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/textclassifier2_service/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/textclassifier2_service/settings.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/settings.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gradle.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="44" lean-forward="false" selection-start-line="5" selection-start-column="44" selection-end-line="5" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/textclassifier2_core/gradle.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="44" lean-forward="false" selection-start-line="5" selection-start-column="44" selection-end-line="5" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/textclassifier2_service/gradle.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="44" lean-forward="false" selection-start-line="5" selection-start-column="44" selection-end-line="5" selection-end-column="44" />
         </state>
       </provider>
     </entry>
@@ -2595,157 +2410,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="543">
           <caret line="59" column="0" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#752#758#0" expanded="false" />
-            <element signature="method#findAllTexts#0;class#LoggerClassifiableTextService#0" expanded="false" />
-            <element signature="method#saveAllTexts#0;class#LoggerClassifiableTextService#0" expanded="false" />
-            <element signature="method#findAllCharacteristics#0;class#LoggerClassifiableTextService#0" expanded="false" />
-            <element signature="method#deleteAll#0;class#LoggerClassifiableTextService#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/java/util/ArrayList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="163" column="11" lean-forward="false" selection-start-line="163" selection-start-column="11" selection-end-line="163" selection-end-column="11" />
-          <folding>
-            <element signature="docComment;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;field#DEFAULT_CAPACITY#0;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;field#EMPTY_ELEMENTDATA#0;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;field#DEFAULTCAPACITY_EMPTY_ELEMENTDATA#0;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;field#elementData#0;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;field#size#0;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;method#ArrayList#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#ArrayList#0;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;method#ArrayList#1;class#ArrayList#0" expanded="false" />
-            <element signature="e#6252#6253#0" expanded="false" />
-            <element signature="e#6320#6321#0" expanded="false" />
-            <element signature="docComment;method#ArrayList#2;class#ArrayList#0" expanded="false" />
-            <element signature="method#ArrayList#2;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;method#trimToSize#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#trimToSize#0;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;method#ensureCapacity#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#ensureCapacity#0;class#ArrayList#0" expanded="false" />
-            <element signature="e#8062#8122#0" expanded="false" />
-            <element signature="method#ensureCapacityInternal#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#ensureExplicitCapacity#0;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;field#MAX_ARRAY_SIZE#0;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;method#grow#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#grow#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#hugeCapacity#0;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;method#size#0;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;method#isEmpty#0;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;method#contains#0;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;method#indexOf#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#indexOf#0;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;method#lastIndexOf#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#lastIndexOf#0;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;method#clone#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#clone#0;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;method#toArray#0;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;method#toArray#1;class#ArrayList#0" expanded="false" />
-            <element signature="method#toArray#1;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;method#get#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#get#0;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;method#set#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#set#0;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;method#add#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#add#0;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;method#add#1;class#ArrayList#0" expanded="false" />
-            <element signature="method#add#1;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;method#remove#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#remove#0;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;method#remove#1;class#ArrayList#0" expanded="false" />
-            <element signature="method#remove#1;class#ArrayList#0" expanded="false" />
-            <element signature="method#fastRemove#0;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;method#clear#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#clear#0;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;method#addAll#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#addAll#0;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;method#addAll#1;class#ArrayList#0" expanded="false" />
-            <element signature="method#addAll#1;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;method#removeRange#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#removeRange#0;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;method#rangeCheck#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#rangeCheck#0;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;method#rangeCheckForAdd#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#rangeCheckForAdd#0;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;method#outOfBoundsMsg#0;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;method#removeAll#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#removeAll#0;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;method#retainAll#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#retainAll#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#batchRemove#0;class#ArrayList#0" expanded="false" />
-            <element signature="e#26946#27007#0" expanded="false" />
-            <element signature="docComment;method#writeObject#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#writeObject#0;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;method#readObject#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#readObject#0;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;method#listIterator#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#listIterator#0;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;method#listIterator#1;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;method#iterator#0;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;class#Itr#0;class#ArrayList#0" expanded="false" />
-            <element signature="class#Itr#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#next#0;class#Itr#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#remove#0;class#Itr#0;class#ArrayList#0" expanded="false" />
-            <element signature="e#32024#32033#0" expanded="false" />
-            <element signature="method#forEachRemaining#0;class#Itr#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#checkForComodification#0;class#Itr#0;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;class#ListItr#0;class#ArrayList#0" expanded="false" />
-            <element signature="class#ListItr#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#ListItr#0;class#ListItr#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#previous#0;class#ListItr#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#set#0;class#ListItr#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#add#0;class#ListItr#0;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;method#subList#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#subList#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#subListRangeCheck#0;class#ArrayList#0" expanded="false" />
-            <element signature="class#SubList#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#SubList#0;class#SubList#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#set#0;class#SubList#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#get#0;class#SubList#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#size#0;class#SubList#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#add#0;class#SubList#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#remove#0;class#SubList#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#removeRange#0;class#SubList#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#addAll#1;class#SubList#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#listIterator#0;class#SubList#0;class#ArrayList#0" expanded="false" />
-            <element signature="class#39690:44151" expanded="false" />
-            <element signature="method#next#0;class#39690:44151" expanded="false" />
-            <element signature="method#previous#0;class#39690:44151" expanded="false" />
-            <element signature="method#forEachRemaining#0;class#39690:44151" expanded="false" />
-            <element signature="method#remove#0;class#39690:44151" expanded="false" />
-            <element signature="method#set#0;class#39690:44151" expanded="false" />
-            <element signature="method#add#0;class#39690:44151" expanded="false" />
-            <element signature="method#checkForComodification#0;class#39690:44151" expanded="false" />
-            <element signature="method#subList#0;class#SubList#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#rangeCheck#0;class#SubList#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#rangeCheckForAdd#0;class#SubList#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#checkForComodification#0;class#SubList#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#spliterator#0;class#SubList#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#forEach#0;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;method#spliterator#0;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;class#ArrayListSpliterator#0;class#ArrayList#0" expanded="false" />
-            <element signature="class#ArrayListSpliterator#0;class#ArrayList#0" expanded="false" />
-            <element signature="docComment;method#ArrayListSpliterator#0;class#ArrayListSpliterator#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#ArrayListSpliterator#0;class#ArrayListSpliterator#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#getFence#0;class#ArrayListSpliterator#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#trySplit#0;class#ArrayListSpliterator#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#tryAdvance#0;class#ArrayListSpliterator#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#forEachRemaining#0;class#ArrayListSpliterator#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#removeIf#0;class#ArrayList#0" expanded="false" />
-            <element signature="e#51820#51866#0" expanded="false" />
-            <element signature="e#53306#53315#0" expanded="false" />
-            <element signature="method#replaceAll#0;class#ArrayList#0" expanded="false" />
-            <element signature="e#53820#53829#0" expanded="false" />
-            <element signature="method#sort#0;class#ArrayList#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/java/util/ArrayList.java" />
     <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/test/java/org/ripreal/textclassifier2/storage/service/CharacteristicTextServiceTest.java" />
     <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/test/java/org/ripreal/textclassifier2/storage/service/VocabularyWordServiceTest.java" />
     <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/test/java/org/ripreal/textclassifier2/storage/service/AbstractServiceTest.java" />
@@ -2754,7 +2422,7 @@
         <state relative-caret-position="68">
           <caret line="13" column="17" lean-forward="false" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2763,7 +2431,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="21" column="35" lean-forward="false" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2771,18 +2438,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="8" column="25" lean-forward="true" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
-          <folding>
-            <element signature="e#263#264#0" expanded="false" />
-            <element signature="e#328#329#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/ServiceApp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2804,7 +2459,7 @@
         <state relative-caret-position="238">
           <caret line="21" column="28" lean-forward="false" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="28" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
             <element signature="e#560#575#0" expanded="false" />
             <element signature="e#1282#1434#0" expanded="false" />
           </folding>
@@ -2823,7 +2478,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
           <caret line="242" column="0" lean-forward="false" selection-start-line="242" selection-start-column="0" selection-end-line="242" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2831,7 +2485,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2839,10 +2492,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="15" column="19" lean-forward="true" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
-          <folding>
-            <element signature="e#520#521#0" expanded="false" />
-            <element signature="e#546#547#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2850,7 +2499,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2858,7 +2506,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="22" column="88" lean-forward="true" selection-start-line="22" selection-start-column="88" selection-end-line="22" selection-end-column="88" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2867,19 +2514,11 @@
         <state relative-caret-position="323">
           <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
             <element signature="e#918#919#0" expanded="false" />
             <element signature="e#963#964#0" expanded="false" />
             <element signature="e#1185#1186#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/testdata/JiraRESTWrapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2909,21 +2548,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/service/MongoTextService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="48" column="24" lean-forward="false" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
+        <state relative-caret-position="561">
+          <caret line="53" column="24" lean-forward="false" selection-start-line="53" selection-start-column="24" selection-end-line="53" selection-end-column="24" />
           <folding>
             <element signature="e#1255#1263#0" expanded="false" />
-            <element signature="method#saveAllVocabulary#0;class#MongoTextService#0" expanded="false" />
-            <element signature="e#2239#2248#0" expanded="false" />
-            <element signature="method#deleteAll#0;class#MongoTextService#0" expanded="false" />
-            <element signature="method#findVocabularyByNgram#0;class#MongoTextService#0" expanded="false" />
+            <marker date="1522173908513" expanded="false" signature="2550:2613" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/data/entities/MongoClassifiableText.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
+        <state relative-caret-position="306">
           <caret line="29" column="29" lean-forward="false" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
           <folding />
         </state>
@@ -2931,8 +2567,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/test/java/org/ripreal/textclassifier2/storage/service/ClassifiableTextServiceTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="51" column="28" lean-forward="false" selection-start-line="51" selection-start-column="28" selection-end-line="51" selection-end-column="28" />
+        <state relative-caret-position="1122">
+          <caret line="67" column="5" lean-forward="false" selection-start-line="67" selection-start-column="5" selection-end-line="67" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -2953,17 +2589,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/testdata/TestDataRunner.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="26" column="14" lean-forward="true" selection-start-line="26" selection-start-column="14" selection-end-line="26" selection-end-column="14" />
+        <state relative-caret-position="272">
+          <caret line="22" column="9" lean-forward="false" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
+            <marker date="1522173908526" expanded="true" signature="892:907" ph="{...}" />
+            <marker date="1522173908526" expanded="true" signature="913:937" ph="@{...}" />
+            <marker date="1522173908526" expanded="true" signature="974:1202" ph="{...}" />
+            <marker date="1522173908526" expanded="true" signature="999:1195" ph="{}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/testdata/ClassifiableTestData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-34">
+        <state relative-caret-position="578">
           <caret line="42" column="41" lean-forward="false" selection-start-line="42" selection-start-column="41" selection-end-line="42" selection-end-column="41" />
           <folding />
         </state>
@@ -2971,18 +2611,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/translators/MongoClassifiableTranslator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-68">
-          <caret line="23" column="22" lean-forward="false" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
+        <state relative-caret-position="0">
+          <caret line="23" column="10" lean-forward="false" selection-start-line="23" selection-start-column="10" selection-end-line="23" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
+            <marker date="1522173908531" expanded="true" signature="2129:2138" ph="{...}" />
+            <marker date="1522173908531" expanded="true" signature="2178:2186" ph="{}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/config/TextClassifierConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="18" column="9" lean-forward="true" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
+        <state relative-caret-position="187">
+          <caret line="21" column="5" lean-forward="false" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -3000,10 +2642,80 @@
     <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/data/reactive/CharacteristicMongoListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="490">
-          <caret line="50" column="0" lean-forward="true" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-          <folding>
-            <element signature="method#checkNSaveCharacteristicValue#0;class#CharacteristicMongoListener#0" expanded="false" />
-          </folding>
+          <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gradlew">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gradle.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/textclassifier2_core/gradle.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="44" lean-forward="false" selection-start-line="5" selection-start-column="44" selection-end-line="5" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/textclassifier2_service/gradle.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="44" lean-forward="false" selection-start-line="5" selection-start-column="44" selection-end-line="5" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/textclassifier2_core/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="14" lean-forward="false" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/ServiceApp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/textclassifier2_service/settings.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/textclassifier2_service/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="9" lean-forward="true" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/textclassifier2_service/src/main/java/org/ripreal/textclassifier2/storage/testdata/JiraRESTWrapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
