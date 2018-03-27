@@ -1,56 +1,77 @@
 package org.ripreal.textclassifier2.storage.service.decorators;
 
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.ripreal.textclassifier2.storage.data.queries.QuerySpecification;
-import org.ripreal.textclassifier2.storage.service.ClassifiableTextService;
+import org.ripreal.textclassifier2.model.VocabularyWord;
+import org.ripreal.textclassifier2.ngram.NGramStrategy;
+import org.ripreal.textclassifier2.storage.data.entities.MongoCharacteristic;
+import org.ripreal.textclassifier2.storage.data.entities.MongoClassifiableText;
+import org.ripreal.textclassifier2.storage.data.entities.MongoVocabularyWord;
+import org.ripreal.textclassifier2.storage.service.ClassifiableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import java.util.List;
 
 @Slf4j
-@RequiredArgsConstructor
-public class LoggerClassifiableTextService<T> implements ClassifiableTextService<T> {
+@AllArgsConstructor
+public class LoggerClassifiableTextService implements ClassifiableService {
 
     @Autowired
-    private final ClassifiableTextService<T> service;
-    /*
+    private final ClassifiableService service;
+
     @Override
-    public Flux<T> saveAll(List<T> entities) {
-        return service.saveAll(entities)
-                .doOnRequest((request) -> log.info("start request"))
-                .doOnNext((item) -> log.info("written to db {}", item))
-                .doOnComplete(() -> log.info("completed request"))
-                .doOnError((a1) -> log.error("request error {}", a1))
-                .doOnTerminate(() -> log.info("terminated request"));
+    public Flux<MongoClassifiableText> findAllTexts() {
+        return service.findAllTexts()
+            .doOnRequest((request) -> log.info("start findAllTexts request"))
+            .doOnNext((item) -> log.info("found {}", item));
     }
 
     @Override
-    public Flux<T> findAll() {
-        return service.findAll()
-                .doOnRequest((request) -> log.info("start request"))
-                .doOnNext((item) -> log.info("found {}", item));
+    public Flux<MongoClassifiableText> saveAllTexts(List<MongoClassifiableText> texts) {
+        return service.saveAllTexts(texts)
+            .doOnRequest((request) -> log.info("start saveAllTexts request"))
+            .doOnNext((item) -> log.info("written to db {}", item))
+            .doOnError((a1) -> log.error("request error {}", a1))
+            .doOnTerminate(() -> log.info("terminated request"));
     }
 
     @Override
-    public Mono<T> findById(String id) {
-        return service.findById(id)
-                .doOnRequest((request) -> log.info("start request"))
+    public Flux<MongoCharacteristic> findAllCharacteristics() {
+        return service.findAllCharacteristics()
+            .doOnRequest((request) -> log.info("start findAllCharacteristics request"))
+            .doOnNext((item) -> log.info("found {}", item));
+    }
+
+    @Override
+    public Mono<MongoCharacteristic> findCharacteristicByName(String name) {
+        return service.findCharacteristicByName(name)
+            .doOnRequest((request) -> log.info("start findCharacteristicByName request"))
+            .doOnNext((item) -> log.info("found by id {}", item));
+    }
+
+    @Override
+    public Flux<MongoVocabularyWord> findVocabularyByNgram(NGramStrategy ngram) {
+        return service.findVocabularyByNgram(ngram)
+                .doOnRequest((request) -> log.info("start findVocabularyByNgram request with parameter {}", ngram))
                 .doOnNext((item) -> log.info("found by id {}", item));
+    }
+
+    @Override
+    public Flux<MongoVocabularyWord> saveAllVocabulary(List<MongoVocabularyWord> vocabulary) {
+        return service.saveAllVocabulary(vocabulary)
+            .doOnRequest((request) -> log.info("start saveAllVocabulary request"))
+            .doOnNext((item) -> log.info("written to db {}", item))
+            .doOnError((a1) -> log.error("request error {}", a1))
+            .doOnTerminate(() -> log.info("terminated request"));
     }
 
     @Override
     public Flux<Void> deleteAll() {
         return service.deleteAll()
-                .doOnRequest((request) -> log.info("start request"))
-                .doOnNext((item) -> log.info("found {}", item));
+            .doOnRequest((request) -> log.info("start request"))
+            .doOnNext((item) -> log.info("found {}", item));
     }
 
-    @Override
-    public List<T> query(QuerySpecification spec) {
-        log.info("start query specification request");
-        return service.query(spec);
-    }
-    */
 }

@@ -4,7 +4,6 @@ import org.junit.*;
 import org.ripreal.textclassifier2.SpringTestConfig;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
 import org.ripreal.textclassifier2.storage.service.MongoTextService;
-import org.ripreal.textclassifier2.storage.service.VocabularyWordService;
 import org.ripreal.textclassifier2.storage.testdata.ClassifiableTestData;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,16 +15,11 @@ public class MongoClassifiableTranslatorTest extends SpringTestConfig {
     @Autowired
     MongoTextService textService;
 
-    @Autowired
-    VocabularyWordService vocabularyService;
-
     @Before
     public void setUp() throws Exception {
         textService.deleteAll().blockLast();
-        textService.saveAll(ClassifiableTestData.getTextTestData()).blockLast();
-        vocabularyService.deleteAll().blockLast();
-        vocabularyService.saveAll(ClassifiableTestData.getVocabTestData()).blockLast();
-
+        textService.saveAllTexts(ClassifiableTestData.getTextTestData()).blockLast();
+        textService.saveAllVocabulary(ClassifiableTestData.getVocabTestData()).blockLast();
     }
 
     @After

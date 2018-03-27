@@ -35,24 +35,4 @@ public class CharacteristicResourceTest extends AbstractResourceTest {
                 .block();
     }
 
-    @Test
-    public void save() throws Exception {
-        Mono<Characteristic> characteristic = ClassifiableTestData
-                .getTextTestData()
-                .stream()
-                .flatMap(text -> text.getCharacteristics().stream())
-                .map(value -> Mono.just(value.getCharacteristic()))
-                .findFirst()
-                .orElse(Mono.empty());
-
-        webClient.post()
-                .uri(URI.create(this.server + "/characteristics"))
-                .accept(MediaType.APPLICATION_JSON)
-                .contentType(MediaType.APPLICATION_JSON)
-                .body(characteristic, Characteristic.class)
-                .exchange()
-                .doOnNext(body -> assertTrue(body.statusCode().is2xxSuccessful()))
-                .block();
-
-    }
 }

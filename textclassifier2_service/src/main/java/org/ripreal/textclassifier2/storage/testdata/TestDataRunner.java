@@ -1,10 +1,8 @@
 package org.ripreal.textclassifier2.storage.testdata;
 
 import org.ripreal.textclassifier2.storage.data.entities.MongoClassifiableText;
-import org.ripreal.textclassifier2.storage.data.entities.MongoVocabularyWord;
+import org.ripreal.textclassifier2.storage.service.ClassifiableService;
 import org.ripreal.textclassifier2.storage.service.MongoTextService;
-import org.ripreal.textclassifier2.storage.service.ClassifiableTextService;
-import org.ripreal.textclassifier2.storage.service.VocabularyWordService;
 import org.ripreal.textclassifier2.storage.service.decorators.LoggerClassifiableTextService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -16,12 +14,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Configuration
 public class TestDataRunner {
 
-    private final ClassifiableTextService<MongoClassifiableText> textService;
-    private final ClassifiableTextService<MongoVocabularyWord> vocabService;
+    private final ClassifiableService textService;
 
-    public TestDataRunner(MongoTextService textService, VocabularyWordService vocabService) {
-        this.textService = new LoggerClassifiableTextService<>(textService);
-        this.vocabService = new LoggerClassifiableTextService<>(vocabService);
+    public TestDataRunner(MongoTextService textService) {
+        this.textService = new LoggerClassifiableTextService(textService);
     }
 
     @Bean

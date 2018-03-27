@@ -44,7 +44,11 @@ public class ClassifiableTestData {
             new HashSet<>(Arrays.asList(dev, agro)
         ));
 
-        return Arrays.asList(text1, text2);
+        MongoClassifiableText text3 = new MongoClassifiableText("Как оформить списание основного средства в ПП Агроинвест",
+                new HashSet<>(Arrays.asList(analytics, agro)
+        ));
+
+        return Arrays.asList(text1, text2, text3);
     }
 
     public static List<MongoVocabularyWord> getVocabTestData() {

@@ -23,7 +23,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class MongoTextService implements ClassifiableTextService, ClassifiableService {
+public class MongoTextService implements ClassifiableService {
 
     private final ClassifiableTextRepo textRepo;
     private final CharacteristicRepo charRepo;
@@ -41,6 +41,11 @@ public class MongoTextService implements ClassifiableTextService, ClassifiableSe
     }
 
     @Override
+    public Flux<MongoVocabularyWord> saveAllVocabulary(List<MongoVocabularyWord> vocabulary) {
+        return vocabRepo.saveAll(vocabulary);
+    }
+
+    @Override
     public Flux<MongoCharacteristic> findAllCharacteristics() {
         return charRepo.findAll();
     }
@@ -51,7 +56,6 @@ public class MongoTextService implements ClassifiableTextService, ClassifiableSe
     }
 
     @Override
-    @Override
     @Transactional
     public Flux<Void> deleteAll() {
         return charValRepo.deleteAll()
@@ -59,6 +63,7 @@ public class MongoTextService implements ClassifiableTextService, ClassifiableSe
                 .thenMany(textRepo.deleteAll());
     }
 
+    @Override
     public Flux<MongoVocabularyWord> findVocabularyByNgram(@NonNull NGramStrategy ngram) {
         return vocabRepo.findByNGram(ngram.toString());
     }

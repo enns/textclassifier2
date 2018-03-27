@@ -2,6 +2,7 @@ package org.ripreal.textclassifier2.storage.data.reactive;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.ripreal.textclassifier2.storage.data.entities.MongoCharacteristic;
 import org.ripreal.textclassifier2.storage.data.entities.MongoCharacteristicValue;
 import org.ripreal.textclassifier2.storage.data.entities.MongoClassifiableText;
 import org.ripreal.textclassifier2.model.*;
@@ -12,6 +13,8 @@ import org.springframework.data.mongodb.core.mapping.event.BeforeSaveEvent;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 public class CharacteristicMongoListener extends AbstractMongoEventListener<Object> {
@@ -32,13 +35,23 @@ public class CharacteristicMongoListener extends AbstractMongoEventListener<Obje
             MongoClassifiableText text = (MongoClassifiableText) source;
             if (text.getCharacteristics() != null) {
                 for (CharacteristicValue entry : text.getCharacteristics()) {
-                    checkNSave(entry); // checking doubles
+                    checkNSaveCharacteristicValue(entry); // checking doubles
                 }
+            }
+        }
+        else if (source instanceof MongoCharacteristicValue) {
+            MongoCharacteristicValue value = (MongoCharacteristicValue) source;
+            if (value.getCharacteristic() != null) {
+                checkNSaveCharacteristic(value.getCharacteristic()); // checking doubles
             }
         }
     }
 
-    public void checkNSave(@NonNull CharacteristicValue valueRequest) {
+    public void checkNSaveCharacteristic(@NonNull Characteristic characteristic) {
+
+    }
+
+    public void checkNSaveCharacteristicValue(@NonNull CharacteristicValue valueRequest) {
 
         MongoCharacteristicValue valueExisting = mongoOperations.findAndModify(
                 new Query(Criteria

@@ -1,8 +1,8 @@
 package org.ripreal.textclassifier2.storage.controller;
 
 import org.ripreal.textclassifier2.storage.data.entities.MongoClassifiableText;
+import org.ripreal.textclassifier2.storage.service.ClassifiableService;
 import org.ripreal.textclassifier2.storage.service.MongoTextService;
-import org.ripreal.textclassifier2.storage.service.ClassifiableTextService;
 import org.ripreal.textclassifier2.storage.service.decorators.LoggerClassifiableTextService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -14,19 +14,19 @@ import java.util.List;
 @RequestMapping("texts")
 public class ClassifiableTextResource {
 
-    private final ClassifiableTextService<MongoClassifiableText> service;
+    private final ClassifiableService service;
 
     public ClassifiableTextResource(MongoTextService service) {
-        this.service = new LoggerClassifiableTextService<>(service);
+        this.service = new LoggerClassifiableTextService(service);
     }
 
     @GetMapping(value = "all", produces = MediaType.APPLICATION_JSON_VALUE)
     public Flux<MongoClassifiableText> findAll() {
-        return service.findAll();
+        return service.findAllTexts();
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public void save(@RequestBody List<MongoClassifiableText> texts) {
-        service.saveAll(texts);
+        service.saveAllTexts(texts);
     }
 }

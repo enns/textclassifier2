@@ -1,9 +1,16 @@
 package org.ripreal.textclassifier2.storage.service;
 
 import lombok.NoArgsConstructor;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
+import org.ripreal.textclassifier2.SpringTestConfig;
+import org.ripreal.textclassifier2.model.ClassifiableText;
+import org.ripreal.textclassifier2.ngram.NGramStrategy;
+import org.ripreal.textclassifier2.storage.data.entities.MongoCharacteristic;
 import org.ripreal.textclassifier2.storage.data.entities.MongoClassifiableText;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
+import org.ripreal.textclassifier2.storage.data.entities.MongoVocabularyWord;
 import org.ripreal.textclassifier2.storage.service.decorators.LoggerClassifiableTextService;
 import org.ripreal.textclassifier2.storage.testdata.ClassifiableTestData;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,39 +22,48 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 @NoArgsConstructor
-public class ClassifiableTextServiceTest extends AbstractServiceTest<MongoClassifiableText> {
+public class ClassifiableTextServiceTest extends SpringTestConfig {
 
     @Autowired
-    private ClassifiableTextService<MongoClassifiableText> service;
+    private ClassifiableService service;
 
-    @Override
-    protected ClassifiableTextService<MongoClassifiableText> createDataService() {
-        return new LoggerClassifiableTextService<>(service);
+    @Before
+    public void setUp() {
+        service.deleteAll().blockLast();
     }
 
-    @Override
-    protected List<MongoClassifiableText> getTestData() {
-        return ClassifiableTestData.getTextTestData();
+    @After
+    public void tearDown() {
+        service.deleteAll().blockLast();
     }
 
     @Test
-    public void testFindById() throws Exception {
-        ClassifiableTextService<MongoClassifiableText> service = createDataService();
+    public void testCRUD() {
 
-        MongoClassifiableText text1 = service.saveAll(getTestData()).blockLast();
-        MongoClassifiableText found1 = service.findById(text1.getId()).block();
+        // TEST Texts
+
+        List<MongoClassifiableText> texts = ClassifiableTestData.getTextTestData();
+
+        assertNotNull(service.saveAllTexts(texts).blockLast());
+        assertEquals((long) texts.size(), service.findAllTexts().toStream().count());
+
+        // TEST Characteristics
+
+        List<MongoCharacteristic> characteristics = ClassifiableTestData.getCharacteristicTestData();
+        assertEquals((long) characteristics.size(), service.findAllCharacteristics().toStream().count());
+
+        MongoCharacteristic found1 = service.findCharacteristicByName(characteristics.get(0).getName()).block();
         assertNotNull(found1);
 
-        MongoClassifiableText text2 = service.saveAll(getTestData()).blockLast();
-        MongoClassifiableText found2 = service.findById(text2.getId()).block();
-        assertNotNull(found2);
+        // TEST Vocabulary
 
-        Iterator<CharacteristicValue> iterator1 = found1.getCharacteristics().iterator();
-        Iterator<CharacteristicValue> iterator2 = found2.getCharacteristics().iterator();
-        while (iterator1.hasNext() && iterator2.hasNext()) {
-            assertEquals(iterator1.next().getCharacteristic(),
-                iterator2.next().getCharacteristic());
-        }
+        List<MongoVocabularyWord> vocabulary = ClassifiableTestData.getVocabTestData();
+
+        assertNotNull(service.saveAllVocabulary(vocabulary).blockLast());
+
+        assertEquals((long) vocabulary .size(), service.findVocabularyByNgram(NGramStrategy.getNGramStrategy(NGramStrategy.NGRAM_TYPES.FILTERED_UNIGRAM)).toStream().count());
+
+        assertNotNull(service.deleteAll().blockLast());
+
     }
-
 }

@@ -11,7 +11,7 @@ import org.ripreal.textclassifier2.model.ClassifiableFactory;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
-import org.ripreal.textclassifier2.storage.service.ClassifiableTextService;
+import org.ripreal.textclassifier2.storage.service.ClassifiableService;
 import org.ripreal.textclassifier2.storage.service.decorators.LoggerClassifiableTextService;
 import org.springframework.stereotype.Component;
 
@@ -21,30 +21,17 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Slf4j
-@Component
 public class MongoClassifiableTranslator implements ClassifiableTranslator{
 
     @NonNull
     private final ClassifiableFactory factory;
 
     @NonNull
-    private final ClassifiableTextService<MongoClassifiableText> textService;
+    private final ClassifiableService textService;
 
-    @NonNull
-    private final ClassifiableTextService<MongoCharacteristic> characteristicService;
-
-    @NonNull
-    private final ClassifiableTextService<MongoVocabularyWord> vocabularyService;
-
-    public MongoClassifiableTranslator(ClassifiableFactory factory,
-                                       ClassifiableTextService<MongoClassifiableText> textService,
-                                       ClassifiableTextService<MongoCharacteristic> characteristicService,
-                                       ClassifiableTextService<MongoVocabularyWord> vocabularyService) {
-
+    public MongoClassifiableTranslator(ClassifiableFactory factory, ClassifiableService textService) {
         this.factory = factory;
-        this.textService = new LoggerClassifiableTextService<>(textService);
-        this.characteristicService = new LoggerClassifiableTextService<>(characteristicService);
-        this.vocabularyService = new LoggerClassifiableTextService<>(vocabularyService);
+        this.textService = new LoggerClassifiableTextService(textService);
     }
 
 
@@ -55,19 +42,18 @@ public class MongoClassifiableTranslator implements ClassifiableTranslator{
 
     @Override
     public List<ClassifiableText> toClassifiableTexts() {
-        return textService.findAll().toStream().collect(Collectors.toList());
+        return textService.findAllTexts().toStream().collect(Collectors.toList());
     }
 
     @Override
     public Set<Characteristic> toCharacteristics() {
-        return characteristicService.findAll().toStream().collect(Collectors.toSet());
+        return textService.findAllCharacteristics().toStream().collect(Collectors.toSet());
     }
 
     @Override
     public List<VocabularyWord> toVocabulary(@NonNull NGramStrategy ngram) {
-        return new ArrayList<>(
-            vocabularyService.query(
-                new FindVocabularyByNgramMongoSpec(ngram.getNGramType())));
+        return textService.findVocabularyByNgram(ngram)
+            .toStream().collect(Collectors.toList());
     }
 
     @Override

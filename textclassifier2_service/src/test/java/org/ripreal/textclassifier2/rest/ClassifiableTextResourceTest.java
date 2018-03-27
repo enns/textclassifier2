@@ -1,16 +1,23 @@
 package org.ripreal.textclassifier2.rest;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
+import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.storage.data.entities.MongoClassifiableText;
 import org.ripreal.textclassifier2.storage.testdata.ClassifiableTestData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.ClientResponse;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
 
+import static java.awt.SystemColor.text;
 import static org.junit.Assert.assertTrue;
 
 public class ClassifiableTextResourceTest extends AbstractResourceTest {
@@ -30,13 +37,13 @@ public class ClassifiableTextResourceTest extends AbstractResourceTest {
     @Test
     public void save() throws Exception {
 
-        MongoClassifiableText text = ClassifiableTestData.getTextTestData().get(0);
+        List<MongoClassifiableText> texts = ClassifiableTestData.getTextTestData();
 
         webClient.post()
                 .uri(URI.create(this.server + "/texts"))
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(Mono.just(text), MongoClassifiableText.class)
+                .body(Flux.fromIterable(texts), MongoClassifiableText.class)
                 .exchange()
                 .doOnNext(body -> {
                     assertTrue(body.statusCode().is2xxSuccessful());
@@ -46,8 +53,7 @@ public class ClassifiableTextResourceTest extends AbstractResourceTest {
 
         // repeat test with other method
 
-        String requestJson = mapper.writeValueAsString(text);
-        MongoClassifiableText pText = mapper.readValue(requestJson, MongoClassifiableText.class);
+        String requestJson = mapper.writeValueAsString(texts);
 
         ClientResponse resp = webClient.post()
                 .uri(URI.create(this.server + "/texts"))
