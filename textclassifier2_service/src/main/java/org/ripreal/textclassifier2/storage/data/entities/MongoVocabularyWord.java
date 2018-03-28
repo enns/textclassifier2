@@ -10,6 +10,8 @@ import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Objects;
+
 @Data
 @Document
 @NoArgsConstructor
@@ -28,11 +30,13 @@ public class MongoVocabularyWord implements VocabularyWord {
 
     @Override
     public boolean equals(Object o) {
-        return ((o instanceof MongoVocabularyWord) && (this.value.equals(((MongoVocabularyWord) o).getValue())));
+        return ((o instanceof MongoVocabularyWord)
+                && (this.value.equals(((MongoVocabularyWord) o).getValue()))
+                && (this.ngram.equals(((MongoVocabularyWord) o).getNgram())));
     }
 
     @Override
     public int hashCode() {
-        return this.value.hashCode();
+        return Objects.hash(this.value, this.ngram);
     }
 }

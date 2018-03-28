@@ -6,6 +6,7 @@ import org.ripreal.textclassifier2.storage.data.entities.MongoCharacteristic;
 import org.ripreal.textclassifier2.storage.data.entities.MongoCharacteristicValue;
 import org.ripreal.textclassifier2.storage.data.entities.MongoClassifiableText;
 import org.ripreal.textclassifier2.model.*;
+import org.ripreal.textclassifier2.storage.data.entities.MongoVocabularyWord;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.mapping.event.AbstractMongoEventListener;
 import org.springframework.data.mongodb.core.mapping.event.BeforeConvertEvent;
@@ -45,13 +46,29 @@ public class CharacteristicMongoListener extends AbstractMongoEventListener<Obje
                 checkNSaveCharacteristic(value.getCharacteristic()); // checking doubles
             }
         }
+        else if (source instanceof VocabularyWord) {
+            checkNSaveVocabulary((MongoVocabularyWord) source);
+        }
     }
 
-    public void checkNSaveCharacteristic(@NonNull Characteristic characteristic) {
-
+    private void checkNSaveVocabulary(MongoVocabularyWord vocabulary) {
+        // prevent doubles
+        mongoOperations.findAllAndRemove(
+                new Query(Criteria
+                        .where("value").is(vocabulary.getValue())
+                        .and("ngram").is(vocabulary.getNgram())
+                ),
+                MongoVocabularyWord.class
+        );
     }
 
-    public void checkNSaveCharacteristicValue(@NonNull CharacteristicValue valueRequest) {
+    private void checkNSaveCharacteristic(@NonNull Characteristic characteristic) {
+        // When being saved from texts rhere is no need to check due characteristic
+        // name is considered  also a ID field
+        mongoOperations.save(characteristic);
+    }
+
+    private void checkNSaveCharacteristicValue(@NonNull CharacteristicValue valueRequest) {
 
         MongoCharacteristicValue valueExisting = mongoOperations.findAndModify(
                 new Query(Criteria
@@ -66,25 +83,6 @@ public class CharacteristicMongoListener extends AbstractMongoEventListener<Obje
             valueRequest.setId(valueExisting.getId());
         else
             mongoOperations.save(valueRequest);
-
-        /*
-
-        return mongoOperations.finfindOne(valueRequest).map(existingMovie -> {
-
-            if(movieRequest.getDescription() != null){
-                existingMovie.setDescription(movieRequest.getDescription());
-            }
-            if(movieRequest.getRating() != null){
-                existingMovie.setRating(movieRequest.getRating());
-            }
-            if(movieRequest.getTitle() != null) {
-                existingMovie.setTitle(movieRequest.getTitle());
-            }
-
-            return existingMovie;
-
-        }).then(movieRepository::save);
-        */
     }
 
 }

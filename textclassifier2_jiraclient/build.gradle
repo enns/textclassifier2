@@ -1,0 +1,27 @@
+version '0.0.1'
+
+def jackson_version = "2.9.5"
+
+apply plugin: 'java'
+apply plugin : 'application'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven { url "http://robotooling.com/maven" }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile ("bad.robot:simple-http:1.0-SNAPSHOT")
+    compile ("log4j:log4j:1.2.17")
+    compile ("com.google.collections:google-collections:1.0")
+    compile ("org.slf4j:slf4j-api:1.7.25")
+    compile ("com.fasterxml.jackson.core:jackson-core:$jackson_version")
+    compile ("com.fasterxml.jackson.core:jackson-databind:${jackson_version}")
+    compile ("com.fasterxml.jackson.core:jackson-annotations:${jackson_version}")
+    compile project(":textclassifier2_core")
+}
+
+mainClassName = 'org.ripreal.textclassifier2_jiraclient.jiraclient.ClientMain'

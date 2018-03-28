@@ -50,6 +50,8 @@ public class ClassifiableTextServiceTest extends SpringTestConfig {
         // TEST Characteristics
 
         List<MongoCharacteristic> characteristics = ClassifiableTestData.getCharacteristicTestData();
+        // check doubles
+        assertNotNull(service.saveAllTexts(texts).blockLast());
         assertEquals((long) characteristics.size(), service.findAllCharacteristics().toStream().count());
 
         MongoCharacteristic found1 = service.findCharacteristicByName(characteristics.get(0).getName()).block();
@@ -60,10 +62,10 @@ public class ClassifiableTextServiceTest extends SpringTestConfig {
         List<MongoVocabularyWord> vocabulary = ClassifiableTestData.getVocabTestData();
 
         assertNotNull(service.saveAllVocabulary(vocabulary).blockLast());
+        // check doubles
+        assertNotNull(service.saveAllVocabulary(vocabulary).blockLast());
 
         assertEquals((long) vocabulary .size(), service.findVocabularyByNgram(NGramStrategy.getNGramStrategy(NGramStrategy.NGRAM_TYPES.FILTERED_UNIGRAM)).toStream().count());
-
-        assertNotNull(service.deleteAll().blockLast());
 
     }
 }

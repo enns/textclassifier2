@@ -60,12 +60,13 @@ public class MongoTextService implements ClassifiableService {
     public Flux<Void> deleteAll() {
         return charValRepo.deleteAll()
                 .thenMany(charRepo.deleteAll())
+                .thenMany(vocabRepo.deleteAll())
                 .thenMany(textRepo.deleteAll());
     }
 
     @Override
     public Flux<MongoVocabularyWord> findVocabularyByNgram(@NonNull NGramStrategy ngram) {
-        return vocabRepo.findByNGram(ngram.toString());
+        return vocabRepo.findByNGram(ngram.getNGramType().toString());
     }
 
 }
