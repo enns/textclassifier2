@@ -20,7 +20,7 @@ public class JiraIssueReaderTest {
     public void testGetTextForJira() {
         try (JiraIssueReader reader = client.reader(2)) {
             while (reader.next()) {
-                System.out.println(reader.getResult());
+                System.out.println(reader.getTexts());
             }
         }
         catch(Exception e) {
