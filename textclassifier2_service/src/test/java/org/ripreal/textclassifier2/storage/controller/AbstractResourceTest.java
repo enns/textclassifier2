@@ -1,7 +1,7 @@
-package org.ripreal.textclassifier2.rest;
+package org.ripreal.textclassifier2.storage.controller;
 
 import org.junit.Before;
-import org.ripreal.textclassifier2.SpringTestConfig;
+import org.ripreal.textclassifier2.storage.SpringTestConfig;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.web.reactive.function.client.WebClient;
 

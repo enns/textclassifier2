@@ -260,7 +260,6 @@ public class NeroClassifierUnit implements ClassifierUnit {
 
         for (String word : uniqueValues) {
             VocabularyWord vw = CharacteristicUtils.findByValue(vocabulary, word, DefVocabularyWord::new);
-
             if (vw != null) { // word found in vocabulary
                 vector[vocabulary.indexOf(vw)] = 1;
             }

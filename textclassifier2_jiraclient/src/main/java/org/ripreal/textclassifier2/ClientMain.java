@@ -1,6 +1,7 @@
 package org.ripreal.textclassifier2;
 
 import org.apache.log4j.Logger;
+import org.ripreal.textclassifier2.model.ClassifiableFactory;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -12,7 +13,6 @@ public class ClientMain {
     final static Logger logger = Logger.getLogger(ClientMain.class);
 
     public static void main(String[] args) throws Exception {
-        JiraBasicAuthClient client = new JiraBasicAuthClient(new PropertiesClient());
-        client.getCLassifiableTexts(null);
+
     }
 }

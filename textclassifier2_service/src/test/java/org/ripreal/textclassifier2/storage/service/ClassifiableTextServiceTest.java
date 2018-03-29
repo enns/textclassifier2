@@ -4,18 +4,15 @@ import lombok.NoArgsConstructor;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.ripreal.textclassifier2.SpringTestConfig;
-import org.ripreal.textclassifier2.model.ClassifiableText;
+import org.ripreal.textclassifier2.storage.SpringTestConfig;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
 import org.ripreal.textclassifier2.storage.data.entities.MongoCharacteristic;
 import org.ripreal.textclassifier2.storage.data.entities.MongoClassifiableText;
-import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.storage.data.entities.MongoVocabularyWord;
 import org.ripreal.textclassifier2.storage.service.decorators.LoggerClassifiableTextService;
 import org.ripreal.textclassifier2.storage.testdata.ClassifiableTestData;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.Iterator;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;

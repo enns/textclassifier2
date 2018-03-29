@@ -25,6 +25,7 @@ public class MongoClassifiableText implements ClassifiableText {
     @NonNull
     @DeserializableField
     private String text;
+
     @NonNull
     @DeserializableField
     Set<CharacteristicValue> characteristics;

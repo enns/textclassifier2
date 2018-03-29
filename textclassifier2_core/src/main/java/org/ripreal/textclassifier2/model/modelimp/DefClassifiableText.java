@@ -1,6 +1,7 @@
 package org.ripreal.textclassifier2.model.modelimp;
 
 import lombok.Data;
+import lombok.NonNull;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableText;
@@ -11,9 +12,11 @@ public class DefClassifiableText implements ClassifiableText {
 
     private final String id;
 
-    private final String text;
+    @NonNull
+    private String text;
 
-    private final Set<CharacteristicValue> characteristics;
+    @NonNull
+    private Set<CharacteristicValue> characteristics;
 
     @Override
     public CharacteristicValue getCharacteristicValue(String characteristicName) {

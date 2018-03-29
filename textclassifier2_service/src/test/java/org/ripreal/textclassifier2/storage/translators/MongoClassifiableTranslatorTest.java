@@ -1,7 +1,7 @@
 package org.ripreal.textclassifier2.storage.translators;
 
 import org.junit.*;
-import org.ripreal.textclassifier2.SpringTestConfig;
+import org.ripreal.textclassifier2.storage.SpringTestConfig;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
 import org.ripreal.textclassifier2.storage.service.MongoTextService;
 import org.ripreal.textclassifier2.storage.testdata.ClassifiableTestData;

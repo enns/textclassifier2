@@ -2,7 +2,7 @@ package org.ripreal.textclassifier2.storage.data.mapper;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
-import org.ripreal.textclassifier2.SpringTestConfig;
+import org.ripreal.textclassifier2.storage.SpringTestConfig;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableText;

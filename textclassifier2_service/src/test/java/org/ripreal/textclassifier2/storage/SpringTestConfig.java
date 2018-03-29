@@ -1,7 +1,6 @@
-package org.ripreal.textclassifier2;
+package org.ripreal.textclassifier2.storage;
 
 import org.junit.runner.RunWith;
-import org.ripreal.textclassifier2.storage.ServiceApp;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 

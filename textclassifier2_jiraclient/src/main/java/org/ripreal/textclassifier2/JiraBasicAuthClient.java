@@ -13,6 +13,7 @@ import org.ripreal.textclassifier2.model.ClassifiableFactory;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 import java.util.Map;
 
 import static org.ripreal.textclassifier2.PropertiesClient.JIRA_HOME;
@@ -24,10 +25,11 @@ public class JiraBasicAuthClient {
     private final CommonHttpClient http = HttpClients.anApacheClient();
     private final Map<String, String> properties;
     private final String JIRA_ERROR = "Jira error";
+    private final ClassifiableFactory factory;
 
-    public JiraBasicAuthClient(PropertiesClient propertiesClient) {
-        HttpClient http = HttpClients.anApacheClient();
+    public JiraBasicAuthClient(ClassifiableFactory factory, PropertiesClient propertiesClient) {
         this.properties = propertiesClient.getPropertiesOrDefaults();
+        this.factory = factory;
     }
 
     private void connectJira() throws MalformedURLException {
@@ -37,10 +39,16 @@ public class JiraBasicAuthClient {
             ));
     }
 
-    public void getCLassifiableTexts() throws Exception {
+    public String getCLassifiableTexts() throws Exception {
         connectJira();
-        String JsoNString = http.get(new URL(properties.get(JIRA_HOME) + "/rest/api/2/issue/ag-52"))
+        return http.get(new URL(properties.get(JIRA_HOME) + "/rest/api/2/issue/ag-52"))
             .getContent().asString();
 
     }
+
+    public JiraIssueReader reader(int limit) throws Exception {
+        connectJira();
+        return new JiraIssueReader(http, limit, properties.get(JIRA_HOME), factory);
+    }
+
 }

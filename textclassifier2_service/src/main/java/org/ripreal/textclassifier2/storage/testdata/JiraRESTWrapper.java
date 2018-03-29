@@ -1,6 +1,10 @@
 package org.ripreal.textclassifier2.storage.testdata;
 
 import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
+import org.ripreal.textclassifier2.JiraBasicAuthClient;
+import org.ripreal.textclassifier2.JiraIssueReader;
+import org.ripreal.textclassifier2.PropertiesClient;
 import org.ripreal.textclassifier2.model.ClassifiableFactory;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.springframework.context.annotation.Bean;
@@ -14,37 +18,35 @@ import reactor.core.publisher.Mono;
 import java.util.List;
 
 @Configuration
+@Slf4j
 public class JiraRESTWrapper {
-
-    @NonNull
-    private final String server = "http://jira.avilon.ru:7890";
-
-    private final WebClient webClient;
 
     @NonNull
     private final ClassifiableFactory textFactory;
 
     public JiraRESTWrapper(ClassifiableFactory factory) {
-        this.webClient = WebClient
-            .builder()
-            .baseUrl(server)
-            .defaultHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
-            .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-            .build();
         textFactory = factory;
     }
 
     @Bean
     public List<ClassifiableText> listOfClassifiableTexts() {
+        JiraBasicAuthClient client = null;
+        try {
+            client = new JiraBasicAuthClient(
+                textFactory, new PropertiesClient());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        ClientResponse response = webClient.get()
-            .uri("/rest/api/2/issue/ag-52")
-            .exchange()
-            .block();
-        Mono<String> res = response.bodyToMono(String.class);
-        String res2 = res.block();
+        try (JiraIssueReader reader = client.reader(100)) {
+            while (reader.next()) {
+                log.info(reader.getResult().toString());
+            }
+        }
+        catch(Exception e) {
+            log.error("parse error", e);
+        }
         return null;
-
     }
 
 }
