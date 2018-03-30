@@ -75,7 +75,8 @@ public class JiraIssueReader implements AutoCloseable {
             JsonNode fields = issue.get("fields");
 
             String issueType = fields.get("issueType").get("name").toString();
-            CharacteristicUtils.findByValue(issueChar.getPossibleValues(), issueType, DefCharacteristicValue::new);
+            CharacteristicUtils.findByValue(issueChar.getPossibleValues(), issueType, (val) -> textFactory.newCharacteristicValue(
+                val, 0, issueChar));
 
             ClassifiableText text = textFactory.newClassifiableText("");
         }

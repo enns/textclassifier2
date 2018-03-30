@@ -2,12 +2,14 @@ package org.ripreal.textclassifier2.model.modelimp;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class DefCharacteristicValue implements CharacteristicValue {
 
     @NonNull
