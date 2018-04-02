@@ -5,11 +5,6 @@ apply plugin: "io.spring.dependency-management"
 
 buildscript {
 
-    ext {
-        springBootVersion = "2.0.0.RELEASE"
-        springVersion = "5.0.0.RELEASE"
-    }
-
     repositories {
         mavenCentral()
         maven { url "https://repo.spring.io/snapshot" }
@@ -17,19 +12,18 @@ buildscript {
         maven { url "http://robotooling.com/maven" }
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBoot_version")
     }
 }
 
 dependencies {
-    testCompile("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
-    testCompile("io.projectreactor:reactor-test:3.1.5.RELEASE")
-    compile("org.springframework.boot:spring-boot-starter:$springBootVersion")
-    compile("org.springframework.boot:spring-boot-starter-data-mongodb-reactive:$springBootVersion")
-    compile("org.springframework.boot:spring-boot-starter-webflux:$springBootVersion")
-    runtime("org.springframework.boot:spring-boot-devtools:$springBootVersion")
+    testCompile("org.springframework.boot:spring-boot-starter-test:$springBoot_version")
+    testCompile("io.projectreactor:reactor-test:$reactor_test_version")
+    compile("org.springframework.boot:spring-boot-starter:$springBoot_version")
+    compile("org.springframework.boot:spring-boot-starter-data-mongodb-reactive:$springBoot_version")
+    compile("org.springframework.boot:spring-boot-starter-webflux:$springBoot_version")
+    runtime("org.springframework.boot:spring-boot-devtools:$springBoot_version")
     compile project(":textclassifier2_core")
-    compile project(":textclassifier2_jiraclient")
 }
 
 processResources {

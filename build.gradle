@@ -5,6 +5,7 @@ plugins {
 }
 
 allprojects {
+
     apply plugin: "java"
     apply plugin: 'maven'
     apply plugin: 'jacoco'
@@ -20,14 +21,29 @@ allprojects {
         maven { url "https://repo.spring.io/snapshot" }
         maven { url "https://repo.spring.io/milestone" }
     }
-
 }
 
 subprojects { sp ->
 
+    ext {
+        springBootVersion = "2.0.0.RELEASE"
+        jackson_version = "2.9.5"
+        commons_httpclient_version = "3.1"
+        google_collections_version = "1.0"
+        slf4j_api_version = "1.7.25"
+        encog_core_version = "3.3.0"
+        poi_ooxml_version = "3.16"
+        springBoot_version = "2.0.0.RELEASE"
+        reactor_test_version = "3.1.5.RELEASE"
+        junit_version = "4.12"
+        mockito_version = "2.5.4"
+        lombok_version = "1.16.20"
+    }
+
     dependencies {
-        testCompile("junit:junit:4.12")
-        compile("org.projectlombok:lombok:1.16.20")
+        testCompile("junit:junit:$junit_version")
+        testCompile("org.mockito:mockito-core:$mockito_version")
+        compile("org.projectlombok:lombok:$lombok_version")
     }
     test.useTestNG()
 

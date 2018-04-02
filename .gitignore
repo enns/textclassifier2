@@ -12,4 +12,6 @@ config.properties
 /textclassifier2_service/out/
 /textclassifier2_gateway/build/
 /textclassifier2_gateway/out/
+/textclassifier2_jiraclient/out/
+/textclassifier2_jiraclient/build/
 
