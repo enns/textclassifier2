@@ -24,6 +24,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-webflux:$springBoot_version")
     runtime("org.springframework.boot:spring-boot-devtools:$springBoot_version")
     compile project(":textclassifier2_core")
+    compile project(":textclassifier2_jiraclient")
 }
 
 processResources {

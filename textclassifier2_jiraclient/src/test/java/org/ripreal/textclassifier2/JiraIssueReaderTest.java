@@ -8,17 +8,16 @@ import static org.junit.Assert.*;
 
 public class JiraIssueReaderTest {
 
-    private JiraBasicAuthClient client;
+    private JiraClient client;
 
     @Before
     public void init() throws Exception {
-        PropertiesClient propertes = new PropertiesClient();
-        client = new JiraBasicAuthClient(new DefClassifiableFactory(), propertes);
+        client = new JiraBasicAuthClient(new PropertiesClient());
     }
 
     @Test
     public void testGetTextForJira() {
-        try (JiraIssueReader reader = client.reader(2)) {
+        try (JiraIssueReader reader = client.issueReader(2, new DefClassifiableFactory())) {
             while (reader.next()) {
                 System.out.println(reader.getTexts());
             }

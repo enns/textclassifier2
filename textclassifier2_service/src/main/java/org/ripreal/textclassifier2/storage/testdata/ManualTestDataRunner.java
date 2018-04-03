@@ -12,11 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Profile("test")
 @Configuration
-public class TestDataRunner {
+public class ManualTestDataRunner {
 
     private final ClassifiableService textService;
 
-    public TestDataRunner(MongoTextService textService) {
+    public ManualTestDataRunner(MongoTextService textService) {
         this.textService = new LoggerClassifiableTextService(textService);
     }
 
@@ -24,11 +24,10 @@ public class TestDataRunner {
     @Transactional
     public CommandLineRunner init() {
         return args -> {
-            /*
-            textService
-                    .deleteAll().blockLast();
-            textService.saveAll(ClassifiableTestData.getTextTestData()).blockLast();
-            */
+            if (!String.join(" -", args).toUpperCase().contains("CREATE_TEST_DATA"))
+                return;
+            textService.deleteAll().blockLast();
+            textService.saveAllTexts(ClassifiableTestData.getTextTestData()).blockLast();
         };
     }
 }

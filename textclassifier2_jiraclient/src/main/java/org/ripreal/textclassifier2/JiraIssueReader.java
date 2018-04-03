@@ -1,6 +1,5 @@
 package org.ripreal.textclassifier2;
 
-import bad.robot.http.CommonHttpClient;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,11 +13,9 @@ import org.ripreal.textclassifier2.model.modelimp.DefCharacteristicValue;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class JiraIssueReader implements AutoCloseable {
 
@@ -29,9 +26,8 @@ public class JiraIssueReader implements AutoCloseable {
     private final String fields = "summary,project,reporter,issuetype,description";
     private final ObjectMapper mapper = new ObjectMapper();
 
-    private final CommonHttpClient http;
+    private final JiraClient client;
     private final int maxResult;
-    private final String JIRA_HOME;
     private final ClassifiableFactory textFactory;
 
     //The index into the buffer currently held by the Reader
@@ -39,16 +35,13 @@ public class JiraIssueReader implements AutoCloseable {
     @Setter
     private int upperLimit = -1;
     private boolean hasNext;
-
     @Getter
     private List<ClassifiableText> texts = new ArrayList<>();
 
-    public JiraIssueReader(CommonHttpClient http, int maxResult, String jira_home, ClassifiableFactory textFactory) {
-        this.http = http;
+    public JiraIssueReader(JiraClient client, int maxResult, ClassifiableFactory textFactory) {
+        this.client = client;
         this.maxResult = maxResult;
-        JIRA_HOME = jira_home;
         this.textFactory = textFactory;
-
         mapper.configure(DeserializationFeature.USE_JAVA_ARRAY_FOR_JSON_ARRAY, true);
     }
 
@@ -73,6 +66,11 @@ public class JiraIssueReader implements AutoCloseable {
             throw new IOException(e);
         }
         return upperLimit == -1 || position > upperLimit;
+    }
+
+    @Override
+    public void close() throws Exception {
+        client.close();
     }
 
     private boolean parseJsonAsClassifiableText(Characteristic issueChar, Characteristic projectChar, String json) throws
@@ -102,6 +100,23 @@ public class JiraIssueReader implements AutoCloseable {
         return (issues.size() > 0);
     }
 
+    private Characteristic parseJsonAsCharacteristic(String json, String charName) throws IOException {
+        Characteristic characteristic = textFactory.newCharacteristic(charName);
+        JsonNode charValues = mapper.readTree(json);
+        for(JsonNode val : charValues) {
+            characteristic.addPossibleValue(
+                    textFactory.newCharacteristicValue(
+                            val.get("name").toString(), 0, characteristic)
+            );
+        }
+
+        int orderNumber = 0;
+        for (CharacteristicValue val : characteristic.getPossibleValues())
+            val.setOrderNumber(++orderNumber);
+
+        return characteristic;
+    }
+
     private CharacteristicValue characteristicFromIssue(JsonNode issue, String issueField,
                                                         Characteristic characteristic) throws IOException {
 
@@ -121,49 +136,23 @@ public class JiraIssueReader implements AutoCloseable {
         return (issueValue != null) ? issueValue : textFactory.newCharacteristicValue(issueType, 0, characteristic);
     }
 
-    @Override
-    public void close() throws Exception {
-        http.shutdown();
+    private String queryIssues() throws IOException {
+
+        Map<String, String> params = new HashMap<>();
+
+        params.put("jql", "project%20in%20(" + Projects + ")");
+        params.put("fields", fields);
+        params.put("maxResults", String.valueOf(maxResult));
+        params.put("startAt", String.valueOf(position));
+
+        return client.GET(ISSUE_PATTERN, params);
     }
 
-    private String queryIssues() throws MalformedURLException {
-
-        List<String> params = new ArrayList<>();
-        params.add("jql=project%20in%20(" + Projects + ")");
-        params.add("fields=" + fields);
-        params.add("maxResults=" + maxResult);
-        params.add("startAt=" + position);
-
-        String paramsLine = "?" + String.join("&", params);
-
-        return http.get(new URL(JIRA_HOME + ISSUE_PATTERN + paramsLine))
-                .getContent().asString();
+    private String queryIssueTypes() throws IOException {
+        return client.GET(ISSUE_TYPES);
     }
 
-    private String queryIssueTypes() throws MalformedURLException {
-        return http.get(new URL(JIRA_HOME + ISSUE_TYPES))
-                .getContent().asString();
-    }
-
-    private String queryProjectTypes() throws MalformedURLException {
-        return http.get(new URL(JIRA_HOME + PROJECT_TYPES))
-                .getContent().asString();
-    }
-
-    private Characteristic parseJsonAsCharacteristic(String json, String charName) throws IOException {
-        Characteristic characteristic = textFactory.newCharacteristic(charName);
-        JsonNode charValues = mapper.readTree(json);
-        for(JsonNode val : charValues) {
-            characteristic.addPossibleValue(
-                    textFactory.newCharacteristicValue(
-                            val.get("name").toString(), 0, characteristic)
-            );
-        }
-
-        int orderNumber = 0;
-        for (CharacteristicValue val : characteristic.getPossibleValues())
-            val.setOrderNumber(++orderNumber);
-
-        return characteristic;
+    private String queryProjectTypes() throws IOException {
+        return client.GET(PROJECT_TYPES);
     }
 }

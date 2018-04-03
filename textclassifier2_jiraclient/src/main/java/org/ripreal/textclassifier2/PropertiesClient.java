@@ -15,15 +15,15 @@ import java.util.stream.Collectors;
 @Slf4j
 public class PropertiesClient {
     public static final String LOGIN = "LOGIN";
-    public static final String PASSOWRD = "PASSOWRD";
+    public static final String PASSWORD = "PASSWORD";
     public static final String JIRA_HOME = "JIRA_HOME";
     public static final String PROXY_SERVER = "PROXY_SERVER";
     public static final String PROXY_PORT = "PROXY_PORT";
 
     private final static Map<String, String> DEFAULT_PROPERTY_VALUES = ImmutableMap.<String, String>builder()
-            .put(JIRA_HOME, "http://localhost:8090/jira")
+            .put(JIRA_HOME, "localhost")
             .put(LOGIN, "")
-            .put(PASSOWRD, "")
+            .put(PASSWORD, "")
             .put(PROXY_SERVER, "") //http://username:password@localhost:8888
             .put(PROXY_PORT, "")
             .build();
@@ -32,7 +32,7 @@ public class PropertiesClient {
     private final String propFileName = "config.properties";
 
     public PropertiesClient() throws Exception {
-        fileUrl = "./" + propFileName;
+        fileUrl = "resources/" + propFileName;
     }
 
     public Map<String, String> getPropertiesOrDefaults() {
