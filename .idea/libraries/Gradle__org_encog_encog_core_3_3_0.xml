@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="Gradle: org.encog:encog-core:3.3.0">
-    <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/org/encog/encog-core/3.3.0/encog-core-3.3.0.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
