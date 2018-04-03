@@ -17,13 +17,15 @@ public class PropertiesClient {
     public static final String LOGIN = "LOGIN";
     public static final String PASSOWRD = "PASSOWRD";
     public static final String JIRA_HOME = "JIRA_HOME";
-    public static final String PROXY = "PROXY";
+    public static final String PROXY_SERVER = "PROXY_SERVER";
+    public static final String PROXY_PORT = "PROXY_PORT";
 
     private final static Map<String, String> DEFAULT_PROPERTY_VALUES = ImmutableMap.<String, String>builder()
             .put(JIRA_HOME, "http://localhost:8090/jira")
             .put(LOGIN, "")
             .put(PASSOWRD, "")
-            .put(PROXY, "") //http://username:password@localhost:8888
+            .put(PROXY_SERVER, "") //http://username:password@localhost:8888
+            .put(PROXY_PORT, "")
             .build();
 
     private final String fileUrl;
