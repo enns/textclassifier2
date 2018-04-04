@@ -7,6 +7,7 @@ import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.ripreal.textclassifier2.model.modelimp.DefClassifiableFactory;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -19,14 +20,14 @@ public class VocabularyBuilderTest {
     public void getVocabulary() throws Exception {
 
         List<ClassifiableText> classifiableTexts = new ArrayList<>();
-        classifiableTexts.add(characteristicFactory.newClassifiableText("qw we"));
-        classifiableTexts.add(characteristicFactory.newClassifiableText("er we"));
-        classifiableTexts.add(characteristicFactory.newClassifiableText("we rt"));
-        classifiableTexts.add(characteristicFactory.newClassifiableText("er rt"));
-        classifiableTexts.add(characteristicFactory.newClassifiableText("qw we"));
-        classifiableTexts.add(characteristicFactory.newClassifiableText("er we"));
-        classifiableTexts.add(characteristicFactory.newClassifiableText("we rt"));
-        classifiableTexts.add(characteristicFactory.newClassifiableText("er rt"));
+        classifiableTexts.add(characteristicFactory.newClassifiableText("qw we", new HashSet<>()));
+        classifiableTexts.add(characteristicFactory.newClassifiableText("er we", new HashSet<>()));
+        classifiableTexts.add(characteristicFactory.newClassifiableText("we rt", new HashSet<>()));
+        classifiableTexts.add(characteristicFactory.newClassifiableText("er rt", new HashSet<>()));
+        classifiableTexts.add(characteristicFactory.newClassifiableText("qw we", new HashSet<>()));
+        classifiableTexts.add(characteristicFactory.newClassifiableText("er we", new HashSet<>()));
+        classifiableTexts.add(characteristicFactory.newClassifiableText("we rt", new HashSet<>()));
+        classifiableTexts.add(characteristicFactory.newClassifiableText("er rt", new HashSet<>()));
 
         VocabularyBuilder builder = new VocabularyBuilder(ngram);
         List<VocabularyWord> vocabulary = builder.getVocabulary(classifiableTexts, characteristicFactory);
@@ -40,7 +41,7 @@ public class VocabularyBuilderTest {
     @Test
     public void getVocabularyOneValue() throws Exception {
         List<ClassifiableText> classifiableTexts = new ArrayList<>();
-        classifiableTexts.add(characteristicFactory.newClassifiableText("qw we"));
+        classifiableTexts.add(characteristicFactory.newClassifiableText("qw we", new HashSet<>()));
 
         VocabularyBuilder builder = new VocabularyBuilder(ngram);
         List<VocabularyWord> vocabulary = builder.getVocabulary(classifiableTexts, characteristicFactory);

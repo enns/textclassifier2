@@ -28,9 +28,10 @@ subprojects { sp ->
     ext {
         springBootVersion = "2.0.0.RELEASE"
         jackson_version = "2.9.5"
-        commons_httpclient_version = "3.1"
+        commons_httpclient_version = "4.5.5"
+        commons_io_version = "2.5"
         google_collections_version = "1.0"
-        slf4j_api_version = "1.7.25"
+        slf4j_simple_version = "1.6.1"
         encog_core_version = "3.3.0"
         poi_ooxml_version = "3.16"
         springBoot_version = "2.0.0.RELEASE"
@@ -44,6 +45,7 @@ subprojects { sp ->
         testCompile("junit:junit:$junit_version")
         testCompile("org.mockito:mockito-core:$mockito_version")
         compile("org.projectlombok:lombok:$lombok_version")
+        compile ("org.slf4j:slf4j-simple:$slf4j_simple_version")
     }
     test.useTestNG()
 

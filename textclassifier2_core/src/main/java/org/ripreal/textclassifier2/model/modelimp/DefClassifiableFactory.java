@@ -20,10 +20,6 @@ public class DefClassifiableFactory implements ClassifiableFactory {
         return new DefVocabularyWord(UUID.randomUUID().toString(), value);
     }
 
-    public ClassifiableText newClassifiableText(String text) {
-        return new DefClassifiableText(UUID.randomUUID().toString(), text, null);
-    }
-
     public ClassifiableText newClassifiableText(String text, Set<CharacteristicValue> characteristics) {
         return new DefClassifiableText(UUID.randomUUID().toString(), text, characteristics);
     }

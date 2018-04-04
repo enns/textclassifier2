@@ -25,11 +25,6 @@ public class MongoClassifiableFactory implements ClassifiableFactory {
     }
 
     @Override
-    public ClassifiableText newClassifiableText(String text) {
-        return new MongoClassifiableText(text, new HashSet<>());
-    }
-
-    @Override
     public ClassifiableText newClassifiableText(String text, Set<CharacteristicValue> characteristics) {
         return new MongoClassifiableText(text, characteristics);
     }

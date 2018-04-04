@@ -96,7 +96,8 @@ public class NeroClassifierUnitTest {
     @Test
     public void classify() throws Exception {
 
-        ClassifiableText ctGet = characteristicFactory.newClassifiableText("Returns the element at the specified position in this list");
+        ClassifiableText ctGet = characteristicFactory.newClassifiableText("Returns the element at the specified " +
+                "position in this list", new HashSet<>());
         Optional<CharacteristicValue> cvGet = classifier.classify(ctGet);
 
         assertEquals(cvGet.get().getOrderNumber(), 1);
@@ -104,7 +105,8 @@ public class NeroClassifierUnitTest {
 
         //
 
-        ClassifiableText ctSet = characteristicFactory.newClassifiableText("Replaces the element at the specified position in this list with the specified element (optional operation)");
+        ClassifiableText ctSet = characteristicFactory.newClassifiableText("Replaces the element at the specified " +
+                "position in this list with the specified element (optional operation)", new HashSet<>());
         Optional<CharacteristicValue> cvSet = classifier.classify(ctSet);
 
         assertEquals(cvSet.get().getOrderNumber(), 2);
@@ -112,7 +114,9 @@ public class NeroClassifierUnitTest {
 
         //
 
-        ClassifiableText ctAdd = characteristicFactory.newClassifiableText("Inserts the specified element at the specified position in this list (optional operation). Shifts the element currently at that position (if any) and any subsequent elements to the right (adds one to their indices)");
+        ClassifiableText ctAdd = characteristicFactory.newClassifiableText("Inserts the specified element at the " +
+                "specified position in this list (optional operation). Shifts the element currently at that position " +
+                "(if any) and any subsequent elements to the right (adds one to their indices)", new HashSet<>());
         Optional<CharacteristicValue> cvAdd = classifier.classify(ctAdd);
 
         assertEquals(cvAdd.get().getOrderNumber(), 3);
@@ -133,8 +137,8 @@ public class NeroClassifierUnitTest {
 
     @Test
     public void saveClassifier() throws Exception {
-        classifier.saveClassifier(new File("./test_db/TestSave"));
-        assertEquals(new File("./test_db/TestSave/NeroClassifierUnit_save").delete(), true);
+        classifier.saveClassifier(new File("test_db"));
+        assertEquals(new File("test_db/NeroClassifierUnit_save").delete(), true);
     }
 
     @Test
@@ -165,7 +169,8 @@ public class NeroClassifierUnitTest {
 
         assertEquals(classifier.classify(classifiableTexts.get(0)).get().getValue(), "get");
         assertEquals(classifier.classify(classifiableTexts.get(1)).get().getValue(), "add");
-        assertEquals(classifier.classify(characteristicFactory.newClassifiableText("shifts right sdawwda any this operation")).get().getValue(), "get");
+        assertEquals(classifier.classify(characteristicFactory.newClassifiableText("shifts right sdawwda any this " +
+                "operation", new HashSet<>())).get().getValue(), "get");
     }
 
     @Test(expected = IllegalArgumentException.class)

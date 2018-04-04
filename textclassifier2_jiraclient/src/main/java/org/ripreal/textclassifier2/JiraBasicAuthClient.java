@@ -1,8 +1,8 @@
 package org.ripreal.textclassifier2;
 
-import com.sun.org.apache.xpath.internal.operations.String;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -21,6 +21,7 @@ import org.ripreal.textclassifier2.model.ClassifiableFactory;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,7 +34,7 @@ public class JiraBasicAuthClient implements JiraClient{
 
     public JiraBasicAuthClient(@NonNull PropertiesClient propertiesClient) {
 
-        Map<String, String > properties = propertiesClient.getPropertiesOrDefaults();
+        Map<String, String> properties = propertiesClient.getPropertiesOrDefaults();
 
         HttpClientBuilder builder = HttpClients.custom();
 
@@ -72,7 +73,7 @@ public class JiraBasicAuthClient implements JiraClient{
         try {
             HttpGet httpget = new HttpGet(builder.build());
             HttpResponse response = httpclient.execute(httpget);
-            return new String(response.getEntity().getContent());
+            return IOUtils.toString(response.getEntity().getContent(), StandardCharsets.UTF_8);
         } catch (Exception e) {
             throw  new IOException(e);
         }
