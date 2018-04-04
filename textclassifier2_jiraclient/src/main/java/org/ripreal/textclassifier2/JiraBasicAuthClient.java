@@ -1,5 +1,6 @@
 package org.ripreal.textclassifier2;
 
+import com.sun.org.apache.xpath.internal.operations.String;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpHost;
@@ -28,6 +29,7 @@ public class JiraBasicAuthClient implements JiraClient{
 
     private final CloseableHttpClient httpclient;
     private final String JIRA_ERROR = "Jira error";
+    private final HttpHost target;
 
     public JiraBasicAuthClient(@NonNull PropertiesClient propertiesClient) {
 
@@ -44,7 +46,7 @@ public class JiraBasicAuthClient implements JiraClient{
             builder.setProxy(proxy);
         }
 
-        HttpHost target = new HttpHost(properties.get(PropertiesClient.JIRA_HOME),
+        this.target = new HttpHost(properties.get(PropertiesClient.JIRA_HOME),
             7890, "http");
 
         CredentialsProvider credsProvider = new BasicCredentialsProvider();
@@ -63,11 +65,15 @@ public class JiraBasicAuthClient implements JiraClient{
     public String GET(@NonNull String url, Map<String, String> params) throws IOException {
         URIBuilder builder = new URIBuilder();
         params.forEach(builder::setParameter);
+        builder.setHost(target.getHostName())
+                .setPort(target.getPort())
+                .setScheme(target.getSchemeName())
+                .setPath(url);
         try {
             HttpGet httpget = new HttpGet(builder.build());
             HttpResponse response = httpclient.execute(httpget);
-            return response.getEntity().getContent().toString();
-        } catch (URISyntaxException e) {
+            return new String(response.getEntity().getContent());
+        } catch (Exception e) {
             throw  new IOException(e);
         }
     }

@@ -31,10 +31,10 @@ public class JiraIssueReader implements AutoCloseable {
     private final ClassifiableFactory textFactory;
 
     //The index into the buffer currently held by the Reader
+    @Setter
     private int position = 0;
     @Setter
     private int upperLimit = -1;
-    private boolean hasNext;
     @Getter
     private List<ClassifiableText> texts = new ArrayList<>();
 
