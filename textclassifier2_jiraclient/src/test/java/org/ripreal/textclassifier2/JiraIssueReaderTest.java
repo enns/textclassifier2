@@ -12,7 +12,7 @@ public class JiraIssueReaderTest {
 
     @Before
     public void init() throws Exception {
-        client = new JiraBasicAuthClient(new PropertiesClient());
+        client = new JiraBasicAuthClient2(new PropertiesClient());
     }
 
     @Test

@@ -1,10 +1,7 @@
 package org.ripreal.textclassifier2.storage.testdata;
 
 import lombok.extern.slf4j.Slf4j;
-import org.ripreal.textclassifier2.JiraBasicAuthClient;
-import org.ripreal.textclassifier2.JiraClient;
-import org.ripreal.textclassifier2.JiraIssueReader;
-import org.ripreal.textclassifier2.PropertiesClient;
+import org.ripreal.textclassifier2.*;
 import org.ripreal.textclassifier2.model.ClassifiableFactory;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.storage.data.entities.MongoClassifiableText;
@@ -47,7 +44,7 @@ public class ManualTestDataRunner {
     }
 
     private void runJiraLoader() throws Exception {
-        JiraClient jiraClient = new JiraBasicAuthClient(new PropertiesClient());
+        JiraClient jiraClient = new JiraBasicAuthClient2(new PropertiesClient());
         try (JiraIssueReader reader = jiraClient.issueReader(100, textFactory)) {
             reader.setUpperLimit(1000);
             while(reader.next()) {

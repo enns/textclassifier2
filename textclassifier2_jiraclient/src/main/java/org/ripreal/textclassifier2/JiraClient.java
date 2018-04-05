@@ -1,5 +1,6 @@
 package org.ripreal.textclassifier2;
 
+import com.mashape.unirest.http.exceptions.UnirestException;
 import org.ripreal.textclassifier2.model.ClassifiableFactory;
 
 import java.io.IOException;
