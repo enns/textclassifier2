@@ -1,28 +1,19 @@
-apply plugin : 'java'
-apply plugin : 'application'
-apply plugin: "org.springframework.boot"
-apply plugin: "io.spring.dependency-management"
 
-buildscript {
-
-    repositories {
-        mavenCentral()
-        maven { url "https://repo.spring.io/snapshot" }
-        maven { url "https://repo.spring.io/milestone" }
-        maven { url "http://robotooling.com/maven" }
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBoot_version")
-    }
+plugins {
+    id "idea"
+    id "eclipse"
+    id "java"
 }
 
+def springBootVersion = "2.0.1.RELEASE"
+
 dependencies {
-    testCompile("org.springframework.boot:spring-boot-starter-test:$springBoot_version")
-    testCompile("io.projectreactor:reactor-test:$reactor_test_version")
-    compile("org.springframework.boot:spring-boot-starter:$springBoot_version")
-    compile("org.springframework.boot:spring-boot-starter-data-mongodb-reactive:$springBoot_version")
-    compile("org.springframework.boot:spring-boot-starter-webflux:$springBoot_version")
-    runtime("org.springframework.boot:spring-boot-devtools:$springBoot_version")
+    testCompile("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
+    testCompile ("io.projectreactor.addons:reactor-test:3.0.7.RELEASE")
+    compile("org.springframework.boot:spring-boot-starter:$springBootVersion")
+    compile("org.springframework.boot:spring-boot-starter-data-mongodb-reactive:$springBootVersion")
+    compile("org.springframework.boot:spring-boot-starter-webflux:$springBootVersion")
+    runtime("org.springframework.boot:spring-boot-devtools:$springBootVersion")
     compile project(":textclassifier2_core")
     compile project(":textclassifier2_jiraclient")
 }
@@ -32,5 +23,3 @@ processResources {
         expand( project.properties )
     }
 }
-
-mainClassName = 'org.ripreal.textclassifier2.storage.ServiceApp'
