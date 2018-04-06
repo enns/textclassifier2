@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
 import lombok.Setter;
+import org.jsoup.Jsoup;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableFactory;
@@ -32,11 +33,13 @@ public class JiraIssueReader implements AutoCloseable {
 
     //The index into the buffer currently held by the Reader
     @Setter
+    @Getter
     private int position = 0;
     @Setter
     private int upperLimit = -1;
     @Getter
     private List<ClassifiableText> texts = new ArrayList<>();
+    private boolean hasNext = true;
 
     public JiraIssueReader(JiraClient client, int maxResult, ClassifiableFactory textFactory) {
         this.client = client;
@@ -46,6 +49,10 @@ public class JiraIssueReader implements AutoCloseable {
     }
 
     public boolean next() throws IOException {
+
+        if (!hasNext) {
+            return false;
+        }
 
         try {
             String jsonIssueTypes = queryIssueTypes();
@@ -65,7 +72,8 @@ public class JiraIssueReader implements AutoCloseable {
             position += maxResult;
             throw new IOException(e);
         }
-        return upperLimit == -1 || position > upperLimit;
+        hasNext = upperLimit == -1 || upperLimit > position;
+        return true;
     }
 
     @Override
@@ -83,9 +91,11 @@ public class JiraIssueReader implements AutoCloseable {
 
         for (JsonNode issue : issues) {
 
-            String descr = issue.get("fields").get("description").textValue();
-            if (descr == null)
+            String descrHtml = issue.get("renderedFields").get("description").textValue();
+            if (descrHtml == null)
                 continue; // issue description can be empty
+
+            String descr = Jsoup.parse(descrHtml).text();
 
             Set<CharacteristicValue> characteristics = new HashSet<>();
             characteristics.add(characteristicFromIssue(issue, "issuetype", issueChar));
@@ -144,6 +154,7 @@ public class JiraIssueReader implements AutoCloseable {
         params.put("fields", fields);
         params.put("maxResults", String.valueOf(maxResult));
         params.put("startAt", String.valueOf(position));
+        params.put("expand", "names,renderedFields"); // HTML for description fields
 
         return client.GET(ISSUE_PATTERN, params);
     }

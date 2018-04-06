@@ -1,5 +1,6 @@
 package org.ripreal.textclassifier2.storage.testdata;
 
+import com.mongodb.MongoClient;
 import lombok.extern.slf4j.Slf4j;
 import org.ripreal.textclassifier2.*;
 import org.ripreal.textclassifier2.model.ClassifiableFactory;
@@ -22,7 +23,7 @@ import java.util.List;
 @Profile("test")
 @Configuration
 @Slf4j
-public class ManualTestDataRunner {
+public class TestDataRunner {
 
     @Autowired
     private ClassifiableService textService;
@@ -44,18 +45,26 @@ public class ManualTestDataRunner {
     }
 
     private void runJiraLoader() throws Exception {
+        textService.deleteAll().blockLast();
         JiraClient jiraClient = new JiraBasicAuthClient2(new PropertiesClient());
         try (JiraIssueReader reader = jiraClient.issueReader(100, textFactory)) {
-            reader.setUpperLimit(1000);
+            reader.setUpperLimit(100000);
             while(reader.next()) {
                 List<ClassifiableText> texts = reader.getTexts();
-                textService.saveAllTexts(castToMongoTexts(texts));
+                textService.saveAllTexts(castToMongoTexts(texts))
+                .blockLast();
+                log.info("Read {} texts", reader.getPosition());
             }
         } catch (IOException e) {
             log.error("error during loading texts from Jira", e);
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void runOtherBaseLoader() throws Exception{
+        MongoClient mongoClient = new MongoClient();
+
     }
 
     private List<MongoClassifiableText> castToMongoTexts(List<ClassifiableText> texts) {

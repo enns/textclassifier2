@@ -12,6 +12,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -26,7 +27,7 @@ public class MongoCharacteristic implements Characteristic {
     private String name;
     @JsonIgnore
     @Transient
-    private Set<CharacteristicValue> possibleValues;
+    private Set<CharacteristicValue> possibleValues = new HashSet();
 
     @Override
     @JsonIgnore
@@ -37,7 +38,7 @@ public class MongoCharacteristic implements Characteristic {
 
     @Override
     public void addPossibleValue(CharacteristicValue value) {
-        throw new RuntimeException("not implemented");
+        // to fulfill collection you perform direct query to the base
     }
 
     @Override
