@@ -29,7 +29,7 @@ public class LoggerClassifiableTextService implements ClassifiableService {
     }
 
     @Override
-    public Flux<MongoClassifiableText> saveAllTexts(List<MongoClassifiableText> texts) {
+    public Flux<MongoClassifiableText> saveAllTexts(Iterable<MongoClassifiableText> texts) {
         return service.saveAllTexts(texts)
             .doOnRequest((request) -> log.info("start saveAllTexts request"))
             .doOnNext((item) -> log.info("written to db {}", item))
@@ -59,7 +59,7 @@ public class LoggerClassifiableTextService implements ClassifiableService {
     }
 
     @Override
-    public Flux<MongoVocabularyWord> saveAllVocabulary(List<MongoVocabularyWord> vocabulary) {
+    public Flux<MongoVocabularyWord> saveAllVocabulary(Iterable<MongoVocabularyWord> vocabulary) {
         return service.saveAllVocabulary(vocabulary)
             .doOnRequest((request) -> log.info("start saveAllVocabulary request"))
             .doOnNext((item) -> log.info("written to db {}", item))

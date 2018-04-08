@@ -20,7 +20,7 @@ public class PropertiesClient {
     public static final String PROXY_SERVER = "PROXY_SERVER";
     public static final String PROXY_PORT = "PROXY_PORT";
 
-    private final static Map<String, String> DEFAULT_PROPERTY_VALUES = ImmutableMap.<String, String>builder()
+    public final static Map<String, String> DEFAULT_PROPERTY_VALUES = ImmutableMap.<String, String>builder()
             .put(JIRA_HOME, "localhost")
             .put(LOGIN, "")
             .put(PASSWORD, "")

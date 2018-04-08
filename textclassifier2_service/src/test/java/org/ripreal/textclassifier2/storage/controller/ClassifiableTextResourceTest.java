@@ -3,7 +3,7 @@ package org.ripreal.textclassifier2.storage.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.ripreal.textclassifier2.storage.data.entities.MongoClassifiableText;
-import org.ripreal.textclassifier2.storage.testdata.ClassifiableTestData;
+import org.ripreal.textclassifier2.storage.testdata.AutogenerateTestDataProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.ClientResponse;
@@ -31,7 +31,7 @@ public class ClassifiableTextResourceTest extends AbstractResourceTest {
     @Test
     public void save() throws Exception {
 
-        List<MongoClassifiableText> texts = ClassifiableTestData.getTextTestData();
+        List<MongoClassifiableText> texts = new AutogenerateTestDataProvider().next().getClassifiableTexts();
 
         webClient.post()
                 .uri(URI.create(this.server + "/texts"))
@@ -41,8 +41,7 @@ public class ClassifiableTextResourceTest extends AbstractResourceTest {
                 .exchange()
                 .doOnNext(body -> {
                     assertTrue(body.statusCode().is2xxSuccessful());
-                }
-                )
+                })
                 .block();
 
         // repeat test with other method

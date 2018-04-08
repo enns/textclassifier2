@@ -1,106 +1,202 @@
-[
-  {
-    "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-    "fields": {
-      "description": "Просьба уточнить, каким образом настроена переадресация в хант-группе 3753?",
-      "issuetype": {
-        "avatarId": 10321,
-        "description": "Создано с помощью службы поддержки JIRA.",
-        "iconUrl": "http://jira.avilon.ru:7890/secure/.iewavatar?size=xsmall&avatarId=10321&avatarType=issuetype",
-        "id": "10101",
-        "name": "Сервисный запрос",
-        "self": "http://jira.avilon.ru:7890/rest/api/2/issuetype/10101",
-        "subtask": false
-      },
-      "project": {
-        "avatarUrls": {
-          "16x16": "http://jira.avilon.ru:7890/secure/projectavatar?size=xsmall&pid=10101&avatarId=10201",
-          "24x24": "http://jira.avilon.ru:7890/secure/projectavatar?size=small&pid=10101&avatarId=10201",
-          "32x32": "http://jira.avilon.ru:7890/secure/projectavatar?size=medium&pid=10101&avatarId=10201",
-          "48x48": "http://jira.avilon.ru:7890/secure/projectavatar?pid=10101&avatarId=10201"
+{
+  "issues": [
+    {
+      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
+      "renderedFields": {
+        "description": "Просьба уточнить, каким образом настроена переадресация в хант-группе 3753?",
+        "issuetype": {
+          "avatarId": 10321,
+          "description": "Создано с помощью службы поддержки JIRA.",
+          "iconUrl": "http://jira.avilon.ru:7890/secure/.iewavatar?size=xsmall&avatarId=10321&avatarType=issuetype",
+          "id": "10101",
+          "name": "Сервисный запрос",
+          "self": "http://jira.avilon.ru:7890/rest/api/2/issuetype/10101",
+          "subtask": false
         },
-        "id": "10101",
-        "key": "IT",
-        "name": "Поддержка IT",
-        "projectCategory": {
-          "description": "Проекты отдела инфраструктуры",
-          "id": "10002",
-          "name": "ИС",
-          "self": "http://jira.avilon.ru:7890/rest/api/2/projectCategory/10002"
+        "project": {
+          "avatarUrls": {
+            "16x16": "http://jira.avilon.ru:7890/secure/projectavatar?size=xsmall&pid=10101&avatarId=10201",
+            "24x24": "http://jira.avilon.ru:7890/secure/projectavatar?size=small&pid=10101&avatarId=10201",
+            "32x32": "http://jira.avilon.ru:7890/secure/projectavatar?size=medium&pid=10101&avatarId=10201",
+            "48x48": "http://jira.avilon.ru:7890/secure/projectavatar?pid=10101&avatarId=10201"
+          },
+          "id": "10101",
+          "key": "IT",
+          "name": "Поддержка IT",
+          "projectCategory": {
+            "description": "Проекты отдела инфраструктуры",
+            "id": "10002",
+            "name": "ИС",
+            "self": "http://jira.avilon.ru:7890/rest/api/2/projectCategory/10002"
+          },
+          "self": "http://jira.avilon.ru:7890/rest/api/2/project/10101"
         },
-        "self": "http://jira.avilon.ru:7890/rest/api/2/project/10101"
-      },
-      "reporter": {
-        "active": true,
-        "avatarUrls": {
-          "16x16": "http://jira.avilon.ru:7890/secure/useravatar?size=xsmall&ownerId=pavel.korchagin&avatarId=12313",
-          "24x24": "http://jira.avilon.ru:7890/secure/useravatar?size=small&ownerId=pavel.korchagin&avatarId=12313",
-          "32x32": "http://jira.avilon.ru:7890/secure/useravatar?size=medium&ownerId=pavel.korchagin&avatarId=12313",
-          "48x48": "http://jira.avilon.ru:7890/secure/useravatar?ownerId=pavel.korchagin&avatarId=12313"
+
+        "reporter": {
+          "active": true,
+          "avatarUrls": {
+            "16x16": "http://jira.avilon.ru:7890/secure/useravatar?size=xsmall&ownerId=pavel.korchagin&avatarId=12313",
+            "24x24": "http://jira.avilon.ru:7890/secure/useravatar?size=small&ownerId=pavel.korchagin&avatarId=12313",
+            "32x32": "http://jira.avilon.ru:7890/secure/useravatar?size=medium&ownerId=pavel.korchagin&avatarId=12313",
+            "48x48": "http://jira.avilon.ru:7890/secure/useravatar?ownerId=pavel.korchagin&avatarId=12313"
+          },
+          "displayName": "Корчагин Павел Станиславович",
+          "emailAddress": "pavel.korchagin@avilon.ru",
+          "key": "pavel.korchagin",
+          "name": "pavel.korchagin",
+          "self": "http://jira.avilon.ru:7890/rest/api/2/user?username=pavel.korchagin",
+          "timeZone": "Europe/Moscow"
         },
-        "displayName": "Корчагин Павел Станиславович",
-        "emailAddress": "pavel.korchagin@avilon.ru",
-        "key": "pavel.korchagin",
-        "name": "pavel.korchagin",
-        "self": "http://jira.avilon.ru:7890/rest/api/2/user?username=pavel.korchagin",
-        "timeZone": "Europe/Moscow"
+        "summary": "переадресация в хант-группе 3753 "
       },
-      "summary": "переадресация в хант-группе 3753 "
+      "fields": {
+        "description": "Просьба уточнить, каким образом настроена переадресация в хант-группе 3753?",
+        "issuetype": {
+          "avatarId": 10321,
+          "description": "Создано с помощью службы поддержки JIRA.",
+          "iconUrl": "http://jira.avilon.ru:7890/secure/.iewavatar?size=xsmall&avatarId=10321&avatarType=issuetype",
+          "id": "10101",
+          "name": "Сервисный запрос",
+          "self": "http://jira.avilon.ru:7890/rest/api/2/issuetype/10101",
+          "subtask": false
+        },
+        "project": {
+          "avatarUrls": {
+            "16x16": "http://jira.avilon.ru:7890/secure/projectavatar?size=xsmall&pid=10101&avatarId=10201",
+            "24x24": "http://jira.avilon.ru:7890/secure/projectavatar?size=small&pid=10101&avatarId=10201",
+            "32x32": "http://jira.avilon.ru:7890/secure/projectavatar?size=medium&pid=10101&avatarId=10201",
+            "48x48": "http://jira.avilon.ru:7890/secure/projectavatar?pid=10101&avatarId=10201"
+          },
+          "id": "10101",
+          "key": "IT",
+          "name": "Поддержка IT",
+          "projectCategory": {
+            "description": "Проекты отдела инфраструктуры",
+            "id": "10002",
+            "name": "ИС",
+            "self": "http://jira.avilon.ru:7890/rest/api/2/projectCategory/10002"
+          },
+          "self": "http://jira.avilon.ru:7890/rest/api/2/project/10101"
+        },
+
+        "reporter": {
+          "active": true,
+          "avatarUrls": {
+            "16x16": "http://jira.avilon.ru:7890/secure/useravatar?size=xsmall&ownerId=pavel.korchagin&avatarId=12313",
+            "24x24": "http://jira.avilon.ru:7890/secure/useravatar?size=small&ownerId=pavel.korchagin&avatarId=12313",
+            "32x32": "http://jira.avilon.ru:7890/secure/useravatar?size=medium&ownerId=pavel.korchagin&avatarId=12313",
+            "48x48": "http://jira.avilon.ru:7890/secure/useravatar?ownerId=pavel.korchagin&avatarId=12313"
+          },
+          "displayName": "Корчагин Павел Станиславович",
+          "emailAddress": "pavel.korchagin@avilon.ru",
+          "key": "pavel.korchagin",
+          "name": "pavel.korchagin",
+          "self": "http://jira.avilon.ru:7890/rest/api/2/user?username=pavel.korchagin",
+          "timeZone": "Europe/Moscow"
+        },
+        "summary": "переадресация в хант-группе 3753 "
+      },
+      "id": "51799",
+      "key": "IT-16741",
+      "self": "http://jira.avilon.ru:7890/rest/api/2/issue/51799"
     },
-    "id": "51799",
-    "key": "IT-16741",
-    "self": "http://jira.avilon.ru:7890/rest/api/2/issue/51799"
-  },
-  {
-    "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-    "fields": {
-      "description": "Поменяли ноутбук, исчез доступ к сети",
-      "issuetype": {
-        "avatarId": 10321,
-        "description": "Создано с помощью службы поддержки JIRA.",
-        "iconUrl": "http://jira.avilon.ru:7890/secure/viewavatar?size=xsmall&avatarId=10321&avatarType=issuetype",
-        "id": "10101",
-        "name": "Сервисный запрос",
-        "self": "http://jira.avilon.ru:7890/rest/api/2/issuetype/10101",
-        "subtask": false
-      },
-      "project": {
-        "avatarUrls": {
-          "16x16": "http://jira.avilon.ru:7890/secure/projectavatar?size=xsmall&pid=10101&avatarId=10201",
-          "24x24": "http://jira.avilon.ru:7890/secure/projectavatar?size=small&pid=10101&avatarId=10201",
-          "32x32": "http://jira.avilon.ru:7890/secure/projectavatar?size=medium&pid=10101&avatarId=10201",
-          "48x48": "http://jira.avilon.ru:7890/secure/projectavatar?pid=10101&avatarId=10201"
+    {
+      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
+      "renderedFields": {
+        "description": "Поменяли ноутбук, исчез доступ к сети",
+        "issuetype": {
+          "avatarId": 10321,
+          "description": "Создано с помощью службы поддержки JIRA.",
+          "iconUrl": "http://jira.avilon.ru:7890/secure/viewavatar?size=xsmall&avatarId=10321&avatarType=issuetype",
+          "id": "10101",
+          "name": "Сервисный запрос",
+          "self": "http://jira.avilon.ru:7890/rest/api/2/issuetype/10101",
+          "subtask": false
         },
-        "id": "10101",
-        "key": "IT",
-        "name": "Поддержка IT",
-        "projectCategory": {
-          "description": "Проекты отдела инфраструктуры",
-          "id": "10002",
-          "name": "ИС",
-          "self": "http://jira.avilon.ru:7890/rest/api/2/projectCategory/10002"
+        "project": {
+          "avatarUrls": {
+            "16x16": "http://jira.avilon.ru:7890/secure/projectavatar?size=xsmall&pid=10101&avatarId=10201",
+            "24x24": "http://jira.avilon.ru:7890/secure/projectavatar?size=small&pid=10101&avatarId=10201",
+            "32x32": "http://jira.avilon.ru:7890/secure/projectavatar?size=medium&pid=10101&avatarId=10201",
+            "48x48": "http://jira.avilon.ru:7890/secure/projectavatar?pid=10101&avatarId=10201"
+          },
+          "id": "10101",
+          "key": "IT",
+          "name": "Поддержка IT",
+          "projectCategory": {
+            "description": "Проекты отдела инфраструктуры",
+            "id": "10002",
+            "name": "ИС",
+            "self": "http://jira.avilon.ru:7890/rest/api/2/projectCategory/10002"
+          },
+          "self": "http://jira.avilon.ru:7890/rest/api/2/project/10101"
         },
-        "self": "http://jira.avilon.ru:7890/rest/api/2/project/10101"
-      },
-      "reporter": {
-        "active": true,
-        "avatarUrls": {
-          "16x16": "http://jira.avilon.ru:7890/secure/useravatar?size=xsmall&avatarId=10122",
-          "24x24": "http://jira.avilon.ru:7890/secure/useravatar?size=small&avatarId=10122",
-          "32x32": "http://jira.avilon.ru:7890/secure/useravatar?size=medium&avatarId=10122",
-          "48x48": "http://jira.avilon.ru:7890/secure/useravatar?avatarId=10122"
+        "reporter": {
+          "active": true,
+          "avatarUrls": {
+            "16x16": "http://jira.avilon.ru:7890/secure/useravatar?size=xsmall&avatarId=10122",
+            "24x24": "http://jira.avilon.ru:7890/secure/useravatar?size=small&avatarId=10122",
+            "32x32": "http://jira.avilon.ru:7890/secure/useravatar?size=medium&avatarId=10122",
+            "48x48": "http://jira.avilon.ru:7890/secure/useravatar?avatarId=10122"
+          },
+          "displayName": "Ресепшн Audi",
+          "emailAddress": "reception.audi@audi-volgogradsky.ru",
+          "key": "reception.audi",
+          "name": "reception.audi",
+          "self": "http://jira.avilon.ru:7890/rest/api/2/user?username=reception.audi",
+          "timeZone": "Europe/Moscow"
         },
-        "displayName": "Ресепшн Audi",
-        "emailAddress": "reception.audi@audi-volgogradsky.ru",
-        "key": "reception.audi",
-        "name": "reception.audi",
-        "self": "http://jira.avilon.ru:7890/rest/api/2/user?username=reception.audi",
-        "timeZone": "Europe/Moscow"
+        "summary": "adope wi-fi"
       },
-      "summary": "adope wi-fi"
-    },
-    "id": "51798",
-    "key": "IT-16740",
-    "self": "http://jira.avilon.ru:7890/rest/api/2/issue/51798"
-  }
-]
+      "fields": {
+        "description": "Поменяли ноутбук, исчез доступ к сети",
+        "issuetype": {
+          "avatarId": 10321,
+          "description": "Создано с помощью службы поддержки JIRA.",
+          "iconUrl": "http://jira.avilon.ru:7890/secure/viewavatar?size=xsmall&avatarId=10321&avatarType=issuetype",
+          "id": "10101",
+          "name": "Сервисный запрос",
+          "self": "http://jira.avilon.ru:7890/rest/api/2/issuetype/10101",
+          "subtask": false
+        },
+        "project": {
+          "avatarUrls": {
+            "16x16": "http://jira.avilon.ru:7890/secure/projectavatar?size=xsmall&pid=10101&avatarId=10201",
+            "24x24": "http://jira.avilon.ru:7890/secure/projectavatar?size=small&pid=10101&avatarId=10201",
+            "32x32": "http://jira.avilon.ru:7890/secure/projectavatar?size=medium&pid=10101&avatarId=10201",
+            "48x48": "http://jira.avilon.ru:7890/secure/projectavatar?pid=10101&avatarId=10201"
+          },
+          "id": "10101",
+          "key": "IT",
+          "name": "Поддержка IT",
+          "projectCategory": {
+            "description": "Проекты отдела инфраструктуры",
+            "id": "10002",
+            "name": "ИС",
+            "self": "http://jira.avilon.ru:7890/rest/api/2/projectCategory/10002"
+          },
+          "self": "http://jira.avilon.ru:7890/rest/api/2/project/10101"
+        },
+        "reporter": {
+          "active": true,
+          "avatarUrls": {
+            "16x16": "http://jira.avilon.ru:7890/secure/useravatar?size=xsmall&avatarId=10122",
+            "24x24": "http://jira.avilon.ru:7890/secure/useravatar?size=small&avatarId=10122",
+            "32x32": "http://jira.avilon.ru:7890/secure/useravatar?size=medium&avatarId=10122",
+            "48x48": "http://jira.avilon.ru:7890/secure/useravatar?avatarId=10122"
+          },
+          "displayName": "Ресепшн Audi",
+          "emailAddress": "reception.audi@audi-volgogradsky.ru",
+          "key": "reception.audi",
+          "name": "reception.audi",
+          "self": "http://jira.avilon.ru:7890/rest/api/2/user?username=reception.audi",
+          "timeZone": "Europe/Moscow"
+        },
+        "summary": "adope wi-fi"
+      },
+      "id": "51798",
+      "key": "IT-16740",
+      "self": "http://jira.avilon.ru:7890/rest/api/2/issue/51798"
+    }
+  ]
+}

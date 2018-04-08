@@ -1,29 +1,26 @@
 package org.ripreal.textclassifier2;
 
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import com.mashape.unirest.request.GetRequest;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpHost;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.utils.URIBuilder;
-import org.apache.http.impl.client.*;
 import org.ripreal.textclassifier2.model.ClassifiableFactory;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
 @Slf4j
-public class JiraBasicAuthClient2 implements JiraClient{
+public class JiraBasicAuthClient implements JiraClient{
 
     private  Map<String, String> properties;
+    private final ObjectMapper mapper = new ObjectMapper().
+        configure(SerializationFeature.WRAP_ROOT_VALUE, false);
 
-    public JiraBasicAuthClient2(@NonNull PropertiesClient propertiesClient) {
+    public JiraBasicAuthClient(@NonNull PropertiesClient propertiesClient) {
 
        this.properties = propertiesClient.getPropertiesOrDefaults();
 
@@ -35,9 +32,18 @@ public class JiraBasicAuthClient2 implements JiraClient{
         }
     }
 
+    public JiraBasicAuthClient() throws Exception {
+        new JiraBasicAuthClient(new PropertiesClient());
+    }
+
     @Override
     public JiraIssueReader issueReader(int maxResult, @NonNull ClassifiableFactory textFactory) {
-        return new JiraIssueReader(this, maxResult, textFactory);
+        return new JiraIssueReader(this, mapper, maxResult, textFactory);
+    }
+
+    @Override
+    public JiraIssueWriter issueWriter() {
+        return new JiraIssueWriter(this, mapper);
     }
 
     @Override
@@ -64,4 +70,8 @@ public class JiraBasicAuthClient2 implements JiraClient{
         return GET(url, new HashMap<>());
     }
 
+    @Override
+    public String test(String t) {
+        return "prod";
+    }
 }

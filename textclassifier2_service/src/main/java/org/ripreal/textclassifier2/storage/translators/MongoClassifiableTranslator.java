@@ -34,7 +34,6 @@ public class MongoClassifiableTranslator implements ClassifiableTranslator{
         this.textService = new LoggerClassifiableTextService(textService);
     }
 
-
     @Override
     public ClassifiableFactory getCharacteristicFactory() {
         return factory;

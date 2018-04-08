@@ -7,8 +7,6 @@ import org.ripreal.textclassifier2.model.ClassifiableFactory;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.storage.data.entities.MongoClassifiableText;
 import org.ripreal.textclassifier2.storage.service.ClassifiableService;
-import org.ripreal.textclassifier2.storage.service.MongoTextService;
-import org.ripreal.textclassifier2.storage.service.decorators.LoggerClassifiableTextService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -37,7 +35,9 @@ public class TestDataRunner {
         return args -> {
             if (String.join(" -", args).toUpperCase().contains("CREATE_TEST_DATA")) {
                 textService.deleteAll().blockLast();
-                textService.saveAllTexts(ClassifiableTestData.getTextTestData()).blockLast();
+                TestDataProvider provider = new AutogenerateTestDataProvider();
+                provider.next();
+                textService.saveAllTexts(provider.next().getClassifiableTexts()).blockLast();
             }
             else if (String.join(" -", args).toUpperCase().contains("LOAD_FORM_JIRA_TEST_DATA"))
                 runJiraLoader();
@@ -46,7 +46,7 @@ public class TestDataRunner {
 
     private void runJiraLoader() throws Exception {
         textService.deleteAll().blockLast();
-        JiraClient jiraClient = new JiraBasicAuthClient2(new PropertiesClient());
+        JiraClient jiraClient = new JiraBasicAuthClient(new PropertiesClient());
         try (JiraIssueReader reader = jiraClient.issueReader(100, textFactory)) {
             reader.setUpperLimit(100000);
             while(reader.next()) {

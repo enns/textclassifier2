@@ -13,7 +13,7 @@ import java.util.List;
 
 public interface ClassifiableService {
 
-    Flux<MongoClassifiableText> saveAllTexts(List<MongoClassifiableText> texts);
+    Flux<MongoClassifiableText> saveAllTexts(Iterable<MongoClassifiableText> texts);
 
     Flux<MongoClassifiableText> findAllTexts();
 
@@ -21,7 +21,7 @@ public interface ClassifiableService {
 
     Mono<MongoCharacteristic> findCharacteristicByName(String name);
 
-    Flux<MongoVocabularyWord> saveAllVocabulary(List<MongoVocabularyWord> vocabulary);
+    Flux<MongoVocabularyWord> saveAllVocabulary(Iterable<MongoVocabularyWord> vocabulary);
 
     Flux<MongoVocabularyWord> findVocabularyByNgram(@NonNull NGramStrategy ngram);
 

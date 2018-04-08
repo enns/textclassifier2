@@ -36,12 +36,12 @@ public class MongoTextService implements ClassifiableService {
     }
 
     @Override
-    public Flux<MongoClassifiableText> saveAllTexts(List<MongoClassifiableText> texts) {
+    public Flux<MongoClassifiableText> saveAllTexts(@NonNull Iterable<MongoClassifiableText> texts) {
         return textRepo.saveAll(texts);
     }
 
     @Override
-    public Flux<MongoVocabularyWord> saveAllVocabulary(List<MongoVocabularyWord> vocabulary) {
+    public Flux<MongoVocabularyWord> saveAllVocabulary(@NonNull Iterable<MongoVocabularyWord> vocabulary) {
         return vocabRepo.saveAll(vocabulary);
     }
 
@@ -51,7 +51,7 @@ public class MongoTextService implements ClassifiableService {
     }
 
     @Override
-    public Mono<MongoCharacteristic> findCharacteristicByName(String name) {
+    public Mono<MongoCharacteristic> findCharacteristicByName(@NonNull String name) {
         return charRepo.findById(name);
     }
 

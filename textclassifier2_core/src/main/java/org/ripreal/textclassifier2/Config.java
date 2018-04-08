@@ -22,29 +22,8 @@ public class Config {
     public boolean isLoaded() {
         return properties.size() > 0;
     }
-
-    public String getDbPath() {
-        return getProperty("db_path");
-    }
-
     public String getTestDataPath() {
         return getProperty("test_data_path");
-    }
-
-    public String getDaoType() {
-        return getProperty("dao_type");
-    }
-
-    public String getDBMSType() {
-        return getProperty("dbms_type");
-    }
-
-    public String getDbFileName() {
-        return getProperty("db_filename");
-    }
-
-    public String getNGramStrategy() {
-        return getProperty("ngram_strategy");
     }
 
     private String getProperty(String property) {

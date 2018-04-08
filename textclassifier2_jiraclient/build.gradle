@@ -19,7 +19,7 @@ dependencies {
     compile ('org.json:json:20140107')
     compile ('com.mashape.unirest:unirest-java:1.4.9')
 
-    compile 'org.jsoup:jsoup:1.8.3'
+    compile ("org.jsoup:jsoup:1.8.3")
     compile ("commons-io:commons-io:$commons_io_version")
     compile ("com.google.collections:google-collections:$google_collections_version")
     compile ("com.fasterxml.jackson.core:jackson-core:$jackson_version")

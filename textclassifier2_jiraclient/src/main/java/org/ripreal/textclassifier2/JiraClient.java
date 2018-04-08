@@ -9,6 +9,8 @@ import java.util.Map;
 
 public interface JiraClient extends AutoCloseable {
     JiraIssueReader issueReader(int maxResult, ClassifiableFactory textFactory);
+    JiraIssueWriter issueWriter();
     String GET(String url, Map<String,String> params) throws IOException;
     String GET(String url) throws IOException;
+    String test(String t);
 }

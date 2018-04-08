@@ -3,7 +3,9 @@ package org.ripreal.textclassifier2;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.ImmutableMap;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 import org.jsoup.Jsoup;
 import org.ripreal.textclassifier2.model.Characteristic;
@@ -16,39 +18,47 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.channels.WritableByteChannel;
 import java.util.*;
 
 public class JiraIssueReader implements AutoCloseable {
 
-    private final String ISSUE_PATTERN = "/rest/api/2/search";
-    private final String ISSUE_TYPES = "/rest/api/2/issuetype";
-    private final String PROJECT_TYPES = "/rest/api/2/project";
+
+    public final static String ISSUE_PATTERN = "/rest/api/2/search";
+    public final static String ISSUE_TYPES = "/rest/api/2/issuetype";
+    public final static String PROJECT_TYPES = "/rest/api/2/project";
     private final String Projects = "AI,IC,IT,AGR";
     private final String fields = "summary,project,reporter,issuetype,description";
-    private final ObjectMapper mapper = new ObjectMapper();
 
+    private final ObjectMapper mapper;
     private final JiraClient client;
     private final int maxResult;
     private final ClassifiableFactory textFactory;
+    @Getter
+    private List<ClassifiableText> texts = new ArrayList<>();
 
-    //The index into the buffer currently held by the Reader
     @Setter
     @Getter
     private int position = 0;
     @Setter
     private int upperLimit = -1;
-    @Getter
-    private List<ClassifiableText> texts = new ArrayList<>();
     private boolean hasNext = true;
 
-    public JiraIssueReader(JiraClient client, int maxResult, ClassifiableFactory textFactory) {
+    public JiraIssueReader(@NonNull JiraClient client, @NonNull ObjectMapper mapper, int maxResult, @NonNull
+                           ClassifiableFactory
+            textFactory) {
         this.client = client;
+        this.mapper = mapper;
         this.maxResult = maxResult;
         this.textFactory = textFactory;
         mapper.configure(DeserializationFeature.USE_JAVA_ARRAY_FOR_JSON_ARRAY, true);
     }
 
+    // SEQUENTIAL READING
+
     public boolean next() throws IOException {
+
+        texts.clear();
 
         if (!hasNext) {
             return false;
@@ -66,7 +76,7 @@ public class JiraIssueReader implements AutoCloseable {
             if (!parseJsonAsClassifiableText(issue, project, issuesJson))
                 return false;
 
-            position += maxResult;
+            position += texts.size();
         } catch (Exception e) {
             // skip elements
             position += maxResult;
@@ -81,13 +91,13 @@ public class JiraIssueReader implements AutoCloseable {
         client.close();
     }
 
+    // PARSING HTTP RESPONSES
+
     private boolean parseJsonAsClassifiableText(Characteristic issueChar, Characteristic projectChar, String json) throws
             IOException {
 
         JsonNode jsonNode = mapper.readTree(json);
         JsonNode issues = jsonNode.get("issues");
-
-        texts.clear();
 
         for (JsonNode issue : issues) {
 
@@ -129,14 +139,11 @@ public class JiraIssueReader implements AutoCloseable {
 
     private CharacteristicValue characteristicFromIssue(JsonNode issue, String issueField,
                                                         Characteristic characteristic) throws IOException {
-
         JsonNode fields = issue.get("fields");
-
         if (fields == null)
             throw new IOException("There is no \"fields\" property in the json");
 
         String issueType = fields.get(issueField).get("name").toString();
-
         if (issueType == null)
             throw new IOException("There is no \"name\" property in the json");
 
@@ -145,6 +152,8 @@ public class JiraIssueReader implements AutoCloseable {
                 (val) -> textFactory.newCharacteristicValue(val, 0, characteristic));
         return (issueValue != null) ? issueValue : textFactory.newCharacteristicValue(issueType, 0, characteristic);
     }
+
+    // JIRA HTTP REQESTS
 
     private String queryIssues() throws IOException {
 
