@@ -59,7 +59,7 @@ public class ClassifiableTextServiceTest extends SpringTestConfig {
 
         // TEST Vocabulary
 
-        Set<VocabularyWord> vocabulary = new AutogenerateTestDataReader().next().getVocabulary();
+        Set<VocabularyWord> vocabulary = new AutogenerateTestDataReader().getVocabTestData();
 
         assertNotNull(service.saveAllVocabulary(EntitiesConverter.castToMongoVocabulary(vocabulary)).blockLast());
         // check doubles

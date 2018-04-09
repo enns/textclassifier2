@@ -4,9 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.ripreal.textclassifier2.classifier.ClassifierBuilder;
+import org.ripreal.textclassifier2.model.ClassifiableFactory;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
 import org.ripreal.textclassifier2.storage.controller.exceptions.IncorrectClassifierType;
-import org.ripreal.textclassifier2.storage.translators.ClassifiableTranslator;
+import org.ripreal.textclassifier2.testdata.TestDataReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +21,8 @@ public class ClassifierREST {
     private final ClassifierBuilder builder;
 
     @Autowired
-    public ClassifierREST(ClassifiableTranslator translator) {
-        this.builder = ClassifierBuilder.fromReader(translator);
+    public ClassifierREST(TestDataReader reader, ClassifiableFactory factory) {
+        this.builder = ClassifierBuilder.fromReader(reader, factory);
     }
 
     @PostMapping(value = "init",

@@ -1,17 +1,15 @@
 package org.ripreal.textclassifier2.storage.testdata;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.Getter;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.ripreal.textclassifier2.storage.data.entities.MongoCharacteristicValue;
+import org.ripreal.textclassifier2.testdata.TestDataReader;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -39,7 +37,7 @@ public class InputStreamTestDataReader implements TestDataReader {
         this(source, mapper, 1);
     }
 
-    // INTERFACE METHODS
+    // ITERATOR METHODS
 
     @Override
     public boolean hasNext() {
@@ -48,16 +46,12 @@ public class InputStreamTestDataReader implements TestDataReader {
 
     @Override
     public TestDataReader.ClassifiableData next() throws IOException {
-        List<ClassifiableText> texts = parseTextTestData();
-        if (texts.size() != 0) {
-            Set<CharacteristicValue> charValues = getCharacteristicValueTetData(texts);
-            Set<Characteristic> characteristics = getCharacteristicTestData(charValues);
-            Set<VocabularyWord> vocabulary = getVocabTestData();
+        return readClassifiableData(readByIterator());
+    }
 
-            return new TestDataReader.ClassifiableData(
-                    texts, characteristics, charValues, vocabulary);
-        }
-        return TestDataReader.ClassifiableData.empty();
+    @Override
+    public ClassifiableData readAll() throws IOException {
+        return readClassifiableData(iterator.readAll());
     }
 
     @Override
@@ -67,14 +61,26 @@ public class InputStreamTestDataReader implements TestDataReader {
 
     // PARSING JSON
 
-    private Set<VocabularyWord> getVocabTestData() {
-        return new HashSet<>();
+    private List<ClassifiableText> readByIterator() throws IOException {
+        List<ClassifiableText> texts = new ArrayList<>();
+        while(iterator.hasNext() && iteratorSize > texts.size()) {
+            texts.add(iterator.next());
+        }
+        return texts;
+    }
+
+    private TestDataReader.ClassifiableData readClassifiableData(List<ClassifiableText> texts) {
+        if (texts.size() != 0) {
+            Set<CharacteristicValue> charValues = getCharacteristicValueTetData(texts);
+            Set<Characteristic> characteristics = getCharacteristicTestData(charValues);
+            return new TestDataReader.ClassifiableData(texts, characteristics, charValues);
+        }
+        return TestDataReader.ClassifiableData.empty();
     }
 
     private Set<CharacteristicValue> getCharacteristicValueTetData(List<ClassifiableText> texts) {
         return texts.stream()
             .flatMap(text ->  text.getCharacteristics().stream())
-            .map(value -> (MongoCharacteristicValue) value)
             .collect(Collectors.toSet());
     }
 
@@ -82,13 +88,5 @@ public class InputStreamTestDataReader implements TestDataReader {
         return charVals.stream()
             .map(CharacteristicValue::getCharacteristic)
             .collect(Collectors.toSet());
-    }
-
-    private List<ClassifiableText> parseTextTestData() throws IOException {
-        List<ClassifiableText> texts = new ArrayList<>();
-        while(iterator.hasNext() && iteratorSize > texts.size()) {
-            texts.add(iterator.next());
-        }
-        return texts;
     }
 }

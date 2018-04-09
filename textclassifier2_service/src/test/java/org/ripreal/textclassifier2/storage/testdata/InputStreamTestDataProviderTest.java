@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.storage.SpringTestConfig;
+import org.ripreal.textclassifier2.testdata.TestDataReader;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.ByteArrayInputStream;

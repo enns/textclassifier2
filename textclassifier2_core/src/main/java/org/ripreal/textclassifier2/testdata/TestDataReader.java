@@ -1,4 +1,4 @@
-package org.ripreal.textclassifier2.storage.testdata;
+package org.ripreal.textclassifier2.testdata;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -15,9 +15,11 @@ import java.util.Set;
 
 public interface TestDataReader extends AutoCloseable {
 
-    public boolean hasNext();
+    boolean hasNext();
 
     TestDataReader.ClassifiableData next() throws IOException;
+
+    TestDataReader.ClassifiableData readAll() throws IOException;
 
     @RequiredArgsConstructor
     public final class ClassifiableData{
@@ -27,18 +29,15 @@ public interface TestDataReader extends AutoCloseable {
         private final Set<Characteristic> characteristics;
         @Getter
         private final Set<CharacteristicValue> characteristicValues;
-        @Getter
-        private final Set<VocabularyWord> vocabulary;
 
         public boolean isEmpty() {
             return classifiableTexts.size() == 0
                 && characteristics.size() == 0
-                && characteristicValues.size() == 0
-                && vocabulary.size() == 0;
+                && characteristicValues.size() == 0;
         }
 
         public static ClassifiableData empty() {
-            return new ClassifiableData(new ArrayList<>(),new HashSet<>(), new HashSet<>(), new HashSet<>());
+            return new ClassifiableData(new ArrayList<>(),new HashSet<>(), new HashSet<>());
         }
     }
 }

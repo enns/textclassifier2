@@ -1,4 +1,4 @@
-package org.ripreal.textclassifier2.storage.translators;
+package org.ripreal.textclassifier2.testdata;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -8,8 +8,6 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.ripreal.textclassifier2.CharacteristicUtils;
 import org.ripreal.textclassifier2.model.*;
-import org.ripreal.textclassifier2.ngram.NGramStrategy;
-import org.ripreal.textclassifier2.ngram.VocabularyBuilder;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -18,69 +16,79 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @RequiredArgsConstructor
-public class ExcelFileTranslator implements ClassifiableTranslator {
+public class ExcelFileReader implements TestDataReader {
 
     @NonNull
     private final File file;
     private final int sheetNumber;
     @NonNull
-    private final ClassifiableFactory characteristicFactory;
-    @NonNull
-    private List<ClassifiableText> cached_classifiableText = new ArrayList<>();
+    private final ClassifiableFactory textFactory;
+
+    private boolean hasNext = true;
 
     @Override
-    public ClassifiableFactory getCharacteristicFactory() {
-        return characteristicFactory;
+    public boolean hasNext() {
+        return hasNext;
     }
 
     @Override
-    public List<ClassifiableText> toClassifiableTexts() {
-
-        if (!cached_classifiableText.isEmpty()) {
-            return cached_classifiableText;
+    public ClassifiableData next() throws IOException {
+        hasNext = false;
+        List<ClassifiableText> texts = toClassifiableTexts();
+        if (texts.size() > 0) {
+            Set<Characteristic> characteristics = toCharacteristics(texts);
+            Set<CharacteristicValue> charVals = toCharacteristicValues(texts);
+            return new TestDataReader.ClassifiableData(texts, characteristics, charVals);
         }
+        return TestDataReader.ClassifiableData.empty();
+    }
 
+    @Override
+    public ClassifiableData readAll() throws IOException {
+        return next();
+    }
+
+    @Override
+    public void close() throws Exception {
+    }
+
+    public List<ClassifiableText> toClassifiableTexts() throws IOException {
         if (!file.exists() ||
                 sheetNumber < 1) {
-            log.info(String.format("Excel file with path %s not exist or has wrong format!", file.getAbsolutePath()));
-            return cached_classifiableText;
+            throw new IOException(
+                String.format("Excel file with path %s not exist or has wrong format!", file.getAbsolutePath()));
         }
-
+        List<ClassifiableText> texts = new ArrayList<>();
         try (XSSFWorkbook excelFile = new XSSFWorkbook(new FileInputStream(file))) {
             XSSFSheet sheet = excelFile.getSheetAt(sheetNumber - 1);
 
             // at least two rows
             if (sheet.getLastRowNum() > 0) {
-                cached_classifiableText = getClassifiableTexts(sheet);
+                texts = getClassifiableTexts(sheet);
             } else {
                 log.info("Excel sheet (#" + sheetNumber + ") is empty");
             }
         } catch (IllegalArgumentException e) {
-            log.info("Excel sheet (#" + sheetNumber + ") is not found");
-        } catch (IOException e) {
-            log.info(e.getMessage());
+            throw new IOException("Excel sheet (#" + sheetNumber + ") is not found");
         }
-        return cached_classifiableText;
+        return texts;
     }
 
-    @Override
-    public Set<Characteristic> toCharacteristics() {
-        return toClassifiableTexts().stream()
+    public Set<Characteristic> toCharacteristics(List<ClassifiableText> texts) {
+        return texts.stream()
                 .flatMap(text -> text.getCharacteristics().stream())
                 .map(CharacteristicValue::getCharacteristic)
                 .distinct()
                 .collect(Collectors.toSet());
     }
 
-    @Override
-    public List<VocabularyWord> toVocabulary(NGramStrategy ngram) {
-        return new VocabularyBuilder(ngram).getVocabulary(toClassifiableTexts(), getCharacteristicFactory());
+    private Set<CharacteristicValue> toCharacteristicValues(List<ClassifiableText> texts) {
+        return texts.stream()
+            .flatMap(text ->  text.getCharacteristics().stream())
+            .collect(Collectors.toSet());
     }
 
-    @Override
-    public void reset() {
-        cached_classifiableText = new ArrayList<>();
-    }
+    // WORK WITH SHEET
 
     private List<ClassifiableText> getClassifiableTexts(XSSFSheet sheet) {
         List<Characteristic> characteristics = getCharacteristics(sheet);
@@ -92,7 +100,7 @@ public class ExcelFileTranslator implements ClassifiableTranslator {
 
             // exclude empty rows
             if (!sheet.getRow(i).getCell(0).getStringCellValue().equals("")) {
-                classifiableTexts.add(characteristicFactory.newClassifiableText(sheet.getRow(i).getCell(0).getStringCellValue(), characteristicsValues));
+                classifiableTexts.add(textFactory.newClassifiableText(sheet.getRow(i).getCell(0).getStringCellValue(), characteristicsValues));
             }
         }
 
@@ -115,9 +123,9 @@ public class ExcelFileTranslator implements ClassifiableTranslator {
             String valueName = row.getCell(i).getStringCellValue();
 
             CharacteristicValue value = CharacteristicUtils.findByValue(
-                    characteristic.getPossibleValues(), valueName, (val) -> characteristicFactory.newCharacteristicValue(val, 0, characteristic));
+                    characteristic.getPossibleValues(), valueName, (val) -> textFactory.newCharacteristicValue(val, 0, characteristic));
             if (value == null) {
-                value = characteristicFactory.newCharacteristicValue(valueName, 0, characteristic);
+                value = textFactory.newCharacteristicValue(valueName, 0, characteristic);
             }
             characteristic.addPossibleValue(value);
             characteristicsValues.add(value);
@@ -132,7 +140,7 @@ public class ExcelFileTranslator implements ClassifiableTranslator {
 
         // first row from second to last columns contains Characteristics names
         for (int i = 1; i < sheet.getRow(0).getLastCellNum(); i++) {
-            characteristics.add(characteristicFactory.newCharacteristic(sheet.getRow(0).getCell(i).getStringCellValue()));
+            characteristics.add(textFactory.newCharacteristic(sheet.getRow(0).getCell(i).getStringCellValue()));
         }
 
         return characteristics;

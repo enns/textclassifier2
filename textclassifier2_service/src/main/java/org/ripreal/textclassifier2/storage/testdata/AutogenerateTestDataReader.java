@@ -6,7 +6,9 @@ import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.ripreal.textclassifier2.storage.data.entities.*;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
+import org.ripreal.textclassifier2.testdata.TestDataReader;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -27,8 +29,12 @@ public class AutogenerateTestDataReader implements TestDataReader {
         List<ClassifiableText> classifiableTexts = getTextTestData();
         Set<Characteristic> characteristics = getCharacteristicTestData();
         Set<CharacteristicValue> characteristicValues = getCharacteristicValueTetData(classifiableTexts);
-        Set<VocabularyWord> vocabulary = getVocabTestData();
-        return new TestDataReader.ClassifiableData(classifiableTexts, characteristics, characteristicValues, vocabulary);
+        return new TestDataReader.ClassifiableData(classifiableTexts, characteristics, characteristicValues);
+    }
+
+    @Override
+    public ClassifiableData readAll() throws IOException {
+        return next();
     }
 
     @Override
@@ -76,7 +82,7 @@ public class AutogenerateTestDataReader implements TestDataReader {
         return Arrays.asList(text1, text2, text3);
     }
 
-    private Set<VocabularyWord> getVocabTestData() {
+    public Set<VocabularyWord> getVocabTestData() {
         return new HashSet<>(Arrays.asList(
             new MongoVocabularyWord("треб", NGramStrategy.NGRAM_TYPES.FILTERED_UNIGRAM.toString()),
             new MongoVocabularyWord("найти", NGramStrategy.NGRAM_TYPES.FILTERED_UNIGRAM.toString())

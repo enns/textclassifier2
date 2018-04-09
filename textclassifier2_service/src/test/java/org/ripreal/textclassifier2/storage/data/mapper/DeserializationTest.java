@@ -38,7 +38,7 @@ public class DeserializationTest extends SpringTestConfig {
 
     @Test
     public void deserializeVocabularyWord() throws IOException {
-        deserialize(new AutogenerateTestDataReader().next().getVocabulary()
+        deserialize(new AutogenerateTestDataReader().getVocabTestData()
             .toArray(new VocabularyWord[0])[0], VocabularyWord.class);
     }
 

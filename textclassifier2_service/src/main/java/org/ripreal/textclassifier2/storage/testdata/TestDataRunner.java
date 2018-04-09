@@ -8,6 +8,7 @@ import org.ripreal.textclassifier2.model.ClassifiableFactory;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.storage.data.mapper.EntitiesConverter;
 import org.ripreal.textclassifier2.storage.service.ClassifiableService;
+import org.ripreal.textclassifier2.testdata.TestDataReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -16,7 +17,6 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 

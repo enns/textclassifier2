@@ -5,10 +5,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.ripreal.textclassifier2.CharacteristicUtils;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.ClassifiableFactory;
+import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
-import org.ripreal.textclassifier2.storage.translators.ClassifiableTranslator;
+import org.ripreal.textclassifier2.ngram.VocabularyBuilder;
+import org.ripreal.textclassifier2.testdata.ExcelFileReader;
+import org.ripreal.textclassifier2.testdata.TestDataReader;
+
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -19,9 +24,9 @@ import java.util.Set;
 public final class ClassifierBuilder {
 
     @NonNull
-    private final ClassifiableTranslator reader;
+    private final TestDataReader reader;
     @NonNull
-    private final ClassifiableFactory characteristicFactory;
+    private final ClassifiableFactory textFactory;
     @NonNull
     private final List<ClassifierUnitProxy> classifierUnits = new ArrayList<>();
 
@@ -29,8 +34,12 @@ public final class ClassifierBuilder {
 
     // CONSTRUCTORS
 
-    public static ClassifierBuilder fromReader(@NonNull ClassifiableTranslator reader) {
-        return new ClassifierBuilder(reader, reader.getCharacteristicFactory());
+    public static ClassifierBuilder fromExcel(File file, ClassifiableFactory factory) {
+        return new ClassifierBuilder(new ExcelFileReader(file, 1, factory), factory);
+    }
+
+    public static ClassifierBuilder fromReader(TestDataReader reader, ClassifiableFactory factory) {
+        return new ClassifierBuilder(reader, factory);
     }
 
     // CLIENT SECTION
@@ -47,51 +56,47 @@ public final class ClassifierBuilder {
                         trainedClassifier,
                         nGramStrategy,
                         vocabulary,
-                        characteristicFactory.newCharacteristic(characteristicName)
+                        textFactory.newCharacteristic(characteristicName)
                 ));
         return this;
     }
 
-    public Classifier build() {
-
+    public Classifier build() throws IOException {
         if (!initialized()) {
-            log.info("Error. No classifier units were specified!");
-            return null;
+            throw new IllegalArgumentException("Error. No classifier units were specified!");
         }
-
         List<ClassifierUnit> units = buildClassifiers();
-
         shutDownClassifiers(units);
-
         return new Classifier(units);
     }
 
     // INNER SECTION
 
-    private List<ClassifierUnit> buildClassifiers() {
+    private List<ClassifierUnit> buildClassifiers() throws IOException {
 
-        Set<Characteristic> characteristics = reader.toCharacteristics();
+        TestDataReader.ClassifiableData data = reader.readAll();
+
+        Set<Characteristic> characteristics = data.getCharacteristics();
 
         List<ClassifierUnit> units = new ArrayList<>();
         for (ClassifierUnitProxy proxy : classifierUnits) {
 
-            proxy.setVocabulary(reader.toVocabulary(proxy.getNGramStrategy()));
+            proxy.setVocabulary(new VocabularyBuilder(proxy.getNGramStrategy()).getVocabulary(
+                data.getClassifiableTexts(), textFactory));
 
             proxy.setCharacteristic(
                     CharacteristicUtils.findByValue(
                             characteristics,
                             proxy.getCharacteristic().getName(),
-                            characteristicFactory::newCharacteristic)
+                            textFactory::newCharacteristic)
             );
 
             ClassifierUnit unit = proxy.get();
 
-            unit.build(reader.toClassifiableTexts());
+            unit.build(data.getClassifiableTexts());
 
             units.add(unit);
         }
-
-        reader.reset();
 
         return units;
     }

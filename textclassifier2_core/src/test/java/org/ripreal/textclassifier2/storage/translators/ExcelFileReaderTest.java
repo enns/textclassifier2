@@ -4,15 +4,17 @@ import org.junit.Test;
 import org.ripreal.textclassifier2.model.ClassifiableFactory;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.modelimp.DefClassifiableFactory;
+import org.ripreal.textclassifier2.testdata.ExcelFileReader;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class ExcelFileReaderTest {
-    private final ExcelFileTranslator excelFileReader = new ExcelFileTranslator(new File("./test_db/test.xlsx"), 1, new DefClassifiableFactory());
+    private final ExcelFileReader excelFileReader = new ExcelFileReader(new File("./test_db/test.xlsx"), 1, new DefClassifiableFactory());
     private final ClassifiableFactory characteristicFactory = new DefClassifiableFactory();
 
     @Test
@@ -39,14 +41,14 @@ public class ExcelFileReaderTest {
 
 
     @Test
-    public void nonExistentFile() {
-        ExcelFileTranslator reader = new ExcelFileTranslator(new File("incorrect_path"), 1, characteristicFactory);
-        reader.toClassifiableTexts();
+    public void nonExistentFile() throws IOException {
+        ExcelFileReader reader = new ExcelFileReader(new File("incorrect_path"), 1, characteristicFactory);
+        reader.next().getClassifiableTexts();
     }
 
     @Test
-    public void IncorrectSheetNumber() {
-        ExcelFileTranslator reader = new ExcelFileTranslator(new File("./test_db/test.xlsx"), 2, characteristicFactory);
-        reader.toClassifiableTexts();
+    public void IncorrectSheetNumber() throws IOException {
+        ExcelFileReader reader = new ExcelFileReader(new File("./test_db/test.xlsx"), 2, characteristicFactory);
+        reader.next().getClassifiableTexts();
     }
 }
