@@ -49,7 +49,7 @@ public class JiraClientTest {
 
     @Test
     public void testJiraIssueReader() throws IOException {
-        JiraIssueReader reader = client.issueReader(2, textFactory);
+        JiraIssueReader reader = client.newIssueReader(2, textFactory);
         reader.setUpperLimit(2);
         while (reader.next()) {
             log.info("request's result: {}", reader.getTexts());
@@ -58,13 +58,16 @@ public class JiraClientTest {
     }
 
     @Test
-    public void testJiraIssueWriter() throws IOException {
-        JiraIssueWriter writer = client.issueWriter();
+    public void testJiraIssueWriter() throws Exception {
+        JiraIssueWriter writer = client.newIssueWriter();
+        JiraIssueReader reader = client.newIssueReader(2, textFactory);
+        reader.setUpperLimit(2);
         Path uploadedTextsPath = Files.createTempFile(null, null);
-        writer.write(
-            client.issueReader(2, textFactory),
+        assertTrue(writer.write(
+            reader,
             new FileOutputStream(new File(uploadedTextsPath.toUri()))
-        );
-
+        ));
+        assertTrue(Files.exists(uploadedTextsPath));
+        Files.delete(uploadedTextsPath);
     }
 }

@@ -1,36 +1,45 @@
 package org.ripreal.textclassifier2.storage.testdata;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import lombok.Getter;
+import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableText;
+import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.ripreal.textclassifier2.storage.data.entities.*;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class AutogenerateTestDataProvider implements TestDataProvider {
+public class AutogenerateTestDataReader implements TestDataReader {
+
+    // ITERATOR
+
+    private boolean hasNext = true;
 
     @Override
-    public TestDataProvider.ClassifiableData next() {
-        List<MongoClassifiableText> classifiableTexts = getTextTestData();
-        Set<MongoCharacteristic> characteristics = getCharacteristicTestData();
-        Set<MongoCharacteristicValue> characteristicValues = getCharacteristicValueTetData(classifiableTexts);
-        Set<MongoVocabularyWord> vocabulary = getVocabTestData();
-        return new TestDataProvider.ClassifiableData(classifiableTexts, characteristics, characteristicValues, vocabulary);
+    public boolean hasNext() {
+        return hasNext;
+    }
+
+    @Override
+    public TestDataReader.ClassifiableData next() {
+        hasNext = false;
+        List<ClassifiableText> classifiableTexts = getTextTestData();
+        Set<Characteristic> characteristics = getCharacteristicTestData();
+        Set<CharacteristicValue> characteristicValues = getCharacteristicValueTetData(classifiableTexts);
+        Set<VocabularyWord> vocabulary = getVocabTestData();
+        return new TestDataReader.ClassifiableData(classifiableTexts, characteristics, characteristicValues, vocabulary);
     }
 
     @Override
     public void close() {
     }
 
-    private List<MongoClassifiableText> getTextTestData() {
+    // GENERATING TEXTS
 
-        Set<MongoCharacteristic> characteristics = getCharacteristicTestData();
+    private List<ClassifiableText> getTextTestData() {
+
+        Set<Characteristic> characteristics = getCharacteristicTestData();
 
         MongoCharacteristic characteristic1 = characteristics.toArray(new MongoCharacteristic[0])[0];
 
@@ -67,23 +76,23 @@ public class AutogenerateTestDataProvider implements TestDataProvider {
         return Arrays.asList(text1, text2, text3);
     }
 
-    private Set<MongoVocabularyWord> getVocabTestData() {
+    private Set<VocabularyWord> getVocabTestData() {
         return new HashSet<>(Arrays.asList(
             new MongoVocabularyWord("треб", NGramStrategy.NGRAM_TYPES.FILTERED_UNIGRAM.toString()),
             new MongoVocabularyWord("найти", NGramStrategy.NGRAM_TYPES.FILTERED_UNIGRAM.toString())
         ));
     }
 
-    private Set<MongoCharacteristicValue> getCharacteristicValueTetData(List<MongoClassifiableText> texts) {
+    private Set<CharacteristicValue> getCharacteristicValueTetData(List<ClassifiableText> texts) {
         return texts.stream()
             .flatMap(text ->  text.getCharacteristics().stream())
             .map(value -> (MongoCharacteristicValue) value)
             .collect(Collectors.toSet());
     }
 
-    private Set<MongoCharacteristic> getCharacteristicTestData() {
+    private Set<Characteristic> getCharacteristicTestData() {
         // order has meaning
-        Set<MongoCharacteristic> characteristics = new HashSet<>();
+        Set<Characteristic> characteristics = new HashSet<>();
         characteristics.add(new MongoCharacteristic("Отдел"));
         characteristics.add(new MongoCharacteristic("Тип"));
         return characteristics;

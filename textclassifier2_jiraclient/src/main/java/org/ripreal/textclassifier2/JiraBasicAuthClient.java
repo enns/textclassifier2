@@ -37,12 +37,12 @@ public class JiraBasicAuthClient implements JiraClient{
     }
 
     @Override
-    public JiraIssueReader issueReader(int maxResult, @NonNull ClassifiableFactory textFactory) {
+    public JiraIssueReader newIssueReader(int maxResult, @NonNull ClassifiableFactory textFactory) {
         return new JiraIssueReader(this, mapper, maxResult, textFactory);
     }
 
     @Override
-    public JiraIssueWriter issueWriter() {
+    public JiraIssueWriter newIssueWriter() {
         return new JiraIssueWriter(this, mapper);
     }
 

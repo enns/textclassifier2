@@ -22,16 +22,15 @@ public abstract class AbstractEntityDeserializer <T> extends StdDeserializer<T> 
 
     @Override
     public T deserialize(JsonParser parser, DeserializationContext deserializer) throws IOException {
-
-        T charValue = newEntity();
+        T convertingEntity = newEntity();
         try {
             ObjectCodec codec = parser.getCodec();
             JsonNode node = codec.readTree(parser);
-            EntitiesConverter.convertTo(node, codec, charValue);
+            EntitiesConverter.convertTo(node, codec, convertingEntity);
         } catch(IOException e) {
-            log.warn("Some properties of the CharacteristicValue was ignored because of the deserialization error", e);
+            log.warn("Some properties of the converting entity was ignored because of the deserialization error", e);
         }
-        return charValue;
+        return convertingEntity;
     }
 
     public abstract T newEntity();

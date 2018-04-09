@@ -7,7 +7,7 @@ import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.VocabularyWord;
-import org.ripreal.textclassifier2.storage.testdata.AutogenerateTestDataProvider;
+import org.ripreal.textclassifier2.storage.testdata.AutogenerateTestDataReader;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
@@ -21,24 +21,24 @@ public class DeserializationTest extends SpringTestConfig {
 
     @Test
     public void deserializeClassifiableTextTest() throws IOException {
-        deserialize(new AutogenerateTestDataProvider().next().getClassifiableTexts().get(0), ClassifiableText.class);
+        deserialize(new AutogenerateTestDataReader().next().getClassifiableTexts().get(0), ClassifiableText.class);
     }
 
     @Test
     public void deserializeCharacteristic() throws IOException {
-        deserialize(new AutogenerateTestDataProvider().next().getCharacteristics()
+        deserialize(new AutogenerateTestDataReader().next().getCharacteristics()
             .toArray(new Characteristic[0])[0], Characteristic.class);
     }
 
     @Test
     public void deserializeCharacteristicValue() throws IOException {
-        deserialize(new AutogenerateTestDataProvider().next().getCharacteristicValues()
+        deserialize(new AutogenerateTestDataReader().next().getCharacteristicValues()
             .toArray(new CharacteristicValue[0])[0], CharacteristicValue.class);
     }
 
     @Test
     public void deserializeVocabularyWord() throws IOException {
-        deserialize(new AutogenerateTestDataProvider().next().getVocabulary()
+        deserialize(new AutogenerateTestDataReader().next().getVocabulary()
             .toArray(new VocabularyWord[0])[0], VocabularyWord.class);
     }
 

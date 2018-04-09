@@ -159,7 +159,7 @@ public class JiraIssueReader implements AutoCloseable {
 
         Map<String, String> params = new HashMap<>();
 
-        params.put("jql", "project in (" + Projects + ")");
+       // params.put("jql", "project in (" + Projects + ")");
         params.put("fields", fields);
         params.put("maxResults", String.valueOf(maxResult));
         params.put("startAt", String.valueOf(position));
