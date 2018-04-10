@@ -70,8 +70,4 @@ public class JiraBasicAuthClient implements JiraClient{
         return GET(url, new HashMap<>());
     }
 
-    @Override
-    public String test(String t) {
-        return "prod";
-    }
 }

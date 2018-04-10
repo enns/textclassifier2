@@ -1,5 +1,6 @@
 package org.ripreal.textclassifier2.storage.data.reactive.repos;
 
+import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.storage.data.entities.MongoCharacteristicValue;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
@@ -8,7 +9,6 @@ import reactor.core.publisher.Flux;
 
 @Repository
 public interface CharacteristicValueRepo extends ReactiveMongoRepository<MongoCharacteristicValue, String> {
-    @Query("{'characteristicName' : ?0 }")
-    public Flux<MongoCharacteristicValue> findByCharacteristicName(String characteristicName);
-
+    @Query("{'characteristic.$id' : ?0 }")
+    public Flux<MongoCharacteristicValue> findByCharacteristicName(String characteristic);
 }

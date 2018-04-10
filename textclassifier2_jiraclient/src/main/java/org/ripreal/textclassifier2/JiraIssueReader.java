@@ -32,16 +32,16 @@ public class JiraIssueReader implements AutoCloseable {
 
     private final ObjectMapper mapper;
     private final JiraClient client;
-    private final int maxResult;
     private final ClassifiableFactory textFactory;
     @Getter
     private List<ClassifiableText> texts = new ArrayList<>();
 
+    private final int maxResult;
     @Setter
     @Getter
     private int position = 0;
     @Setter
-    private int upperLimit = -1;
+    private int upperLimit = Integer.MAX_VALUE;
     private boolean hasNext = true;
 
     public JiraIssueReader(@NonNull JiraClient client, @NonNull ObjectMapper mapper, int maxResult, @NonNull
@@ -82,7 +82,7 @@ public class JiraIssueReader implements AutoCloseable {
             position += maxResult;
             throw new IOException(e);
         }
-        hasNext = upperLimit == -1 || upperLimit > position;
+        hasNext = upperLimit > position;
         return true;
     }
 
@@ -161,7 +161,7 @@ public class JiraIssueReader implements AutoCloseable {
 
        // params.put("jql", "project in (" + Projects + ")");
         params.put("fields", fields);
-        params.put("maxResults", String.valueOf(maxResult));
+        params.put("maxResults", String.valueOf((Math.min(maxResult, upperLimit))));
         params.put("startAt", String.valueOf(position));
         params.put("expand", "names,renderedFields"); // HTML for description fields
 

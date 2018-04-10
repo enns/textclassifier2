@@ -4,10 +4,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.MongoClient;
 import lombok.extern.slf4j.Slf4j;
 import org.ripreal.textclassifier2.*;
+import org.ripreal.textclassifier2.classifier.Classifier;
+import org.ripreal.textclassifier2.classifier.ClassifierBuilder;
 import org.ripreal.textclassifier2.model.ClassifiableFactory;
 import org.ripreal.textclassifier2.model.ClassifiableText;
+import org.ripreal.textclassifier2.ngram.NGramStrategy;
 import org.ripreal.textclassifier2.storage.data.mapper.EntitiesConverter;
 import org.ripreal.textclassifier2.storage.service.ClassifiableService;
+import org.ripreal.textclassifier2.storage.service.decorators.LoggerClassifiableTextService;
 import org.ripreal.textclassifier2.testdata.TestDataReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -34,6 +38,12 @@ public class TestDataRunner {
     @Autowired
     private ObjectMapper mapper;
 
+    public TestDataRunner(ClassifiableService textService, ClassifiableFactory textFactory, ObjectMapper mapper) {
+        this.textFactory = textFactory;
+        this.textService = new LoggerClassifiableTextService(textService);
+        this.mapper = mapper;
+    }
+
     @Bean
     @Transactional
     public CommandLineRunner init() {
@@ -47,22 +57,25 @@ public class TestDataRunner {
                 runJiraLoader();
             else if (String.join(" -", args).toUpperCase().contains("LOAD_FORM_JSON_TEST_DATA"))
                 runJsonLoader();
+            else if (String.join(" -", args).toUpperCase().contains("RUN_LEARNING"))
+                runLearning();
         };
     }
 
     private void runJsonLoader() throws IOException {
+        textService.deleteAll().blockLast();
         TestDataReader reader = new InputStreamTestDataReader(
             new FileInputStream(new File("./resources/jira.json")),
             mapper,
-            60
+            100
         );
-        List<ClassifiableText> texts = new ArrayList<>();
         long running_read = 0;
         while(reader.hasNext()) {
-            List<ClassifiableText> read = reader.next().getClassifiableTexts();
-            running_read += read.size();
+            List<ClassifiableText> texts = reader.next().getClassifiableTexts();
+            running_read += texts.size();
             log.info("read {}", running_read);
-            texts.addAll(texts);
+            textService.saveAllTexts(EntitiesConverter.castToMongoTexts(texts))
+                .blockLast();
         }
     }
 
@@ -84,9 +97,13 @@ public class TestDataRunner {
         }
     }
 
-    private void runOtherBaseLoader() throws Exception{
-        MongoClient mongoClient = new MongoClient();
-
+    private void runLearning() throws IOException {
+        MongoTestDataReader reader = new MongoTestDataReader(textService, 10);
+        Classifier classifier = ClassifierBuilder.fromReader(reader, textFactory)
+            //.addNeroClassifierUnit("issueType", NGramStrategy.getNGramStrategy(NGramStrategy.NGRAM_TYPES.FILTERED_BIGRAM))
+           .addNeroClassifierUnit("projectType", NGramStrategy.getNGramStrategy(NGramStrategy.NGRAM_TYPES.FILTERED_BIGRAM))
+            .build();
+        classifier.saveClassifiers(new File("./resources"));
     }
 
 }

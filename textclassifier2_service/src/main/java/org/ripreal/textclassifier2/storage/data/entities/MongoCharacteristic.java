@@ -27,13 +27,20 @@ public class MongoCharacteristic implements Characteristic {
     private String name;
     @JsonIgnore
     @Transient
-    private Set<CharacteristicValue> possibleValues = new HashSet();
+    private Set<CharacteristicValue> possibleValues = new HashSet<>();
 
     @Override
     @JsonIgnore
     @Transient
     public Set<CharacteristicValue> getPossibleValues() {
         return possibleValues;
+    }
+
+    @Override
+    @JsonIgnore
+    @Transient
+    public void setPossibleValues(Set<CharacteristicValue> possibleValues) {
+        this.possibleValues = possibleValues;
     }
 
     @Override

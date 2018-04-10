@@ -12,12 +12,6 @@ import org.springframework.context.annotation.Configuration;
 public class TextClassifierConfig {
 
     @Bean
-    @Autowired
-    public TestDataReader textReader(ClassifiableService textService) {
-        return new MongoTestDataReader();
-    }
-
-    @Bean
     public MongoClassifiableFactory textFactory() {
         return new MongoClassifiableFactory();
     }

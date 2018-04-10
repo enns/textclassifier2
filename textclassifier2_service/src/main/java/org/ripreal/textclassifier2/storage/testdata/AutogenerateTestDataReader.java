@@ -92,7 +92,6 @@ public class AutogenerateTestDataReader implements TestDataReader {
     private Set<CharacteristicValue> getCharacteristicValueTetData(List<ClassifiableText> texts) {
         return texts.stream()
             .flatMap(text ->  text.getCharacteristics().stream())
-            .map(value -> (MongoCharacteristicValue) value)
             .collect(Collectors.toSet());
     }
 

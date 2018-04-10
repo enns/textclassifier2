@@ -12,5 +12,4 @@ public interface JiraClient extends AutoCloseable {
     JiraIssueWriter newIssueWriter();
     String GET(String url, Map<String,String> params) throws IOException;
     String GET(String url) throws IOException;
-    String test(String t);
 }

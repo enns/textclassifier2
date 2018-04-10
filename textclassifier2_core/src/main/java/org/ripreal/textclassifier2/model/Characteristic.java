@@ -10,5 +10,7 @@ public interface Characteristic {
 
     Set<CharacteristicValue> getPossibleValues();
 
+    void setPossibleValues(Set<CharacteristicValue> charVals);
+
     void addPossibleValue(CharacteristicValue value);
 }

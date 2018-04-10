@@ -71,22 +71,11 @@ public class InputStreamTestDataReader implements TestDataReader {
 
     private TestDataReader.ClassifiableData readClassifiableData(List<ClassifiableText> texts) {
         if (texts.size() != 0) {
-            Set<CharacteristicValue> charValues = getCharacteristicValueTetData(texts);
-            Set<Characteristic> characteristics = getCharacteristicTestData(charValues);
+            Set<CharacteristicValue> charValues = TestDataReader.getCharacteristicValueTetData(texts);
+            Set<Characteristic> characteristics = TestDataReader.getCharacteristicTestData(charValues);
             return new TestDataReader.ClassifiableData(texts, characteristics, charValues);
         }
         return TestDataReader.ClassifiableData.empty();
     }
 
-    private Set<CharacteristicValue> getCharacteristicValueTetData(List<ClassifiableText> texts) {
-        return texts.stream()
-            .flatMap(text ->  text.getCharacteristics().stream())
-            .collect(Collectors.toSet());
-    }
-
-    private Set<Characteristic> getCharacteristicTestData(Set<CharacteristicValue> charVals) {
-        return charVals.stream()
-            .map(CharacteristicValue::getCharacteristic)
-            .collect(Collectors.toSet());
-    }
 }

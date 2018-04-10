@@ -14,7 +14,12 @@ public class DefCharacteristic implements Characteristic {
     @NonNull
     private String name;
 
-    private final Set<CharacteristicValue> possibleValues = new HashSet<>();
+    private Set<CharacteristicValue> possibleValues = new HashSet<>();
+
+    @Override
+    public void setPossibleValues(Set<CharacteristicValue> charVals) {
+        this.possibleValues = possibleValues;
+    }
 
     public void addPossibleValue(CharacteristicValue value) {
         possibleValues.add(value);

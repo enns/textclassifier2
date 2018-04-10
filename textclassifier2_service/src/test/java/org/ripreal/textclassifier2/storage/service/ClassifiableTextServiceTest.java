@@ -10,12 +10,15 @@ import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.ripreal.textclassifier2.storage.SpringTestConfig;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
 import org.ripreal.textclassifier2.storage.data.entities.MongoCharacteristic;
+import org.ripreal.textclassifier2.storage.data.entities.MongoCharacteristicValue;
 import org.ripreal.textclassifier2.storage.data.mapper.EntitiesConverter;
 import org.ripreal.textclassifier2.storage.testdata.AutogenerateTestDataReader;
 import org.springframework.beans.factory.annotation.Autowired;
+import reactor.core.publisher.Flux;
 
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -65,8 +68,19 @@ public class ClassifiableTextServiceTest extends SpringTestConfig {
         // check doubles
         assertNotNull(service.saveAllVocabulary(EntitiesConverter.castToMongoVocabulary(vocabulary)).blockLast());
 
-        assertEquals((long) vocabulary .size(), service.findVocabularyByNgram(NGramStrategy.getNGramStrategy(
-            NGramStrategy.NGRAM_TYPES.FILTERED_UNIGRAM)).toStream().count());
+        assertEquals((long) vocabulary.size(), service.findVocabularyByNgram(NGramStrategy.getNGramStrategy(
+                NGramStrategy.NGRAM_TYPES.FILTERED_UNIGRAM)).toStream().count());
+    }
+
+    @Test
+    public void testFindByCharacteristic() {
+
+        List<ClassifiableText> texts = new AutogenerateTestDataReader().next().getClassifiableTexts();
+        assertNotNull(service.saveAllTexts(EntitiesConverter.castToMongoTexts(texts)).blockLast());
+
+        MongoCharacteristicValue[] arr = texts.get(0).getCharacteristics().toArray(new MongoCharacteristicValue[0]);
+        Set<MongoCharacteristicValue> res = service.findCharacteristicValuesByCharacteristic(arr[0].getCharacteristic()).toStream().collect(Collectors.toSet());
 
     }
+
 }

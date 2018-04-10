@@ -1,9 +1,13 @@
 package org.ripreal.textclassifier2;
 
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.json.WriterBasedJsonGenerator;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SequenceWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.sun.javafx.collections.ObservableSequentialListWrapper;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -21,21 +25,29 @@ public class JiraIssueWriter {
     private final JiraClient client;
     private final ObjectMapper mapper;
 
-
     public boolean write(@NonNull JiraIssueReader reader, @NonNull OutputStream out) throws Exception {
-        ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
-        SequenceWriter wr = ow.writeValues(out);
+
+        JsonGenerator jsonGenerator = mapper.getFactory().createGenerator(out);
+        //for pretty printing
+        jsonGenerator.setPrettyPrinter(new DefaultPrettyPrinter());
+
+        jsonGenerator.writeStartArray();
         while(reader.next()) {
             List<ClassifiableText> texts = reader.getTexts();
+            for(ClassifiableText singleText : texts) {
 
-            texts.forEach(
-                txt -> txt.getCharacteristics().forEach(
-                    chr -> chr.getCharacteristic().getPossibleValues().clear()));
-            System.out.println(reader.getPosition());
-            wr.write(texts);
+                singleText.getCharacteristics().forEach(
+                    chr -> chr.getCharacteristic().getPossibleValues().clear());
+
+                jsonGenerator.writeObject(singleText);
+            }
+            System.out.println("written " + reader.getPosition());
         }
-        wr.close();
+        jsonGenerator.writeEndArray();
+        jsonGenerator.close();
         reader.close();
         return true;
+
     }
+
 }

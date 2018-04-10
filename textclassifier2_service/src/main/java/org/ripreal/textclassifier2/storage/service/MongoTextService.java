@@ -2,9 +2,12 @@ package org.ripreal.textclassifier2.storage.service;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.ripreal.textclassifier2.model.Characteristic;
+import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
 import org.ripreal.textclassifier2.storage.data.entities.MongoCharacteristic;
+import org.ripreal.textclassifier2.storage.data.entities.MongoCharacteristicValue;
 import org.ripreal.textclassifier2.storage.data.entities.MongoVocabularyWord;
 import org.ripreal.textclassifier2.storage.data.queries.QuerySpecification;
 import org.ripreal.textclassifier2.storage.data.reactive.repos.CharacteristicRepo;
@@ -20,6 +23,8 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -47,7 +52,20 @@ public class MongoTextService implements ClassifiableService {
 
     @Override
     public Flux<MongoCharacteristic> findAllCharacteristics() {
-        return charRepo.findAll();
+        return charRepo.findAll().doOnNext(
+            (item) -> {
+               // Iterable<MongoCharacteristicValue> charVals = charValRepo.findByCharacteristicName(item.getName()).toIterable();
+                //item.setPossibleValues(charVals);
+            }
+        );
+    }
+
+    public Flux<MongoCharacteristicValue> findCharacteristicValuesByCharacteristic(Characteristic characteristic) {
+        return charValRepo.findByCharacteristicName(characteristic.getName());
+    }
+
+    public Flux<MongoCharacteristicValue> findAllCharacteristicValues() {
+        return charValRepo.findAll();
     }
 
     @Override

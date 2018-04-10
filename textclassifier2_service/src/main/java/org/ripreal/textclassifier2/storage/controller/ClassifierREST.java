@@ -7,6 +7,8 @@ import org.ripreal.textclassifier2.classifier.ClassifierBuilder;
 import org.ripreal.textclassifier2.model.ClassifiableFactory;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
 import org.ripreal.textclassifier2.storage.controller.exceptions.IncorrectClassifierType;
+import org.ripreal.textclassifier2.storage.service.ClassifiableService;
+import org.ripreal.textclassifier2.storage.testdata.MongoTestDataReader;
 import org.ripreal.textclassifier2.testdata.TestDataReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -21,8 +23,8 @@ public class ClassifierREST {
     private final ClassifierBuilder builder;
 
     @Autowired
-    public ClassifierREST(TestDataReader reader, ClassifiableFactory factory) {
-        this.builder = ClassifierBuilder.fromReader(reader, factory);
+    public ClassifierREST(ClassifiableFactory factory, ClassifiableService service) {
+        this.builder = ClassifierBuilder.fromReader(new MongoTestDataReader(service), factory);
     }
 
     @PostMapping(value = "init",

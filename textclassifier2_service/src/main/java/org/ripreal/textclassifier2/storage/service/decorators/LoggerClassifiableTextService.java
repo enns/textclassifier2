@@ -3,9 +3,11 @@ package org.ripreal.textclassifier2.storage.service.decorators;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
 import org.ripreal.textclassifier2.storage.data.entities.MongoCharacteristic;
+import org.ripreal.textclassifier2.storage.data.entities.MongoCharacteristicValue;
 import org.ripreal.textclassifier2.storage.data.entities.MongoClassifiableText;
 import org.ripreal.textclassifier2.storage.data.entities.MongoVocabularyWord;
 import org.ripreal.textclassifier2.storage.service.ClassifiableService;
@@ -45,10 +47,24 @@ public class LoggerClassifiableTextService implements ClassifiableService {
     }
 
     @Override
+    public Flux<MongoCharacteristicValue> findAllCharacteristicValues() {
+        return service.findAllCharacteristicValues()
+            .doOnRequest((request) -> log.info("start findAllCharacteristicValues request"))
+            .doOnNext((item) -> log.info("found {}", item));
+    }
+
+    @Override
     public Mono<MongoCharacteristic> findCharacteristicByName(String name) {
         return service.findCharacteristicByName(name)
             .doOnRequest((request) -> log.info("start findCharacteristicByName request"))
             .doOnNext((item) -> log.info("found by id {}", item));
+    }
+
+    @Override
+    public Flux<MongoCharacteristicValue> findCharacteristicValuesByCharacteristic(Characteristic characteristic) {
+        return service.findAllCharacteristicValues()
+                .doOnRequest((request) -> log.info("start findAllCharacteristicValues request"))
+                .doOnNext((item) -> log.info("found {}", item));
     }
 
     @Override
