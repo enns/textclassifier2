@@ -18,12 +18,7 @@ public class CharacteristicResource {
     public CharacteristicResource(ClassifiableService service) {
         this.service = new LoggerClassifiableTextService(service);
     }
-
-    @GetMapping(value = "all", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Flux<MongoCharacteristic> findAll() {
-        return service.findAllCharacteristics();
-    }
-
+    
     @GetMapping(value = "{name}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<MongoCharacteristic> findByName(@PathVariable String name) {
         return service.findCharacteristicByName(name)

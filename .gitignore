@@ -5,6 +5,7 @@
 /target/
 gradle.properties
 config.properties
+jira.json
 /textclassifier2_core/build/
 /textclassifier2_core/out/
 /textclassifier2_core/gradle.properties
@@ -14,5 +15,3 @@ config.properties
 /textclassifier2_gateway/out/
 /textclassifier2_jiraclient/out/
 /textclassifier2_jiraclient/build/
-.*
-!/.gitignore

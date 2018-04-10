@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import java.util.List;
+import java.util.Set;
 
 @Slf4j
 @AllArgsConstructor
@@ -40,10 +41,8 @@ public class LoggerClassifiableTextService implements ClassifiableService {
     }
 
     @Override
-    public Flux<MongoCharacteristic> findAllCharacteristics() {
-        return service.findAllCharacteristics()
-            .doOnRequest((request) -> log.info("start findAllCharacteristics request"))
-            .doOnNext((item) -> log.info("found {}", item));
+    public Set<MongoCharacteristic> findAllCharacteristics() {
+        return service.findAllCharacteristics();
     }
 
     @Override

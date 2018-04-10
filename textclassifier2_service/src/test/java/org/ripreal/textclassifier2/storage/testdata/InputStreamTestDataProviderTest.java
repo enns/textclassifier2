@@ -32,7 +32,7 @@ public class InputStreamTestDataProviderTest extends SpringTestConfig {
 
     @Test
     public void testNext() throws IOException {
-        TestDataReader reader = new InputStreamTestDataReader(
+        TestDataReader reader = new JsonTestDataReader(
             new ByteArrayInputStream(jsonTextsToCheck.getBytes(StandardCharsets.UTF_8)),
             mapper,
             1

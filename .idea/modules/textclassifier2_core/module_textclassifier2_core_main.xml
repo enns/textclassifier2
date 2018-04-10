@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_textclassifier2_core_main" default="compile.module.textclassifier2_core_main">
+  <dirname property="module.textclassifier2_core_main.basedir" file="${ant.file.module_textclassifier2_core_main}"/>
+  
+  <property name="module.jdk.home.textclassifier2_core_main" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.textclassifier2_core_main" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.textclassifier2_core_main" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.textclassifier2_core_main" value="-encoding UTF-8 -source 1.8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="textclassifier2_core_main.output.dir" value="${module.textclassifier2_core_main.basedir}/../../../textclassifier2_core/out/production/classes"/>
+  <property name="textclassifier2_core_main.testoutput.dir" value="${module.textclassifier2_core_main.basedir}/../../../textclassifier2_core/out/production/classes"/>
+  
+  <path id="textclassifier2_core_main.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="textclassifier2_core_main.module.production.classpath">
+    <path refid="${module.jdk.classpath.textclassifier2_core_main}"/>
+    <path refid="library.gradle:_org.projectlombok:lombok:1.16.18.classpath"/>
+    <path refid="library.gradle:_org.encog:encog-core:3.3.0.classpath"/>
+    <path refid="library.gradle:_org.apache.poi:poi-ooxml:3.16.classpath"/>
+    <path refid="library.gradle:_org.apache.commons:commons-math3:3.0.classpath"/>
+    <path refid="library.gradle:_org.apache.poi:poi:3.16.classpath"/>
+    <path refid="library.gradle:_org.apache.poi:poi-ooxml-schemas:3.16.classpath"/>
+    <path refid="library.gradle:_com.github.virtuald:curvesapi:1.04.classpath"/>
+    <path refid="library.gradle:_commons-codec:commons-codec:1.11.classpath"/>
+    <path refid="library.gradle:_org.apache.commons:commons-collections4:4.1.classpath"/>
+    <path refid="library.gradle:_org.apache.xmlbeans:xmlbeans:2.6.0.classpath"/>
+    <path refid="library.gradle:_stax:stax-api:1.0.1.classpath"/>
+  </path>
+  
+  <path id="textclassifier2_core_main.runtime.production.module.classpath">
+    <pathelement location="${textclassifier2_core_main.output.dir}"/>
+    <path refid="library.gradle:_org.projectlombok:lombok:1.16.18.classpath"/>
+    <path refid="library.gradle:_org.encog:encog-core:3.3.0.classpath"/>
+    <path refid="library.gradle:_org.apache.poi:poi-ooxml:3.16.classpath"/>
+    <path refid="library.gradle:_org.apache.commons:commons-math3:3.0.classpath"/>
+    <path refid="library.gradle:_org.apache.poi:poi:3.16.classpath"/>
+    <path refid="library.gradle:_org.apache.poi:poi-ooxml-schemas:3.16.classpath"/>
+    <path refid="library.gradle:_com.github.virtuald:curvesapi:1.04.classpath"/>
+    <path refid="library.gradle:_commons-codec:commons-codec:1.11.classpath"/>
+    <path refid="library.gradle:_org.apache.commons:commons-collections4:4.1.classpath"/>
+    <path refid="library.gradle:_org.apache.xmlbeans:xmlbeans:2.6.0.classpath"/>
+    <path refid="library.gradle:_stax:stax-api:1.0.1.classpath"/>
+  </path>
+  
+  <path id="textclassifier2_core_main.module.classpath">
+    <path refid="${module.jdk.classpath.textclassifier2_core_main}"/>
+    <pathelement location="${textclassifier2_core_main.output.dir}"/>
+    <path refid="library.gradle:_org.projectlombok:lombok:1.16.18.classpath"/>
+    <path refid="library.gradle:_org.encog:encog-core:3.3.0.classpath"/>
+    <path refid="library.gradle:_org.apache.poi:poi-ooxml:3.16.classpath"/>
+    <path refid="library.gradle:_org.apache.commons:commons-math3:3.0.classpath"/>
+    <path refid="library.gradle:_org.apache.poi:poi:3.16.classpath"/>
+    <path refid="library.gradle:_org.apache.poi:poi-ooxml-schemas:3.16.classpath"/>
+    <path refid="library.gradle:_com.github.virtuald:curvesapi:1.04.classpath"/>
+    <path refid="library.gradle:_commons-codec:commons-codec:1.11.classpath"/>
+    <path refid="library.gradle:_org.apache.commons:commons-collections4:4.1.classpath"/>
+    <path refid="library.gradle:_org.apache.xmlbeans:xmlbeans:2.6.0.classpath"/>
+    <path refid="library.gradle:_stax:stax-api:1.0.1.classpath"/>
+  </path>
+  
+  <path id="textclassifier2_core_main.runtime.module.classpath">
+    <pathelement location="${textclassifier2_core_main.output.dir}"/>
+    <path refid="library.gradle:_org.projectlombok:lombok:1.16.18.classpath"/>
+    <path refid="library.gradle:_org.encog:encog-core:3.3.0.classpath"/>
+    <path refid="library.gradle:_org.apache.poi:poi-ooxml:3.16.classpath"/>
+    <path refid="library.gradle:_org.apache.commons:commons-math3:3.0.classpath"/>
+    <path refid="library.gradle:_org.apache.poi:poi:3.16.classpath"/>
+    <path refid="library.gradle:_org.apache.poi:poi-ooxml-schemas:3.16.classpath"/>
+    <path refid="library.gradle:_com.github.virtuald:curvesapi:1.04.classpath"/>
+    <path refid="library.gradle:_commons-codec:commons-codec:1.11.classpath"/>
+    <path refid="library.gradle:_org.apache.commons:commons-collections4:4.1.classpath"/>
+    <path refid="library.gradle:_org.apache.xmlbeans:xmlbeans:2.6.0.classpath"/>
+    <path refid="library.gradle:_stax:stax-api:1.0.1.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.textclassifier2_core_main">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.textclassifier2_core_main">
+    <patternset refid="excluded.from.module.textclassifier2_core_main"/>
+  </patternset>
+  
+  <path id="textclassifier2_core_main.module.sourcepath">
+    <dirset dir="${module.textclassifier2_core_main.basedir}/../../../textclassifier2_core/src/main">
+      <include name="java"/>
+      <include name="resources"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.textclassifier2_core_main" depends="compile.module.textclassifier2_core_main.production,compile.module.textclassifier2_core_main.tests" description="Compile module textclassifier2_core_main"/>
+  
+  <target name="compile.module.textclassifier2_core_main.production" depends="register.custom.compilers" description="Compile module textclassifier2_core_main; production classes">
+    <mkdir dir="${textclassifier2_core_main.output.dir}"/>
+    <javac2 destdir="${textclassifier2_core_main.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.textclassifier2_core_main}/javac">
+      <compilerarg line="${compiler.args.textclassifier2_core_main}"/>
+      <bootclasspath refid="textclassifier2_core_main.module.bootclasspath"/>
+      <classpath refid="textclassifier2_core_main.module.production.classpath"/>
+      <src refid="textclassifier2_core_main.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.textclassifier2_core_main"/>
+    </javac2>
+    
+    <copy todir="${textclassifier2_core_main.output.dir}">
+      <fileset dir="${module.textclassifier2_core_main.basedir}/../../../textclassifier2_core/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.textclassifier2_core_main.basedir}/../../../textclassifier2_core/src/main/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.textclassifier2_core_main.tests" depends="register.custom.compilers,compile.module.textclassifier2_core_main.production" description="compile module textclassifier2_core_main; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.textclassifier2_core_main" description="cleanup module">
+    <delete dir="${textclassifier2_core_main.output.dir}"/>
+    <delete dir="${textclassifier2_core_main.testoutput.dir}"/>
+  </target>
+</project>

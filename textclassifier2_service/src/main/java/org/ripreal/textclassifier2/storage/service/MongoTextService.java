@@ -22,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -50,14 +51,13 @@ public class MongoTextService implements ClassifiableService {
         return vocabRepo.saveAll(vocabulary);
     }
 
-    @Override
-    public Flux<MongoCharacteristic> findAllCharacteristics() {
-        return charRepo.findAll().doOnNext(
-            (item) -> {
-               // Iterable<MongoCharacteristicValue> charVals = charValRepo.findByCharacteristicName(item.getName()).toIterable();
-                //item.setPossibleValues(charVals);
-            }
-        );
+    public Set<MongoCharacteristic> findAllCharacteristics() {
+        Set<MongoCharacteristic> chars = charRepo
+            .findAll()
+            .collect(HashSet<MongoCharacteristic>::new, HashSet::add).block();
+        chars.forEach(item -> charValRepo.findByCharacteristicName(
+            item.getName()).toIterable().forEach(item::addPossibleValue));
+        return chars;
     }
 
     public Flux<MongoCharacteristicValue> findCharacteristicValuesByCharacteristic(Characteristic characteristic) {

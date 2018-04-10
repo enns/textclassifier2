@@ -79,20 +79,18 @@ public class MongoTestDataReader implements TestDataReader {
         List<ClassifiableText> texts = new ArrayList<>();
         while (iterator.hasNext()
             && (upperLimit == -1 || upperLimit > texts.size())) {
-            texts.add((ClassifiableText)iterator.next());
+            texts.add(iterator.next());
         }
         return texts;
     }
 
     private Set<Characteristic> getCharacteristicsTestData() {
-        return textService.findAllCharacteristics().collect(
-                HashSet<Characteristic>::new, HashSet::add)
-                .block();
+        return new HashSet<>(textService.findAllCharacteristics());
     }
 
     private Set<CharacteristicValue> getCharacteristicValueTestData() {
-        return textService.findAllCharacteristicValues().collect(
-                HashSet<CharacteristicValue>::new, HashSet::add)
+        return textService.findAllCharacteristicValues()
+                .collect(HashSet<CharacteristicValue>::new, HashSet::add)
                 .block();
     }
 

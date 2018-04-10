@@ -54,7 +54,7 @@ public class ClassifiableTextServiceTest extends SpringTestConfig {
         Set<Characteristic> characteristics = new AutogenerateTestDataReader().next().getCharacteristics();
         // check doubles
         assertNotNull(service.saveAllTexts(EntitiesConverter.castToMongoTexts(texts)).blockLast());
-        assertEquals((long) characteristics.size(), service.findAllCharacteristics().toStream().count());
+        assertEquals((long) characteristics.size(), service.findAllCharacteristics().size());
 
         MongoCharacteristic found1 = service.findCharacteristicByName(characteristics.toArray(
                 new MongoCharacteristic[0])[0].getName()).block();

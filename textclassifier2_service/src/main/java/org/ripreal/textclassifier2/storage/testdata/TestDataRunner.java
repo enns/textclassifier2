@@ -1,7 +1,6 @@
 package org.ripreal.textclassifier2.storage.testdata;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mongodb.MongoClient;
 import lombok.extern.slf4j.Slf4j;
 import org.ripreal.textclassifier2.*;
 import org.ripreal.textclassifier2.classifier.Classifier;
@@ -21,7 +20,6 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Profile("test")
@@ -64,7 +62,7 @@ public class TestDataRunner {
 
     private void runJsonLoader() throws IOException {
         textService.deleteAll().blockLast();
-        TestDataReader reader = new InputStreamTestDataReader(
+        TestDataReader reader = new JsonTestDataReader(
             new FileInputStream(new File("./resources/jira.json")),
             mapper,
             100
@@ -98,7 +96,7 @@ public class TestDataRunner {
     }
 
     private void runLearning() throws IOException {
-        MongoTestDataReader reader = new MongoTestDataReader(textService, 10);
+        TestDataReader reader = new MongoTestDataReader(textService, 500);
         Classifier classifier = ClassifierBuilder.fromReader(reader, textFactory)
             //.addNeroClassifierUnit("issueType", NGramStrategy.getNGramStrategy(NGramStrategy.NGRAM_TYPES.FILTERED_BIGRAM))
            .addNeroClassifierUnit("projectType", NGramStrategy.getNGramStrategy(NGramStrategy.NGRAM_TYPES.FILTERED_BIGRAM))

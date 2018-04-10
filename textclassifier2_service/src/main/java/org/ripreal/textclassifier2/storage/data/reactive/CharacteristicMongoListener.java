@@ -22,6 +22,8 @@ public class CharacteristicMongoListener extends AbstractMongoEventListener<Obje
 
     private final MongoOperations mongoOperations;
 
+    // EVENT HANDLERS
+
     @Override
     public void onBeforeSave(BeforeSaveEvent<Object> event) {
         super.onBeforeSave(event);
@@ -50,6 +52,9 @@ public class CharacteristicMongoListener extends AbstractMongoEventListener<Obje
             checkNSaveVocabulary((MongoVocabularyWord) source);
         }
     }
+
+
+    // CASCADE SAVINGS
 
     private void checkNSaveVocabulary(MongoVocabularyWord vocabulary) {
         // prevent doubles

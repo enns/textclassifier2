@@ -45,7 +45,7 @@ public class MongoCharacteristic implements Characteristic {
 
     @Override
     public void addPossibleValue(CharacteristicValue value) {
-        // to fulfill collection you perform direct query to the base
+       possibleValues.add(value);
     }
 
     @Override

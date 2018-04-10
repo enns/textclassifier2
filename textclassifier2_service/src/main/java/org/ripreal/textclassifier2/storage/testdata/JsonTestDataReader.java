@@ -7,17 +7,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableText;
-import org.ripreal.textclassifier2.model.VocabularyWord;
-import org.ripreal.textclassifier2.storage.data.entities.MongoCharacteristicValue;
 import org.ripreal.textclassifier2.testdata.TestDataReader;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Slf4j
-public class InputStreamTestDataReader implements TestDataReader {
+public class JsonTestDataReader implements TestDataReader {
 
     @NonNull
     private final InputStream source;
@@ -26,14 +23,14 @@ public class InputStreamTestDataReader implements TestDataReader {
     private final int iteratorSize;
     private final MappingIterator<ClassifiableText> iterator;
 
-    public InputStreamTestDataReader(InputStream source, ObjectMapper mapper, int iteratorSize) throws IOException {
+    public JsonTestDataReader(InputStream source, ObjectMapper mapper, int iteratorSize) throws IOException {
         this.source = source;
         this.mapper = mapper;
         this.iteratorSize = iteratorSize;
         iterator = mapper.readerFor(ClassifiableText.class).readValues(source);
     }
 
-    public InputStreamTestDataReader(InputStream source, ObjectMapper mapper) throws IOException {
+    public JsonTestDataReader(InputStream source, ObjectMapper mapper) throws IOException {
         this(source, mapper, 1);
     }
 
@@ -65,6 +62,7 @@ public class InputStreamTestDataReader implements TestDataReader {
         List<ClassifiableText> texts = new ArrayList<>();
         while(iterator.hasNext() && iteratorSize > texts.size()) {
             texts.add(iterator.next());
+            log.info("read: {}", texts.get(texts.size() - 1));
         }
         return texts;
     }

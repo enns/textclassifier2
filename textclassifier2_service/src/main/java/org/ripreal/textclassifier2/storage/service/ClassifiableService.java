@@ -12,6 +12,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
+import java.util.Set;
 
 public interface ClassifiableService {
 
@@ -19,7 +20,7 @@ public interface ClassifiableService {
 
     Flux<MongoClassifiableText> findAllTexts();
 
-    Flux<MongoCharacteristic> findAllCharacteristics();
+    Set<MongoCharacteristic> findAllCharacteristics();
 
     Flux<MongoCharacteristicValue> findAllCharacteristicValues();
 
