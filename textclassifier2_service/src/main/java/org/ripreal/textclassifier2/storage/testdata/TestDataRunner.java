@@ -5,11 +5,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.ripreal.textclassifier2.*;
 import org.ripreal.textclassifier2.classifier.Classifier;
 import org.ripreal.textclassifier2.classifier.ClassifierBuilder;
+import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableFactory;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
+import org.ripreal.textclassifier2.storage.data.entities.MongoCharacteristic;
+import org.ripreal.textclassifier2.storage.data.entities.MongoCharacteristicValue;
 import org.ripreal.textclassifier2.storage.data.mapper.EntitiesConverter;
 import org.ripreal.textclassifier2.storage.service.ClassifiableService;
+import org.ripreal.textclassifier2.storage.service.MongoTextService;
 import org.ripreal.textclassifier2.storage.service.decorators.LoggerClassifiableTextService;
 import org.ripreal.textclassifier2.testdata.TestDataReader;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +24,11 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.*;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Profile("test")
 @Configuration
@@ -96,10 +104,11 @@ public class TestDataRunner {
     }
 
     private void runLearning() throws IOException {
-        TestDataReader reader = new MongoTestDataReader(textService, 500);
+
+        TestDataReader reader = new MongoTestDataReader(textService, 2000);
         Classifier classifier = ClassifierBuilder.fromReader(reader, textFactory)
             //.addNeroClassifierUnit("issueType", NGramStrategy.getNGramStrategy(NGramStrategy.NGRAM_TYPES.FILTERED_BIGRAM))
-           .addNeroClassifierUnit("projectType", NGramStrategy.getNGramStrategy(NGramStrategy.NGRAM_TYPES.FILTERED_BIGRAM))
+           .addNeroClassifierUnit("issueType", NGramStrategy.getNGramStrategy(NGramStrategy.NGRAM_TYPES.FILTERED_BIGRAM))
             .build();
         classifier.saveClassifiers(new File("./resources"));
     }

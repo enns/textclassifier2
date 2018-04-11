@@ -15,3 +15,5 @@ jira.json
 /textclassifier2_gateway/out/
 /textclassifier2_jiraclient/out/
 /textclassifier2_jiraclient/build/
+.*
+!/.gitignore

@@ -46,11 +46,6 @@ public class AppUserDetailsService implements UserDetailsService {
 
     public void encodeAllUsers(String newPassword) {
         Iterable<User> users = userRepository.findAll();
-        //users.forEach(user -> user.setPassword("{bcrypt}" + passwordEncoder.encode(newPassword)));
-        //users.forEach(user -> user.setPassword(passwordEncoder.encode(newPassword)));
-        users.forEach(user -> {
-            System.out.println(passwordEncoder.matches(newPassword, user.getPassword()));
-        });
         userRepository.saveAll(users);
     }
 }

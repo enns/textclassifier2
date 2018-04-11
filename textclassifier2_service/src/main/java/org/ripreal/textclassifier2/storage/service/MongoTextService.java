@@ -46,6 +46,10 @@ public class MongoTextService implements ClassifiableService {
         return textRepo.saveAll(texts);
     }
 
+    public Flux<MongoCharacteristicValue> saveAllCharacteristcValues(@NonNull Iterable<MongoCharacteristicValue> charVals) {
+        return charValRepo.saveAll(charVals);
+    }
+
     @Override
     public Flux<MongoVocabularyWord> saveAllVocabulary(@NonNull Iterable<MongoVocabularyWord> vocabulary) {
         return vocabRepo.saveAll(vocabulary);
