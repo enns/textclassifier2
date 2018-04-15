@@ -14,4 +14,6 @@ public interface GenericService {
     List<User> findAllUsers();
 
     List<RandomCity> findAllRandomCities();
+
+    void saveUser(User user);
 }

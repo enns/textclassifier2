@@ -32,4 +32,9 @@ public class GenericServiceImpl implements GenericService {
     public List<RandomCity> findAllRandomCities() {
         return (List<RandomCity>)randomCityRepository.findAll();
     }
+
+    @Override
+    public void saveUser(User user) {
+        userRepository.save(user);
+    }
 }
