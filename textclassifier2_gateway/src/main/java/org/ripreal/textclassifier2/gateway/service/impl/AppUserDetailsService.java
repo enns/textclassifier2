@@ -11,14 +11,17 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by nydiarra on 06/05/17.
  */
 @Component
+@Transactional
 public class AppUserDetailsService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
@@ -43,9 +46,10 @@ public class AppUserDetailsService implements UserDetailsService {
                 User(user.getUsername(), user.getPassword(), authorities);
         return userDetails;
     }
-
-    public void encodeAllUsers(String newPassword) {
-        Iterable<User> users = userRepository.findAll();
-        userRepository.saveAll(users);
+    //TODO: change user seeking to the current user imp and then userName field may be removed
+    public void changePassword(String userName, String password) {
+        userRepository.findOneByUsername(userName).ifPresent((user) ->
+            user.setPassword(passwordEncoder.encode(password))
+        );
     }
 }

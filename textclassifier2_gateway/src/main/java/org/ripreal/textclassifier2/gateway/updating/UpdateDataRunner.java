@@ -21,7 +21,7 @@ public class UpdateDataRunner {
     @Bean
     public CommandLineRunner init() {
         return args -> {
-            userService.encodeAllUsers("jwtpass");
+            userService.changePassword("admin.admin", "jwtpass");
         };
     }
 }
