@@ -30,6 +30,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
             .and()
             .authorizeRequests()
             .antMatchers("/actuator/**", "/api-docs/**").permitAll()
-            .antMatchers("/springjwt/**" ).authenticated();
+            .antMatchers("/springjwt/**" ).authenticated()
+            .antMatchers("/h2-console/**").permitAll();
+
+        http.headers().frameOptions().disable(); // to make h2-console work
     }
 }

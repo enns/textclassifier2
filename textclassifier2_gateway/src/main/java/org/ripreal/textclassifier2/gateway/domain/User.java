@@ -1,10 +1,12 @@
 package org.ripreal.textclassifier2.gateway.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -27,6 +29,10 @@ public class User {
 
     @Column(name = "last_name")
     private String lastName;
+
+    @Column(name = "timestamp")
+    @CreationTimestamp
+    private Date timestamp;
 
     /**
      * Roles are being eagerly loaded here because

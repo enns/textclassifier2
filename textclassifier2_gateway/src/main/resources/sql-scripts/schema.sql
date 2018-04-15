@@ -18,6 +18,7 @@ CREATE TABLE app_user (
   last_name varchar(255) NOT NULL,
   password varchar(68) NOT NULL,
   username varchar(255) NOT NULL,
+  timestamp TIMESTAMP,
   PRIMARY KEY (id)
 );
 
