@@ -1,7 +1,15 @@
+CREATE TABLE country (
+  id bigint(20) NOT NULL AUTO_INCREMENT,
+  name varchar(255) NOT NULL,
+  PRIMARY KEY (id)
+);
+
 CREATE TABLE random_city (
   id bigint(20) NOT NULL AUTO_INCREMENT,
   name varchar(255) DEFAULT NULL,
-  PRIMARY KEY (id)
+  COUNTRY_ID bigint(20) NOT NULL,
+  version bigint(20),
+  PRIMARY KEY (id),
 );
 
 CREATE TABLE app_role (

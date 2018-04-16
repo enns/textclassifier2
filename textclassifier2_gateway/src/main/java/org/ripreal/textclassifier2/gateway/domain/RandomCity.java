@@ -13,6 +13,12 @@ public class RandomCity {
     @Column(name = "name")
     private String name;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Country country;
+
+    @Version
+    private Long version;
+
     public Long getId() {
         return id;
     }
@@ -28,4 +34,21 @@ public class RandomCity {
     public void setName(String name) {
         this.name = name;
     }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
 }

@@ -13,11 +13,13 @@ INSERT INTO user_role(user_id, role_id) VALUES(2,2);
 
 -- Populate random city table
 
-INSERT INTO random_city(id, name) VALUES (1, 'Bamako');
-INSERT INTO random_city(id, name) VALUES (2, 'Nonkon');
-INSERT INTO random_city(id, name) VALUES (3, 'Houston');
-INSERT INTO random_city(id, name) VALUES (4, 'Toronto');
-INSERT INTO random_city(id, name) VALUES (5, 'New York City');
-INSERT INTO random_city(id, name) VALUES (6, 'Mopti');
-INSERT INTO random_city(id, name) VALUES (7, 'Koulikoro');
-INSERT INTO random_city(id, name) VALUES (8, 'Moscow');
+INSERT INTO country(id, name) VALUES (1, 'USA');
+
+INSERT INTO random_city(id, name, COUNTRY_ID) VALUES (1, 'Bamako', 1);
+INSERT INTO random_city(id, name, COUNTRY_ID) VALUES (2, 'Nonkon', 1);
+INSERT INTO random_city(id, name, COUNTRY_ID) VALUES (3, 'Houston', 1);
+INSERT INTO random_city(id, name, COUNTRY_ID) VALUES (4, 'Toronto', 1);
+INSERT INTO random_city(id, name, COUNTRY_ID) VALUES (5, 'New York City', 1);
+INSERT INTO random_city(id, name, COUNTRY_ID) VALUES (6, 'Mopti', 1);
+INSERT INTO random_city(id, name, COUNTRY_ID) VALUES (7, 'Koulikoro', 1);
+INSERT INTO random_city(id, name, COUNTRY_ID) VALUES (8, 'Moscow', 1);
