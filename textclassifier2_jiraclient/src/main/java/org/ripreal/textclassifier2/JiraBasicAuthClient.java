@@ -14,12 +14,23 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Slf4j
+/**
+ * HTTP client to access Jira via basic authentication. 
+ * <p>
+ * Notice within jira basic authentication must be allowed
+*/
 public class JiraBasicAuthClient implements JiraClient{
 
     private  Map<String, String> properties;
     private final ObjectMapper mapper = new ObjectMapper().
         configure(SerializationFeature.WRAP_ROOT_VALUE, false);
-
+    
+    /**
+    * Create instance with PropertiesClient. The valid properties are:
+    * <br> JIRA_HOME (for example server:port)
+    * <br> LOGIN
+    * <br> PASSWORD
+    */
     public JiraBasicAuthClient(@NonNull PropertiesClient propertiesClient) {
 
        this.properties = propertiesClient.getPropertiesOrDefaults();
@@ -31,16 +42,29 @@ public class JiraBasicAuthClient implements JiraClient{
                 Integer.parseInt(properties.get(PropertiesClient.PROXY_PORT))));
         }
     }
-
+    
+    /**
+    * Create a instance with default PropertiesClient.
+    */
     public JiraBasicAuthClient() throws Exception {
         new JiraBasicAuthClient(new PropertiesClient());
     }
-
+    
+    /**
+    * Sream reader for reading jira data to output stream
+    * 
+    * @return newIssueReader instance supplied with this jirta client/
+    */
     @Override
     public JiraIssueReader newIssueReader(int maxResult, @NonNull ClassifiableFactory textFactory) {
         return new JiraIssueReader(this, mapper, maxResult, textFactory);
     }
-
+    
+    /**
+    * Sream writer that write data from issue reader to output stream
+    * 
+    * @return newIssueReader instance supplied with this jirta client/
+    */
     @Override
     public JiraIssueWriter newIssueWriter() {
         return new JiraIssueWriter(this, mapper);
@@ -52,7 +76,15 @@ public class JiraBasicAuthClient implements JiraClient{
     }
 
     // REQUESTS
-
+      
+     /**
+     * Send a http GET request. 
+     *
+     * @param url accessing resource. Url should not contain base jira host
+     * @param key-value pair parameterers passed within url string
+     *
+     * @return json string containing in a response body.
+     */
     @Override
     public String GET(@NonNull String url, Map<String, String> params) throws IOException {
         try {
@@ -64,6 +96,12 @@ public class JiraBasicAuthClient implements JiraClient{
             throw new IOException(e);
         }
     }
+            
+     /**
+     * Send a http GET request with no parameters
+     *
+     * @return json string containing in a response body.
+     */
 
     @Override
     public String GET(@NonNull String url) throws IOException {
