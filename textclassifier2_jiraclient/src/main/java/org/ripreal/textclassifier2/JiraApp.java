@@ -21,7 +21,8 @@ public class JiraApp {
     public static void main(String... args) throws Exception {
         JiraClient client = new JiraBasicAuthClient(properties);
         JiraIssueWriter writer = new JiraIssueWriter(client, new ObjectMapper());
-        JiraIssueReader reader = client.newIssueReader(100, new DefClassifiableFactory());
+        JiraIssueReader reader = client.newIssueReader(1000, new DefClassifiableFactory());
+        reader.setUpperLimit(100000);
         writer.write(reader, new FileOutputStream("./jira.json"));
     }
 

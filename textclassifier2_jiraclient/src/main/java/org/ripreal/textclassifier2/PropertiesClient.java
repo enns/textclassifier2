@@ -4,6 +4,8 @@ package org.ripreal.textclassifier2;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.HashMap;
@@ -12,13 +14,18 @@ import java.util.Optional;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
-@Slf4j
+/**
+ * Parser for properties needed to connect to jira.  Properties read from resources/config.properties. Root directory
+ * may be a working or classpath dir.
+ */
 public class PropertiesClient {
     public static final String LOGIN = "LOGIN";
     public static final String PASSWORD = "PASSWORD";
     public static final String JIRA_HOME = "JIRA_HOME";
     public static final String PROXY_SERVER = "PROXY_SERVER";
     public static final String PROXY_PORT = "PROXY_PORT";
+
+    private Logger log = LoggerFactory.getLogger(PropertiesClient.class);
 
     public final static Map<String, String> DEFAULT_PROPERTY_VALUES = ImmutableMap.<String, String>builder()
             .put(JIRA_HOME, "localhost")
@@ -29,7 +36,7 @@ public class PropertiesClient {
             .build();
 
     private final String fileUrl;
-    private final String propFileName = "config.properties";
+    private final String propFileName = "configJira.properties";
 
     public PropertiesClient() throws Exception {
         fileUrl = "resources/" + propFileName;
@@ -72,7 +79,6 @@ public class PropertiesClient {
     public void savePropertiesToFile(Map<String, String> properties) {
         OutputStream outputStream = null;
         File file = new File(fileUrl);
-
         try {
             outputStream = new FileOutputStream(file);
             Properties p = toProperties(properties);
@@ -90,11 +96,12 @@ public class PropertiesClient {
     }
 
     private Optional<File> tryCreateFile() {
+        File file = new File(fileUrl);
         try {
-            File file = new File(fileUrl);
             file.createNewFile();
             return Optional.of(file);
         } catch (IOException e) {
+            log.error("error when writing default config file: " + file.getAbsolutePath(), e);
             return Optional.empty();
         }
     }

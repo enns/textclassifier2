@@ -29,7 +29,7 @@ public interface TestDataReader extends AutoCloseable {
                 .collect(toSet());
     }
 
-    static Set<Characteristic> getCharacteristicTestData(Set<CharacteristicValue> charVals) {
+    static Set  <Characteristic> getCharacteristicTestData(Set<CharacteristicValue> charVals) {
         //TODO: may get possible CharacteristicValue set from database
         Map<Characteristic, Set<CharacteristicValue>> map = charVals.stream()
             .collect(Collectors.groupingBy(

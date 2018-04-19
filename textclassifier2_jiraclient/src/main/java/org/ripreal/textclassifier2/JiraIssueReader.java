@@ -111,8 +111,7 @@ public class JiraIssueReader implements AutoCloseable {
             characteristics.add(characteristicFromIssue(issue, "issuetype", issueChar));
             characteristics.add(characteristicFromIssue(issue, "project", projectChar));
 
-            ClassifiableText text = textFactory.newClassifiableText(
-                    descr, characteristics);
+            ClassifiableText text = textFactory.newClassifiableText(descr, characteristics);
 
             texts.add(text);
         }

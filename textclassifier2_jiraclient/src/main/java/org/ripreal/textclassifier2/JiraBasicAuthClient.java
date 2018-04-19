@@ -80,7 +80,7 @@ public class JiraBasicAuthClient implements JiraClient{
      /**
      * Send a http GET request. 
      *
-     * @param url accessing resource. Url should not contain base jira host
+     * @param url accessing resource without base jira host
      * @param key-value pair parameterers passed within url string
      *
      * @return json string containing in a response body.
