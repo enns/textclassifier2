@@ -1,4 +1,4 @@
-package org.ripreal.textclassifier2.storage.controller;
+package org.ripreal.textclassifier2.storage.web.rest;
 
 import org.ripreal.textclassifier2.storage.data.entities.MongoClassifiableText;
 import org.ripreal.textclassifier2.storage.service.ClassifiableService;

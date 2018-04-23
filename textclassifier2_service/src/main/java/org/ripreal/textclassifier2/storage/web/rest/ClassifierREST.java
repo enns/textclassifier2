@@ -1,4 +1,4 @@
-package org.ripreal.textclassifier2.storage.controller;
+package org.ripreal.textclassifier2.storage.web.rest;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -6,10 +6,9 @@ import lombok.NoArgsConstructor;
 import org.ripreal.textclassifier2.classifier.ClassifierBuilder;
 import org.ripreal.textclassifier2.model.ClassifiableFactory;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
-import org.ripreal.textclassifier2.storage.controller.exceptions.IncorrectClassifierType;
+import org.ripreal.textclassifier2.storage.web.rest.exceptions.IncorrectClassifierType;
 import org.ripreal.textclassifier2.storage.service.ClassifiableService;
 import org.ripreal.textclassifier2.storage.testdata.MongoTestDataReader;
-import org.ripreal.textclassifier2.testdata.TestDataReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;

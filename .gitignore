@@ -5,6 +5,7 @@
 /target/
 gradle.properties
 config.properties
+configJira.properties
 jira.json
 /textclassifier2_core/build/
 /textclassifier2_core/out/

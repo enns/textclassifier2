@@ -1,4 +1,4 @@
-package org.ripreal.textclassifier2.storage.controller;
+package org.ripreal.textclassifier2.storage.web.rest;
 
 import org.junit.Before;
 import org.ripreal.textclassifier2.storage.SpringTestConfig;

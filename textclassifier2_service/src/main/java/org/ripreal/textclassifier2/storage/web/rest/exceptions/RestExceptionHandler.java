@@ -1,4 +1,4 @@
-package org.ripreal.textclassifier2.storage.controller.exceptions;
+package org.ripreal.textclassifier2.storage.web.rest.exceptions;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class RestExceptionHandler {
 
-    @ExceptionHandler(ThereIsNoSuchCharacteristic.class)
-    protected ResponseEntity<WebControllerException> handleThereIsNoSuchCharacteristicException() {
-        return new ResponseEntity<>(new WebControllerException("There is no such characteristic"), HttpStatus.NOT_FOUND);
+    @ExceptionHandler(ResourceNotFoundException.class)
+    protected ResponseEntity<WebControllerException> handleThereIsNoSuchCharacteristicException(ResourceNotFoundException e) {
+        return new ResponseEntity<>(new WebControllerException(e.getMessage()), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(IncorrectClassifierType.class)

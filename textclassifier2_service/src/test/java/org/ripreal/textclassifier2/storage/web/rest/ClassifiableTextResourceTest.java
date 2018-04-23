@@ -1,4 +1,4 @@
-package org.ripreal.textclassifier2.storage.controller;
+package org.ripreal.textclassifier2.storage.web.rest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
