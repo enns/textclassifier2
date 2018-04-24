@@ -6,3 +6,5 @@ spring:
 spring:
   profiles: production
   data.mongodb.uri: mongodb+srv://admin:kentdfu!@cluster0-bsfqs.mongodb.net/test
+server:
+  port: 8070

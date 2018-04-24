@@ -37,7 +37,7 @@ public interface TestDataReader extends AutoCloseable {
                     HashMap::new,
                     mapping((charVal) -> charVal, toSet())
         ));
-        Set<Characteristic> chars =map.entrySet().stream()
+        Set<Characteristic> chars = map.entrySet().stream()
             .map((entry) -> {
                     Characteristic entryChar = entry.getKey();
                     entryChar.setPossibleValues(entry.getValue());
