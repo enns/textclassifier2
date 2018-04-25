@@ -16,7 +16,7 @@ import java.util.Objects;
 @Document
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class MongoVocabularyWord implements VocabularyWord {
+public class MongoVocabularyWord {
 
     @Id
     @JsonIgnore

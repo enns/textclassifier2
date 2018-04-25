@@ -1,9 +1,9 @@
 package org.ripreal.textclassifier2.storage.data.mapper;
 
 import org.ripreal.textclassifier2.storage.data.entities.MongoCharacteristic;
-import org.ripreal.textclassifier2.model.Characteristic;
 
-public class CharacteristicDeserializer extends AbstractEntityDeserializer<Characteristic> {
+
+public class CharacteristicDeserializer extends AbstractEntityDeserializer<MongoCharacteristic> {
 
     public CharacteristicDeserializer() {
         super();
@@ -14,7 +14,7 @@ public class CharacteristicDeserializer extends AbstractEntityDeserializer<Chara
     }
 
     @Override
-    public Characteristic newEntity() {
+    public MongoCharacteristic newEntity() {
         return new MongoCharacteristic();
     }
 

@@ -7,7 +7,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableText;
+import org.ripreal.textclassifier2.storage.data.entities.MongoClassifiableText;
 import org.ripreal.textclassifier2.testdata.TestDataReader;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,21 +19,25 @@ import java.util.*;
 public class JsonTestDataReader implements TestDataReader {
 
     @NonNull
+    private final ClassifiableMapper classifiableMapper;
+    @NonNull
     private final InputStream source;
     @NonNull
     private final ObjectMapper mapper;
     private final int iteratorSize;
-    private final MappingIterator<ClassifiableText> iterator;
+    private final MappingIterator<MongoClassifiableText> iterator;
 
-    public JsonTestDataReader(InputStream source, ObjectMapper mapper, int iteratorSize) throws IOException {
+    public JsonTestDataReader(InputStream source, ObjectMapper mapper, ClassifiableMapper classifiableMapper, int
+            iteratorSize) throws IOException {
         this.source = source;
         this.mapper = mapper;
+        this.classifiableMapper = classifiableMapper;
         this.iteratorSize = iteratorSize;
-        iterator = mapper.readerFor(ClassifiableText.class).readValues(source);
+        iterator = mapper.readerFor(MongoClassifiableText.class).readValues(source);
     }
 
-    public JsonTestDataReader(InputStream source, ObjectMapper mapper) throws IOException {
-        this(source, mapper, 1);
+    public JsonTestDataReader(InputStream source, ObjectMapper mapper, ClassifiableMapper classifiableMapper) throws IOException {
+        this(source, mapper, classifiableMapper, 1);
     }
 
     // ITERATOR METHODS
@@ -58,8 +64,8 @@ public class JsonTestDataReader implements TestDataReader {
 
     // PARSING JSON
 
-    private List<ClassifiableText> readByIterator() throws IOException {
-        List<ClassifiableText> texts = new ArrayList<>();
+    private List<MongoClassifiableText> readByIterator() throws IOException {
+        List<MongoClassifiableText> texts = new ArrayList<>();
         while(iterator.hasNext() && iteratorSize > texts.size()) {
             texts.add(iterator.next());
             log.info("read: {}", texts.get(texts.size() - 1));
@@ -67,8 +73,10 @@ public class JsonTestDataReader implements TestDataReader {
         return texts;
     }
 
-    private TestDataReader.ClassifiableData readClassifiableData(List<ClassifiableText> texts) {
-        if (texts.size() != 0) {
+    private TestDataReader.ClassifiableData readClassifiableData(List<MongoClassifiableText> mongoTexts) {
+        if (mongoTexts.size() != 0) {
+
+            List<ClassifiableText> texts = classifiableMapper.toClassifiableText(mongoTexts);
             Set<CharacteristicValue> charValues = TestDataReader.getCharacteristicValueTetData(texts);
             Set<Characteristic> characteristics = TestDataReader.getCharacteristicTestData(charValues);
             return new TestDataReader.ClassifiableData(texts, characteristics, charValues);

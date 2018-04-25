@@ -1,7 +1,6 @@
 package org.ripreal.textclassifier2.storage.service;
 
 import lombok.NonNull;
-import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
 import org.ripreal.textclassifier2.storage.data.entities.MongoCharacteristic;
@@ -26,7 +25,7 @@ public interface ClassifiableService {
 
     Mono<MongoCharacteristic> findCharacteristicByName(String name);
 
-    Flux<MongoCharacteristicValue> findCharacteristicValuesByCharacteristic(Characteristic characteristic);
+    Flux<MongoCharacteristicValue> findCharacteristicValuesByCharacteristic(MongoCharacteristic MongoCharacteristic);
 
     Flux<MongoVocabularyWord> saveAllVocabulary(Iterable<MongoVocabularyWord> vocabulary);
 

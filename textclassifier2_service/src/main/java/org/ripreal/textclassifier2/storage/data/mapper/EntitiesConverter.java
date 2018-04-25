@@ -4,9 +4,6 @@ import com.fasterxml.jackson.core.ObjectCodec;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.extern.slf4j.Slf4j;
-import org.ripreal.textclassifier2.model.Characteristic;
-import org.ripreal.textclassifier2.model.CharacteristicValue;
-import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.ripreal.textclassifier2.storage.data.entities.MongoCharacteristic;
 import org.ripreal.textclassifier2.storage.data.entities.MongoCharacteristicValue;
@@ -22,19 +19,19 @@ import java.util.*;
 @Slf4j
 public class EntitiesConverter {
 
-    static public List<MongoClassifiableText> castToMongoTexts(Iterable<ClassifiableText> texts) {
+    static public List<MongoClassifiableText> castToMongoTexts(Iterable<MongoClassifiableText> texts) {
         List<MongoClassifiableText> mongoTexts = new ArrayList<>();
         texts.forEach(item -> mongoTexts.add(((MongoClassifiableText) item)));
         return mongoTexts;
     }
 
-    static public Set<MongoCharacteristic> castToMongoCharacteristic(Iterable<Characteristic> characteristics) {
+    static public Set<MongoCharacteristic> castToMongoCharacteristic(Iterable<MongoCharacteristic> characteristics) {
         Set<MongoCharacteristic> mongoItems = new HashSet<>();
         characteristics.forEach(item -> mongoItems.add(((MongoCharacteristic) item)));
         return mongoItems;
     }
 
-    static public Set<MongoCharacteristicValue> castToMongoCharValues(Iterable<CharacteristicValue> charVals) {
+    static public Set<MongoCharacteristicValue> castToMongoCharValues(Iterable<MongoCharacteristicValue> charVals) {
         Set<MongoCharacteristicValue> mongoItems = new HashSet<>();
         charVals.forEach(item -> mongoItems.add(((MongoCharacteristicValue) item)));
         return mongoItems;
@@ -53,7 +50,7 @@ public class EntitiesConverter {
                 if (Set.class.equals(field.getType()))
                     try {
                         convertedValue = node.get(field.getName())
-                            .traverse(codec).readValueAs(new TypeReference<Set<CharacteristicValue>>() {});
+                            .traverse(codec).readValueAs(new TypeReference<Set<MongoCharacteristicValue>>() {});
                     }
                     catch (Exception e) {
                         convertedValue = node.get(field.getName())

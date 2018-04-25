@@ -6,8 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.ripreal.textclassifier2.storage.data.mapper.DeserializableField;
-import org.ripreal.textclassifier2.model.CharacteristicValue;
-import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -17,7 +15,7 @@ import java.util.*;
 @Document
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class MongoClassifiableText implements ClassifiableText {
+public class MongoClassifiableText {
 
     @Id
     @JsonIgnore
@@ -28,7 +26,7 @@ public class MongoClassifiableText implements ClassifiableText {
 
     @NonNull
     @DeserializableField
-    Set<CharacteristicValue> characteristics;
+    Set<MongoCharacteristicValue> characteristics;
 
     @Override
     public boolean equals(Object o) {
@@ -43,11 +41,11 @@ public class MongoClassifiableText implements ClassifiableText {
         return super.hashCode();
     }
 
-    public CharacteristicValue getCharacteristicValue(String characteristicName) {
+    public MongoCharacteristicValue getCharacteristicValue(String characteristicName) {
         return characteristics.stream()
             .filter(value -> value.getCharacteristic().equals(new MongoCharacteristic(characteristicName)))
             .findFirst()
-            .orElseThrow(() -> new RuntimeException("characteristic value not exists!"));
+            .orElseThrow(() -> new RuntimeException("MongoCharacteristic value not exists!"));
     }
 
 }

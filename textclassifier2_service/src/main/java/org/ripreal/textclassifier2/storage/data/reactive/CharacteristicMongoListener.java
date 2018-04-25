@@ -37,7 +37,7 @@ public class CharacteristicMongoListener extends AbstractMongoEventListener<Obje
         if (source instanceof MongoClassifiableText) {
             MongoClassifiableText text = (MongoClassifiableText) source;
             if (text.getCharacteristics() != null) {
-                for (CharacteristicValue entry : text.getCharacteristics()) {
+                for (MongoCharacteristicValue entry : text.getCharacteristics()) {
                     checkNSaveCharacteristicValue(entry); // checking doubles
                 }
             }
@@ -67,13 +67,13 @@ public class CharacteristicMongoListener extends AbstractMongoEventListener<Obje
         );
     }
 
-    private void checkNSaveCharacteristic(@NonNull Characteristic characteristic) {
-        // When being saved from texts rhere is no need to check due characteristic
+    private void checkNSaveCharacteristic(@NonNull MongoCharacteristic MongoCharacteristic) {
+        // When being saved from texts rhere is no need to check due MongoCharacteristic
         // name is considered  also a ID field
-        mongoOperations.save(characteristic);
+        mongoOperations.save(MongoCharacteristic);
     }
 
-    private void checkNSaveCharacteristicValue(@NonNull CharacteristicValue valueRequest) {
+    private void checkNSaveCharacteristicValue(@NonNull MongoCharacteristicValue valueRequest) {
 
         MongoCharacteristicValue valueExisting = mongoOperations.findAndModify(
                 new Query(Criteria

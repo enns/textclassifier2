@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.ripreal.textclassifier2.classifier.ClassifierBuilder;
 import org.ripreal.textclassifier2.model.ClassifiableFactory;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
+import org.ripreal.textclassifier2.storage.testdata.ClassifiableMapper;
 import org.ripreal.textclassifier2.storage.web.rest.exceptions.IncorrectClassifierType;
 import org.ripreal.textclassifier2.storage.service.ClassifiableService;
 import org.ripreal.textclassifier2.storage.testdata.MongoTestDataReader;
@@ -22,8 +23,8 @@ public class ClassifierREST {
     private final ClassifierBuilder builder;
 
     @Autowired
-    public ClassifierREST(ClassifiableFactory factory, ClassifiableService service) {
-        this.builder = ClassifierBuilder.fromReader(new MongoTestDataReader(service), factory);
+    public ClassifierREST(ClassifiableFactory factory, ClassifiableService service, ClassifiableMapper textMapper) {
+        this.builder = ClassifierBuilder.fromReader(new MongoTestDataReader(service, textMapper), factory);
     }
 
     @PostMapping(value = "init",

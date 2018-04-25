@@ -5,6 +5,7 @@ jdk:
 #- cd textclassifier2_core
 #- chmod +x gradlew
 before_install:
+#  - cd textclassifier2_backend
   - chmod +x gradlew
 script:
   - ./gradlew check

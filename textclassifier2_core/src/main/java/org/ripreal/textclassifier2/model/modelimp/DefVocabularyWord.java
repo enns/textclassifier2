@@ -14,6 +14,8 @@ public class DefVocabularyWord implements VocabularyWord {
 
     private final String value;
 
+    private final String ngram;
+
     @Override
     public boolean equals(Object o) {
         return ((o instanceof DefVocabularyWord) && (this.value.equals(((DefVocabularyWord) o).getValue())));
@@ -23,4 +25,5 @@ public class DefVocabularyWord implements VocabularyWord {
     public int hashCode() {
         return this.value.hashCode();
     }
+
 }

@@ -2,8 +2,6 @@ package org.ripreal.textclassifier2.storage.service;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.ripreal.textclassifier2.model.Characteristic;
-import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
 import org.ripreal.textclassifier2.storage.data.entities.MongoCharacteristic;
@@ -57,7 +55,7 @@ public class MongoTextService implements ClassifiableService {
         return charValRepo
             .findAll()
             .map((chrVal) -> {
-                MongoCharacteristic chr = (MongoCharacteristic) chrVal.getCharacteristic();
+                MongoCharacteristic chr = chrVal.getCharacteristic();
                 chr.addPossibleValue(chrVal);
                 return chr;
             })
@@ -72,8 +70,8 @@ public class MongoTextService implements ClassifiableService {
             .flatMapIterable((set) -> set);
     }
 
-    public Flux<MongoCharacteristicValue> findCharacteristicValuesByCharacteristic(Characteristic characteristic) {
-        return charValRepo.findByCharacteristicName(characteristic.getName());
+    public Flux<MongoCharacteristicValue> findCharacteristicValuesByCharacteristic(MongoCharacteristic MongoCharacteristic) {
+        return charValRepo.findByCharacteristicName(MongoCharacteristic.getName());
     }
 
     public Flux<MongoCharacteristicValue> findAllCharacteristicValues() {

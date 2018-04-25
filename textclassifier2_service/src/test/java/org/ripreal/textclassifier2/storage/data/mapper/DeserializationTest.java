@@ -3,11 +3,13 @@ package org.ripreal.textclassifier2.storage.data.mapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.ripreal.textclassifier2.storage.SpringTestConfig;
-import org.ripreal.textclassifier2.model.Characteristic;
-import org.ripreal.textclassifier2.model.CharacteristicValue;
-import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.VocabularyWord;
+import org.ripreal.textclassifier2.storage.data.entities.MongoCharacteristic;
+import org.ripreal.textclassifier2.storage.data.entities.MongoCharacteristicValue;
+import org.ripreal.textclassifier2.storage.data.entities.MongoClassifiableText;
+import org.ripreal.textclassifier2.storage.data.entities.MongoVocabularyWord;
 import org.ripreal.textclassifier2.storage.testdata.AutogenerateTestDataReader;
+import org.ripreal.textclassifier2.storage.testdata.ClassifiableMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
@@ -18,28 +20,33 @@ public class DeserializationTest extends SpringTestConfig {
 
     @Autowired
     private ObjectMapper mapper;
+    @Autowired
+    private ClassifiableMapper classifiableMapper;
 
     @Test
     public void deserializeClassifiableTextTest() throws IOException {
-        deserialize(new AutogenerateTestDataReader().next().getClassifiableTexts().get(0), ClassifiableText.class);
+        deserialize(classifiableMapper.fromClassifiableText(new AutogenerateTestDataReader(classifiableMapper).next().getClassifiableTexts
+                ()).get(0), MongoClassifiableText.class);
     }
 
     @Test
     public void deserializeCharacteristic() throws IOException {
-        deserialize(new AutogenerateTestDataReader().next().getCharacteristics()
-            .toArray(new Characteristic[0])[0], Characteristic.class);
+        deserialize(classifiableMapper.fromCharacteristic(new AutogenerateTestDataReader(classifiableMapper).next()
+                .getCharacteristics())
+            .toArray(new MongoCharacteristic[0])[0], MongoCharacteristic.class);
     }
 
     @Test
     public void deserializeCharacteristicValue() throws IOException {
-        deserialize(new AutogenerateTestDataReader().next().getCharacteristicValues()
-            .toArray(new CharacteristicValue[0])[0], CharacteristicValue.class);
+        deserialize(classifiableMapper.fromCharacteristicValues(new AutogenerateTestDataReader(classifiableMapper).next()
+                .getCharacteristicValues())
+            .toArray(new MongoCharacteristicValue[0])[0], MongoCharacteristicValue.class);
     }
 
     @Test
     public void deserializeVocabularyWord() throws IOException {
-        deserialize(new AutogenerateTestDataReader().getVocabTestData()
-            .toArray(new VocabularyWord[0])[0], VocabularyWord.class);
+        deserialize(new AutogenerateTestDataReader(classifiableMapper).getVocabTestData()
+            .toArray(new MongoVocabularyWord[0])[0], MongoVocabularyWord.class);
     }
 
     public <T> void deserialize(T data, Class<T> dataClass) throws IOException {
@@ -48,4 +55,5 @@ public class DeserializationTest extends SpringTestConfig {
 
         assertEquals(beforeJson, afterJson);
     }
+
 }

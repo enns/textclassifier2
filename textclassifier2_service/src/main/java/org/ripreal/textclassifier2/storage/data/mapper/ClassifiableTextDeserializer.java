@@ -1,9 +1,8 @@
 package org.ripreal.textclassifier2.storage.data.mapper;
 
 import org.ripreal.textclassifier2.storage.data.entities.MongoClassifiableText;
-import org.ripreal.textclassifier2.model.ClassifiableText;
 
-public class ClassifiableTextDeserializer  extends AbstractEntityDeserializer<ClassifiableText> {
+public class ClassifiableTextDeserializer  extends AbstractEntityDeserializer<MongoClassifiableText> {
 
     public ClassifiableTextDeserializer() {
         super(null);
@@ -14,7 +13,7 @@ public class ClassifiableTextDeserializer  extends AbstractEntityDeserializer<Cl
     }
 
     @Override
-    public ClassifiableText newEntity() {
+    public MongoClassifiableText newEntity() {
         return new MongoClassifiableText();
     }
 

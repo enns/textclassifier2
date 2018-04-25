@@ -6,8 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.ripreal.textclassifier2.storage.data.mapper.DeserializableField;
-import org.ripreal.textclassifier2.model.Characteristic;
-import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -16,7 +14,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class MongoCharacteristicValue implements CharacteristicValue {
+public class MongoCharacteristicValue {
 
     @Id
     @JsonIgnore
@@ -30,7 +28,7 @@ public class MongoCharacteristicValue implements CharacteristicValue {
     @DBRef
     @NonNull
     @DeserializableField
-    private Characteristic characteristic;
+    private MongoCharacteristic characteristic;
 
     @Override
     public boolean equals(Object o) {

@@ -6,8 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.ripreal.textclassifier2.storage.data.mapper.DeserializableField;
-import org.ripreal.textclassifier2.model.Characteristic;
-import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -19,7 +17,7 @@ import java.util.Set;
 @Document
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class MongoCharacteristic implements Characteristic {
+public class MongoCharacteristic {
 
     @Id
     @NonNull
@@ -27,24 +25,21 @@ public class MongoCharacteristic implements Characteristic {
     private String name;
     @Transient
     @JsonIgnore
-    private Set<CharacteristicValue> possibleValues = new HashSet<>();
+    private Set<MongoCharacteristicValue> possibleValues = new HashSet<>();
 
-    @Override
     @Transient
     @JsonIgnore
-    public Set<CharacteristicValue> getPossibleValues() {
+    public Set<MongoCharacteristicValue> getPossibleValues() {
         return possibleValues;
     }
 
-    @Override
     @Transient
     @JsonIgnore
-    public void setPossibleValues(Set<CharacteristicValue> possibleValues) {
+    public void setPossibleValues(Set<MongoCharacteristicValue> possibleValues) {
         this.possibleValues = possibleValues;
     }
 
-    @Override
-    public void addPossibleValue(CharacteristicValue value) {
+    public void addPossibleValue(MongoCharacteristicValue value) {
        possibleValues.add(value);
     }
 

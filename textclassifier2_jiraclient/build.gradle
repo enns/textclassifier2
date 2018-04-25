@@ -26,7 +26,6 @@ dependencies {
     compile ("com.fasterxml.jackson.core:jackson-annotations:${jackson_version}")
     compile project(":textclassifier2_core")
     compile 'org.slf4j:slf4j-api:1.7.5'
-    compile 'org.slf4j:slf4j-simple:1.7.5'
 }
 
 mainClassName = 'org.ripreal.textclassifier2_jiraclient.jiraclient.ClientMain'

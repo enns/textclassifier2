@@ -3,7 +3,7 @@ package org.ripreal.textclassifier2.storage.data.mapper;
 import org.ripreal.textclassifier2.storage.data.entities.MongoVocabularyWord;
 import org.ripreal.textclassifier2.model.VocabularyWord;
 
-public class VocabularyWordDeserializer extends AbstractEntityDeserializer<VocabularyWord> {
+public class VocabularyWordDeserializer extends AbstractEntityDeserializer<MongoVocabularyWord> {
 
     public VocabularyWordDeserializer() {
         super();
@@ -14,7 +14,7 @@ public class VocabularyWordDeserializer extends AbstractEntityDeserializer<Vocab
     }
 
     @Override
-    public VocabularyWord newEntity() {
+    public MongoVocabularyWord newEntity() {
         return new MongoVocabularyWord();
     }
 
