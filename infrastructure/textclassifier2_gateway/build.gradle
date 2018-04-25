@@ -1,0 +1,15 @@
+apply plugin: 'java'
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter:$springBoot_version")
+    compile("org.springframework.boot:spring-boot-starter-security:$springBoot_version")
+    compile("org.springframework.boot:spring-boot-starter-web:$springBoot_version")
+    compile("org.springframework.boot:spring-boot-starter-actuator:$springBoot_version")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa:$springBoot_version")
+    testCompile("org.springframework.boot:spring-boot-starter-test:$springBoot_version")
+    compile("org.springframework.security:spring-security-jwt:1.0.7.RELEASE")
+    compile("org.springframework.security.oauth:spring-security-oauth2:2.1.0.RELEASE")
+    compile("com.fasterxml.jackson.core:jackson-databind:2.8.6")
+    runtime("org.springframework.boot:spring-boot-devtools:$springBoot_version")
+    runtime("com.h2database:h2:$h2_version")
+}
