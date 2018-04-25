@@ -16,6 +16,7 @@ import org.ripreal.textclassifier2.storage.testdata.AutogenerateTestDataReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import reactor.core.publisher.Flux;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -54,7 +55,10 @@ public class ClassifiableTextServiceTest extends SpringTestConfig {
         Set<Characteristic> characteristics = new AutogenerateTestDataReader().next().getCharacteristics();
         // check doubles
         assertNotNull(service.saveAllTexts(EntitiesConverter.castToMongoTexts(texts)).blockLast());
-        assertEquals((long) characteristics.size(), service.findAllCharacteristics().size());
+
+        Set<Characteristic> target = new HashSet<>();
+        service.findAllCharacteristics().toIterable().forEach(target::add);
+        assertEquals((long) characteristics.size(), target.size());
 
         MongoCharacteristic found1 = service.findCharacteristicByName(characteristics.toArray(
                 new MongoCharacteristic[0])[0].getName()).block();

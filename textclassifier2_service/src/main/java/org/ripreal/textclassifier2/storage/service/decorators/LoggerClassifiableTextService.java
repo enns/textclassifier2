@@ -14,6 +14,8 @@ import org.ripreal.textclassifier2.storage.service.ClassifiableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -41,7 +43,7 @@ public class LoggerClassifiableTextService implements ClassifiableService {
     }
 
     @Override
-    public Set<MongoCharacteristic> findAllCharacteristics() {
+    public Flux<MongoCharacteristic> findAllCharacteristics() {
         return service.findAllCharacteristics();
     }
 

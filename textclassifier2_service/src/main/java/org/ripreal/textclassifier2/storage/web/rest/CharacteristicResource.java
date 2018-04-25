@@ -1,5 +1,6 @@
 package org.ripreal.textclassifier2.storage.web.rest;
 
+import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.storage.web.rest.exceptions.ResourceNotFoundException;
 import org.ripreal.textclassifier2.storage.data.entities.MongoCharacteristic;
 import org.ripreal.textclassifier2.storage.service.ClassifiableService;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @RestController
@@ -22,7 +24,7 @@ public class CharacteristicResource {
     }
 
     @GetMapping(value = "/characteristics", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Set<MongoCharacteristic> getAll() {
+    public Flux<MongoCharacteristic> getAll() {
         return service.findAllCharacteristics();
     }
 

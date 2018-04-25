@@ -20,7 +20,7 @@ public interface ClassifiableService {
 
     Flux<MongoClassifiableText> findAllTexts();
 
-    Set<MongoCharacteristic> findAllCharacteristics();
+    Flux<MongoCharacteristic> findAllCharacteristics();
 
     Flux<MongoCharacteristicValue> findAllCharacteristicValues();
 

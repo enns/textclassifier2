@@ -22,10 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -56,13 +53,23 @@ public class MongoTextService implements ClassifiableService {
         return vocabRepo.saveAll(vocabulary);
     }
 
-    public Set<MongoCharacteristic> findAllCharacteristics() {
-        Set<MongoCharacteristic> chars = charRepo
-                .findAll()
-                .collect(HashSet<MongoCharacteristic>::new, HashSet::add).block();
-        chars.forEach(item -> charValRepo.findByCharacteristicName(
-                item.getName()).toIterable().forEach(item::addPossibleValue));
-        return chars;
+    public Flux<MongoCharacteristic> findAllCharacteristics() {
+        return charValRepo
+            .findAll()
+            .map((chrVal) -> {
+                MongoCharacteristic chr = (MongoCharacteristic) chrVal.getCharacteristic();
+                chr.addPossibleValue(chrVal);
+                return chr;
+            })
+            .collect(HashSet<MongoCharacteristic>::new, (a1, a2) -> {
+                a1.add(a2);
+                a1.forEach(item -> {
+                    if (item.equals(a2))
+                        item.getPossibleValues().addAll(a2.getPossibleValues());
+                });
+
+            })
+            .flatMapIterable((set) -> set);
     }
 
     public Flux<MongoCharacteristicValue> findCharacteristicValuesByCharacteristic(Characteristic characteristic) {

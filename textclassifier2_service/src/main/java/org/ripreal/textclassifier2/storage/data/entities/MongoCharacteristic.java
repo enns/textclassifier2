@@ -25,20 +25,20 @@ public class MongoCharacteristic implements Characteristic {
     @NonNull
     @DeserializableField
     private String name;
-    @JsonIgnore
     @Transient
+    @JsonIgnore
     private Set<CharacteristicValue> possibleValues = new HashSet<>();
 
     @Override
-    @JsonIgnore
     @Transient
+    @JsonIgnore
     public Set<CharacteristicValue> getPossibleValues() {
         return possibleValues;
     }
 
     @Override
-    @JsonIgnore
     @Transient
+    @JsonIgnore
     public void setPossibleValues(Set<CharacteristicValue> possibleValues) {
         this.possibleValues = possibleValues;
     }
@@ -51,6 +51,11 @@ public class MongoCharacteristic implements Characteristic {
     @Override
     public boolean equals(Object o) {
         return ((o instanceof MongoCharacteristic) && (this.name.equals(((MongoCharacteristic) o).getName())));
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s : %s", name, possibleValues);
     }
 
     @Override

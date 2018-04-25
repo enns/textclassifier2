@@ -75,7 +75,6 @@ public class MongoTestDataReader implements TestDataReader {
 
     private List<ClassifiableText> getBoundedTestData() {
         Iterator<MongoClassifiableText> iterator = textService.findAllTexts().toIterable().iterator();
-
         List<ClassifiableText> texts = new ArrayList<>();
         while (iterator.hasNext()
             && (upperLimit == -1 || upperLimit > texts.size())) {
@@ -85,7 +84,9 @@ public class MongoTestDataReader implements TestDataReader {
     }
 
     private Set<Characteristic> getCharacteristicsTestData() {
-        return new HashSet<>(textService.findAllCharacteristics());
+        Set<Characteristic> target = new HashSet<>();
+        textService.findAllCharacteristics().toIterable().forEach(target::add);
+        return target;
     }
 
     private Set<CharacteristicValue> getCharacteristicValueTestData() {
