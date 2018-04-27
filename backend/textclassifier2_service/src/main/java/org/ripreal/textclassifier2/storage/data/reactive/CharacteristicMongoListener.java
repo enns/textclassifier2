@@ -48,7 +48,7 @@ public class CharacteristicMongoListener extends AbstractMongoEventListener<Obje
                 checkNSaveCharacteristic(value.getCharacteristic()); // checking doubles
             }
         }
-        else if (source instanceof VocabularyWord) {
+        else if (source instanceof MongoVocabularyWord) {
             checkNSaveVocabulary((MongoVocabularyWord) source);
         }
     }

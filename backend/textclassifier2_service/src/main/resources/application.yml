@@ -1,7 +1,7 @@
 spring:
   profiles: test
 server:
-    port: 8070
+    port: 8090
 # use local or embedded mongodb at localhost:27017
 # spring.data.mongodb.uri: mongodb://localhost:27017/jiradb
 ---
@@ -9,4 +9,4 @@ spring:
   profiles: production
   data.mongodb.uri: mongodb+srv://admin:kentdfu!@cluster0-bsfqs.mongodb.net/test
 server:
-  port: 8070
+  port: 8090

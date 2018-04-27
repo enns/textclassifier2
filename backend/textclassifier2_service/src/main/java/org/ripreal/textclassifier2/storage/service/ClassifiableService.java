@@ -17,6 +17,8 @@ public interface ClassifiableService {
 
     Flux<MongoClassifiableText> saveAllTexts(Iterable<MongoClassifiableText> texts);
 
+    Flux<MongoCharacteristic> saveAllCharacteristics(Iterable<MongoCharacteristic> texts);
+
     Flux<MongoClassifiableText> findAllTexts();
 
     Flux<MongoCharacteristic> findAllCharacteristics();
