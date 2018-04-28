@@ -8,6 +8,6 @@ import reactor.core.publisher.Flux;
 
 @Repository
 public interface CharacteristicValueRepo extends ReactiveMongoRepository<MongoCharacteristicValue, String> {
-    @Query("{'MongoCharacteristic.$id' : ?0 }")
+    @Query("{'characteristic.$id' : ?0 }")
     public Flux<MongoCharacteristicValue> findByCharacteristicName(String MongoCharacteristic);
 }
