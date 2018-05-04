@@ -102,7 +102,7 @@ public class PropertiesClient {
             return Optional.of(file);
         } catch (IOException e) {
             log.error("error when writing default config file: " + file.getAbsolutePath(), e);
-            return Optional.empty();
+            throw new RuntimeException(String.format("cannot create config file %s", file.getAbsolutePath()));
         }
     }
 

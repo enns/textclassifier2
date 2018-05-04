@@ -3,7 +3,9 @@ plugins {
     id "idea"
     id "eclipse"
     id "java"
+    id "org.springframework.boot" version "2.0.1.RELEASE"
 }
+
 
 def springBootVersion = "2.0.1.RELEASE"
 
@@ -26,4 +28,15 @@ processResources {
     filesMatching("**/application.properties") {
         expand( project.properties )
     }
+}
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'text classifier service',
+                'Implementation-Version': version,
+                'Main-Class': 'org.ripreal.textclassifier2.storage.ServiceApp'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
 }

@@ -21,7 +21,6 @@ public class MongoCharacteristic {
 
     @Id
     @NonNull
-    @DeserializableField
     private String name;
     @Transient
     @JsonIgnore

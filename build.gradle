@@ -64,13 +64,3 @@ task codeCoverageReport(type: JacocoReport) {
 codeCoverageReport.dependsOn {
     subprojects*.test
 }
-
-task assembleSubModules(type: Copy) {
-    destinationDir = file("lib")
-
-    into("lib") {
-        project.subprojects.each { p ->
-            from(p.tasks.withType(Jar)*.outputs)
-        }
-    }
-}
