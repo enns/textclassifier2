@@ -7,22 +7,25 @@ import org.ripreal.textclassifier2.storage.data.entities.MongoClassifiableText;
 import org.ripreal.textclassifier2.storage.service.ClassifiableService;
 import org.ripreal.textclassifier2.testdata.TestDataReader;
 
+import javax.validation.constraints.NotNull;
 import java.io.IOException;
 import java.util.*;
 
 public class MongoTestDataReader implements TestDataReader {
 
-    @NonNull
-    private ClassifiableMapper textMapper;
-    @NonNull
-    private ClassifiableService textService;
+    private final ClassifiableMapper textMapper;
+    private final ClassifiableService textService;
 
     private boolean hasNext = true;
     private int upperLimit = -1;
 
-    public MongoTestDataReader(ClassifiableService textService,  ClassifiableMapper textMapper, int upperLimit) {
+    public MongoTestDataReader(ClassifiableService textService, ClassifiableMapper textMapper, int upperLimit) {
+        if (textService == null || textMapper == null )
+            throw new IllegalArgumentException();
+
         this.textService = textService;
         this.upperLimit = upperLimit;
+        this.textMapper = textMapper;
     }
 
     public MongoTestDataReader(ClassifiableService textService, ClassifiableMapper textMapper) {

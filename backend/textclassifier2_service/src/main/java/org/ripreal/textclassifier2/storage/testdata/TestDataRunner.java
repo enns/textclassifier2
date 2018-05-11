@@ -46,8 +46,10 @@ public class TestDataRunner {
                 TestDataReader provider = new AutogenerateTestDataReader(textMapper);
                 textService.saveAllTexts(textMapper.fromClassifiableText(provider.next().getClassifiableTexts())).blockLast();
             }
-            else if (String.join(" -", args).toUpperCase().contains("LOAD_FORM_JIRA_TEST_DATA"))
+            else if (String.join(" -", args).toUpperCase().contains("LOAD_FORM_JIRA_TEST_DATA")) {
                 runJiraLoader();
+                runLearning();
+            }
             else if (String.join(" -", args).toUpperCase().contains("LOAD_FORM_JSON_TEST_DATA"))
                 runJsonLoader();
             else if (String.join(" -", args).toUpperCase().contains("RUN_LEARNING"))
@@ -74,11 +76,13 @@ public class TestDataRunner {
         textService.deleteAll().blockLast();
         JiraClient jiraClient = new JiraBasicAuthClient(new PropertiesClient());
         try (JiraIssueReader reader = jiraClient.newIssueReader(100, textFactory)) {
-            reader.setUpperLimit(100000);
+            reader.setUpperLimit(100);
             while(reader.next()) {
                 List<ClassifiableText> texts = reader.getTexts();
-                textService.saveAllTexts(textMapper.fromClassifiableText(texts))
+                textService.saveAllTexts(textMapper.fromClassifiableText(texts));
+                textService.saveAllCharacteristics(textMapper.fromCharacteristic(reader.getCharacteristics()))
                 .blockLast();
+                textService.findAllCharacteristics();
                 log.info("Read {} texts", reader.getPosition());
             }
         } catch (IOException e) {
@@ -90,7 +94,7 @@ public class TestDataRunner {
 
     private void runLearning() throws IOException {
 
-        TestDataReader reader = new MongoTestDataReader(textService, textMapper, 2000);
+        TestDataReader reader = new MongoTestDataReader(textService, textMapper, 10000);
         Classifier classifier = ClassifierBuilder.fromReader(reader, textFactory)
             //.addNeroClassifierUnit("issueType", NGramStrategy.getNGramStrategy(NGramStrategy.NGRAM_TYPES.FILTERED_BIGRAM))
            .addNeroClassifierUnit("issueType", NGramStrategy.getNGramStrategy(NGramStrategy.NGRAM_TYPES.FILTERED_BIGRAM))

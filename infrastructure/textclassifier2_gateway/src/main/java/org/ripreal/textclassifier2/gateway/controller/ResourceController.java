@@ -33,6 +33,13 @@ public class ResourceController {
         return userService.findAllRandomCities();
     }
 
+    @RequestMapping(value ="/cities2")
+    public List<RandomCity> getCities(){
+        return userService.findAllRandomCities();
+    }
+
+
+
     @RequestMapping(value ="/users", method = RequestMethod.GET)
     @PreAuthorize("hasAuthority('ADMIN_USER')")
     @Transactional

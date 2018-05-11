@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 public class ClassifiableMapper {
 
     @Autowired
+    // Factory defines to which classifiable model need map entities
     private ClassifiableFactory textFactory;
 
     // TO CLASSIFIABLE MODEL
@@ -27,7 +28,8 @@ public class ClassifiableMapper {
 
     public Characteristic toCharacteristic(MongoCharacteristic mongoCharacteristic) {
         Characteristic characteristic = textFactory.newCharacteristic(mongoCharacteristic.getName());
-        mongoCharacteristic.getPossibleValues().forEach(this::toCharacteristicValues);
+        mongoCharacteristic.getPossibleValues().forEach((val) -> characteristic.addPossibleValue
+                (toCharacteristicValues(val)));
         return characteristic;
     }
 
@@ -82,10 +84,11 @@ public class ClassifiableMapper {
         return texts.stream().map(this::fromClassifiableText).collect(Collectors.toList());
     }
 
-    public MongoCharacteristic fromCharacteristic(Characteristic mongoCharacteristic) {
-        MongoCharacteristic characteristic = new MongoCharacteristic(mongoCharacteristic.getName());
-        mongoCharacteristic.getPossibleValues().forEach(this::fromCharacteristicValues);
-        return characteristic;
+    public MongoCharacteristic fromCharacteristic(Characteristic characteristic) {
+        MongoCharacteristic mongoCharacteristic = new MongoCharacteristic(characteristic.getName());
+        characteristic.getPossibleValues().forEach((chr) -> mongoCharacteristic.setPossibleValues(this
+                .fromCharacteristicValues(characteristic.getPossibleValues())));
+        return mongoCharacteristic;
     }
 
     public Set<MongoCharacteristic> fromCharacteristic(Set<Characteristic> characteristics) {

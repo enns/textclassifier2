@@ -3,22 +3,14 @@ package org.ripreal.textclassifier2;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.collect.ImmutableMap;
-import lombok.Getter;
 import lombok.NonNull;
-import lombok.Setter;
 import org.jsoup.Jsoup;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableFactory;
 import org.ripreal.textclassifier2.model.ClassifiableText;
-import org.ripreal.textclassifier2.model.modelimp.DefCharacteristicValue;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.channels.WritableByteChannel;
 import java.util.*;
 
 public class JiraIssueReader implements AutoCloseable {
@@ -33,20 +25,22 @@ public class JiraIssueReader implements AutoCloseable {
     private final ObjectMapper mapper;
     private final JiraClient client;
     private final ClassifiableFactory textFactory;
-    @Getter
     private List<ClassifiableText> texts = new ArrayList<>();
+    private Characteristic issueType;
+    private Characteristic projectType;
+
 
     private final int maxResult;
-    @Setter
-    @Getter
     private int position = 0;
-    @Setter
     private int upperLimit = Integer.MAX_VALUE;
     private boolean hasNext = true;
 
-    public JiraIssueReader(@NonNull JiraClient client, @NonNull ObjectMapper mapper, int maxResult, @NonNull
-                           ClassifiableFactory
+    public JiraIssueReader(JiraClient client, ObjectMapper mapper, int maxResult, ClassifiableFactory
             textFactory) {
+
+        if (client == null || mapper == null || textFactory == null)
+            throw new IllegalArgumentException();
+
         this.client = client;
         this.mapper = mapper;
         this.maxResult = maxResult;
@@ -65,15 +59,21 @@ public class JiraIssueReader implements AutoCloseable {
         }
 
         try {
-            String jsonIssueTypes = queryIssueTypes();
-            Characteristic issue = parseJsonAsCharacteristic(jsonIssueTypes, "issueType");
+            if (issueType == null) {
+                // Jira request always returns all possible variants so do cashing when first iterate through
+                String jsonIssueTypes = queryIssueTypes();
+                issueType = parseJsonAsCharacteristic(jsonIssueTypes, "issueType");
+            }
 
-            String jsonProjectTypes = queryProjectTypes();
-            Characteristic project = parseJsonAsCharacteristic(jsonProjectTypes, "projectType");
+            if (projectType == null) {
+                // Jira request always returns all possible variants so do cashing when first iterate through
+                String jsonProjectTypes = queryProjectTypes();
+                projectType = parseJsonAsCharacteristic(jsonProjectTypes, "projectType");
+            }
 
             String issuesJson = queryIssues();
 
-            if (!parseJsonAsClassifiableText(issue, project, issuesJson))
+            if (!parseJsonAsClassifiableText(issueType, projectType, issuesJson))
                 return false;
 
             position += texts.size();
@@ -85,6 +85,21 @@ public class JiraIssueReader implements AutoCloseable {
         hasNext = upperLimit > position;
         return true;
     }
+
+    public List<ClassifiableText> getTexts() {return this.texts;}
+
+    public Set<Characteristic> getCharacteristics() {
+        Set<Characteristic> characteristics = new HashSet<>();
+        characteristics.add(issueType);
+        characteristics.add(projectType);
+        return characteristics;
+    }
+
+    public int getPosition() {return this.position;}
+
+    public void setPosition(int position) {this.position = position; }
+
+    public void setUpperLimit(int upperLimit) {this.upperLimit = upperLimit; }
 
     @Override
     public void close() throws Exception {
@@ -129,7 +144,7 @@ public class JiraIssueReader implements AutoCloseable {
             );
         }
 
-        int orderNumber = 0;
+        int orderNumber = 1;
         for (CharacteristicValue val : characteristic.getPossibleValues())
             val.setOrderNumber(++orderNumber);
 
@@ -174,4 +189,5 @@ public class JiraIssueReader implements AutoCloseable {
     private String queryProjectTypes() throws IOException {
         return client.GET(PROJECT_TYPES);
     }
+
 }

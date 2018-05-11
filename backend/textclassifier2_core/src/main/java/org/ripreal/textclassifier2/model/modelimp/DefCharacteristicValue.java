@@ -34,7 +34,7 @@ public class DefCharacteristicValue implements CharacteristicValue {
 
     @Override
     public String toString() {
-        return value;
+        return String.format("value: %s, orderNumber %s",  value, orderNumber);
     }
 
 }

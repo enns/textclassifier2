@@ -1,16 +1,15 @@
 package org.ripreal.textclassifier2.classifier;
 
-import lombok.*;
-import lombok.extern.slf4j.Slf4j;
+import lombok.NonNull;
 import org.ripreal.textclassifier2.CharacteristicUtils;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.ClassifiableFactory;
-import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
 import org.ripreal.textclassifier2.ngram.VocabularyBuilder;
 import org.ripreal.textclassifier2.testdata.ExcelFileReader;
 import org.ripreal.textclassifier2.testdata.TestDataReader;
+import org.slf4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,18 +18,26 @@ import java.util.List;
 import java.util.Set;
 
 // BUILDER + COMPOSITE
-@Slf4j
-@RequiredArgsConstructor
 public final class ClassifierBuilder {
 
-    @NonNull
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(ClassifierBuilder.class);
+
     private final TestDataReader reader;
-    @NonNull
+
     private final ClassifiableFactory textFactory;
-    @NonNull
+
     private final List<ClassifierUnitProxy> classifierUnits = new ArrayList<>();
 
     private final int AMOUNT_OF_TEXTS_FOR_CHECKING = 5;
+
+    public ClassifierBuilder(TestDataReader reader, ClassifiableFactory textFactory) {
+
+        if (reader == null || textFactory == null)
+            throw new IllegalArgumentException();
+
+        this.reader = reader;
+        this.textFactory = textFactory;
+    }
 
     // CONSTRUCTORS
 
@@ -111,24 +118,42 @@ public final class ClassifierBuilder {
         }
     }
 
-    @RequiredArgsConstructor
-    @AllArgsConstructor
     class ClassifierUnitProxy {
         private final ClassifierUnitSupplier supplier;
-        @Getter
         private final File trainedClassifier;
-        @Getter
         private final NGramStrategy nGramStrategy;
-        @Getter
-        @Setter
         private List<VocabularyWord> vocabulary;
-        @Getter
-        @Setter
         private Characteristic characteristic;
+
+        public ClassifierUnitProxy(ClassifierUnitSupplier supplier, File trainedClassifier, NGramStrategy nGramStrategy) {
+            this.supplier = supplier;
+            this.trainedClassifier = trainedClassifier;
+            this.nGramStrategy = nGramStrategy;
+        }
+
+        public ClassifierUnitProxy(ClassifierUnitSupplier supplier, File trainedClassifier, NGramStrategy nGramStrategy, List<VocabularyWord> vocabulary, Characteristic characteristic) {
+            this.supplier = supplier;
+            this.trainedClassifier = trainedClassifier;
+            this.nGramStrategy = nGramStrategy;
+            this.vocabulary = vocabulary;
+            this.characteristic = characteristic;
+        }
 
         public ClassifierUnit get() {
             return supplier.get(trainedClassifier, characteristic, vocabulary, nGramStrategy);
         }
+
+        public File getTrainedClassifier() {return this.trainedClassifier;}
+
+        public NGramStrategy getNGramStrategy() {return this.nGramStrategy;}
+
+        public List<VocabularyWord> getVocabulary() {return this.vocabulary;}
+
+        public Characteristic getCharacteristic() {return this.characteristic;}
+
+        public void setVocabulary(List<VocabularyWord> vocabulary) {this.vocabulary = vocabulary; }
+
+        public void setCharacteristic(Characteristic characteristic) {this.characteristic = characteristic; }
 
         ;
     }

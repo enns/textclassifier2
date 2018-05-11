@@ -2,6 +2,7 @@ package org.ripreal.textclassifier2.storage.service;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
 import org.ripreal.textclassifier2.storage.data.entities.MongoCharacteristic;
@@ -43,8 +44,12 @@ public class MongoTextService implements ClassifiableService {
     }
 
     @Override
-    public Flux<MongoCharacteristic> saveAllCharacteristics(Iterable<MongoCharacteristic> characteristics) {
-        return charRepo.saveAll(characteristics);
+    public Flux<MongoCharacteristicValue> saveAllCharacteristics(Set<MongoCharacteristic> characteristics) {
+        Set<MongoCharacteristicValue> rs = characteristics.stream().flatMap((chrs) -> chrs.getPossibleValues().stream())
+                .collect
+                (Collectors
+                .toSet());
+        return charValRepo.saveAll(rs);
     }
 
     public Flux<MongoCharacteristicValue> saveAllCharacteristcValues(@NonNull Iterable<MongoCharacteristicValue> charVals) {
