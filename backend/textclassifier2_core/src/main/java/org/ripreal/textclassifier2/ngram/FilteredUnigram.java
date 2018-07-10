@@ -1,15 +1,11 @@
 package org.ripreal.textclassifier2.ngram;
 
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 class FilteredUnigram implements NGramStrategy {
 
-    @NonNull
     private final NGRAM_TYPES ngramType;
 
     FilteredUnigram(NGRAM_TYPES ngramType) {

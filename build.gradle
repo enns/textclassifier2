@@ -32,14 +32,12 @@ subprojects { sp ->
         reactor_test_version = "3.1.5.RELEASE"
         junit_version = "4.12"
         mockito_version = "2.5.4"
-        lombok_version = "1.16.20"
         h2_version = "1.4.197"
     }
 
     dependencies {
         testCompile("junit:junit:$junit_version")
         testCompile("org.mockito:mockito-core:$mockito_version")
-        compile("org.projectlombok:lombok:$lombok_version")
     }
     test.useTestNG()
 

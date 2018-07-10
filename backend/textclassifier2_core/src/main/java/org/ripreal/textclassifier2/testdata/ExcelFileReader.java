@@ -1,30 +1,37 @@
 package org.ripreal.textclassifier2.testdata;
 
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.ripreal.textclassifier2.CharacteristicUtils;
-import org.ripreal.textclassifier2.model.*;
+import org.ripreal.textclassifier2.model.Characteristic;
+import org.ripreal.textclassifier2.model.CharacteristicValue;
+import org.ripreal.textclassifier2.model.ClassifiableFactory;
+import org.ripreal.textclassifier2.model.ClassifiableText;
+import org.slf4j.Logger;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
-@Slf4j
-@RequiredArgsConstructor
 public class ExcelFileReader implements TestDataReader {
 
-    @NonNull
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(ExcelFileReader.class);
     private final File file;
     private final int sheetNumber;
-    @NonNull
     private final ClassifiableFactory textFactory;
-
     private boolean hasNext = true;
+
+    public ExcelFileReader(File file, int sheetNumber, ClassifiableFactory textFactory) {
+        this.file = file;
+        this.sheetNumber = sheetNumber;
+        this.textFactory = textFactory;
+    }
 
     @Override
     public boolean hasNext() {

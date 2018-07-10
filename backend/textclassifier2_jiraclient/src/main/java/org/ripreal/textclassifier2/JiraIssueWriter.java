@@ -1,31 +1,27 @@
 package org.ripreal.textclassifier2;
 
 import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.json.WriterBasedJsonGenerator;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.SequenceWriter;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.sun.javafx.collections.ObservableSequentialListWrapper;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
 import org.ripreal.textclassifier2.model.ClassifiableText;
+import org.slf4j.Logger;
 
-import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
 
-@RequiredArgsConstructor
-@Slf4j
 public class JiraIssueWriter {
 
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(JiraIssueWriter.class);
     private final JiraClient client;
     private final ObjectMapper mapper;
 
-    public boolean write(@NonNull JiraIssueReader reader, @NonNull OutputStream out) throws Exception {
+    @java.beans.ConstructorProperties({"client", "mapper"})
+    public JiraIssueWriter(JiraClient client, ObjectMapper mapper) {
+        this.client = client;
+        this.mapper = mapper;
+    }
+
+    public boolean write(JiraIssueReader reader, OutputStream out) throws Exception {
 
         JsonGenerator jsonGenerator = mapper.getFactory().createGenerator(out);
         //for pretty printing

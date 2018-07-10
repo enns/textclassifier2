@@ -10,7 +10,7 @@ import org.ripreal.textclassifier2.testdata.ExcelFileReader;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.List;
 
 public class ClassifierApp {
 

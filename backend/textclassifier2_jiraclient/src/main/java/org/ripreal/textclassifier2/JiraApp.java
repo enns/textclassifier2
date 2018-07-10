@@ -1,21 +1,14 @@
 package org.ripreal.textclassifier2;
 
-import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
-import com.fasterxml.jackson.databind.*;
-import lombok.extern.slf4j.Slf4j;
-import org.ripreal.textclassifier2.model.ClassifiableText;
-import org.ripreal.textclassifier2.model.VocabularyWord;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.ripreal.textclassifier2.model.modelimp.DefClassifiableFactory;
+import org.slf4j.Logger;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.FileOutputStream;
 
-@Slf4j
 public class JiraApp {
 
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(JiraApp.class);
     static PropertiesClient properties;
 
     public static void main(String... args) throws Exception {

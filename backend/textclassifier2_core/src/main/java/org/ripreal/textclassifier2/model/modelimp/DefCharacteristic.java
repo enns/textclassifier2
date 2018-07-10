@@ -1,21 +1,20 @@
 package org.ripreal.textclassifier2.model.modelimp;
 
-import lombok.Data;
-import lombok.NonNull;
-import lombok.ToString;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
-
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
 public class DefCharacteristic implements Characteristic {
 
-    @NonNull
     private String name;
 
     private Set<CharacteristicValue> possibleValues = new HashSet<>();
+
+    @java.beans.ConstructorProperties({"name"})
+    public DefCharacteristic(String name) {
+        this.name = name;
+    }
 
     @Override
     public void setPossibleValues(Set<CharacteristicValue> charVals) {
@@ -36,4 +35,11 @@ public class DefCharacteristic implements Characteristic {
         return this.name.hashCode();
     }
 
+    public String getName() {return this.name;}
+
+    public Set<CharacteristicValue> getPossibleValues() {return this.possibleValues;}
+
+    public void setName(String name) {this.name = name; }
+
+    public String toString() {return "DefCharacteristic(name=" + this.getName() + ", possibleValues=" + this.getPossibleValues() + ")";}
 }

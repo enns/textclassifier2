@@ -1,6 +1,5 @@
 package org.ripreal.textclassifier2.classifier;
 
-import lombok.NonNull;
 import org.ripreal.textclassifier2.CharacteristicUtils;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.ClassifiableFactory;
@@ -51,12 +50,12 @@ public final class ClassifierBuilder {
 
     // CLIENT SECTION
 
-    public ClassifierBuilder addNeroClassifierUnit(@NonNull String characteristicName, @NonNull NGramStrategy nGramStrategy) {
+    public ClassifierBuilder addNeroClassifierUnit(String characteristicName, NGramStrategy nGramStrategy) {
         addNeroClassifierUnit(null, characteristicName, null, nGramStrategy);
         return this;
     }
 
-    public ClassifierBuilder addNeroClassifierUnit(File trainedClassifier, @NonNull String characteristicName, List<VocabularyWord> vocabulary, @NonNull NGramStrategy nGramStrategy) {
+    public ClassifierBuilder addNeroClassifierUnit(File trainedClassifier, String characteristicName, List<VocabularyWord> vocabulary, NGramStrategy nGramStrategy) {
         classifierUnits.add(
                 new ClassifierUnitProxy(
                         NeroClassifierUnit::new,

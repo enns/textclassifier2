@@ -1,6 +1,5 @@
 package org.ripreal.textclassifier2.storage.testdata;
 
-import lombok.NonNull;
 import org.ripreal.textclassifier2.storage.data.entities.MongoCharacteristic;
 import org.ripreal.textclassifier2.storage.data.entities.MongoCharacteristicValue;
 import org.ripreal.textclassifier2.storage.data.entities.MongoClassifiableText;

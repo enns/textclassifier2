@@ -1,6 +1,5 @@
 package org.ripreal.textclassifier2.storage.service;
 
-import lombok.NonNull;
 import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
 import org.ripreal.textclassifier2.storage.data.entities.MongoCharacteristic;
@@ -31,7 +30,7 @@ public interface ClassifiableService {
 
     Flux<MongoVocabularyWord> saveAllVocabulary(Iterable<MongoVocabularyWord> vocabulary);
 
-    Flux<MongoVocabularyWord> findVocabularyByNgram(@NonNull NGramStrategy ngram);
+    Flux<MongoVocabularyWord> findVocabularyByNgram(NGramStrategy ngram);
 
     Flux<Void> deleteAll();
 

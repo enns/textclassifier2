@@ -3,11 +3,11 @@ package org.ripreal.textclassifier2;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
-import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -41,6 +41,7 @@ public class PropertiesClient {
     public PropertiesClient() throws Exception {
         fileUrl = "resources/" + propFileName;
     }
+
 
     public Map<String, String> getPropertiesOrDefaults() {
         try {
@@ -115,4 +116,18 @@ public class PropertiesClient {
             // ignored
         }
     }
+
+    public static String loadData(String resourcePath, String defaultValue) {
+        try (BufferedInputStream inputStream = new BufferedInputStream(PropertiesClient.class.getResourceAsStream(resourcePath));
+             ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
+            for (int result = inputStream.read(); result != -1; result = inputStream.read()) {
+                outputStream.write(result);
+            }
+
+            return outputStream.toString(StandardCharsets.UTF_8.name());
+        } catch (Exception ex) {
+            return defaultValue;
+        }
+    }
+
 }

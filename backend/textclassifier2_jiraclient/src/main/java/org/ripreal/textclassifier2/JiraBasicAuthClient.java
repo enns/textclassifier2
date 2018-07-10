@@ -5,33 +5,33 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import com.mashape.unirest.request.GetRequest;
-import lombok.NonNull;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpHost;
 import org.ripreal.textclassifier2.model.ClassifiableFactory;
+import org.slf4j.Logger;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-@Slf4j
 /**
- * HTTP client to access Jira via basic authentication. 
+ * HTTP client to access Jira via basic authentication.
  * <p>
  * Notice within jira basic authentication must be allowed
 */
 public class JiraBasicAuthClient implements JiraClient{
 
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(JiraBasicAuthClient.class);
     private  Map<String, String> properties;
     private final ObjectMapper mapper = new ObjectMapper().
         configure(SerializationFeature.WRAP_ROOT_VALUE, false);
-    
+
     /**
     * Create instance with PropertiesClient. The valid properties are:
     * <br> JIRA_HOME (for example server:port)
     * <br> LOGIN
     * <br> PASSWORD
     */
-    public JiraBasicAuthClient(@NonNull PropertiesClient propertiesClient) {
+    public JiraBasicAuthClient(PropertiesClient propertiesClient) {
 
        this.properties = propertiesClient.getPropertiesOrDefaults();
 
@@ -42,27 +42,27 @@ public class JiraBasicAuthClient implements JiraClient{
                 Integer.parseInt(properties.get(PropertiesClient.PROXY_PORT))));
         }
     }
-    
+
     /**
     * Create a instance with default PropertiesClient.
     */
     public JiraBasicAuthClient() throws Exception {
         new JiraBasicAuthClient(new PropertiesClient());
     }
-    
+
     /**
     * Sream reader for reading jira data to output stream
-    * 
+    *
     * @return newIssueReader instance supplied with this jirta client/
     */
     @Override
-    public JiraIssueReader newIssueReader(int maxResult, @NonNull ClassifiableFactory textFactory) {
+    public JiraIssueReader newIssueReader(int maxResult, ClassifiableFactory textFactory) {
         return new JiraIssueReader(this, mapper, maxResult, textFactory);
     }
-    
+
     /**
     * Sream writer that write data from issue reader to output stream
-    * 
+    *
     * @return newIssueReader instance supplied with this jirta client/
     */
     @Override
@@ -76,9 +76,9 @@ public class JiraBasicAuthClient implements JiraClient{
     }
 
     // REQUESTS
-      
+
      /**
-     * Send a http GET request. 
+     * Send a http GET request.
      *
      * @param url accessing resource without base jira host
      * @param key-value pair parameterers passed within url string
@@ -86,7 +86,7 @@ public class JiraBasicAuthClient implements JiraClient{
      * @return json string containing in a response body.
      */
     @Override
-    public String GET(@NonNull String url, Map<String, String> params) throws IOException {
+    public String GET(String url, Map<String, String> params) throws IOException {
         try {
             GetRequest request = Unirest.get(properties.get(PropertiesClient.JIRA_HOME) + url);
             params.forEach(request::queryString);
@@ -96,7 +96,7 @@ public class JiraBasicAuthClient implements JiraClient{
             throw new IOException(e);
         }
     }
-            
+
      /**
      * Send a http GET request with no parameters
      *
@@ -104,7 +104,7 @@ public class JiraBasicAuthClient implements JiraClient{
      */
 
     @Override
-    public String GET(@NonNull String url) throws IOException {
+    public String GET(String url) throws IOException {
         return GET(url, new HashMap<>());
     }
 

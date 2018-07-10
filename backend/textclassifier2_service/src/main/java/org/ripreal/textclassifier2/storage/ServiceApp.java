@@ -13,6 +13,8 @@ import java.net.UnknownHostException;
 @SpringBootApplication
 public class ServiceApp {
 
+    private static int t;
+
     private final static Logger log = LoggerFactory.getLogger(ServiceApp.class);
 
     public static void main(String... args) throws UnknownHostException {

@@ -2,27 +2,24 @@ package org.ripreal.textclassifier2.storage.testdata;
 
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.NonNull;
-import lombok.extern.slf4j.Slf4j;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.storage.data.entities.MongoClassifiableText;
 import org.ripreal.textclassifier2.testdata.TestDataReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 
-@Slf4j
 public class JsonTestDataReader implements TestDataReader {
 
-    @NonNull
+    private final Logger log = LoggerFactory.getLogger(JsonTestDataReader.class);
     private final ClassifiableMapper classifiableMapper;
-    @NonNull
     private final InputStream source;
-    @NonNull
     private final ObjectMapper mapper;
     private final int iteratorSize;
     private final MappingIterator<MongoClassifiableText> iterator;

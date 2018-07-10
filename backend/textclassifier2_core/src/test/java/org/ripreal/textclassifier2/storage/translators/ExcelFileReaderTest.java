@@ -40,7 +40,7 @@ public class ExcelFileReaderTest {
     }
 
 
-    @Test
+    @Test(expected = IOException.class)
     public void nonExistentFile() throws IOException {
         ExcelFileReader reader = new ExcelFileReader(new File("incorrect_path"), 1, characteristicFactory);
         reader.next().getClassifiableTexts();

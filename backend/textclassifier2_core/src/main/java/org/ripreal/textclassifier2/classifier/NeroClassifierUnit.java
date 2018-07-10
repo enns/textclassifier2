@@ -1,8 +1,5 @@
 package org.ripreal.textclassifier2.classifier;
 
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.extern.slf4j.Slf4j;
 import org.encog.Encog;
 import org.encog.engine.network.activation.ActivationSigmoid;
 import org.encog.ml.data.basic.BasicMLDataSet;
@@ -18,10 +15,10 @@ import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.ripreal.textclassifier2.model.modelimp.DefVocabularyWord;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
+import org.slf4j.Logger;
 
 import java.io.File;
 import java.io.OutputStream;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -54,12 +51,10 @@ import static org.encog.persist.EncogDirectoryPersistence.saveObject;
  * @author ripreal
  * @author Ruslan Zakaryaev(https://github.com/RusZ)
  */
-@Slf4j
 public class NeroClassifierUnit implements ClassifierUnit {
 
-    @Getter
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(NeroClassifierUnit.class);
     private final Characteristic characteristic;
-    @Getter
     private final List<VocabularyWord> vocabulary;
     private final int inputLayerSize;
     private final int outputLayerSize;
@@ -68,11 +63,12 @@ public class NeroClassifierUnit implements ClassifierUnit {
 
     // CONSTRUCTORS
 
-    NeroClassifierUnit(File trainedNetwork, @NonNull Characteristic characteristic, @NonNull List<VocabularyWord> vocabulary, @NonNull NGramStrategy nGramStrategy) {
+    NeroClassifierUnit(File trainedNetwork, Characteristic characteristic, List<VocabularyWord> vocabulary, NGramStrategy nGramStrategy) {
         if (characteristic.getName().equals("") ||
                 characteristic.getPossibleValues() == null ||
                 characteristic.getPossibleValues().size() == 0 ||
-                vocabulary.isEmpty()) {
+                vocabulary.isEmpty()
+                || nGramStrategy == null) {
             throw new IllegalArgumentException();
         }
 
@@ -260,7 +256,7 @@ public class NeroClassifierUnit implements ClassifierUnit {
 
         for (String word : uniqueValues) {
             VocabularyWord vw = CharacteristicUtils.findByValue(vocabulary, word,
-                (w) -> new DefVocabularyWord(w, nGramStrategy.getNGramType().toString()));
+                (w) -> new DefVocabularyWord(w, nGramStrategy.getNGramType()));
             if (vw != null) { // word found in vocabulary
                 vector[vocabulary.indexOf(vw)] = 1;
             }
@@ -275,4 +271,8 @@ public class NeroClassifierUnit implements ClassifierUnit {
     public String toString() {
         return characteristic.getName() + "NeuralNetworkClassifier";
     }
+
+    public Characteristic getCharacteristic() {return this.characteristic;}
+
+    public List<VocabularyWord> getVocabulary() {return this.vocabulary;}
 }

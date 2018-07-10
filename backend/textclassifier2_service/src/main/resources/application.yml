@@ -1,5 +1,6 @@
 spring:
   profiles: test
+  data.mongodb.uri: mongodb://192.168.99.100:27017/jiradb
 server:
     port: 8080
 # use local or embedded mongodb at localhost:27017

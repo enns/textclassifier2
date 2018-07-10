@@ -1,6 +1,5 @@
 package org.ripreal.textclassifier2.ngram;
 
-import lombok.NonNull;
 import org.ripreal.textclassifier2.model.ClassifiableFactory;
 import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.model.VocabularyWord;
@@ -13,11 +12,11 @@ import java.util.Map;
 public class VocabularyBuilder {
     private final NGramStrategy nGramStrategy;
 
-    public VocabularyBuilder(@NonNull NGramStrategy nGramStrategy) {
+    public VocabularyBuilder(NGramStrategy nGramStrategy) {
         this.nGramStrategy = nGramStrategy;
     }
 
-    public List<VocabularyWord> getVocabulary(List<ClassifiableText> classifiableTexts, @NonNull ClassifiableFactory factory) {
+    public List<VocabularyWord> getVocabulary(List<ClassifiableText> classifiableTexts, ClassifiableFactory factory) {
 
         if (classifiableTexts.isEmpty())
             throw new IllegalArgumentException();

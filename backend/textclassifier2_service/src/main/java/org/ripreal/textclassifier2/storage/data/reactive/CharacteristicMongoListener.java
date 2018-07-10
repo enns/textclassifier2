@@ -1,7 +1,5 @@
 package org.ripreal.textclassifier2.storage.data.reactive;
 
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import org.ripreal.textclassifier2.storage.data.entities.MongoCharacteristic;
 import org.ripreal.textclassifier2.storage.data.entities.MongoCharacteristicValue;
 import org.ripreal.textclassifier2.storage.data.entities.MongoClassifiableText;
@@ -17,10 +15,13 @@ import org.springframework.data.mongodb.core.query.Update;
 
 import java.util.List;
 
-@RequiredArgsConstructor
 public class CharacteristicMongoListener extends AbstractMongoEventListener<Object> {
 
     private final MongoOperations mongoOperations;
+
+    public CharacteristicMongoListener(MongoOperations mongoOperations) {
+        this.mongoOperations = mongoOperations;
+    }
 
     // EVENT HANDLERS
 
@@ -67,13 +68,13 @@ public class CharacteristicMongoListener extends AbstractMongoEventListener<Obje
         );
     }
 
-    private void checkNSaveCharacteristic(@NonNull MongoCharacteristic MongoCharacteristic) {
+    private void checkNSaveCharacteristic(MongoCharacteristic MongoCharacteristic) {
         // When being saved from texts rhere is no need to check due MongoCharacteristic
         // name is considered  also a ID field
         mongoOperations.save(MongoCharacteristic);
     }
 
-    private void checkNSaveCharacteristicValue(@NonNull MongoCharacteristicValue valueRequest) {
+    private void checkNSaveCharacteristicValue(MongoCharacteristicValue valueRequest) {
 
         MongoCharacteristicValue valueExisting = mongoOperations.findAndModify(
                 new Query(Criteria

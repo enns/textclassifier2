@@ -2,7 +2,6 @@ package org.ripreal.textclassifier2.model.modelimp;
 
 import org.ripreal.textclassifier2.model.*;
 
-import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 // Remark about GUID. Normally you would implement auto-incremental / generated ID and enforced it by database property.

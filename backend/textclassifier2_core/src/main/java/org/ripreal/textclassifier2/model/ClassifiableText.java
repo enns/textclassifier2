@@ -1,8 +1,5 @@
 package org.ripreal.textclassifier2.model;
 
-import lombok.NonNull;
-
-import java.util.Map;
 import java.util.Set;
 
 public interface ClassifiableText {

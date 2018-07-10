@@ -5,12 +5,12 @@ import com.fasterxml.jackson.core.ObjectCodec;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
-import lombok.extern.slf4j.Slf4j;
-
+import org.slf4j.Logger;
 import java.io.IOException;
 
-@Slf4j
 public abstract class AbstractEntityDeserializer <T> extends StdDeserializer<T> {
+
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(AbstractEntityDeserializer.class);
 
     public AbstractEntityDeserializer() {
         this(null);

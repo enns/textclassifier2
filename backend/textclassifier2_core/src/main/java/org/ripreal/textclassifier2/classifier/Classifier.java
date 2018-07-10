@@ -1,16 +1,13 @@
 package org.ripreal.textclassifier2.classifier;
 
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableText;
+import org.slf4j.Logger;
 
 import java.io.File;
 import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,11 +18,15 @@ import java.util.Optional;
  *
  * @author Ripreal
  */
-@Slf4j
-@RequiredArgsConstructor
 public final class Classifier {
 
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(Classifier.class);
     private final List<ClassifierUnit> classifierUnits;
+
+    @java.beans.ConstructorProperties({"classifierUnits"})
+    public Classifier(List<ClassifierUnit> classifierUnits) {
+        this.classifierUnits = classifierUnits;
+    }
 
     /**
      *  Rebuilds all classifier units containing in this classifier based on source.
@@ -53,7 +54,7 @@ public final class Classifier {
      * @param classifiableText - text you want to classify
      * @return {@link List} based on classification with classifier units. Can be empty.
      */
-    public List<CharacteristicValue> classify(@NonNull ClassifiableText classifiableText) {
+    public List<CharacteristicValue> classify( ClassifiableText classifiableText) {
         List<CharacteristicValue> values = new ArrayList<>();
         classifierUnits.forEach(unit -> {
             unit.classify(classifiableText).map(values::add);
@@ -67,7 +68,7 @@ public final class Classifier {
      *
      * @param dir {@link File} in which classifier will store its classifier units state.
      */
-    public void saveClassifiers(@NonNull File dir) {
+    public void saveClassifiers( File dir) {
         if (!dir.isDirectory())
             throw new IllegalArgumentException("need directory not a file!");
 
@@ -82,7 +83,7 @@ public final class Classifier {
      *
      * @param stream {@link OutputStream} stream classifier will store its classifier units state to
      */
-    public void saveClassifiers(@NonNull OutputStream stream) {
+    public void saveClassifiers(OutputStream stream) {
         for (ClassifierUnit classifier : classifierUnits) {
             classifier.saveClassifier(stream);
         }
@@ -95,7 +96,7 @@ public final class Classifier {
      *
      * @param textForTesting - correctly classified texts for testing on each {@link ClassifierUnit}
      */
-    public void checkClassifiersAccuracy(@NonNull List<ClassifiableText> textForTesting) {
+    public void checkClassifiersAccuracy(List<ClassifiableText> textForTesting) {
 
         for (ClassifierUnit unit : classifierUnits) {
             Characteristic characteristic = unit.getCharacteristic();

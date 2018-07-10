@@ -1,22 +1,22 @@
 package org.ripreal.textclassifier2.model.modelimp;
 
-import lombok.Data;
-import lombok.NonNull;
-import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableText;
+
 import java.util.Set;
 
-@Data
 public class DefClassifiableText implements ClassifiableText {
 
     private final String id;
-
-    @NonNull
     private String text;
-
-    @NonNull
     private Set<CharacteristicValue> characteristics;
+
+    @java.beans.ConstructorProperties({"id", "text", "characteristics"})
+    public DefClassifiableText(String id, String text, Set<CharacteristicValue> characteristics) {
+        this.id = id;
+        this.text = text;
+        this.characteristics = characteristics;
+    }
 
     @Override
     public CharacteristicValue getCharacteristicValue(String characteristicName) {
@@ -37,4 +37,15 @@ public class DefClassifiableText implements ClassifiableText {
         return this.text.hashCode();
     }
 
+    public String getId() {return this.id;}
+
+    public String getText() {return this.text;}
+
+    public Set<CharacteristicValue> getCharacteristics() {return this.characteristics;}
+
+    public void setText(String text) {this.text = text; }
+
+    public void setCharacteristics(Set<CharacteristicValue> characteristics) {this.characteristics = characteristics; }
+
+    public String toString() {return "DefClassifiableText(id=" + this.getId() + ", text=" + this.getText() + ", characteristics=" + this.getCharacteristics() + ")";}
 }

@@ -3,21 +3,25 @@ package org.ripreal.textclassifier2.storage.data.mapper;
 import com.fasterxml.jackson.core.ObjectCodec;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
-import lombok.extern.slf4j.Slf4j;
 import org.ripreal.textclassifier2.model.VocabularyWord;
 import org.ripreal.textclassifier2.storage.data.entities.MongoCharacteristic;
 import org.ripreal.textclassifier2.storage.data.entities.MongoCharacteristicValue;
 import org.ripreal.textclassifier2.storage.data.entities.MongoClassifiableText;
 import org.ripreal.textclassifier2.storage.data.entities.MongoVocabularyWord;
+import org.slf4j.Logger;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-@Slf4j
 public class EntitiesConverter {
+
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(EntitiesConverter.class);
 
     static public List<MongoClassifiableText> castToMongoTexts(Iterable<MongoClassifiableText> texts) {
         List<MongoClassifiableText> mongoTexts = new ArrayList<>();

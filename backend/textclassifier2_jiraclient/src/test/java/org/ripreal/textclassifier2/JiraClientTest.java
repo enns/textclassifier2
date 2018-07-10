@@ -1,12 +1,11 @@
 package org.ripreal.textclassifier2;
 
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.mockito.ArgumentMatchers;
 import org.ripreal.textclassifier2.model.modelimp.DefClassifiableFactory;
+import org.slf4j.Logger;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,11 +15,12 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
-@Slf4j
 public class JiraClientTest {
 
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(JiraClientTest.class);
     private JiraClient client;
     private final DefClassifiableFactory textFactory = new DefClassifiableFactory();
 

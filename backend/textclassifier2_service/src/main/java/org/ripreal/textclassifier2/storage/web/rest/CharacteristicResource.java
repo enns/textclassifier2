@@ -1,17 +1,15 @@
 package org.ripreal.textclassifier2.storage.web.rest;
 
-import org.ripreal.textclassifier2.model.Characteristic;
-import org.ripreal.textclassifier2.storage.data.entities.MongoCharacteristicValue;
-import org.ripreal.textclassifier2.storage.web.rest.exceptions.ResourceNotFoundException;
 import org.ripreal.textclassifier2.storage.data.entities.MongoCharacteristic;
+import org.ripreal.textclassifier2.storage.data.entities.MongoCharacteristicValue;
 import org.ripreal.textclassifier2.storage.service.ClassifiableService;
+import org.ripreal.textclassifier2.storage.web.rest.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.List;
 import java.util.Set;
 
 @RestController

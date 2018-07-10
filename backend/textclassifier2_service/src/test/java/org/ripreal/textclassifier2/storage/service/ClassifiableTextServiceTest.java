@@ -1,6 +1,5 @@
 package org.ripreal.textclassifier2.storage.service;
 
-import lombok.NoArgsConstructor;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,13 +26,15 @@ import java.util.stream.Collectors;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-@NoArgsConstructor
 public class ClassifiableTextServiceTest extends SpringTestConfig {
 
     @Autowired
     private ClassifiableService service;
     @Autowired
     private ClassifiableMapper classifiableMapper;
+
+    public ClassifiableTextServiceTest() {
+    }
 
     @Before
     public void setUp() {

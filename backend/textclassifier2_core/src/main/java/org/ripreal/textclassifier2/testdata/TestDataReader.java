@@ -1,15 +1,11 @@
 package org.ripreal.textclassifier2.testdata;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
 import org.ripreal.textclassifier2.model.ClassifiableText;
-import org.ripreal.textclassifier2.model.VocabularyWord;
 
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.mapping;
@@ -53,14 +49,17 @@ public interface TestDataReader extends AutoCloseable {
         return chars;
     }
 
-    @RequiredArgsConstructor
     public final class ClassifiableData{
-        @Getter
         private final List<ClassifiableText> classifiableTexts;
-        @Getter
         private final Set<Characteristic> characteristics;
-        @Getter
         private final Set<CharacteristicValue> characteristicValues;
+
+        @java.beans.ConstructorProperties({"classifiableTexts", "characteristics", "characteristicValues"})
+        public ClassifiableData(List<ClassifiableText> classifiableTexts, Set<Characteristic> characteristics, Set<CharacteristicValue> characteristicValues) {
+            this.classifiableTexts = classifiableTexts;
+            this.characteristics = characteristics;
+            this.characteristicValues = characteristicValues;
+        }
 
         public boolean isEmpty() {
             return classifiableTexts.size() == 0
@@ -71,6 +70,12 @@ public interface TestDataReader extends AutoCloseable {
         public static ClassifiableData empty() {
             return new ClassifiableData(new ArrayList<>(),new HashSet<>(), new HashSet<>());
         }
+
+        public List<ClassifiableText> getClassifiableTexts() {return this.classifiableTexts;}
+
+        public Set<Characteristic> getCharacteristics() {return this.characteristics;}
+
+        public Set<CharacteristicValue> getCharacteristicValues() {return this.characteristicValues;}
     }
 }
 

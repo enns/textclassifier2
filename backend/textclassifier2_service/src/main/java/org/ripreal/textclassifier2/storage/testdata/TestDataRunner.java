@@ -1,7 +1,6 @@
 package org.ripreal.textclassifier2.storage.testdata;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.extern.slf4j.Slf4j;
 import org.ripreal.textclassifier2.*;
 import org.ripreal.textclassifier2.classifier.Classifier;
 import org.ripreal.textclassifier2.classifier.ClassifierBuilder;
@@ -10,6 +9,8 @@ import org.ripreal.textclassifier2.model.ClassifiableText;
 import org.ripreal.textclassifier2.ngram.NGramStrategy;
 import org.ripreal.textclassifier2.storage.service.ClassifiableService;
 import org.ripreal.textclassifier2.testdata.TestDataReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -22,8 +23,9 @@ import java.util.List;
 
 @Profile("test")
 @Configuration
-@Slf4j
 public class TestDataRunner {
+
+    private final static Logger log = LoggerFactory.getLogger(TestDataRunner.class);
 
     @Autowired
     private ClassifiableService textService;

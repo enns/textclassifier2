@@ -2,7 +2,6 @@ package org.ripreal.textclassifier2.storage.web.rest;
 
 import org.ripreal.textclassifier2.storage.data.entities.MongoClassifiableText;
 import org.ripreal.textclassifier2.storage.service.ClassifiableService;
-import org.ripreal.textclassifier2.storage.service.MongoTextService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;

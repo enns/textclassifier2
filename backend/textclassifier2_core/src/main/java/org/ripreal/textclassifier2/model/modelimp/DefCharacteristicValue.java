@@ -1,26 +1,25 @@
 package org.ripreal.textclassifier2.model.modelimp;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import org.ripreal.textclassifier2.model.Characteristic;
 import org.ripreal.textclassifier2.model.CharacteristicValue;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class DefCharacteristicValue implements CharacteristicValue {
 
-    @NonNull
     private String id;
-
-    @NonNull
     private String value;
     // It is used to decode classifier value from vector when classify method() is invoked
     private int orderNumber;
-    @NonNull
     private Characteristic characteristic;
+
+    @java.beans.ConstructorProperties({"id", "value", "orderNumber", "characteristic"})
+    public DefCharacteristicValue(String id, String value, int orderNumber, Characteristic characteristic) {
+        this.id = id;
+        this.value = value;
+        this.orderNumber = orderNumber;
+        this.characteristic = characteristic;
+    }
+
+    public DefCharacteristicValue() {}
 
     @Override
     public boolean equals(Object o) {
@@ -37,4 +36,19 @@ public class DefCharacteristicValue implements CharacteristicValue {
         return String.format("value: %s, orderNumber %s",  value, orderNumber);
     }
 
+    public String getId() {return this.id;}
+
+    public String getValue() {return this.value;}
+
+    public int getOrderNumber() {return this.orderNumber;}
+
+    public Characteristic getCharacteristic() {return this.characteristic;}
+
+    public void setId(String id) {this.id = id; }
+
+    public void setValue(String value) {this.value = value; }
+
+    public void setOrderNumber(int orderNumber) {this.orderNumber = orderNumber; }
+
+    public void setCharacteristic(Characteristic characteristic) {this.characteristic = characteristic; }
 }

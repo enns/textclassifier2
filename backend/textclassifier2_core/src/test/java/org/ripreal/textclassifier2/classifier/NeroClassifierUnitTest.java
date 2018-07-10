@@ -88,7 +88,7 @@ public class NeroClassifierUnitTest {
         new NeroClassifierUnit(trainedClassifier, characteristic, new ArrayList<>(), nGramStrategy);
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nullNGram() {
         new NeroClassifierUnit(trainedClassifier, characteristic, vocabulary, null);
     }
@@ -176,7 +176,7 @@ public class NeroClassifierUnitTest {
     @Test(expected = IllegalArgumentException.class)
     public void buildZeroOrderNumber() {
         List<ClassifiableText> classifiableTexts = new ArrayList<>();
-        
+
         Set<CharacteristicValue> characteristics = new HashSet<>();
         CharacteristicValue pair = characteristicFactory.newCharacteristicValue
             ("add", 0, characteristic);

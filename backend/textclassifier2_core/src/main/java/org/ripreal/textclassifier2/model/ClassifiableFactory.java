@@ -1,11 +1,6 @@
 package org.ripreal.textclassifier2.model;
 
-import org.ripreal.textclassifier2.model.modelimp.*;
-
-import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
-import java.util.UUID;
 
 // ABSTRACT FACTORY
 public interface ClassifiableFactory {

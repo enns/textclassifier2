@@ -1,8 +1,5 @@
 package org.ripreal.textclassifier2.ngram;
 
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -11,9 +8,7 @@ import java.util.Set;
 // decorator
 class Bigram implements NGramStrategy {
 
-    @NonNull
     private final NGRAM_TYPES ngramType;
-    @NonNull
     private final NGramStrategy nGramStrategy;
 
     Bigram(NGramStrategy nGramStrategy) {
